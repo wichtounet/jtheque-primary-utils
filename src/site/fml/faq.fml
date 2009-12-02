@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs title="Frequently Asked Questions">
+    <part id="General">
+        <faq id="needed-libraries">
+            <question>De quelles librairies a besoin JTheque Primary UTils ?</question>
+            <answer>
+                <p>
+                    JTheque Primary Utils nÃ©cessite JTheque Core et les librairies que ce dernier projet
+                    met Ã  disposition.
+                </p>
+            </answer>
+        </faq>
+        <faq id="needed-jtheque-core">
+            <question>Est-ce que JTheque Primary Utils est dÃ©pendant de JTheque Core</question>
+            <answer>
+                <p>
+                    Oui, JTheque Primary Utils ne peut pas Ãªtre utilisÃ© indÃ©pendamment de JTheque Core.
+                </p>
+            </answer>
+        </faq>
+    </part>
+</faqs>

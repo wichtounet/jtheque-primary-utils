@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jtheque="http://www.jtheque.com/schema/jtheque"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.jtheque.com/schema/jtheque
+            http://www.jtheque.com/schema/jtheque/jtheque.xsd"
+       default-lazy-init="true">
+
+    <bean id="daoCollections" class="org.jtheque.primary.dao.impl.DaoCollections"/>
+
+</beans>
