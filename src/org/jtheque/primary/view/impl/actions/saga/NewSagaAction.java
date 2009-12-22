@@ -16,6 +16,8 @@ package org.jtheque.primary.view.impl.actions.saga;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.beans.IBeansManager;
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
 import org.jtheque.primary.controller.able.ISagaController;
 
@@ -29,10 +31,7 @@ import java.awt.event.ActionEvent;
  */
 public final class NewSagaAction extends JThequeAction {
     private static final long serialVersionUID = -4986384249077065534L;
-
-    @Resource
-    private ISagaController sagaController;
-
+    
     /**
      * Construct a NewKindAction.
      */
@@ -42,6 +41,8 @@ public final class NewSagaAction extends JThequeAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        ISagaController sagaController = Managers.getManager(IBeansManager.class).getBean("sagaController");
+        
         sagaController.newSaga();
         sagaController.displayView();
     }

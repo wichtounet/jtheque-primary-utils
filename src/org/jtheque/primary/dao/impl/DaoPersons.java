@@ -186,7 +186,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
             person.setTheCountry(daoCountries.getCountry(rs.getInt("THE_COUNTRY_FK")));
 
             if (StringUtils.isNotEmpty(rs.getString("NOTE"))) {
-                person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt(rs.getString("NOTE")))));
+                person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
             }
 
             return person;
@@ -209,7 +209,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
                     person.getName(),
                     person.getFirstName(),
                     person.getEmail(),
-                    person.getNote() == null ? 0 : person.getNote().getValue().name(),
+                    person.getNote() == null ? 0 : person.getNote().getValue().intValue(),
                     person.getTheCountry() == null ? 0 : person.getTheCountry().getId(),
                     person.getType()};
 
@@ -226,7 +226,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
                     person.getName(),
                     person.getFirstName(),
                     person.getEmail(),
-                    person.getNote() == null ? 0 : person.getNote().getValue().name(),
+                    person.getNote() == null ? 0 : person.getNote().getValue().intValue(),
                     person.getTheCountry() == null ? 0 : person.getTheCountry().getId(),
                     person.getType(),
                     person.getId()};
