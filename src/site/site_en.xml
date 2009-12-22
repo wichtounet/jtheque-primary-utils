@@ -18,7 +18,9 @@
             <item name="JTheque Primary Utils" href="http://jtheque.developpez.com/utilities/primary/"/>
         </breadcrumbs>
 
-        <menu ref="parent"/>
+        <menu name="Parent">
+            <item name="JTheque Utilities" href="http://jtheque.developpez.com/utilities/en/"/>
+        </menu>
 
         <menu name="JTheque Primary Utils">
             <item name="Overview" href="index.html"/>
