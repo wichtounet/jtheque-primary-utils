@@ -31,7 +31,7 @@ import org.jtheque.primary.utils.DataTypeManager;
  * @author Baptiste Wicht
  */
 public final class PrimaryUtils {
-    private static final String BASE_NAME = "classpath:/org/jtheque/primary/ressources/i18n/utils";
+    private static final String BASE_NAME = "classpath:/org/jtheque/primary/i18n/utils";
 
     private static Schema schema;
 
