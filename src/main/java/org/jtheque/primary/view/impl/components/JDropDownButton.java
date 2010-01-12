@@ -37,8 +37,6 @@ import java.util.Arrays;
  * @author Baptiste Wicht
  */
 public final class JDropDownButton extends JPanel implements ActionListener {
-    private static final long serialVersionUID = -1526398546811777519L;
-
     private final JPopupMenu popup;
 
     /**

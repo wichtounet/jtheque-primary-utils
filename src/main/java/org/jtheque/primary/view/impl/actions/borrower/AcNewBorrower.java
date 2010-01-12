@@ -28,18 +28,15 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcNewBorrower extends JThequeAction {
-    private static final long serialVersionUID = 1831680737542781216L;
-
     @Resource
     private IBorrowerController borrowerController;
 
     /**
      * Construct a new AcNewBorrower.
      *
-     * @param key The internationalization key.
      */
-    public AcNewBorrower(String key) {
-        super(key);
+    public AcNewBorrower() {
+        super("menu.others.borrower");
     }
 
     @Override

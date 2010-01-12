@@ -33,8 +33,6 @@ import java.util.List;
  * @param <T> The entity class on the model.
  */
 public final class DataContainerCachedComboBoxModel<T extends Data> extends DefaultComboBoxModel implements DataListener {
-    private static final long serialVersionUID = -5108796092884300590L;
-
     private final DataContainer<T> container;
 
     private List<T> datas;

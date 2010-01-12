@@ -26,7 +26,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public interface ILendingsService extends DataContainer<Lending> {
+public interface ILendingsService extends DataContainer<Lending>, DataService<Lending> {
     String DATA_TYPE = "Lendings";
 
     /**
@@ -50,28 +50,6 @@ public interface ILendingsService extends DataContainer<Lending> {
      * @return A List containing all the lendings.
      */
     Collection<Lending> getLendings();
-
-    /**
-     * Save the lending.
-     *
-     * @param lending The lending to save.
-     */
-    void save(Lending lending);
-
-    /**
-     * Delete a lending.
-     *
-     * @param lending The lending to delete.
-     * @return true if the lending has been deleted.
-     */
-    boolean delete(Lending lending);
-
-    /**
-     * Create a lending.
-     *
-     * @param lending The lending to create.
-     */
-    void create(Lending lending);
 
     /**
      * Test if the lending is late or not.

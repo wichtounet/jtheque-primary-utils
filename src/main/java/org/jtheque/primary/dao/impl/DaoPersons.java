@@ -22,8 +22,8 @@ import org.jtheque.core.managers.persistence.QueryMapper;
 import org.jtheque.core.managers.persistence.able.Entity;
 import org.jtheque.core.managers.persistence.context.IDaoPersistenceContext;
 import org.jtheque.core.utils.db.DaoNotes;
-import org.jtheque.primary.dao.able.IDaoCountries;
 import org.jtheque.primary.dao.able.IDaoPersons;
+import org.jtheque.primary.dao.able.IDaoSimpleDatas;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.od.impl.PersonImpl;
 import org.jtheque.utils.StringUtils;
@@ -52,7 +52,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
     private SimpleJdbcTemplate jdbcTemplate;
 
     @Resource
-    private IDaoCountries daoCountries;
+    private IDaoSimpleDatas daoCountries;
 
     private final DaoNotes daoNotes = DaoNotes.getInstance();
 
@@ -183,7 +183,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
             person.setFirstName(rs.getString("FIRST_NAME"));
             person.setEmail(rs.getString("EMAIL"));
             person.setType(rs.getString("TYPE"));
-            person.setTheCountry(daoCountries.getCountry(rs.getInt("THE_COUNTRY_FK")));
+            person.setTheCountry(daoCountries.getSimpleData(rs.getInt("THE_COUNTRY_FK")));
 
             if (StringUtils.isNotEmpty(rs.getString("NOTE"))) {
                 person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));

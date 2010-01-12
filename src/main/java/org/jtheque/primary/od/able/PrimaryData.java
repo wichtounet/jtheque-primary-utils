@@ -12,11 +12,6 @@ public interface PrimaryData extends Data {
      * @return The primary implementation of this data.
      */
     String getPrimaryImpl();
-
-    /**
-     * Set the primary implementation of the data.
-     *
-     * @param primaryImpl The primary implementation of this data.
-     */
-    void setPrimaryImpl(String primaryImpl);
+    
+    void setPrimaryImpl(String impl);
 }

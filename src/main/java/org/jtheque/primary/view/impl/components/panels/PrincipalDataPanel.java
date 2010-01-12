@@ -24,6 +24,7 @@ import org.jtheque.core.managers.view.able.IViewManager;
 import org.jtheque.core.managers.view.able.components.IModel;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.view.able.PrincipalDataView;
+import org.jtheque.primary.view.able.ToolbarView;
 import org.jtheque.primary.view.impl.listeners.DisplayListListener;
 import org.jtheque.primary.view.impl.models.tree.JThequeTreeModel;
 import org.jtheque.primary.view.impl.sort.SortManager;
@@ -39,8 +40,6 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implements PrincipalDataView, DisplayListListener {
-    private static final long serialVersionUID = 5420991974415593862L;
-
     private JThequeTreeModel treeModel;
     private String sortMode = "None";
 
@@ -182,6 +181,21 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
         validate(errors);
 
         return errors.isEmpty();
+    }
+
+    @Override
+    public Object getImpl() {
+        return this;
+    }
+
+    @Override
+    public ToolbarView getToolbarView() {
+        return null;  //Default implementation
+    }
+
+    @Override
+    public void clear() {
+        //Nothing by default
     }
 
     /**

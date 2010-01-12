@@ -17,66 +17,74 @@ package org.jtheque.primary.od.impl;
  */
 
 import org.jtheque.primary.od.able.Collection;
-import org.jtheque.primary.od.impl.abstraction.AbstractCollection;
-import org.jtheque.utils.bean.HashCodeUtils;
+import org.jtheque.primary.od.impl.abstraction.AbstractPrimaryData;
+import org.jtheque.primary.utils.TempUtils;
 
 /**
  * An implementation of a collection of film.
  *
  * @author Baptiste Wicht
  */
-public final class CollectionImpl extends AbstractCollection {
+public final class CollectionImpl extends AbstractPrimaryData implements Collection {
+    private String title;
+    private boolean protection;
+    private String password;
+
+    //Data methods
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public boolean isProtection() {
+        return protection;
+    }
+
+    @Override
+    public void setProtection(boolean protection) {
+        this.protection = protection;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //Utility class
+
     @Override
     public String getDisplayableText() {
-        return getTitle();
+        return title;
     }
 
     @Override
     public String toString() {
-        return getDisplayableText();
+        return title;
     }
 
     @Override
     public int hashCode() {
-        return HashCodeUtils.hashCode(this);
+        return TempUtils.hashCodeDirect(title, protection, password);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
+        Collection other = (Collection)obj;
 
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final Collection other = (Collection) obj;
-
-        if (getId() != other.getId()) {
-            return false;
-        }
-
-        if (getTitle() == null) {
-            if (other.getTitle() != null) {
-                return false;
-            }
-        } else if (!getTitle().equals(other.getTitle())) {
-            return false;
-        }
-
-        if (getPassword() == null) {
-            if (other.getPassword() != null) {
-                return false;
-            }
-        } else if (!getPassword().equals(other.getPassword())) {
-            return false;
-        }
-
-        return isProtection() == other.isProtection();
+        return TempUtils.areEqualsDirect(this, obj,
+                title, protection, password,
+                other.getTitle(), other.isProtection(), other.getPassword());
     }
 }

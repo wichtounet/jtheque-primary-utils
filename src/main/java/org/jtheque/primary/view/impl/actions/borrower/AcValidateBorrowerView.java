@@ -29,8 +29,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateBorrowerView extends JThequeAction {
-    private static final long serialVersionUID = -6791055361978541369L;
-
     @Resource
     private IBorrowerController borrowerController;
 

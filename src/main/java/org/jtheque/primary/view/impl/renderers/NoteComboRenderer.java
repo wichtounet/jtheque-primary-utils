@@ -34,8 +34,6 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer {
-    private static final long serialVersionUID = 1L;
-
     /**
      * Construct a new <code>NoteComboRenderer</code>.
      */
@@ -48,7 +46,7 @@ public final class NoteComboRenderer extends JXImagePanel implements ListCellRen
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         if (value != null) {
-            setImage(DaoNotes.getInstance().getImage((Note) value));
+            setImage(DaoNotes.getImage((Note) value));
         }
 
         if (isSelected) {

@@ -88,8 +88,7 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
         updateDisplayList();
     }
 
-    /**
-     * Update the display list.
-     */
-    protected abstract void updateDisplayList();
+    public void updateDisplayList() {
+        updateDisplayList(null);
+    }
 }

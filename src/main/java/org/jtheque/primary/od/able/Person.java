@@ -27,7 +27,14 @@ public interface Person extends Data, Notable {
      *
      * @param country The new country of the data
      */
-    void setTheCountry(Country country);
+    void setTheCountry(SimpleData country);
+
+    /**
+     * Return the country of the person.
+     *
+     * @return The country
+     */
+    SimpleData getTheCountry();
 
     /**
      * Return the name of the person.
@@ -42,13 +49,6 @@ public interface Person extends Data, Notable {
      * @return The first name of the person.
      */
     String getFirstName();
-
-    /**
-     * Return the country of the person.
-     *
-     * @return The country
-     */
-    Country getTheCountry();
 
     /**
      * Set the email of the person.

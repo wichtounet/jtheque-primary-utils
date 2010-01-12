@@ -29,8 +29,6 @@ import javax.swing.DefaultComboBoxModel;
  * @author Baptiste Wicht
  */
 public final class NotesComboBoxModel extends DefaultComboBoxModel {
-    private static final long serialVersionUID = -8327884283883669712L;
-
     private final DaoNotes daoNotes = DaoNotes.getInstance();
 
     /**

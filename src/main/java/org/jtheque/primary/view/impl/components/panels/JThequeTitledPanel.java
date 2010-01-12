@@ -27,8 +27,6 @@ import org.jtheque.core.managers.language.Internationalizable;
  * @author Baptiste Wicht
  */
 public final class JThequeTitledPanel extends JXTitledPanel implements Internationalizable {
-    private static final long serialVersionUID = -2284383158816107610L;
-
     private final String key;
 
     /**

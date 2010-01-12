@@ -18,9 +18,6 @@ import org.jtheque.primary.od.able.PrimaryData;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @author Baptiste Wicht
- */
 public abstract class AbstractPrimaryData extends AbstractData implements PrimaryData {
     private String primaryImpl;
 

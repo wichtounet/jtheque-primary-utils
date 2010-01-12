@@ -67,14 +67,6 @@ public interface ControllerState {
     ControllerState manualEdit();
 
     /**
-     * Edit automatically a new data.
-     *
-     * @param data The data to edit
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState autoEdit(Data data);
-
-    /**
      * Display a data.
      *
      * @param data the data to display.

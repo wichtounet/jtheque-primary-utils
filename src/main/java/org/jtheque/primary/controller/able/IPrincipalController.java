@@ -20,12 +20,13 @@ import org.jtheque.core.managers.view.able.controller.Controller;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.view.impl.models.able.IPrincipalDataModel;
 
+import javax.swing.event.TreeSelectionListener;
 import java.util.Collection;
 
 /**
  * @author Baptiste Wicht
  */
-public interface IPrincipalController<T extends Data> extends Controller {
+public interface IPrincipalController<T extends Data> extends Controller, TreeSelectionListener {
     /**
      * Return the state state. This state is active when we show a data on the view.
      *
@@ -74,4 +75,16 @@ public interface IPrincipalController<T extends Data> extends Controller {
      * @return The display list.
      */
     Collection<T> getDisplayList();
+
+    void save(FormBean formBean);
+
+    void view(T film);
+
+    void manualEdit();
+
+    void create();
+
+    void deleteCurrent();
+
+    void cancel();
 }

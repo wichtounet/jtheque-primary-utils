@@ -29,8 +29,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateChoiceView extends JThequeAction {
-    private static final long serialVersionUID = 3507389309151196070L;
-
     @Resource
     private IChoiceController choiceController;
 

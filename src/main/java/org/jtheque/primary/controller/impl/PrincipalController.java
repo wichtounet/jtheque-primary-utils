@@ -21,26 +21,112 @@ import org.jtheque.core.managers.view.able.IViewManager;
 import org.jtheque.core.managers.view.able.components.TabComponent;
 import org.jtheque.core.managers.view.able.controller.AbstractController;
 import org.jtheque.primary.controller.able.ControllerState;
+import org.jtheque.primary.controller.able.FormBean;
 import org.jtheque.primary.controller.able.IPrincipalController;
 import org.jtheque.primary.od.able.Data;
+import org.jtheque.primary.view.impl.models.tree.TreeElement;
+
+import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.tree.TreePath;
+import java.util.Collection;
 
 /**
  * An abstract principal Controller.
  *
  * @author Baptiste Wicht
  */
-public abstract class PrincipalController<T extends Data> extends AbstractController implements IPrincipalController<T> {
+public abstract class PrincipalController<T extends Data> extends AbstractController implements IPrincipalController<T>{
     private ControllerState state;
-    private ControllerState viewState;
-    private ControllerState modifyState;
-    private ControllerState newObjectState;
-    private ControllerState autoAddState;
+    private final ControllerState viewState;
+    private final ControllerState modifyState;
+    private final ControllerState newObjectState;
+    private final ControllerState autoAddState;
+
+    protected PrincipalController(ControllerState viewState, ControllerState modifyState,
+                                  ControllerState newObjectState, ControllerState autoAddState){
+        super();
+
+        this.viewState = viewState;
+        this.modifyState = modifyState;
+        this.newObjectState = newObjectState;
+        this.autoAddState = autoAddState;
+
+        state = viewState;
+    }
 
     @Override
     public final void displayView() {
         Managers.getManager(IViewManager.class).getViews().setSelectedView((TabComponent) getView());
 
         super.displayView();
+    }
+
+    @Override
+    public void valueChanged(TreeSelectionEvent event) {
+        TreePath current = ((JTree) event.getSource()).getSelectionPath();
+
+        if (current != null && current.getLastPathComponent() instanceof TreeElement) {
+            T data = (T) current.getLastPathComponent();
+
+            if (data != null) {
+                view(data);
+            }
+        }
+    }
+
+    @Override
+    public void save(FormBean formBean) {
+        ControllerState newState = state.save(formBean);
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
+    }
+
+    @Override
+    public void view(T data) {
+        ControllerState newState = state.view(data);
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
+    }
+
+    @Override
+    public void manualEdit() {
+        ControllerState newState = state.manualEdit();
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
+    }
+
+    @Override
+    public void create() {
+        ControllerState newState = state.create();
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
+    }
+
+    @Override
+    public void deleteCurrent() {
+        ControllerState newState = state.delete();
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
+    }
+
+    @Override
+    public void cancel() {
+        ControllerState newState = state.cancel();
+
+        if (newState != null) {
+            setAndApplyState(newState);
+        }
     }
 
     @Override
@@ -63,6 +149,11 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         return newObjectState;
     }
 
+    @Override
+    public Collection<T> getDisplayList(){
+        return getViewModel().getDisplayList();
+    }
+
     /**
      * Return the state of the controller.
      *
@@ -81,50 +172,5 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         this.state = state;
 
         state.apply();
-    }
-
-    /**
-     * Set the current state.
-     *
-     * @param state The state to set.
-     */
-    protected final void setState(ControllerState state) {
-        this.state = state;
-    }
-
-    /**
-     * Set the view state of the controller.
-     *
-     * @param viewState The view state of the controller.
-     */
-    public void setViewState(ControllerState viewState) {
-        this.viewState = viewState;
-    }
-
-    /**
-     * Set the modify state of the controller.
-     *
-     * @param modifyState The modify state of the controller.
-     */
-    public void setModifyState(ControllerState modifyState) {
-        this.modifyState = modifyState;
-    }
-
-    /**
-     * Set the new object state of the controller.
-     *
-     * @param newObjectState The new object state of the controller.
-     */
-    public void setNewObjectState(ControllerState newObjectState) {
-        this.newObjectState = newObjectState;
-    }
-
-    /**
-     * Set the auto add state of the controller.
-     *
-     * @param autoAddState The auto add state of the controller.
-     */
-    public void setAutoAddState(ControllerState autoAddState) {
-        this.autoAddState = autoAddState;
     }
 }

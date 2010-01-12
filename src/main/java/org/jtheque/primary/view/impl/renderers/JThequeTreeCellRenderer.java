@@ -29,8 +29,6 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class JThequeTreeCellRenderer extends DefaultTreeCellRenderer {
-    private static final long serialVersionUID = 7137638623729268796L;
-
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value,
                                                   boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {

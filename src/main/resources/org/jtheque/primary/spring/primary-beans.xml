@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jtheque="http://www.jtheque.com/schema/jtheque"
+       xmlns:utils="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/utils/spring-util.xsd
+            http://www.jtheque.com/schema/jtheque
+            http://www.jtheque.com/schema/jtheque/jtheque.xsd"
+       default-lazy-init="true">
+
+    <!-- Services -->
+
+    <bean id="borrowersService" class="org.jtheque.primary.services.impl.PersonService">
+        <constructor-arg value="Borrower" />
+        <constructor-arg value="Borrowers" />
+    </bean>
+
+    <bean id="lendingsService" class="org.jtheque.primary.services.impl.LendingsService"/>
+    <bean id="collectionsService" class="org.jtheque.primary.services.impl.CollectionsService"/>
+
+    <bean id="countriesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+        <constructor-arg ref="daoCountries" />
+    </bean>
+    <bean id="languagesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+        <constructor-arg ref="daoLanguages" />
+    </bean>
+    <bean id="typesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+        <constructor-arg ref="daoTypes" />
+    </bean>
+    <bean id="kindsService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+        <constructor-arg ref="daoKinds" />
+    </bean>
+    <bean id="sagasService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+        <constructor-arg ref="daoSagas" />
+    </bean>
+    <bean id="notesService" class="org.jtheque.primary.services.impl.NotesService"/>
+
+    <!-- DAOs -->
+
+    <bean id="daoPersons" class="org.jtheque.primary.dao.impl.DaoPersons"/>
+    <bean id="daoLendings" class="org.jtheque.primary.dao.impl.DaoLendings"/>
+    <bean id="daoCollections" class="org.jtheque.primary.dao.impl.DaoCollections"/>
+
+    <bean id="daoCountries" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
+        <constructor-arg value="COUNTRY"/>
+    </bean>
+    <bean id="daoLanguages" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
+        <constructor-arg value="LANGUAGE"/>
+    </bean>
+    <bean id="daoTypes" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
+        <constructor-arg value="TYPE"/>
+    </bean>
+    <bean id="daoKinds" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
+        <constructor-arg value="KIND"/>
+    </bean>
+    <bean id="daoSagas" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
+        <constructor-arg value="SAGA"/>
+    </bean>
+
+    <!-- Controllers -->
+
+    <bean id="borrowerController" class="org.jtheque.primary.controller.impl.BorrowerController"/>
+    <bean id="choiceController" class="org.jtheque.primary.controller.impl.ChoiceController"/>
+
+    <bean id="countryController" class="org.jtheque.primary.controller.impl.SimpleController">
+        <constructor-arg ref="countriesService" />
+    </bean>
+    <bean id="languageController" class="org.jtheque.primary.controller.impl.SimpleController">
+        <constructor-arg ref="languagesService" />
+    </bean>
+    <bean id="typeController" class="org.jtheque.primary.controller.impl.SimpleController">
+        <constructor-arg ref="typesService" />
+    </bean>
+    <bean id="kindController" class="org.jtheque.primary.controller.impl.SimpleController">
+        <constructor-arg ref="kindsService" />
+    </bean>
+    <bean id="sagaController" class="org.jtheque.primary.controller.impl.SimpleController">
+        <constructor-arg ref="sagasService" />
+    </bean>
+
+    <!-- Proxy views -->
+
+    <jtheque:proxy id="borrowerView" type="org.jtheque.primary.view.impl.frames.BorrowerView"/>
+    <jtheque:proxy id="choiceView" type="org.jtheque.primary.view.impl.frames.ChoiceView"/>
+    <jtheque:proxy id="simpleDataView" type="org.jtheque.primary.view.impl.frames.SimpleDataView"/>
+
+    <!-- Real Views -->
+
+    <bean id="_borrowerView" class="org.jtheque.primary.view.impl.frames.BorrowerView" />
+    <bean id="_choiceView" class="org.jtheque.primary.view.impl.frames.ChoiceView" />
+    <bean id="_simpleDataView" class="org.jtheque.primary.view.impl.frames.SimpleDataView" />
+</beans>

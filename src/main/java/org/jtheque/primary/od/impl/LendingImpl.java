@@ -16,19 +16,58 @@ package org.jtheque.primary.od.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.properties.IPropertiesManager;
-import org.jtheque.primary.od.impl.abstraction.AbstractLending;
+import org.jtheque.primary.od.able.Lending;
+import org.jtheque.primary.od.able.Person;
+import org.jtheque.primary.od.impl.abstraction.AbstractPrimaryData;
 import org.jtheque.primary.od.impl.temp.LendingTemporaryContext;
-import org.jtheque.utils.bean.HashCodeUtils;
+import org.jtheque.primary.utils.TempUtils;
+import org.jtheque.utils.bean.IntDate;
 
 /**
  * A lending.
  *
  * @author Baptiste Wicht
  */
-public final class LendingImpl extends AbstractLending {
+public final class LendingImpl extends AbstractPrimaryData implements Lending {
+    private IntDate date;
+    private Person thePerson;
+    private int theOther;
+
     private final LendingTemporaryContext temporaryContext = new LendingTemporaryContext();
+
+    //Data methods
+
+    @Override
+    public void setDate(IntDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public IntDate getDate() {
+        return date;
+    }
+
+    @Override
+    public void setThePerson(Person thePerson) {
+        this.thePerson = thePerson;
+    }
+
+    @Override
+    public Person getThePerson() {
+        return thePerson;
+    }
+
+    @Override
+    public void setTheOther(int other) {
+        theOther = other;
+    }
+
+    @Override
+    public int getTheOther() {
+        return theOther;
+    }
+
+    //Utility methods
 
     @Override
     public LendingTemporaryContext getTemporaryContext() {
@@ -37,18 +76,21 @@ public final class LendingImpl extends AbstractLending {
 
     @Override
     public String getDisplayableText() {
-        return "Lending of :  " + getTheOther();
+        return "Lending of :  " + theOther;
     }
 
     @Override
     public int hashCode() {
-        return HashCodeUtils.hashCode(this, "id", "date", "thePerson", "primaryImpl", "theOther");
+        return TempUtils.hashCodeDirect(getId(), date, thePerson, getPrimaryImpl(), theOther);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return Managers.getManager(IPropertiesManager.class).areEquals(
+        Lending other = (Lending)obj;
+
+        return TempUtils.areEqualsDirect(
                 this, obj,
-                "id", "date", "theOther", "primaryImpl", "theBorrower");
+                getId(), date, theOther, getPrimaryImpl(),
+                other.getId(), other.getDate(), other.getTheOther(), other.getPrimaryImpl());
     }
 }

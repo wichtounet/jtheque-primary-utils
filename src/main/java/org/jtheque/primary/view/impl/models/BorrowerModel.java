@@ -16,8 +16,8 @@ package org.jtheque.primary.view.impl.models;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.jtheque.primary.PrimaryConstants;
 import org.jtheque.primary.od.able.Person;
-import org.jtheque.primary.services.able.IBorrowersService;
 import org.jtheque.primary.view.impl.models.able.IBorrowerModel;
 
 /**
@@ -30,7 +30,7 @@ public final class BorrowerModel implements IBorrowerModel {
 
     @Override
     public void setBorrower(Person borrower) {
-        assert borrower.getType().equals(IBorrowersService.PERSON_TYPE) : "The person must be a borrower";
+        assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
 
         this.borrower = borrower;
     }

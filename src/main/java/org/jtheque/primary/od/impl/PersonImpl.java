@@ -18,21 +18,94 @@ package org.jtheque.primary.od.impl;
 
 import org.jtheque.core.managers.Managers;
 import org.jtheque.core.managers.properties.IPropertiesManager;
+import org.jtheque.core.utils.db.Note;
 import org.jtheque.primary.od.able.Person;
-import org.jtheque.primary.od.impl.abstraction.AbstractPerson;
+import org.jtheque.primary.od.able.SimpleData;
+import org.jtheque.primary.od.impl.abstraction.AbstractPrimaryData;
 import org.jtheque.primary.od.impl.temp.PersonTemporaryContext;
-import org.jtheque.utils.bean.HashCodeUtils;
+import org.jtheque.primary.utils.TempUtils;
 
 /**
  * A borrower implementation.
  *
  * @author Baptiste Wicht
  */
-public final class PersonImpl extends AbstractPerson {
+public final class PersonImpl extends AbstractPrimaryData implements Person {
+    private String name;
+    private String firstName;
+    private SimpleData theCountry;
+    private Note note;
+    private String type;
+    private String email;
+
     private Person memento;
     private boolean mementoState;
 
     private final PersonTemporaryContext temporaryContext = new PersonTemporaryContext();
+
+    //Data methods
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Override
+    public void setTheCountry(SimpleData country) {
+        theCountry = country;
+    }
+
+    @Override
+    public SimpleData getTheCountry() {
+        return theCountry;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public void setNote(Note note) {
+        this.note = note;
+    }
+
+    @Override
+    public Note getNote() {
+        return note;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    //Utility methods
 
     @Override
     public PersonTemporaryContext getTemporaryContext() {
@@ -41,12 +114,12 @@ public final class PersonImpl extends AbstractPerson {
 
     @Override
     public boolean hasCountry() {
-        return getTheCountry() != null;
+        return theCountry != null;
     }
 
     @Override
     public String getDisplayableText() {
-        return getFirstName() + ' ' + getName();
+        return firstName + ' ' + name;
     }
 
     @Override
@@ -56,14 +129,17 @@ public final class PersonImpl extends AbstractPerson {
 
     @Override
     public int hashCode() {
-        return HashCodeUtils.hashCode(this, "id", "name", "note", "theCountry", "firstName", "email", "type");
+        return TempUtils.hashCodeDirect(this, getId(), name, note, theCountry, firstName, email, type);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return Managers.getManager(IPropertiesManager.class).areEquals(
+        Person other = (Person)obj;
+
+        return TempUtils.areEqualsDirect(
                 this, obj,
-                "name", "note", "theCountry", "firstName", "email", "type");
+                name, note, theCountry, firstName, email, type,
+                other.getName(), other.getNote(), other.getTheCountry(), other.getFirstName(), other.getEmail(), other.getType());
     }
 
     @Override

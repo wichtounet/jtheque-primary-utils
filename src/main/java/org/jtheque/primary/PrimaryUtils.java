@@ -17,13 +17,16 @@ package org.jtheque.primary;
  */
 
 import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.feature.Feature;
+import org.jtheque.core.managers.feature.IFeatureManager;
+import org.jtheque.core.managers.feature.Menu;
 import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.core.managers.schema.ISchemaManager;
 import org.jtheque.core.managers.schema.Schema;
-import org.jtheque.primary.services.able.IBorrowersService;
-import org.jtheque.primary.services.able.ICountriesService;
-import org.jtheque.primary.services.able.ILanguagesService;
+import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.utils.DataTypeManager;
+
+import java.util.List;
 
 /**
  * The primary utils. This class give to modules some utilities methods to construct primary module.
@@ -35,19 +38,21 @@ public final class PrimaryUtils {
 
     private static Schema schema;
 
+    private static Menu menu;
+
     private static String primaryImpl;
 
     /**
      * Construct a new PrimaryUtils.
      */
-    private PrimaryUtils() {
+    private PrimaryUtils(){
         super();
     }
 
     /**
      * Preplug the elements of the utils.
      */
-    public static void prePlug() {
+    public static void prePlug(){
         schema = new PrimaryUtilsSchema();
 
         Managers.getManager(ISchemaManager.class).registerSchema(schema);
@@ -58,23 +63,33 @@ public final class PrimaryUtils {
     /**
      * Plug the elements of the utils.
      */
-    public static void plug() {
-        DataTypeManager.bindDataTypeToKey(IBorrowersService.DATA_TYPE, "data.titles.borrower");
-        DataTypeManager.bindDataTypeToKey(ICountriesService.DATA_TYPE, "data.titles.country");
-        DataTypeManager.bindDataTypeToKey(ILanguagesService.DATA_TYPE, "data.titles.language");
+    public static void plug(){
+        DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
+        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.COUNTRY.getDataType(), "data.titles.country");
+        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.LANGUAGE.getDataType(), "data.titles.language");
+        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "type.data.title");
+        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "kind.data.title");
+        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "saga.data.title");
     }
 
     /**
      * Unplug the elements of the utils.
      */
-    public static void unplug() {
-        DataTypeManager.unbindDataType(IBorrowersService.DATA_TYPE);
-        DataTypeManager.unbindDataType(ICountriesService.DATA_TYPE);
-        DataTypeManager.unbindDataType(ILanguagesService.DATA_TYPE);
+    public static void unplug(){
+        DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
+        DataTypeManager.unbindDataType(SimpleData.DataType.COUNTRY.getDataType());
+        DataTypeManager.unbindDataType(SimpleData.DataType.LANGUAGE.getDataType());
+        DataTypeManager.unbindDataType(SimpleData.DataType.TYPE.getDataType());
+        DataTypeManager.unbindDataType(SimpleData.DataType.KIND.getDataType());
+        DataTypeManager.unbindDataType(SimpleData.DataType.SAGA.getDataType());
 
         Managers.getManager(ISchemaManager.class).unregisterSchema(schema);
 
         Managers.getManager(ILanguageManager.class).removeBaseName(BASE_NAME);
+
+        if (menu != null){
+            Managers.getManager(IFeatureManager.class).removeMenu(menu);
+        }
     }
 
     /**
@@ -82,7 +97,7 @@ public final class PrimaryUtils {
      *
      * @return The current primary implementation.
      */
-    public static String getPrimaryImpl() {
+    public static String getPrimaryImpl(){
         return primaryImpl;
     }
 
@@ -91,7 +106,11 @@ public final class PrimaryUtils {
      *
      * @param primaryImpl The current primary implementation.
      */
-    public static void setPrimaryImpl(String primaryImpl) {
+    public static void setPrimaryImpl(String primaryImpl){
         PrimaryUtils.primaryImpl = primaryImpl;
+    }
+
+    public static void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
+        menu = new PrimaryMenu(addFeatures, removeFeatures, editFeatures);
     }
 }

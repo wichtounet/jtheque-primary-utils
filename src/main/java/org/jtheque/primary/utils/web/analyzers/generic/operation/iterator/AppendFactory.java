@@ -25,9 +25,6 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 
-/**
- * @author Baptiste Wicht
- */
 final class AppendFactory implements Factory<IteratorOperation> {
     @Override
     public boolean canFactor(Element element, XMLReader reader) {
