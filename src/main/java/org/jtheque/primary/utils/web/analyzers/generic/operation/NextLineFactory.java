@@ -25,25 +25,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class NextLineFactory implements Factory<Operation> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
-        return "nextline".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+		return "nextline".equals(element.getName());
+	}
 
-    @Override
-    public Operation factor(Element element, XMLReader reader) {
-        return new NextLineOperation();
-    }
+	@Override
+	public Operation factor(Element element, XMLReader reader){
+		return new NextLineOperation();
+	}
 
-    /**
-     * An operation which pass to the next line.
-     *
-     * @author Baptiste Wicht
-     */
-    static final class NextLineOperation implements Operation {
-        @Override
-        public String perform(String line, ScannerPossessor analyzer) {
-            return analyzer.getScanner().nextLine();
-        }
-    }
+	/**
+	 * An operation which pass to the next line.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	static final class NextLineOperation implements Operation {
+		@Override
+		public String perform(String line, ScannerPossessor analyzer){
+			return analyzer.getScanner().nextLine();
+		}
+	}
 }

@@ -31,92 +31,100 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDataModel<T> {
-    private final WeakEventListenerList listenerList;
+	private final WeakEventListenerList listenerList;
 
-    private Collection<T> displayList;
+	private Collection<T> displayList;
 
-    /**
-     * Construct a new PrincipalDataModel.
-     */
-    protected PrincipalDataModel() {
-        super();
+	/**
+	 * Construct a new PrincipalDataModel.
+	 */
+	protected PrincipalDataModel(){
+		super();
 
-        listenerList = new WeakEventListenerList();
-    }
+		listenerList = new WeakEventListenerList();
+	}
 
+	/**
+	 * Return the datas managed by this model.
+	 *
+	 * @return The datas managed by this model.
+	 */
 	public abstract Collection<T> getDatas();
 
-    /**
-     * Return the event listener list.
-     *
-     * @return The event listener list.
-     */
-    protected final WeakEventListenerList getEventListenerList() {
-        return listenerList;
-    }
+	/**
+	 * Return the event listener list.
+	 *
+	 * @return The event listener list.
+	 */
+	protected final WeakEventListenerList getEventListenerList(){
+		return listenerList;
+	}
 
-    @Override
-    public final void addCurrentObjectListener(CurrentObjectListener listener) {
-        listenerList.add(CurrentObjectListener.class, listener);
-    }
+	@Override
+	public final void addCurrentObjectListener(CurrentObjectListener listener){
+		listenerList.add(CurrentObjectListener.class, listener);
+	}
 
-    @Override
-    public final void addDisplayListListener(DisplayListListener listener) {
-        listenerList.add(DisplayListListener.class, listener);
-    }
+	@Override
+	public final void addDisplayListListener(DisplayListListener listener){
+		listenerList.add(DisplayListListener.class, listener);
+	}
 
-    /**
-     * Fire an event to say that the current object has changed.
-     *
-     * @param event The event to fire
-     */
-    protected final void fireCurrentObjectChanged(ObjectChangedEvent event) {
-        CurrentObjectListener[] listeners = listenerList.getListeners(CurrentObjectListener.class);
+	/**
+	 * Fire an event to say that the current object has changed.
+	 *
+	 * @param event The event to fire
+	 */
+	protected final void fireCurrentObjectChanged(ObjectChangedEvent event){
+		CurrentObjectListener[] listeners = listenerList.getListeners(CurrentObjectListener.class);
 
-        for (CurrentObjectListener listener : listeners) {
-            listener.objectChanged(event);
-        }
-    }
+		for (CurrentObjectListener listener : listeners){
+			listener.objectChanged(event);
+		}
+	}
 
-    /**
-     * Avert the listeners that the display list have changed.
-     */
-    protected final void fireDisplayListChanged() {
-        DisplayListListener[] listeners = listenerList.getListeners(DisplayListListener.class);
+	/**
+	 * Avert the listeners that the display list have changed.
+	 */
+	protected final void fireDisplayListChanged(){
+		DisplayListListener[] listeners = listenerList.getListeners(DisplayListListener.class);
 
-        for (DisplayListListener listener : listeners) {
-            listener.displayListChanged();
-        }
-    }
+		for (DisplayListListener listener : listeners){
+			listener.displayListChanged();
+		}
+	}
 
-    @Override
-    public final Collection<T> getDisplayList() {
-        if (displayList == null) {
-            displayList = getDatas();
-        }
+	@Override
+	public final Collection<T> getDisplayList(){
+		if (displayList == null){
+			displayList = getDatas();
+		}
 
-        return displayList;
-    }
+		return displayList;
+	}
 
-    @Override
-    public final void updateDisplayList(Collection<T> datas) {
-        getDisplayList().clear();
+	@Override
+	public final void updateDisplayList(Collection<T> datas){
+		getDisplayList().clear();
 
-        if (datas != null) {
-            getDisplayList().addAll(datas);
-        } else {
-            getDisplayList().addAll(getDatas());
-        }
+		if (datas != null){
+			getDisplayList().addAll(datas);
+		} else {
+			getDisplayList().addAll(getDatas());
+		}
 
-        fireDisplayListChanged();
-    }
+		fireDisplayListChanged();
+	}
 
-    @Override
-    public final void dataChanged() {
-        updateDisplayList();
-    }
+	@Override
+	public final void dataChanged(){
+		updateDisplayList();
+	}
 
-    public final void updateDisplayList() {
-        updateDisplayList(null);
-    }
+	/**
+	 * Update the display list.
+	 */
+	public final void updateDisplayList(){
+		updateDisplayList(null);
+	}
 }

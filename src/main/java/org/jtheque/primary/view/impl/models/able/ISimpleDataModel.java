@@ -19,7 +19,23 @@ package org.jtheque.primary.view.impl.models.able;
 import org.jtheque.core.managers.view.able.components.IModel;
 import org.jtheque.primary.od.able.SimpleData;
 
+/**
+ * A model for simple data.
+ *
+ * @author Baptiste Wicht
+ */
 public interface ISimpleDataModel extends IModel {
-    SimpleData getSimpleData();
-    void setSimpleData(SimpleData country);
+	/**
+	 * Return the current simple data.
+	 *
+	 * @return The current simple data.
+	 */
+	SimpleData getSimpleData();
+
+	/**
+	 * Set the current simple data.
+	 *
+	 * @param data The simple data to set as current.
+	 */
+	void setSimpleData(SimpleData data);
 }

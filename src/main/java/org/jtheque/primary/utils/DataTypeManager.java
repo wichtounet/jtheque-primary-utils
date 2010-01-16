@@ -28,51 +28,53 @@ import java.util.Map;
  * @author Baptiste Wicht
  */
 public final class DataTypeManager {
-    private static final Map<String, String> DATA_TYPES = new HashMap<String, String>(12);
+	private static final Map<String, String> DATA_TYPES = new HashMap<String, String>(12);
 
-    /**
-     * Construct a new DataTypeManager.
-     */
-    private DataTypeManager() {
-        super();
-    }
+	/**
+	 * Construct a new DataTypeManager.
+	 */
+	private DataTypeManager(){
+		super();
+	}
 
-    /**
-     * Bind a data type to a key.
-     *
-     * @param dataType The data type.
-     * @param key      The internationalization key.
-     */
-    public static void bindDataTypeToKey(String dataType, String key) {
-        DATA_TYPES.put(dataType, key);
-    }
+	/**
+	 * Bind a data type to a key.
+	 *
+	 * @param dataType The data type.
+	 * @param key The internationalization key.
+	 */
+	public static void bindDataTypeToKey(String dataType, String key){
+		DATA_TYPES.put(dataType, key);
+	}
 
-    /**
-     * Unbind a data type.
-     *
-     * @param dataType The data type to remove from binding.
-     */
-    public static void unbindDataType(String dataType) {
-        DATA_TYPES.remove(dataType);
-    }
+	/**
+	 * Unbind a data type.
+	 *
+	 * @param dataType The data type to remove from binding.
+	 */
+	public static void unbindDataType(String dataType){
+		DATA_TYPES.remove(dataType);
+	}
 
-    /**
-     * Return the internationalization key for a data type.
-     *
-     * @param dataType The data type.
-     * @return The internationalization for the data type.
-     */
-    private static String getKeyForDataType(String dataType) {
-        return DATA_TYPES.get(dataType);
-    }
+	/**
+	 * Return the internationalization key for a data type.
+	 *
+	 * @param dataType The data type.
+	 *
+	 * @return The internationalization for the data type.
+	 */
+	private static String getKeyForDataType(String dataType){
+		return DATA_TYPES.get(dataType);
+	}
 
-    /**
-     * Return the text for a data type.
-     *
-     * @param dataType The data type.
-     * @return The internationalized text for the data type.
-     */
-    public static String getTextForDataType(String dataType) {
-        return Managers.getManager(ILanguageManager.class).getMessage(getKeyForDataType(dataType));
-    }
+	/**
+	 * Return the text for a data type.
+	 *
+	 * @param dataType The data type.
+	 *
+	 * @return The internationalized text for the data type.
+	 */
+	public static String getTextForDataType(String dataType){
+		return Managers.getManager(ILanguageManager.class).getMessage(getKeyForDataType(dataType));
+	}
 }

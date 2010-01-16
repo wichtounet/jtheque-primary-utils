@@ -29,68 +29,68 @@ import org.jtheque.utils.bean.IntDate;
  * @author Baptiste Wicht
  */
 public final class LendingImpl extends AbstractPrimaryData implements Lending {
-    private IntDate date;
-    private Person thePerson;
-    private int theOther;
+	private IntDate date;
+	private Person thePerson;
+	private int theOther;
 
-    private final LendingTemporaryContext temporaryContext = new LendingTemporaryContext();
+	private final LendingTemporaryContext temporaryContext = new LendingTemporaryContext();
 
-    //Data methods
+	//Data methods
 
-    @Override
-    public void setDate(IntDate date) {
-        this.date = date;
-    }
+	@Override
+	public void setDate(IntDate date){
+		this.date = date;
+	}
 
-    @Override
-    public IntDate getDate() {
-        return date;
-    }
+	@Override
+	public IntDate getDate(){
+		return date;
+	}
 
-    @Override
-    public void setThePerson(Person thePerson) {
-        this.thePerson = thePerson;
-    }
+	@Override
+	public void setThePerson(Person thePerson){
+		this.thePerson = thePerson;
+	}
 
-    @Override
-    public Person getThePerson() {
-        return thePerson;
-    }
+	@Override
+	public Person getThePerson(){
+		return thePerson;
+	}
 
-    @Override
-    public void setTheOther(int other) {
-        theOther = other;
-    }
+	@Override
+	public void setTheOther(int other){
+		theOther = other;
+	}
 
-    @Override
-    public int getTheOther() {
-        return theOther;
-    }
+	@Override
+	public int getTheOther(){
+		return theOther;
+	}
 
-    //Utility methods
+	//Utility methods
 
-    @Override
-    public LendingTemporaryContext getTemporaryContext() {
-        return temporaryContext;
-    }
+	@Override
+	public LendingTemporaryContext getTemporaryContext(){
+		return temporaryContext;
+	}
 
-    @Override
-    public String getDisplayableText() {
-        return "Lending of :  " + theOther;
-    }
+	@Override
+	public String getDisplayableText(){
+		return "Lending of :  " + theOther;
+	}
 
-    @Override
-    public int hashCode() {
-        return TempUtils.hashCodeDirect(getId(), date, thePerson, getPrimaryImpl(), theOther);
-    }
+	@Override
+	public int hashCode(){
+		return TempUtils.hashCodeDirect(getId(), date, thePerson, getPrimaryImpl(), theOther);
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        Lending other = (Lending)obj;
+	@Override
+	public boolean equals(Object obj){
+		Lending other = (Lending) obj;
 
-        return TempUtils.areEqualsDirect(
-                this, obj,
-                getId(), date, theOther, getPrimaryImpl(),
-                other.getId(), other.getDate(), other.getTheOther(), other.getPrimaryImpl());
-    }
+		return TempUtils.areEqualsDirect(
+				this, obj,
+				getId(), date, theOther, getPrimaryImpl(),
+				other.getId(), other.getDate(), other.getTheOther(), other.getPrimaryImpl());
+	}
 }

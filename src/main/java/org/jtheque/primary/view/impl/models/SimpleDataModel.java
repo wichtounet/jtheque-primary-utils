@@ -19,16 +19,21 @@ package org.jtheque.primary.view.impl.models;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
 
+/**
+ * A simple data model implementation.
+ *
+ * @author Baptiste Wicht
+ */
 public final class SimpleDataModel implements ISimpleDataModel {
-    private SimpleData data;
+	private SimpleData data;
 
-    @Override
-    public SimpleData getSimpleData() {
-        return data;
-    }
+	@Override
+	public SimpleData getSimpleData(){
+		return data;
+	}
 
-    @Override
-    public void setSimpleData(SimpleData data) {
-        this.data = data;
-    }
+	@Override
+	public void setSimpleData(SimpleData data){
+		this.data = data;
+	}
 }

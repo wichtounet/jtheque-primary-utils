@@ -24,8 +24,8 @@ import java.util.EventListener;
  * @author Baptiste Wicht
  */
 public interface DisplayListListener extends EventListener {
-    /**
-     * This method is called if the display list changed.
-     */
-    void displayListChanged();
+	/**
+	 * This method is called if the display list changed.
+	 */
+	void displayListChanged();
 }

@@ -24,15 +24,15 @@ import org.jtheque.primary.od.able.Data;
  * @author Baptiste Wicht
  */
 public interface DataView {
-    /**
-     * Reload the view with the default value.
-     */
-    void reload();
+	/**
+	 * Reload the view with the default value.
+	 */
+	void reload();
 
-    /**
-     * Reload the view with a new <code>Data</code>.
-     *
-     * @param data The data to load on the view.
-     */
-    void reload(Data data);
+	/**
+	 * Reload the view with a new <code>Data</code>.
+	 *
+	 * @param data The data to load on the view.
+	 */
+	void reload(Data data);
 }

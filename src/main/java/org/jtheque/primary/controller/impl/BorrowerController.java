@@ -34,52 +34,52 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class BorrowerController extends AbstractController implements IBorrowerController {
-    private ViewMode state = ViewMode.NEW;
-    private Person currentBorrower;
+	private ViewMode state = ViewMode.NEW;
+	private Person currentBorrower;
 
-    @Resource
-    private IPersonService borrowersService;
+	@Resource
+	private IPersonService borrowersService;
 
-    @Resource
-    private IBorrowerView borrowerView;
+	@Resource
+	private IBorrowerView borrowerView;
 
-    @Override
-    public void newBorrower() {
-        state = ViewMode.NEW;
+	@Override
+	public void newBorrower(){
+		state = ViewMode.NEW;
 
-        borrowerView.reload();
-        currentBorrower = borrowersService.getEmptyPerson();
-    }
+		borrowerView.reload();
+		currentBorrower = borrowersService.getEmptyPerson();
+	}
 
-    @Override
-    public void editBorrower(Person borrower) {
-        assert borrower.getType().equals(borrowersService.getPersonType()) : "The person must be a borrower";
+	@Override
+	public void editBorrower(Person borrower){
+		assert borrower.getType().equals(borrowersService.getPersonType()) : "The person must be a borrower";
 
-        state = ViewMode.EDIT;
+		state = ViewMode.EDIT;
 
-        borrowerView.reload(borrower);
-        currentBorrower = borrower;
+		borrowerView.reload(borrower);
+		currentBorrower = borrower;
 
-        displayView();
-    }
+		displayView();
+	}
 
-    @Override
-    public void save(String firstName, String name, String email) {
-        currentBorrower.setFirstName(firstName);
-        currentBorrower.setEmail(email);
-        currentBorrower.setName(name);
+	@Override
+	public void save(String firstName, String name, String email){
+		currentBorrower.setFirstName(firstName);
+		currentBorrower.setEmail(email);
+		currentBorrower.setName(name);
 
-        if (state == ViewMode.NEW) {
-            borrowersService.create(currentBorrower);
+		if (state == ViewMode.NEW){
+			borrowersService.create(currentBorrower);
 
-            Managers.getManager(IUndoRedoManager.class).addEdit(new GenericDataCreatedEdit<Person>("personsService", currentBorrower));
-        } else {
-            borrowersService.save(currentBorrower);
-        }
-    }
+			Managers.getManager(IUndoRedoManager.class).addEdit(new GenericDataCreatedEdit<Person>("personsService", currentBorrower));
+		} else {
+			borrowersService.save(currentBorrower);
+		}
+	}
 
-    @Override
-    public IBorrowerView getView() {
-        return borrowerView;
-    }
+	@Override
+	public IBorrowerView getView(){
+		return borrowerView;
+	}
 }

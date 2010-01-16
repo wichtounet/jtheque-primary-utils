@@ -29,24 +29,24 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class ValidateSimpleDataViewAction extends JThequeAction {
-    @Resource
-    private ISimpleController simpleController;
+	@Resource
+	private ISimpleController simpleController;
 
-    /**
-     * Construct a AcValidateKindView.
-     */
-    public ValidateSimpleDataViewAction() {
-        super("kind.actions.ok");
-    }
+	/**
+	 * Construct a AcValidateKindView.
+	 */
+	public ValidateSimpleDataViewAction(){
+		super("kind.actions.ok");
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        ISimpleDataView view = simpleController.getView();
+	@Override
+	public void actionPerformed(ActionEvent e){
+		ISimpleDataView view = simpleController.getView();
 
-        if (view.validateContent()) {
-            simpleController.save(view.getDataName());
-            
-            view.closeDown();
-        }
-    }
+		if (view.validateContent()){
+			simpleController.save(view.getDataName());
+
+			view.closeDown();
+		}
+	}
 }

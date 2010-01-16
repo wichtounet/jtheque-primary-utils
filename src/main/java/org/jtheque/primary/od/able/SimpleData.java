@@ -16,50 +16,87 @@ package org.jtheque.primary.od.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface SimpleData extends Data{
-    enum DataType {
-        LANGUAGE("T_LANGUAGES", "Languages", false),
-        COUNTRY("T_COUNTRIES", "Countries", false),
-        KIND("T_KINDS", "Kinds", true),
-        SAGA("T_SAGAS", "Sagas", true),
-        TYPE("T_TYPES", "Types", true);
+/**
+ * A simple data specification.
+ *
+ * @author Baptiste Wicht
+ */
+public interface SimpleData extends Data {
+	/**
+	 * The data type of the simple datas.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	enum DataType {
+		LANGUAGE("T_LANGUAGES", "Languages", false),
+		COUNTRY("T_COUNTRIES", "Countries", false),
+		KIND("T_KINDS", "Kinds", true),
+		SAGA("T_SAGAS", "Sagas", true),
+		TYPE("T_TYPES", "Types", true);
 
-        private final String table;
-        private final String dataType;
-        private final boolean primary;
+		private final String table;
+		private final String dataType;
+		private final boolean primary;
 
-        DataType(String table, String dataType, boolean primary){
-            this.table = table;
-            this.dataType = dataType;
-            this.primary = primary;
-        }
+		/**
+		 * Construct a new DataType.
+		 *
+		 * @param table The table in the database.
+		 * @param dataType The data type.
+		 * @param primary Indicate if the simple data is a primary data or not.
+		 */
+		DataType(String table, String dataType, boolean primary){
+			this.table = table;
+			this.dataType = dataType;
+			this.primary = primary;
+		}
 
-        public String getTable(){
-            return table;
-        }
+		/**
+		 * Return the table in the database of this data type.
+		 *
+		 * @return The table
+		 */
+		public String getTable(){
+			return table;
+		}
 
-        public boolean isPrimary(){
-            return primary;
-        }
+		/**
+		 * Indicate if this data type refer to a primary data or not.
+		 *
+		 * @return true if this data type refers to a primary data else false.
+		 */
+		public boolean isPrimary(){
+			return primary;
+		}
 
-        public String getDataType(){
-            return dataType;
-        }
-    }
+		/**
+		 * Return the data type of this data type.
+		 *
+		 * @return The data type of this data type.
+		 */
+		public String getDataType(){
+			return dataType;
+		}
+	}
 
-    /**
-     * Return the name of the type.
-     *
-     * @return The name of the type.
-     */
-    String getName();
+	/**
+	 * Return the name of the type.
+	 *
+	 * @return The name of the type.
+	 */
+	String getName();
 
-    /**
-     * Set the name of the type.
-     *
-     * @param name The name of the type.
-     */
-    void setName(String name);
+	/**
+	 * Set the name of the type.
+	 *
+	 * @param name The name of the type.
+	 */
+	void setName(String name);
 
-    DataType getType();
+	/**
+	 * Return the data type of the simple data.
+	 *
+	 * @return The data type of this simple data.
+	 */
+	DataType getType();
 }

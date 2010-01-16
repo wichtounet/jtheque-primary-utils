@@ -24,19 +24,20 @@ import org.jtheque.primary.view.impl.models.tree.JThequeTreeModel;
  * @author Baptiste Wicht
  */
 public interface Sorter {
-    /**
-     * Indicate if the sorter can sort the specified type of content and sort.
-     *
-     * @param content  The content.
-     * @param sortType The type of sort.
-     * @return <code>true</code> if the sorter can sort the specified type.
-     */
-    boolean canSort(String content, String sortType);
+	/**
+	 * Indicate if the sorter can sort the specified type of content and sort.
+	 *
+	 * @param content The content.
+	 * @param sortType The type of sort.
+	 *
+	 * @return <code>true</code> if the sorter can sort the specified type.
+	 */
+	boolean canSort(String content, String sortType);
 
-    /**
-     * Populate the model.
-     *
-     * @param model The tree model to populate.
-     */
-    void sort(JThequeTreeModel model);
+	/**
+	 * Populate the model.
+	 *
+	 * @param model The tree model to populate.
+	 */
+	void sort(JThequeTreeModel model);
 }

@@ -16,10 +16,20 @@ package org.jtheque.primary;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Constants of primary utils.
+ *
+ * @author Baptiste Wicht
+ */
 public interface PrimaryConstants {
 	String BORROWER = "Borrower";
 	String BORROWERS = "Borrowers";
 
+	/**
+	 * The choice actions of the module.
+	 *
+	 * @author Baptiste Wicht
+	 */
 	interface ChoiceActions {
 		String EDIT = "edit";
 		String DELETE = "delete";

@@ -29,89 +29,89 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class IteratorValue implements ValueGetter, BuilderPossessor {
-    private final StringBuilder builder;
-    private final Collection<IteratorOperation> operationsBefore;
-    private final Collection<IteratorOperation> operationsAfter;
-    private final Collection<IteratorOperation> operations;
-    private Condition condition;
+	private final StringBuilder builder;
+	private final Collection<IteratorOperation> operationsBefore;
+	private final Collection<IteratorOperation> operationsAfter;
+	private final Collection<IteratorOperation> operations;
+	private Condition condition;
 
-    private final ScannerPossessor analyzer;
+	private final ScannerPossessor analyzer;
 
-    /**
-     * Construct a new IteratorValue.
-     *
-     * @param analyzer The film analyzer.
-     */
-    IteratorValue(ScannerPossessor analyzer) {
-        super();
+	/**
+	 * Construct a new IteratorValue.
+	 *
+	 * @param analyzer The film analyzer.
+	 */
+	IteratorValue(ScannerPossessor analyzer){
+		super();
 
-        this.analyzer = analyzer;
+		this.analyzer = analyzer;
 
-        builder = new StringBuilder(100);
-        operationsBefore = new ArrayList<IteratorOperation>(5);
-        operationsAfter = new ArrayList<IteratorOperation>(5);
-        operations = new ArrayList<IteratorOperation>(5);
-    }
+		builder = new StringBuilder(100);
+		operationsBefore = new ArrayList<IteratorOperation>(5);
+		operationsAfter = new ArrayList<IteratorOperation>(5);
+		operations = new ArrayList<IteratorOperation>(5);
+	}
 
-    @Override
-    public String getValue(String line) {
-        String current = line;
+	@Override
+	public String getValue(String line){
+		String current = line;
 
-        for (IteratorOperation operation : operationsBefore) {
-            current = operation.perform(current, analyzer, this);
-        }
+		for (IteratorOperation operation : operationsBefore){
+			current = operation.perform(current, analyzer, this);
+		}
 
-        while (condition.match(current)) {
-            for (IteratorOperation operation : operations) {
-                current = operation.perform(current, analyzer, this);
-            }
-        }
+		while (condition.match(current)){
+			for (IteratorOperation operation : operations){
+				current = operation.perform(current, analyzer, this);
+			}
+		}
 
-        for (IteratorOperation operation : operationsAfter) {
-            current = operation.perform(current, analyzer, this);
-        }
+		for (IteratorOperation operation : operationsAfter){
+			current = operation.perform(current, analyzer, this);
+		}
 
-        return builder.toString();
-    }
+		return builder.toString();
+	}
 
-    /**
-     * Add an operation to do before the iteration.
-     *
-     * @param operation The operation to add.
-     */
-    public void addOperationsBefore(IteratorOperation operation) {
-        operationsBefore.add(operation);
-    }
+	/**
+	 * Add an operation to do before the iteration.
+	 *
+	 * @param operation The operation to add.
+	 */
+	public void addOperationsBefore(IteratorOperation operation){
+		operationsBefore.add(operation);
+	}
 
-    /**
-     * Add an operation to do after the iteration.
-     *
-     * @param operation The operation to add.
-     */
-    public void addOperationsAfter(IteratorOperation operation) {
-        operationsAfter.add(operation);
-    }
+	/**
+	 * Add an operation to do after the iteration.
+	 *
+	 * @param operation The operation to add.
+	 */
+	public void addOperationsAfter(IteratorOperation operation){
+		operationsAfter.add(operation);
+	}
 
-    /**
-     * Add an operation to do during the iteration.
-     *
-     * @param operation The operation to add.
-     */
-    public void addOperations(IteratorOperation operation) {
-        operations.add(operation);
-    }
+	/**
+	 * Add an operation to do during the iteration.
+	 *
+	 * @param operation The operation to add.
+	 */
+	public void addOperations(IteratorOperation operation){
+		operations.add(operation);
+	}
 
-    /**
-     * Set the condition of the iteration.
-     *
-     * @param condition The condition to set.
-     */
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
+	/**
+	 * Set the condition of the iteration.
+	 *
+	 * @param condition The condition to set.
+	 */
+	public void setCondition(Condition condition){
+		this.condition = condition;
+	}
 
-    @Override
-    public StringBuilder getBuilder() {
-        return builder;
-    }
+	@Override
+	public StringBuilder getBuilder(){
+		return builder;
+	}
 }

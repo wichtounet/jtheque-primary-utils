@@ -27,85 +27,91 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IDaoPersons extends JThequeDao {
-    String TABLE = "T_PERSONS";
+	String TABLE = "T_PERSONS";
 
-    /**
-     * Return all the persons.
-     *
-     * @param type The type of persons to search for.
-     * @return All the persons.
-     */
-    Collection<Person> getPersons(String type);
+	/**
+	 * Return all the persons.
+	 *
+	 * @param type The type of persons to search for.
+	 *
+	 * @return All the persons.
+	 */
+	Collection<Person> getPersons(String type);
 
-    /**
-     * Return the person of the specified id.
-     *
-     * @param id The person borrower id.
-     * @return The person corresponding the id or <code>null</code> if there is no person with this id.
-     */
-    Person getPerson(int id);
+	/**
+	 * Return the person of the specified id.
+	 *
+	 * @param id The person borrower id.
+	 *
+	 * @return The person corresponding the id or <code>null</code> if there is no person with this id.
+	 */
+	Person getPerson(int id);
 
-    /**
-     * Return the person with the specified name and first name.
-     *
-     * @param firstName The searched first name.
-     * @param name      The searched name.
-     * @param type      The type of persons to search for.
-     * @return The person if there is no for this arguments else <code>null</code>.
-     */
-    Person getPerson(String firstName, String name, String type);
+	/**
+	 * Return the person with the specified name and first name.
+	 *
+	 * @param firstName The searched first name.
+	 * @param name The searched name.
+	 * @param type The type of persons to search for.
+	 *
+	 * @return The person if there is no for this arguments else <code>null</code>.
+	 */
+	Person getPerson(String firstName, String name, String type);
 
-    /**
-     * Indicate if a person with this firstName and this name exists in the application.
-     *
-     * @param firstName The searched first name.
-     * @param name      The searched name.
-     * @param type      The type of persons to search for.
-     * @return <code>true</code> if an person exist with first name and this name else <code>false</code>.
-     */
-    boolean exists(String firstName, String name, String type);
+	/**
+	 * Indicate if a person with this firstName and this name exists in the application.
+	 *
+	 * @param firstName The searched first name.
+	 * @param name The searched name.
+	 * @param type The type of persons to search for.
+	 *
+	 * @return <code>true</code> if an person exist with first name and this name else <code>false</code>.
+	 */
+	boolean exists(String firstName, String name, String type);
 
-    /**
-     * Indicate if the person exist in the Dao.
-     *
-     * @param person The person we must test if it's exist.
-     * @return <code>true</code> if the person exists else <code>false</code>.
-     */
-    boolean exist(Person person);
+	/**
+	 * Indicate if the person exist in the Dao.
+	 *
+	 * @param person The person we must test if it's exist.
+	 *
+	 * @return <code>true</code> if the person exists else <code>false</code>.
+	 */
+	boolean exist(Person person);
 
-    /**
-     * Create a new person.
-     *
-     * @param person The new person
-     */
-    void create(Person person);
+	/**
+	 * Create a new person.
+	 *
+	 * @param person The new person
+	 */
+	void create(Person person);
 
-    /**
-     * Save the person.
-     *
-     * @param person The person to save.
-     */
-    void save(Person person);
+	/**
+	 * Save the person.
+	 *
+	 * @param person The person to save.
+	 */
+	void save(Person person);
 
-    /**
-     * Delete a person.
-     *
-     * @param person The person to delete.
-     * @return <code>true</code> if the object is deleted else <code>false</code>.
-     */
-    boolean delete(Person person);
+	/**
+	 * Delete a person.
+	 *
+	 * @param person The person to delete.
+	 *
+	 * @return <code>true</code> if the object is deleted else <code>false</code>.
+	 */
+	boolean delete(Person person);
 
-    /**
-     * Create a person.
-     *
-     * @return A created empty person.
-     */
-    Person createPerson();
+	/**
+	 * Create a person.
+	 *
+	 * @return A created empty person.
+	 */
+	Person createPerson();
 
-    /**
-     * Clear all the entities with the specified type.
-     *
-     * @param type The type of entities to delete.
-     */
-    void clearAll(String type);
+	/**
+	 * Clear all the entities with the specified type.
+	 *
+	 * @param type The type of entities to delete.
+	 */
+	void clearAll(String type);
 }

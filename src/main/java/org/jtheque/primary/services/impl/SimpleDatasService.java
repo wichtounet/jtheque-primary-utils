@@ -24,109 +24,119 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
+/**
+ * A simple data service implementation.
+ *
+ * @author Baptiste Wicht
+ */
 public final class SimpleDatasService implements ISimpleDataService {
-    private SimpleData defaultSimpleData;
+	private SimpleData defaultSimpleData;
 
-    private final IDaoSimpleDatas daoSimpleDatas;
+	private final IDaoSimpleDatas daoSimpleDatas;
 
-    public SimpleDatasService(IDaoSimpleDatas daoSimpleDatas) {
-        super();
+	/**
+	 * Construct a new SimpleDatasService.
+	 *
+	 * @param daoSimpleDatas The dao to use.
+	 */
+	public SimpleDatasService(IDaoSimpleDatas daoSimpleDatas){
+		super();
 
-        this.daoSimpleDatas = daoSimpleDatas;
-    }
+		this.daoSimpleDatas = daoSimpleDatas;
+	}
 
-    @Override
-    public SimpleData getDefaultSimpleData() {
-        if (defaultSimpleData == null) {
-            defaultSimpleData = daoSimpleDatas.getSimpleData("Unknown");
+	@Override
+	public SimpleData getDefaultSimpleData(){
+		if (defaultSimpleData == null){
+			defaultSimpleData = daoSimpleDatas.getSimpleData("Unknown");
 
-            if (defaultSimpleData == null) {
-                createDefaultSimpleData();
-            }
-        }
+			if (defaultSimpleData == null){
+				createDefaultSimpleData();
+			}
+		}
 
-        return defaultSimpleData;
-    }
+		return defaultSimpleData;
+	}
 
-    /**
-     * Create the default country.
-     */
-    @Transactional
-    private void createDefaultSimpleData() {
-        defaultSimpleData = daoSimpleDatas.createSimpleData();
-        defaultSimpleData.setName("Unknown");
-        daoSimpleDatas.create(defaultSimpleData);
-    }
+	/**
+	 * Create the default country.
+	 */
+	@Transactional
+	private void createDefaultSimpleData(){
+		defaultSimpleData = daoSimpleDatas.createSimpleData();
+		defaultSimpleData.setName("Unknown");
+		daoSimpleDatas.create(defaultSimpleData);
+	}
 
-    @Override
-    @Transactional
-    public void save(SimpleData simpleData) {
-        daoSimpleDatas.save(simpleData);
-    }
+	@Override
+	@Transactional
+	public void save(SimpleData simpleData){
+		daoSimpleDatas.save(simpleData);
+	}
 
-    @Override
-    @Transactional
-    public void create(SimpleData simpleData) {
-        daoSimpleDatas.create(simpleData);
-    }
+	@Override
+	@Transactional
+	public void create(SimpleData simpleData){
+		daoSimpleDatas.create(simpleData);
+	}
 
-    @Override
-    @Transactional
-    public boolean delete(SimpleData simpleData) {
-        return daoSimpleDatas.delete(simpleData);
-    }
+	@Override
+	@Transactional
+	public boolean delete(SimpleData simpleData){
+		return daoSimpleDatas.delete(simpleData);
+	}
 
-    @Override
-    public SimpleData getSimpleData(String name) {
-        return daoSimpleDatas.getSimpleData(name);
-    }
+	@Override
+	public SimpleData getSimpleData(String name){
+		return daoSimpleDatas.getSimpleData(name);
+	}
 
-    @Override
-    @Transactional
-    public void createAll(Iterable<SimpleData> simpleDatas) {
-        for (SimpleData simpleData : simpleDatas) {
-            daoSimpleDatas.create(simpleData);
-        }
-    }
+	@Override
+	@Transactional
+	public void createAll(Iterable<SimpleData> simpleDatas){
+		for (SimpleData simpleData : simpleDatas){
+			daoSimpleDatas.create(simpleData);
+		}
+	}
 
-    @Override
-    public boolean exist(SimpleData simpleData) {
-        return daoSimpleDatas.exist(simpleData);
-    }
+	@Override
+	public boolean exist(SimpleData simpleData){
+		return daoSimpleDatas.exist(simpleData);
+	}
 
-    @Override
-    public SimpleData getEmptySimpleData() {
-        return daoSimpleDatas.createSimpleData();
-    }
+	@Override
+	public SimpleData getEmptySimpleData(){
+		return daoSimpleDatas.createSimpleData();
+	}
 
-    @Override
-    public boolean exist(String name) {
-        return getSimpleData(name) != null;
-    }
+	@Override
+	public boolean exist(String name){
+		return getSimpleData(name) != null;
+	}
 
-    @Override
-    public boolean hasNoDatas(){
-        return daoSimpleDatas.getSimpleDatas().isEmpty();
-    }
+	@Override
+	public boolean hasNoDatas(){
+		return daoSimpleDatas.getSimpleDatas().isEmpty();
+	}
 
-    @Override
-    public Collection<SimpleData> getDatas() {
-        return daoSimpleDatas.getSimpleDatas();
-    }
+	@Override
+	public Collection<SimpleData> getDatas(){
+		return daoSimpleDatas.getSimpleDatas();
+	}
 
-    @Override
-    public void addDataListener(DataListener listener) {
-        daoSimpleDatas.addDataListener(listener);
-    }
+	@Override
+	public void addDataListener(DataListener listener){
+		daoSimpleDatas.addDataListener(listener);
+	}
 
-    @Override
-    @Transactional
-    public void clearAll() {
-        daoSimpleDatas.clearAll();
-    }
+	@Override
+	@Transactional
+	public void clearAll(){
+		daoSimpleDatas.clearAll();
+	}
 
-    @Override
-    public String getDataType() {
-        return DATA_TYPE;
-    }
+	@Override
+	public String getDataType(){
+		return DATA_TYPE;
+	}
 }

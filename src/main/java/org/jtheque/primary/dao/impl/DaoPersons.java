@@ -42,196 +42,201 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class DaoPersons extends GenericDao<Person> implements IDaoPersons {
-    private final ParameterizedRowMapper<Person> rowMapper = new PersonRowMapper();
-    private final QueryMapper queryMapper = new PersonQueryMapper();
+	private final ParameterizedRowMapper<Person> rowMapper = new PersonRowMapper();
+	private final QueryMapper queryMapper = new PersonQueryMapper();
 
-    @Resource
-    private IDaoPersistenceContext persistenceContext;
+	@Resource
+	private IDaoPersistenceContext persistenceContext;
 
-    @Resource
-    private SimpleJdbcTemplate jdbcTemplate;
+	@Resource
+	private SimpleJdbcTemplate jdbcTemplate;
 
-    @Resource
-    private IDaoSimpleDatas daoCountries;
+	@Resource
+	private IDaoSimpleDatas daoCountries;
 
-    private final DaoNotes daoNotes = DaoNotes.getInstance();
+	private final DaoNotes daoNotes = DaoNotes.getInstance();
 
-    /**
-     * Construct a new DaoBorrowers.
-     */
-    public DaoPersons() {
-        super(TABLE);
-    }
+	/**
+	 * Construct a new DaoBorrowers.
+	 */
+	public DaoPersons(){
+		super(TABLE);
+	}
 
-    @Override
-    public Collection<Person> getPersons(String type) {
-        return getAll(type);
-    }
+	@Override
+	public Collection<Person> getPersons(String type){
+		return getAll(type);
+	}
 
-    /**
-     * Return all the persons of the specified type.
-     *
-     * @param type The searched type.
-     * @return Return a Collection containing all the persons of the specified type.
-     */
-    private Collection<Person> getAll(CharSequence type) {
-        if (StringUtils.isEmpty(type)) {
-            return getAll();
-        }
+	/**
+	 * Return all the persons of the specified type.
+	 *
+	 * @param type The searched type.
+	 *
+	 * @return Return a Collection containing all the persons of the specified type.
+	 */
+	private Collection<Person> getAll(CharSequence type){
+		if (StringUtils.isEmpty(type)){
+			return getAll();
+		}
 
-        load();
+		load();
 
-        Collection<Person> persons = new ArrayList<Person>(getCache().size() / 3);
+		Collection<Person> persons = new ArrayList<Person>(getCache().size() / 3);
 
-        for (Person person : getCache().values()) {
-            if (type.equals(person.getType())) {
-                persons.add(person);
-            }
-        }
+		for (Person person : getCache().values()){
+			if (type.equals(person.getType())){
+				persons.add(person);
+			}
+		}
 
-        return persons;
-    }
+		return persons;
+	}
 
-    @Override
-    public Person getPerson(int id) {
-        return get(id);
-    }
+	@Override
+	public Person getPerson(int id){
+		return get(id);
+	}
 
-    @Override
-    public Person getPerson(String firstName, String name, String type) {
-        load();
+	@Override
+	public Person getPerson(String firstName, String name, String type){
+		load();
 
-        if (getCache().isEmpty()) {
-            return null;
-        }
+		if (getCache().isEmpty()){
+			return null;
+		}
 
-        for (Person person : getCache().values()) {
-            if (type.equals(person.getType()) && firstName.equals(person.getFirstName()) && name.equals(person.getName())) {
-                return person;
-            }
-        }
+		for (Person person : getCache().values()){
+			if (type.equals(person.getType()) && firstName.equals(person.getFirstName()) && name.equals(person.getName())){
+				return person;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-    public boolean exists(String firstName, String name, String type) {
-        return getPerson(firstName, name, type) != null;
-    }
+	@Override
+	public boolean exists(String firstName, String name, String type){
+		return getPerson(firstName, name, type) != null;
+	}
 
-    @Override
-    public boolean exist(Person person) {
-        return getPerson(person.getFirstName(), person.getName(), person.getType()) != null;
-    }
+	@Override
+	public boolean exist(Person person){
+		return getPerson(person.getFirstName(), person.getName(), person.getType()) != null;
+	}
 
-    @Override
-    public Person createPerson() {
-        return new PersonImpl();
-    }
+	@Override
+	public Person createPerson(){
+		return new PersonImpl();
+	}
 
-    @Override
-    public void clearAll(String type) {
-        Collection<Person> persons = getPersons(type);
+	@Override
+	public void clearAll(String type){
+		Collection<Person> persons = getPersons(type);
 
-        jdbcTemplate.update("DELETE FROM " + TABLE + " WHERE TYPE = ?", type);
+		jdbcTemplate.update("DELETE FROM " + TABLE + " WHERE TYPE = ?", type);
 
-        for (Person person : persons) {
-            getCache().remove(person.getId());
-        }
-    }
+		for (Person person : persons){
+			getCache().remove(person.getId());
+		}
+	}
 
-    @Override
-    protected void loadCache() {
-        Collection<Person> persons = persistenceContext.getSortedList(TABLE, rowMapper);
+	@Override
+	protected void loadCache(){
+		Collection<Person> persons = persistenceContext.getSortedList(TABLE, rowMapper);
 
-        for (Person borrower : persons) {
-            getCache().put(borrower.getId(), borrower);
-        }
+		for (Person borrower : persons){
+			getCache().put(borrower.getId(), borrower);
+		}
 
-        setCacheEntirelyLoaded();
-    }
+		setCacheEntirelyLoaded();
+	}
 
-    @Override
-    protected void load(int i) {
-        Person person = persistenceContext.getDataByID(TABLE, i, rowMapper);
+	@Override
+	protected void load(int i){
+		Person person = persistenceContext.getDataByID(TABLE, i, rowMapper);
 
-        getCache().put(i, person);
-    }
+		getCache().put(i, person);
+	}
 
-    @Override
-    protected ParameterizedRowMapper<Person> getRowMapper() {
-        return rowMapper;
-    }
+	@Override
+	protected ParameterizedRowMapper<Person> getRowMapper(){
+		return rowMapper;
+	}
 
-    @Override
-    protected QueryMapper getQueryMapper() {
-        return queryMapper;
-    }
+	@Override
+	protected QueryMapper getQueryMapper(){
+		return queryMapper;
+	}
 
-    /**
-     * A row mapper to map resultset to borrower.
-     *
-     * @author Baptiste Wicht
-     */
-    private final class PersonRowMapper implements ParameterizedRowMapper<Person> {
-        @Override
-        public Person mapRow(ResultSet rs, int i) throws SQLException {
-            Person person = createPerson();
+	/**
+	 * A row mapper to map resultset to borrower.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class PersonRowMapper implements ParameterizedRowMapper<Person> {
+		@Override
+		public Person mapRow(ResultSet rs, int i) throws SQLException{
+			Person person = createPerson();
 
-            person.setId(rs.getInt("ID"));
-            person.setName(rs.getString("NAME"));
-            person.setFirstName(rs.getString("FIRST_NAME"));
-            person.setEmail(rs.getString("EMAIL"));
-            person.setType(rs.getString("TYPE"));
-            person.setTheCountry(daoCountries.getSimpleData(rs.getInt("THE_COUNTRY_FK")));
+			person.setId(rs.getInt("ID"));
+			person.setName(rs.getString("NAME"));
+			person.setFirstName(rs.getString("FIRST_NAME"));
+			person.setEmail(rs.getString("EMAIL"));
+			person.setType(rs.getString("TYPE"));
+			person.setTheCountry(daoCountries.getSimpleData(rs.getInt("THE_COUNTRY_FK")));
 
-            if (StringUtils.isNotEmpty(rs.getString("NOTE"))) {
-                person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
-            }
+			if (StringUtils.isNotEmpty(rs.getString("NOTE"))){
+				person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
+			}
 
-            return person;
-        }
-    }
+			return person;
+		}
+	}
 
-    /**
-     * A query mapper to map borrower to query.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class PersonQueryMapper implements QueryMapper {
-        @Override
-        public Query constructInsertQuery(Entity entity) {
-            Person person = (Person) entity;
+	/**
+	 * A query mapper to map borrower to query.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class PersonQueryMapper implements QueryMapper {
+		@Override
+		public Query constructInsertQuery(Entity entity){
+			String query = "INSERT INTO " + TABLE + " (NAME, FIRST_NAME, EMAIL, NOTE, THE_COUNTRY_FK, TYPE) VALUES(?,?,?,?,?,?)";
 
-            String query = "INSERT INTO " + TABLE + " (NAME, FIRST_NAME, EMAIL, NOTE, THE_COUNTRY_FK, TYPE) VALUES(?,?,?,?,?,?)";
+			return new Query(query, fillArray((Person) entity, false));
+		}
 
-            Object[] parameters = {
-                    person.getName(),
-                    person.getFirstName(),
-                    person.getEmail(),
-                    person.getNote() == null ? 0 : person.getNote().getValue().intValue(),
-                    person.getTheCountry() == null ? 0 : person.getTheCountry().getId(),
-                    person.getType()};
+		@Override
+		public Query constructUpdateQuery(Entity entity){
+			String query = "UPDATE " + TABLE + " SET NAME = ?, FIRST_NAME = ?, EMAIL = ?, NOTE = ?, THE_COUNTRY_FK = ?, TYPE = ? WHERE ID = ?";
 
-            return new Query(query, parameters);
-        }
+			return new Query(query, fillArray((Person) entity, true));
+		}
 
-        @Override
-        public Query constructUpdateQuery(Entity entity) {
-            Person person = (Person) entity;
+		/**
+		 * Fill the array with the informations of the person.
+		 *
+		 * @param person The person to use to fill the array.
+		 * @param id Indicate if we must add the id to the array.
+		 *
+		 * @return The filled array.
+		 */
+		private static Object[] fillArray(Person person, boolean id){
+			Object[] values = new Object[6 + (id ? 1 : 0)];
 
-            String query = "UPDATE " + TABLE + " SET NAME = ?, FIRST_NAME = ?, EMAIL = ?, NOTE = ?, THE_COUNTRY_FK = ?, TYPE = ? WHERE ID = ?";
+			values[0] = person.getName();
+			values[1] = person.getFirstName();
+			values[2] = person.getEmail();
+			values[3] = person.getNote() == null ? 0 : person.getNote().getValue().intValue();
+			values[4] = person.getTheCountry() == null ? 0 : person.getTheCountry().getId();
+			values[5] = person.getType();
 
-            Object[] parameters = {
-                    person.getName(),
-                    person.getFirstName(),
-                    person.getEmail(),
-                    person.getNote() == null ? 0 : person.getNote().getValue().intValue(),
-                    person.getTheCountry() == null ? 0 : person.getTheCountry().getId(),
-                    person.getType(),
-                    person.getId()};
+			if (id){
+				values[6] = person.getId();
+			}
 
-            return new Query(query, parameters);
-        }
-    }
+			return values;
+		}
+	}
 }

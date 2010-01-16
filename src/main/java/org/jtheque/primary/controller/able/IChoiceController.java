@@ -24,25 +24,25 @@ import org.jtheque.core.managers.view.able.controller.Controller;
  * @author Baptiste Wicht
  */
 public interface IChoiceController extends Controller {
-    /**
-     * Do the choice action on the selected item.
-     *
-     * @param selectedItem The item selected on the choice view.
-     */
-    void doAction(Object selectedItem);
+	/**
+	 * Do the choice action on the selected item.
+	 *
+	 * @param selectedItem The item selected on the choice view.
+	 */
+	void doAction(Object selectedItem);
 
-    /**
-     * Set the action of the controller.
-     *
-     * @param action The new action
-     */
-    void setAction(String action);
+	/**
+	 * Set the action of the controller.
+	 *
+	 * @param action The new action
+	 */
+	void setAction(String action);
 
-    /**
-     * Set the content of controller.
-     *
-     * @param content The new content
-     */
-    void setContent(String content);
+	/**
+	 * Set the content of controller.
+	 *
+	 * @param content The new content
+	 */
+	void setContent(String content);
 
 }

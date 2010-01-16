@@ -32,74 +32,74 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class LendingsService implements ILendingsService {
-    @Resource
-    private IDaoLendings daoLendings;
+	@Resource
+	private IDaoLendings daoLendings;
 
-    @Override
-    public Lending getLending(int id) {
-        return daoLendings.getLending(id);
-    }
+	@Override
+	public Lending getLending(int id){
+		return daoLendings.getLending(id);
+	}
 
-    @Override
-    public boolean hasNoLendings() {
-        return daoLendings.getLendings().isEmpty();
-    }
+	@Override
+	public boolean hasNoLendings(){
+		return daoLendings.getLendings().isEmpty();
+	}
 
-    @Override
-    public Collection<Lending> getLendings() {
-        return daoLendings.getLendings();
-    }
+	@Override
+	public Collection<Lending> getLendings(){
+		return daoLendings.getLendings();
+	}
 
-    @Override
-    @Transactional
-    public void save(Lending lending) {
-        daoLendings.save(lending);
-    }
+	@Override
+	@Transactional
+	public void save(Lending lending){
+		daoLendings.save(lending);
+	}
 
-    @Override
-    public Collection<Lending> getDatas() {
-        return daoLendings.getLendings();
-    }
+	@Override
+	public Collection<Lending> getDatas(){
+		return daoLendings.getLendings();
+	}
 
-    @Override
-    public void addDataListener(DataListener listener) {
-        daoLendings.addDataListener(listener);
-    }
+	@Override
+	public void addDataListener(DataListener listener){
+		daoLendings.addDataListener(listener);
+	}
 
-    @Override
-    @Transactional
-    public void clearAll() {
-        daoLendings.clearAll();
-    }
+	@Override
+	@Transactional
+	public void clearAll(){
+		daoLendings.clearAll();
+	}
 
-    @Override
-    public String getDataType() {
-        return DATA_TYPE;
-    }
+	@Override
+	public String getDataType(){
+		return DATA_TYPE;
+	}
 
-    @Override
-    @Transactional
-    public boolean delete(Lending lending) {
-        return daoLendings.delete(lending);
-    }
+	@Override
+	@Transactional
+	public boolean delete(Lending lending){
+		return daoLendings.delete(lending);
+	}
 
-    @Override
-    @Transactional
-    public void create(Lending lending) {
-        daoLendings.create(lending);
-    }
+	@Override
+	@Transactional
+	public void create(Lending lending){
+		daoLendings.create(lending);
+	}
 
-    @Override
-    public boolean isLate(Lending lending, int days) {
-        IntDate date = lending.getDate();
+	@Override
+	public boolean isLate(Lending lending, int days){
+		IntDate date = lending.getDate();
 
-        date.add(IntDate.Fields.DAY, days);
+		date.add(IntDate.Fields.DAY, days);
 
-        return date.intValue() > IntDate.today().intValue();
-    }
+		return date.intValue() > IntDate.today().intValue();
+	}
 
-    @Override
-    public Lending getEmptyLending() {
-        return daoLendings.createLending();
-    }
+	@Override
+	public Lending getEmptyLending(){
+		return daoLendings.createLending();
+	}
 }

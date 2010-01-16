@@ -25,52 +25,54 @@ import org.jtheque.primary.od.able.Data;
  * @author Baptiste Wicht
  */
 public interface ControllerState {
-    /**
-     * Apply the state.
-     */
-    void apply();
+	/**
+	 * Apply the state.
+	 */
+	void apply();
 
-    /**
-     * Save the current data.
-     *
-     * @param infos The informations of the interface
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState save(FormBean infos);
+	/**
+	 * Save the current data.
+	 *
+	 * @param infos The informations of the interface
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState save(FormBean infos);
 
-    /**
-     * Cancel the current state.
-     *
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState cancel();
+	/**
+	 * Cancel the current state.
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState cancel();
 
-    /**
-     * Create a new object.
-     *
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState create();
+	/**
+	 * Create a new object.
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState create();
 
-    /**
-     * Delete the current data.
-     *
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState delete();
+	/**
+	 * Delete the current data.
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState delete();
 
-    /**
-     * Edit manually the current data.
-     *
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState manualEdit();
+	/**
+	 * Edit manually the current data.
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState manualEdit();
 
-    /**
-     * Display a data.
-     *
-     * @param data the data to display.
-     * @return The new <code>ControllerState</code> or <code>null</code>
-     */
-    ControllerState view(Data data);
+	/**
+	 * Display a data.
+	 *
+	 * @param data the data to display.
+	 *
+	 * @return The new <code>ControllerState</code> or <code>null</code>
+	 */
+	ControllerState view(Data data);
 }

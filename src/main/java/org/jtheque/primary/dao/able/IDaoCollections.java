@@ -25,56 +25,58 @@ import org.jtheque.primary.od.able.Collection;
  * @author Baptiste Wicht
  */
 public interface IDaoCollections extends JThequeDao {
-    String TABLE = "T_COLLECTIONS";
+	String TABLE = "T_COLLECTIONS";
 
-    /**
-     * Return the collections.
-     *
-     * @return All the collections.
-     */
-    java.util.Collection<Collection> getCollections();
+	/**
+	 * Return the collections.
+	 *
+	 * @return All the collections.
+	 */
+	java.util.Collection<Collection> getCollections();
 
-    /**
-     * Return the collection with the specific ID.
-     *
-     * @param id The searched ID.
-     * @return The corresponding collection.
-     */
-    Collection getCollection(int id);
+	/**
+	 * Return the collection with the specific ID.
+	 *
+	 * @param id The searched ID.
+	 *
+	 * @return The corresponding collection.
+	 */
+	Collection getCollection(int id);
 
-    /**
-     * Return the collection of the specified name.
-     *
-     * @param name The name of the collection.
-     * @return The <code>Collection</code> with the specified name or <code>null</code> if there is no collection with this name.
-     */
-    Collection getCollection(String name);
+	/**
+	 * Return the collection of the specified name.
+	 *
+	 * @param name The name of the collection.
+	 *
+	 * @return The <code>Collection</code> with the specified name or <code>null</code> if there is no collection with this name.
+	 */
+	Collection getCollection(String name);
 
-    /**
-     * Create a new collection.
-     *
-     * @param collection The collection to create.
-     */
-    void create(Collection collection);
+	/**
+	 * Create a new collection.
+	 *
+	 * @param collection The collection to create.
+	 */
+	void create(Collection collection);
 
-    /**
-     * Return the current collection.
-     *
-     * @return The current collection.
-     */
-    Collection getCurrentCollection();
+	/**
+	 * Return the current collection.
+	 *
+	 * @return The current collection.
+	 */
+	Collection getCurrentCollection();
 
-    /**
-     * Set the current collection.
-     *
-     * @param collection The current collection to set.
-     */
-    void setCurrentCollection(Collection collection);
+	/**
+	 * Set the current collection.
+	 *
+	 * @param collection The current collection to set.
+	 */
+	void setCurrentCollection(Collection collection);
 
-    /**
-     * Create a new <code>Collection</code>.
-     *
-     * @return The created <code>Collection</code>.
-     */
-    Collection createCollection();
+	/**
+	 * Create a new <code>Collection</code>.
+	 *
+	 * @return The created <code>Collection</code>.
+	 */
+	Collection createCollection();
 }

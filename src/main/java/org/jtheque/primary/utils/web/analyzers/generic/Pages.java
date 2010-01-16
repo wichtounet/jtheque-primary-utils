@@ -22,61 +22,61 @@ package org.jtheque.primary.utils.web.analyzers.generic;
  * @author Baptiste Wicht
  */
 public final class Pages {
-    private Page filmsPage;
-    private Page actorsPage;
-    private Page resultsPage;
+	private Page filmsPage;
+	private Page actorsPage;
+	private Page resultsPage;
 
-    /**
-     * Return the page for the Films page.
-     *
-     * @return The page for the films page.
-     */
-    public Page getFilmsPage() {
-        return filmsPage;
-    }
+	/**
+	 * Return the page for the Films page.
+	 *
+	 * @return The page for the films page.
+	 */
+	public Page getFilmsPage(){
+		return filmsPage;
+	}
 
-    /**
-     * Set the films page.
-     *
-     * @param filmsPage The page for the films.
-     */
-    public void setFilmsPage(Page filmsPage) {
-        this.filmsPage = filmsPage;
-    }
+	/**
+	 * Set the films page.
+	 *
+	 * @param filmsPage The page for the films.
+	 */
+	public void setFilmsPage(Page filmsPage){
+		this.filmsPage = filmsPage;
+	}
 
-    /**
-     * Return the page for the actors if there is one.
-     *
-     * @return The page for the actors else null if there is no page for the actors.
-     */
-    public Page getActorsPage() {
-        return actorsPage;
-    }
+	/**
+	 * Return the page for the actors if there is one.
+	 *
+	 * @return The page for the actors else null if there is no page for the actors.
+	 */
+	public Page getActorsPage(){
+		return actorsPage;
+	}
 
-    /**
-     * Set the actors page.
-     *
-     * @param actorsPage The page for the actors.
-     */
-    public void setActorsPage(Page actorsPage) {
-        this.actorsPage = actorsPage;
-    }
+	/**
+	 * Set the actors page.
+	 *
+	 * @param actorsPage The page for the actors.
+	 */
+	public void setActorsPage(Page actorsPage){
+		this.actorsPage = actorsPage;
+	}
 
-    /**
-     * Return the page for the results.
-     *
-     * @return The page for the results.
-     */
-    public Page getResultsPage() {
-        return resultsPage;
-    }
+	/**
+	 * Return the page for the results.
+	 *
+	 * @return The page for the results.
+	 */
+	public Page getResultsPage(){
+		return resultsPage;
+	}
 
-    /**
-     * Set the results page.
-     *
-     * @param resultsPage The page for the results.
-     */
-    public void setResultsPage(Page resultsPage) {
-        this.resultsPage = resultsPage;
-    }
+	/**
+	 * Set the results page.
+	 *
+	 * @param resultsPage The page for the results.
+	 */
+	public void setResultsPage(Page resultsPage){
+		this.resultsPage = resultsPage;
+	}
 }

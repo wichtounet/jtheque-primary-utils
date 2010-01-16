@@ -27,32 +27,34 @@ import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
  * @author Baptiste Wicht
  */
 public final class IteratorOperationFactory {
-    private static final FactoryContainer<IteratorOperation> FACTORY = new FactoryContainer<IteratorOperation>();
+	private static final FactoryContainer<IteratorOperation> FACTORY = new FactoryContainer<IteratorOperation>();
 
-    /**
-     * This an utility class, not instanciable.
-     */
-    private IteratorOperationFactory() {
-        super();
-    }
+	/**
+	 * This an utility class, not instanciable.
+	 */
+	private IteratorOperationFactory(){
+		super();
+	}
 
-    static {
-        FACTORY.add(new NextLineFactory());
-        FACTORY.add(new TrimFactory());
-        FACTORY.add(new AppendLineFactory());
-        FACTORY.add(new AppendTextFactory());
-        FACTORY.add(new AppendFactory());
-    }
+	static{
+		FACTORY.add(new NextLineFactory());
+		FACTORY.add(new TrimFactory());
+		FACTORY.add(new AppendLineFactory());
+		FACTORY.add(new AppendTextFactory());
+		FACTORY.add(new AppendFactory());
+	}
 
-    /**
-     * Return the iterator operation on the element.
-     *
-     * @param element The element to get the value getter for.
-     * @param reader  The reader to use.
-     * @return The factored IteratorOperation to use.
-     * @throws XMLException If an error occurs during the XML processing.
-     */
-    public static IteratorOperation getPosition(Element element, XMLReader reader) throws XMLException {
-        return FACTORY.getFactoredObject(element, reader);
-    }
+	/**
+	 * Return the iterator operation on the element.
+	 *
+	 * @param element The element to get the value getter for.
+	 * @param reader The reader to use.
+	 *
+	 * @return The factored IteratorOperation to use.
+	 *
+	 * @throws XMLException If an error occurs during the XML processing.
+	 */
+	public static IteratorOperation getPosition(Element element, XMLReader reader) throws XMLException{
+		return FACTORY.getFactoredObject(element, reader);
+	}
 }

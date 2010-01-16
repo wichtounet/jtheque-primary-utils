@@ -40,106 +40,106 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class BorrowerView extends SwingBuildedDialogView<IBorrowerModel> implements IBorrowerView {
-    private JTextField fieldNom;
-    private JTextField fieldFirstName;
-    private JTextField fieldEmail;
+	private JTextField fieldNom;
+	private JTextField fieldFirstName;
+	private JTextField fieldEmail;
 
-    private static final int DEFAULT_COLUMNS = 15;
-    private static final int DEFAULT_FIELD_LENGTH = 50;
+	private static final int DEFAULT_COLUMNS = 15;
+	private static final int DEFAULT_FIELD_LENGTH = 50;
 
-    /**
-     * Construct a new BorrowerView.
-     */
-    public BorrowerView(){
-        super();
+	/**
+	 * Construct a new BorrowerView.
+	 */
+	public BorrowerView(){
+		super();
 
-        build();
-    }
+		build();
+	}
 
-    @Override
-    protected void initView(){
-        setModel(new BorrowerModel());
-    }
+	@Override
+	protected void initView(){
+		setModel(new BorrowerModel());
+	}
 
-    @Override
-    protected void buildView(PanelBuilder builder){
-        Action validateAction = new AcValidateBorrowerView();
+	@Override
+	protected void buildView(PanelBuilder builder){
+		Action validateAction = new AcValidateBorrowerView();
 
-        builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));
-        fieldNom = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 0));
-        SwingUtils.addFieldValidateAction(fieldNom, validateAction);
-        SwingUtils.addFieldLengthLimit(fieldNom, DEFAULT_FIELD_LENGTH);
+		builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));
+		fieldNom = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 0));
+		SwingUtils.addFieldValidateAction(fieldNom, validateAction);
+		SwingUtils.addFieldLengthLimit(fieldNom, DEFAULT_FIELD_LENGTH);
 
-        builder.addI18nLabel("borrower.view.firstname", builder.gbcSet(0, 1));
-        fieldFirstName = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 1));
-        SwingUtils.addFieldValidateAction(fieldFirstName, validateAction);
-        SwingUtils.addFieldLengthLimit(fieldFirstName, DEFAULT_FIELD_LENGTH);
+		builder.addI18nLabel("borrower.view.firstname", builder.gbcSet(0, 1));
+		fieldFirstName = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 1));
+		SwingUtils.addFieldValidateAction(fieldFirstName, validateAction);
+		SwingUtils.addFieldLengthLimit(fieldFirstName, DEFAULT_FIELD_LENGTH);
 
-        builder.addI18nLabel("borrower.view.mail", builder.gbcSet(0, 2));
-        fieldEmail = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 2));
-        SwingUtils.addFieldValidateAction(fieldEmail, validateAction);
-        SwingUtils.addFieldLengthLimit(fieldEmail, DEFAULT_FIELD_LENGTH);
+		builder.addI18nLabel("borrower.view.mail", builder.gbcSet(0, 2));
+		fieldEmail = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 2));
+		SwingUtils.addFieldValidateAction(fieldEmail, validateAction);
+		SwingUtils.addFieldLengthLimit(fieldEmail, DEFAULT_FIELD_LENGTH);
 
-        builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
-                validateAction, getCloseAction("borrower.actions.cancel"));
+		builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
+				validateAction, getCloseAction("borrower.actions.cancel"));
 
-        reload();
-    }
+		reload();
+	}
 
-    @Override
-    public void reload(){
-        setTitleKey("borrower.view.title");
+	@Override
+	public void reload(){
+		setTitleKey("borrower.view.title");
 
-        fieldNom.setText("");
-        fieldFirstName.setText("");
-        fieldEmail.setText("");
-    }
+		fieldNom.setText("");
+		fieldFirstName.setText("");
+		fieldEmail.setText("");
+	}
 
-    @Override
-    public void reload(Data data){
-        Person borrower = (Person) data;
+	@Override
+	public void reload(Data data){
+		Person borrower = (Person) data;
 
-        assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
+		assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
 
-        setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
+		setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
 
-        fieldNom.setText(borrower.getName());
-        fieldFirstName.setText(borrower.getFirstName());
-        fieldEmail.setText(borrower.getEmail());
+		fieldNom.setText(borrower.getName());
+		fieldFirstName.setText(borrower.getFirstName());
+		fieldEmail.setText(borrower.getEmail());
 
-        getModel().setBorrower(borrower);
-    }
+		getModel().setBorrower(borrower);
+	}
 
-    @Override
-    public JTextField getFieldNom(){
-        return fieldNom;
-    }
+	@Override
+	public JTextField getFieldNom(){
+		return fieldNom;
+	}
 
-    @Override
-    public JTextField getFieldFirstName(){
-        return fieldFirstName;
-    }
+	@Override
+	public JTextField getFieldFirstName(){
+		return fieldFirstName;
+	}
 
-    @Override
-    public JTextField getFieldEmail(){
-        return fieldEmail;
-    }
+	@Override
+	public JTextField getFieldEmail(){
+		return fieldEmail;
+	}
 
-    @Override
-    public void refreshText(){
-        super.refreshText();
+	@Override
+	public void refreshText(){
+		super.refreshText();
 
-        if (getModel().getBorrower() != null){
-            setTitle(getMessage("borrower.view.title.edit") + getModel().getBorrower().getName());
-        }
-    }
+		if (getModel().getBorrower() != null){
+			setTitle(getMessage("borrower.view.title.edit") + getModel().getBorrower().getName());
+		}
+	}
 
-    @Override
-    protected void validate(Collection<JThequeError> errors){
-        ValidationUtils.rejectIfEmpty(fieldNom.getText(), "borrower.view.name", errors);
-        ValidationUtils.rejectIfEmpty(fieldFirstName.getText(), "borrower.view.firstname", errors);
+	@Override
+	protected void validate(Collection<JThequeError> errors){
+		ValidationUtils.rejectIfEmpty(fieldNom.getText(), "borrower.view.name", errors);
+		ValidationUtils.rejectIfEmpty(fieldFirstName.getText(), "borrower.view.firstname", errors);
 
-        ValidationUtils.rejectIfLongerThan(fieldNom.getText(), "borrower.view.name", 100, errors);
-        ValidationUtils.rejectIfLongerThan(fieldFirstName.getText(), "borrower.view.firstname", 100, errors);
-    }
+		ValidationUtils.rejectIfLongerThan(fieldNom.getText(), "borrower.view.name", 100, errors);
+		ValidationUtils.rejectIfLongerThan(fieldFirstName.getText(), "borrower.view.firstname", 100, errors);
+	}
 }

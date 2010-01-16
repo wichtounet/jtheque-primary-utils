@@ -25,57 +25,58 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class ChoiceActionFactory {
-    private static final Collection<ChoiceAction> ACTIONS = new ArrayList<ChoiceAction>(6);
+	private static final Collection<ChoiceAction> ACTIONS = new ArrayList<ChoiceAction>(6);
 
-    /**
-     * Construct a <code>ChoiceActionFactory</code>.
-     */
-    private ChoiceActionFactory() {
-        super();
-    }
+	/**
+	 * Construct a <code>ChoiceActionFactory</code>.
+	 */
+	private ChoiceActionFactory(){
+		super();
+	}
 
-    /**
-     * Get the good choice action for a specific type of action.
-     *
-     * @param action The type of the action
-     * @return The good choice action or null if we don't found it.
-     */
-    public static ChoiceAction getChoiceAction(String action) {
-        for (ChoiceAction choiceAction : ACTIONS) {
-            if (choiceAction.canDoAction(action)) {
-                return choiceAction;
-            }
-        }
+	/**
+	 * Get the good choice action for a specific type of action.
+	 *
+	 * @param action The type of the action
+	 *
+	 * @return The good choice action or null if we don't found it.
+	 */
+	public static ChoiceAction getChoiceAction(String action){
+		for (ChoiceAction choiceAction : ACTIONS){
+			if (choiceAction.canDoAction(action)){
+				return choiceAction;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    /**
-     * Add a choice action.
-     *
-     * @param action The choice action.
-     */
-    public static void addChoiceAction(ChoiceAction action) {
-        ACTIONS.add(action);
-    }
+	/**
+	 * Add a choice action.
+	 *
+	 * @param action The choice action.
+	 */
+	public static void addChoiceAction(ChoiceAction action){
+		ACTIONS.add(action);
+	}
 
-    /**
-     * Remove a choice action.
-     *
-     * @param action The choice action.
-     */
-    public static void removeChoiceAction(ChoiceAction action) {
-        ACTIONS.remove(action);
-    }
+	/**
+	 * Remove a choice action.
+	 *
+	 * @param action The choice action.
+	 */
+	public static void removeChoiceAction(ChoiceAction action){
+		ACTIONS.remove(action);
+	}
 
-    /**
-     * Remove the specified choice actions.
-     *
-     * @param choiceActions The actions to remove.
-     */
-    public static void removeChoiceActions(ChoiceAction[] choiceActions) {
-        for (ChoiceAction action : choiceActions) {
-            removeChoiceAction(action);
-        }
-    }
+	/**
+	 * Remove the specified choice actions.
+	 *
+	 * @param choiceActions The actions to remove.
+	 */
+	public static void removeChoiceActions(ChoiceAction[] choiceActions){
+		for (ChoiceAction action : choiceActions){
+			removeChoiceAction(action);
+		}
+	}
 }

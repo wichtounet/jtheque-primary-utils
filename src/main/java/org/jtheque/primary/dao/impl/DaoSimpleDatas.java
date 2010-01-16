@@ -46,191 +46,205 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDaoSimpleDatas {
-    private final ParameterizedRowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
-    private final QueryMapper queryMapper = new SimpleDataQueryMapper();
+	private final ParameterizedRowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
+	private final QueryMapper queryMapper = new SimpleDataQueryMapper();
 
-    @Resource
-    private IDaoPersistenceContext persistenceContext;
+	@Resource
+	private IDaoPersistenceContext persistenceContext;
 
-    @Resource
-    private SimpleJdbcTemplate jdbcTemplate;
+	@Resource
+	private SimpleJdbcTemplate jdbcTemplate;
 
-    private final DataType dataType;
+	private final DataType dataType;
 
-    /**
-     * Create a new DaoSimpleDatas.
-     *
-     * @param dataType The data type to manage. 
-     */
-    public DaoSimpleDatas(String dataType) {
-        super(DataType.valueOf(dataType).getTable());
+	/**
+	 * Create a new DaoSimpleDatas.
+	 *
+	 * @param dataType The data type to manage.
+	 */
+	public DaoSimpleDatas(String dataType){
+		super(DataType.valueOf(dataType).getTable());
 
-        this.dataType = DataType.valueOf(dataType);
-    }
+		this.dataType = DataType.valueOf(dataType);
+	}
 
-    @Override
-    public Collection<SimpleData> getSimpleDatas(){
-        if(dataType.isPrimary()){
-            return getAll(PrimaryUtils.getPrimaryImpl());
-        }
+	@Override
+	public Collection<SimpleData> getSimpleDatas(){
+		if (dataType.isPrimary()){
+			return getAll(PrimaryUtils.getPrimaryImpl());
+		}
 
-        return getAll();
-    }
+		return getAll();
+	}
 
-    private Collection<SimpleData> getAll(CharSequence impl) {
-        if (StringUtils.isEmpty(impl) || dataType.isPrimary()) {
-            return getAll();
-        }
+	/**
+	 * Return all the simple datas of the primary impl.
+	 *
+	 * @param impl The primary implementation.
+	 *
+	 * @return A Collection containing all the simple datas of the primary implementation.
+	 */
+	private Collection<SimpleData> getAll(CharSequence impl){
+		if (StringUtils.isEmpty(impl) || dataType.isPrimary()){
+			return getAll();
+		}
 
-        load();
+		load();
 
-        Collection<SimpleData> simpleDatas = new ArrayList<SimpleData>(getCache().size() / 2);
+		Collection<SimpleData> simpleDatas = new ArrayList<SimpleData>(getCache().size() / 2);
 
-        for (SimpleData simpleData : getCache().values()) {
-            PrimarySimpleData primarySimpleData = (PrimarySimpleData)simpleData;
+		for (SimpleData simpleData : getCache().values()){
+			PrimarySimpleData primarySimpleData = (PrimarySimpleData) simpleData;
 
-            if (impl.equals(primarySimpleData.getPrimaryImpl())) {
-                simpleDatas.add(primarySimpleData);
-            }
-        }
+			if (impl.equals(primarySimpleData.getPrimaryImpl())){
+				simpleDatas.add(primarySimpleData);
+			}
+		}
 
-        return simpleDatas;
-    }
+		return simpleDatas;
+	}
 
-    @Override
-    public SimpleData getSimpleData(int id) {
-        return get(id);
-    }
+	@Override
+	public SimpleData getSimpleData(int id){
+		return get(id);
+	}
 
-    @Override
-    public SimpleData getSimpleData(String name) {
-        if(dataType.isPrimary()){
-            return getSimplePrimaryData(name);
-        }
+	@Override
+	public SimpleData getSimpleData(String name){
+		if (dataType.isPrimary()){
+			return getSimplePrimaryData(name);
+		}
 
-        List<SimpleData> simpleDatas = jdbcTemplate.query("SELECT * FROM " + dataType.getTable() + " WHERE NAME = ?",
-                rowMapper, name);
+		List<SimpleData> simpleDatas = jdbcTemplate.query("SELECT * FROM " + dataType.getTable() + " WHERE NAME = ?",
+				rowMapper, name);
 
-        if (simpleDatas.isEmpty()) {
-            return null;
-        }
+		if (simpleDatas.isEmpty()){
+			return null;
+		}
 
-        SimpleData simpleData = simpleDatas.get(0);
+		SimpleData simpleData = simpleDatas.get(0);
 
-        if (isNotInCache(simpleData.getId())) {
-            getCache().put(simpleData.getId(), simpleData);
-        }
+		if (isNotInCache(simpleData.getId())){
+			getCache().put(simpleData.getId(), simpleData);
+		}
 
-        return getCache().get(simpleData.getId());
-    }
+		return getCache().get(simpleData.getId());
+	}
 
-    private SimpleData getSimplePrimaryData(String name) {
-        List<SimpleData> types = jdbcTemplate.query("SELECT * FROM " + dataType. getTable() + " WHERE NAME = ? AND IMPL = ?",
-                rowMapper, name, PrimaryUtils.getPrimaryImpl());
+	/**
+	 * Return the simple primary data of the specified name.
+	 *
+	 * @param name The name of the primary data to search.
+	 *
+	 * @return The simple primary data.
+	 */
+	private SimpleData getSimplePrimaryData(String name){
+		List<SimpleData> types = jdbcTemplate.query("SELECT * FROM " + dataType.getTable() + " WHERE NAME = ? AND IMPL = ?",
+				rowMapper, name, PrimaryUtils.getPrimaryImpl());
 
-        if (types.isEmpty()) {
-            return null;
-        }
+		if (types.isEmpty()){
+			return null;
+		}
 
-        SimpleData type = types.get(0);
+		SimpleData type = types.get(0);
 
-        if (isNotInCache(type.getId())) {
-            getCache().put(type.getId(), type);
-        }
+		if (isNotInCache(type.getId())){
+			getCache().put(type.getId(), type);
+		}
 
-        return getCache().get(type.getId());
-    }
+		return getCache().get(type.getId());
+	}
 
-    @Override
-    public boolean exist(SimpleData simpleData) {
-        return getSimpleData(simpleData.getName()) != null;
-    }
+	@Override
+	public boolean exist(SimpleData simpleData){
+		return getSimpleData(simpleData.getName()) != null;
+	}
 
-    @Override
-    public SimpleData createSimpleData() {
-        return dataType.isPrimary() ?
-                new SimpleDataImpl(dataType) :
-                new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl());
-    }
+	@Override
+	public SimpleData createSimpleData(){
+		return dataType.isPrimary() ?
+				new SimpleDataImpl(dataType) :
+				new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl());
+	}
 
-    @Override
-    protected void loadCache() {
-        Collection<SimpleData> simpleDatas = persistenceContext.getSortedList(dataType.getTable(), rowMapper);
+	@Override
+	protected void loadCache(){
+		Collection<SimpleData> simpleDatas = persistenceContext.getSortedList(dataType.getTable(), rowMapper);
 
-        for (SimpleData simpleData : simpleDatas) {
-            getCache().put(simpleData.getId(), simpleData);
-        }
+		for (SimpleData simpleData : simpleDatas){
+			getCache().put(simpleData.getId(), simpleData);
+		}
 
-        setCacheEntirelyLoaded();
-    }
+		setCacheEntirelyLoaded();
+	}
 
-    @Override
-    protected void load(int i) {
-        SimpleData country = persistenceContext.getDataByID(dataType.getTable(), i, rowMapper);
+	@Override
+	protected void load(int i){
+		SimpleData country = persistenceContext.getDataByID(dataType.getTable(), i, rowMapper);
 
-        getCache().put(i, country);
-    }
+		getCache().put(i, country);
+	}
 
-    @Override
-    protected ParameterizedRowMapper<SimpleData> getRowMapper() {
-        return rowMapper;
-    }
+	@Override
+	protected ParameterizedRowMapper<SimpleData> getRowMapper(){
+		return rowMapper;
+	}
 
-    @Override
-    protected QueryMapper getQueryMapper() {
-        return queryMapper;
-    }
+	@Override
+	protected QueryMapper getQueryMapper(){
+		return queryMapper;
+	}
 
-    /**
-     * A row mapper to map resultset to SimpleData.
-     *
-     * @author Baptiste Wicht
-     */
-    private final class SimpleDataRowMapper implements ParameterizedRowMapper<SimpleData> {
-        @Override
-        public SimpleData mapRow(ResultSet rs, int i) throws SQLException {
+	/**
+	 * A row mapper to map resultset to SimpleData.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class SimpleDataRowMapper implements ParameterizedRowMapper<SimpleData> {
+		@Override
+		public SimpleData mapRow(ResultSet rs, int i) throws SQLException{
 
-            SimpleData simpleData = createSimpleData();
+			SimpleData simpleData = createSimpleData();
 
-            simpleData.setId(rs.getInt("ID"));
-            simpleData.setName(rs.getString("NAME"));
+			simpleData.setId(rs.getInt("ID"));
+			simpleData.setName(rs.getString("NAME"));
 
-            if(dataType.isPrimary()){
-                ((PrimaryData) simpleData).setPrimaryImpl(rs.getString("IMPL"));
-            }
+			if (dataType.isPrimary()){
+				((PrimaryData) simpleData).setPrimaryImpl(rs.getString("IMPL"));
+			}
 
-            return simpleData;
-        }
-    }
+			return simpleData;
+		}
+	}
 
-    /**
-     * A query mapper to map SimpleData to query.
-     *
-     * @author Baptiste Wicht
-     */
-    private final class SimpleDataQueryMapper implements QueryMapper {
-        @Override
-        public Query constructInsertQuery(Entity entity) {
-            SimpleData simpleData = (SimpleData) entity;
+	/**
+	 * A query mapper to map SimpleData to query.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class SimpleDataQueryMapper implements QueryMapper {
+		@Override
+		public Query constructInsertQuery(Entity entity){
+			SimpleData simpleData = (SimpleData) entity;
 
-            String query = "INSERT INTO " + dataType.getTable() + " (NAME) VALUES(?)";
+			String query = "INSERT INTO " + dataType.getTable() + " (NAME) VALUES(?)";
 
-            Object[] parameters = {simpleData.getName()};
+			Object[] parameters = {simpleData.getName()};
 
-            return new Query(query, parameters);
-        }
+			return new Query(query, parameters);
+		}
 
-        @Override
-        public Query constructUpdateQuery(Entity entity) {
-            SimpleData simpleData = (SimpleData) entity;
+		@Override
+		public Query constructUpdateQuery(Entity entity){
+			SimpleData simpleData = (SimpleData) entity;
 
-            String query = "UPDATE " + dataType.getTable() + " SET NAME = ? WHERE ID = ?";
+			String query = "UPDATE " + dataType.getTable() + " SET NAME = ? WHERE ID = ?";
 
-            Object[] parameters = {
-                    simpleData.getName(),
-                    simpleData.getId()};
+			Object[] parameters = {
+					simpleData.getName(),
+					simpleData.getId()};
 
-            return new Query(query, parameters);
-        }
-    }
+			return new Query(query, parameters);
+		}
+	}
 }

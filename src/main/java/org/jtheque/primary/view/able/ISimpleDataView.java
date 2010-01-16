@@ -24,10 +24,10 @@ import org.jtheque.core.managers.view.able.IView;
  * @author Baptiste Wicht
  */
 public interface ISimpleDataView extends DataView, IView {
-    /**
-     * Return the entered name.
-     *
-     * @return The entered name.
-     */
-    String getDataName();
+	/**
+	 * Return the entered name.
+	 *
+	 * @return The entered name.
+	 */
+	String getDataName();
 }

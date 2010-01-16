@@ -27,25 +27,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
  * @author Baptiste Wicht
  */
 final class NextLineFactory implements Factory<IteratorOperation> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "nextLine".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "nextLine".equals(element.getName());
+	}
 
-    @Override
-    public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
-        return new NextLineIteratorOperation();
-    }
+	@Override
+	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException{
+		return new NextLineIteratorOperation();
+	}
 
-    /**
-     * An operation which pass to the next line.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class NextLineIteratorOperation implements IteratorOperation {
-        @Override
-        public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator) {
-            return analyzer.getScanner().nextLine();
-        }
-    }
+	/**
+	 * An operation which pass to the next line.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class NextLineIteratorOperation implements IteratorOperation {
+		@Override
+		public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator){
+			return analyzer.getScanner().nextLine();
+		}
+	}
 }

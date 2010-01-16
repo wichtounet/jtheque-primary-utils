@@ -28,20 +28,19 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcNewBorrower extends JThequeAction {
-    @Resource
-    private IBorrowerController borrowerController;
+	@Resource
+	private IBorrowerController borrowerController;
 
-    /**
-     * Construct a new AcNewBorrower.
-     *
-     */
-    public AcNewBorrower() {
-        super("menu.others.borrower");
-    }
+	/**
+	 * Construct a new AcNewBorrower.
+	 */
+	public AcNewBorrower(){
+		super("menu.others.borrower");
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        borrowerController.newBorrower();
-        borrowerController.displayView();
-    }
+	@Override
+	public void actionPerformed(ActionEvent event){
+		borrowerController.newBorrower();
+		borrowerController.displayView();
+	}
 }

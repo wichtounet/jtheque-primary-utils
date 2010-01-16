@@ -40,168 +40,169 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implements PrincipalDataView, DisplayListListener {
-    private JThequeTreeModel treeModel;
-    private String sortMode = "None";
+	private JThequeTreeModel treeModel;
+	private String sortMode = "None";
 
-    private M model;
+	private M model;
 
-    /* Instances */
-    private static final SortManager SORTER = new SortManager();
+	/* Instances */
+	private static final SortManager SORTER = new SortManager();
 
-    /**
-     * Return the data tree.
-     *
-     * @return The data tree.
-     */
-    protected abstract JXTree getTree();
+	/**
+	 * Return the data tree.
+	 *
+	 * @return The data tree.
+	 */
+	protected abstract JXTree getTree();
 
-    /**
-     * Return the data type of the panel.
-     *
-     * @return the data type of the panel.
-     */
-    protected abstract String getDataType();
+	/**
+	 * Return the data type of the panel.
+	 *
+	 * @return the data type of the panel.
+	 */
+	protected abstract String getDataType();
 
-    /**
-     * Return the tree model of the panel.
-     *
-     * @return The <code>JThequeTreeModel</code> associated to the tree.
-     */
-    public final JThequeTreeModel getTreeModel() {
-        return treeModel;
-    }
+	/**
+	 * Return the tree model of the panel.
+	 *
+	 * @return The <code>JThequeTreeModel</code> associated to the tree.
+	 */
+	public final JThequeTreeModel getTreeModel(){
+		return treeModel;
+	}
 
-    /**
-     * Set the tree model of the panel.
-     *
-     * @param model the new tree model of the panel.
-     */
-    public final void setTreeModel(JThequeTreeModel model) {
-        treeModel = model;
-    }
+	/**
+	 * Set the tree model of the panel.
+	 *
+	 * @param model the new tree model of the panel.
+	 */
+	public final void setTreeModel(JThequeTreeModel model){
+		treeModel = model;
+	}
 
-    @Override
-    public final void displayListChanged() {
-        SORTER.sort(treeModel, getDataType(), sortMode);
-    }
+	@Override
+	public final void displayListChanged(){
+		SORTER.sort(treeModel, getDataType(), sortMode);
+	}
 
-    @Override
-    public final M getModel() {
-        return model;
-    }
+	@Override
+	public final M getModel(){
+		return model;
+	}
 
-    /**
-     * Set the model of the panel.
-     *
-     * @param model The model.
-     */
-    public final void setModel(M model) {
-        this.model = model;
-    }
+	/**
+	 * Set the model of the panel.
+	 *
+	 * @param model The model.
+	 */
+	public final void setModel(M model){
+		this.model = model;
+	}
 
-    @Override
-    public final void resort() {
-        sort(sortMode);
-    }
+	@Override
+	public final void resort(){
+		sort(sortMode);
+	}
 
-    @Override
-    public final void select(Data data) {
-        int index = 1;
+	@Override
+	public final void select(Data data){
+		int index = 1;
 
-        Object root = treeModel.getRoot();
+		Object root = treeModel.getRoot();
 
-        for (int i = 0; i < treeModel.getChildCount(root); i++) {
-            for (int j = 0; j < treeModel.getChildCount(treeModel.getChild(root, i)); j++) {
-                Object element = treeModel.getChild(treeModel.getChild(root, i), j);
+		for (int i = 0; i < treeModel.getChildCount(root); i++){
+			for (int j = 0; j < treeModel.getChildCount(treeModel.getChild(root, i)); j++){
+				Object element = treeModel.getChild(treeModel.getChild(root, i), j);
 
-                if (data.equals(element)) {
-                    getTree().setSelectionRow(index + j);
-                    return;
-                }
-            }
+				if (data.equals(element)){
+					getTree().setSelectionRow(index + j);
+					return;
+				}
+			}
 
-            index += treeModel.getChildCount(treeModel.getChild(root, i));
-        }
-    }
+			index += treeModel.getChildCount(treeModel.getChild(root, i));
+		}
+	}
 
-    @Override
-    public void selectFirst() {
-        if (sortMode == null || "None".equalsIgnoreCase(sortMode)) {
-            getTree().setSelectionRow(1);
-        } else {
-            getTree().setSelectionRow(2);
-        }
-    }
+	@Override
+	public void selectFirst(){
+		if (sortMode == null || "None".equalsIgnoreCase(sortMode)){
+			getTree().setSelectionRow(1);
+		} else {
+			getTree().setSelectionRow(2);
+		}
+	}
 
-    @Override
-    public final void sort(String sort) {
-        sortMode = sort;
-        SORTER.sort(treeModel, getDataType(), sort);
-    }
+	@Override
+	public final void sort(String sort){
+		sortMode = sort;
+		SORTER.sort(treeModel, getDataType(), sort);
+	}
 
-    @Override
-    public final void display() {
-        ((JTabbedPane) Managers.getManager(IViewManager.class).getMainComponent()).setSelectedComponent(this);
-    }
+	@Override
+	public final void display(){
+		((JTabbedPane) Managers.getManager(IViewManager.class).getMainComponent()).setSelectedComponent(this);
+	}
 
-    @Override
-    public final void refresh() {
-        Managers.getManager(IViewManager.class).refresh(this);
-    }
+	@Override
+	public final void refresh(){
+		Managers.getManager(IViewManager.class).refresh(this);
+	}
 
-    @Override
-    public final void toFirstPlan() {
-        //Nothing to be done
-    }
+	@Override
+	public final void toFirstPlan(){
+		//Nothing to be done
+	}
 
-    @Override
-    public final void closeDown() {
-        //Nothing to be done
-    }
+	@Override
+	public final void closeDown(){
+		//Nothing to be done
+	}
 
-    @Override
-    public final void sendMessage(String message, Object value) {
-        throw new UnsupportedOperationException();
-    }
+	@Override
+	public final void sendMessage(String message, Object value){
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * Return the message for the internationalization key.
-     *
-     * @param key The internationalization key.
-     * @return The message.
-     */
-    protected static String getMessage(String key) {
-        return Managers.getManager(ILanguageManager.class).getMessage(key);
-    }
+	/**
+	 * Return the message for the internationalization key.
+	 *
+	 * @param key The internationalization key.
+	 *
+	 * @return The message.
+	 */
+	protected static String getMessage(String key){
+		return Managers.getManager(ILanguageManager.class).getMessage(key);
+	}
 
-    @Override
-    public final boolean validateContent() {
-        Collection<JThequeError> errors = new ArrayList<JThequeError>(6);
+	@Override
+	public final boolean validateContent(){
+		Collection<JThequeError> errors = new ArrayList<JThequeError>(6);
 
-        validate(errors);
+		validate(errors);
 
-        return errors.isEmpty();
-    }
+		return errors.isEmpty();
+	}
 
-    @Override
-    public Object getImpl() {
-        return this;
-    }
+	@Override
+	public Object getImpl(){
+		return this;
+	}
 
-    @Override
-    public ToolbarView getToolbarView() {
-        return null;  //Default implementation
-    }
+	@Override
+	public ToolbarView getToolbarView(){
+		return null;  //Default implementation
+	}
 
-    @Override
-    public void clear() {
-        //Nothing by default
-    }
+	@Override
+	public void clear(){
+		//Nothing by default
+	}
 
-    /**
-     * Validate the view and save all the validation's errors in the list.
-     *
-     * @param errors The error's list.
-     */
-    protected abstract void validate(Collection<JThequeError> errors);
+	/**
+	 * Validate the view and save all the validation's errors in the list.
+	 *
+	 * @param errors The error's list.
+	 */
+	protected abstract void validate(Collection<JThequeError> errors);
 }

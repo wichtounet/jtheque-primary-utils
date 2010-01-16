@@ -25,45 +25,45 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class PrependerFactory implements Factory<Transformer> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "prepender".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "prepender".equals(element.getName());
+	}
 
-    @Override
-    public Transformer factor(Element n, XMLReader reader) throws XMLException {
-        return new Prepender(n.getText());
-    }
+	@Override
+	public Transformer factor(Element n, XMLReader reader) throws XMLException{
+		return new Prepender(n.getText());
+	}
 
-    /**
-     * A Transformer who prepend some text to the value.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class Prepender implements Transformer {
-        private final String text;
+	/**
+	 * A Transformer who prepend some text to the value.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class Prepender implements Transformer {
+		private final String text;
 
-        /**
-         * Construct a new Prepender.
-         *
-         * @param text The text to prepend to the value.
-         */
-        private Prepender(String text) {
-            super();
+		/**
+		 * Construct a new Prepender.
+		 *
+		 * @param text The text to prepend to the value.
+		 */
+		private Prepender(String text){
+			super();
 
-            this.text = text;
-        }
+			this.text = text;
+		}
 
-        @Override
-        public String transform(String value) {
-            return text + value;
-        }
+		@Override
+		public String transform(String value){
+			return text + value;
+		}
 
-        @Override
-        public String toString() {
-            return "Prepender{" +
-                    "text='" + text + '\'' +
-                    '}';
-        }
-    }
+		@Override
+		public String toString(){
+			return "Prepender{" +
+					"text='" + text + '\'' +
+					'}';
+		}
+	}
 }

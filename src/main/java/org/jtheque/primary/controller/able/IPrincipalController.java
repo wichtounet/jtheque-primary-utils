@@ -27,64 +27,86 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IPrincipalController<T extends Data> extends Controller, TreeSelectionListener {
-    /**
-     * Return the state state. This state is active when we show a data on the view.
-     *
-     * @return a new state to set or <code>null</code> if we doesn't must change state.
-     */
-    ControllerState getViewState();
+	/**
+	 * Return the state state. This state is active when we show a data on the view.
+	 *
+	 * @return a new state to set or <code>null</code> if we doesn't must change state.
+	 */
+	ControllerState getViewState();
 
-    /**
-     * Return the auto add state. This state is active when we add automatically a data.
-     *
-     * @return a new state to set or <code>null</code> if we doesn't must change state.
-     */
-    ControllerState getAutoAddState();
+	/**
+	 * Return the auto add state. This state is active when we add automatically a data.
+	 *
+	 * @return a new state to set or <code>null</code> if we doesn't must change state.
+	 */
+	ControllerState getAutoAddState();
 
-    /**
-     * Return the modify state. This state is active when we modify a data.
-     *
-     * @return a new state to set or <code>null</code> if we doesn't must change state.
-     */
-    ControllerState getModifyState();
+	/**
+	 * Return the modify state. This state is active when we modify a data.
+	 *
+	 * @return a new state to set or <code>null</code> if we doesn't must change state.
+	 */
+	ControllerState getModifyState();
 
-    /**
-     * Return the new object state. This state is active when we add a new data.
-     *
-     * @return a new state to set or <code>null</code> if we doesn't must change state.
-     */
-    ControllerState getNewObjectState();
+	/**
+	 * Return the new object state. This state is active when we add a new data.
+	 *
+	 * @return a new state to set or <code>null</code> if we doesn't must change state.
+	 */
+	ControllerState getNewObjectState();
 
-    /**
-     * Return the model of the view managed by the controller.
-     *
-     * @return The model of the view.
-     */
-    IPrincipalDataModel<T> getViewModel();
+	/**
+	 * Return the model of the view managed by the controller.
+	 *
+	 * @return The model of the view.
+	 */
+	IPrincipalDataModel<T> getViewModel();
 
-    /**
-     * Return the associated data type.
-     *
-     * @return The associated data type.
-     */
-    String getDataType();
+	/**
+	 * Return the associated data type.
+	 *
+	 * @return The associated data type.
+	 */
+	String getDataType();
 
-    /**
-     * Return the display list.
-     *
-     * @return The display list.
-     */
-    Collection<T> getDisplayList();
+	/**
+	 * Return the display list.
+	 *
+	 * @return The display list.
+	 */
+	Collection<T> getDisplayList();
 
-    void save(FormBean formBean);
+	/**
+	 * Save the current data with the informations of the specified form bean.
+	 *
+	 * @param formBean The form bean.
+	 */
+	void save(FormBean formBean);
 
-    void view(T film);
+	/**
+	 * View the specified data.
+	 *
+	 * @param data The data to view.
+	 */
+	void view(T data);
 
-    void manualEdit();
+	/**
+	 * Edit manually the current data.
+	 */
+	void manualEdit();
 
-    void create();
+	/**
+	 * Create a new data.
+	 */
+	void create();
 
-    void deleteCurrent();
+	/**
+	 * Delete the current data.
+	 */
+	void deleteCurrent();
 
-    void cancel();
+	/**
+	 * Cancel the current operation.
+	 */
+	void cancel();
 }

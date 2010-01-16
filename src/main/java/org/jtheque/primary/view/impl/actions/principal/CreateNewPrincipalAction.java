@@ -29,16 +29,22 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class CreateNewPrincipalAction extends JThequeAction {
-    private final String controller;
+	private final String controller;
 
-    public CreateNewPrincipalAction(String key, String controller){
-        super(key);
+	/**
+	 * Construct a new CreateNewPrincipalAction.
+	 *
+	 * @param key The i18n key of the action.
+	 * @param controller The controller to use.
+	 */
+	public CreateNewPrincipalAction(String key, String controller){
+		super(key);
 
-        this.controller = controller;
-    }
+		this.controller = controller;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e){
-        CoreUtils.<IPrincipalController<? extends Data>>getBean(controller).create();
-    }
+	@Override
+	public void actionPerformed(ActionEvent e){
+		CoreUtils.<IPrincipalController<? extends Data>>getBean(controller).create();
+	}
 }

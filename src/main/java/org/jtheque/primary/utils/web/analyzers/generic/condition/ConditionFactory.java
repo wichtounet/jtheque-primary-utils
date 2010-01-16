@@ -27,31 +27,33 @@ import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
  * @author Baptiste Wicht
  */
 public final class ConditionFactory {
-    private static final FactoryContainer<Condition> FACTORY = new FactoryContainer<Condition>();
+	private static final FactoryContainer<Condition> FACTORY = new FactoryContainer<Condition>();
 
-    /**
-     * This is an utility class, non instanciable.
-     */
-    private ConditionFactory() {
-        super();
-    }
+	/**
+	 * This is an utility class, non instanciable.
+	 */
+	private ConditionFactory(){
+		super();
+	}
 
-    static {
-        FACTORY.add(new ContainFactory());
-        FACTORY.add(new ContainNotFactory());
-        FACTORY.add(new StartsNotFactory());
-        FACTORY.add(new StartsFactory());
-    }
+	static{
+		FACTORY.add(new ContainFactory());
+		FACTORY.add(new ContainNotFactory());
+		FACTORY.add(new StartsNotFactory());
+		FACTORY.add(new StartsFactory());
+	}
 
-    /**
-     * Return the condition under the specified element.
-     *
-     * @param element The element to get the condition for.
-     * @param reader  The reader to use.
-     * @return The condition of the specified element.
-     * @throws XMLException if an error occurs during the XML processing.
-     */
-    public static Condition getCondition(Element element, XMLReader reader) throws XMLException {
-        return FACTORY.getFactoredObject(element, reader);
-    }
+	/**
+	 * Return the condition under the specified element.
+	 *
+	 * @param element The element to get the condition for.
+	 * @param reader The reader to use.
+	 *
+	 * @return The condition of the specified element.
+	 *
+	 * @throws XMLException if an error occurs during the XML processing.
+	 */
+	public static Condition getCondition(Element element, XMLReader reader) throws XMLException{
+		return FACTORY.getFactoredObject(element, reader);
+	}
 }

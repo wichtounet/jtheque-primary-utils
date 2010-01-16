@@ -25,45 +25,45 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class AppenderFactory implements Factory<Transformer> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "appender".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "appender".equals(element.getName());
+	}
 
-    @Override
-    public Transformer factor(Element n, XMLReader reader) throws XMLException {
-        return new Appender(n.getText());
-    }
+	@Override
+	public Transformer factor(Element n, XMLReader reader) throws XMLException{
+		return new Appender(n.getText());
+	}
 
-    /**
-     * A Transformer who prepend some text to the value.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class Appender implements Transformer {
-        private final String text;
+	/**
+	 * A Transformer who prepend some text to the value.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class Appender implements Transformer {
+		private final String text;
 
-        /**
-         * Construct a new Appender.
-         *
-         * @param text The text to prepend to the value.
-         */
-        private Appender(String text) {
-            super();
+		/**
+		 * Construct a new Appender.
+		 *
+		 * @param text The text to prepend to the value.
+		 */
+		private Appender(String text){
+			super();
 
-            this.text = text;
-        }
+			this.text = text;
+		}
 
-        @Override
-        public String transform(String value) {
-            return value + text;
-        }
+		@Override
+		public String transform(String value){
+			return value + text;
+		}
 
-        @Override
-        public String toString() {
-            return "Appender{" +
-                    "text='" + text + '\'' +
-                    '}';
-        }
-    }
+		@Override
+		public String toString(){
+			return "Appender{" +
+					"text='" + text + '\'' +
+					'}';
+		}
+	}
 }

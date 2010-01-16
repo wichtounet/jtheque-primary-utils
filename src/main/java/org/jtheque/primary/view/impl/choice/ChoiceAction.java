@@ -22,30 +22,31 @@ package org.jtheque.primary.view.impl.choice;
  * @author Baptiste Wicht
  */
 public interface ChoiceAction {
-    /**
-     * Indicate if this action can do the type of action.
-     *
-     * @param action The type of action.
-     * @return <code>true</code> if the action can do this type else <code>false</code>.
-     */
-    boolean canDoAction(String action);
+	/**
+	 * Indicate if this action can do the type of action.
+	 *
+	 * @param action The type of action.
+	 *
+	 * @return <code>true</code> if the action can do this type else <code>false</code>.
+	 */
+	boolean canDoAction(String action);
 
-    /**
-     * Execute the action.
-     */
-    void execute();
+	/**
+	 * Execute the action.
+	 */
+	void execute();
 
-    /**
-     * Set the selected item.
-     *
-     * @param selectedItem The selected item.
-     */
-    void setSelectedItem(Object selectedItem);
+	/**
+	 * Set the selected item.
+	 *
+	 * @param selectedItem The selected item.
+	 */
+	void setSelectedItem(Object selectedItem);
 
-    /**
-     * Set the type of the content.
-     *
-     * @param content The type of the content.
-     */
-    void setContent(String content);
+	/**
+	 * Set the type of the content.
+	 *
+	 * @param content The type of the content.
+	 */
+	void setContent(String content);
 }

@@ -22,11 +22,12 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * @author Baptiste Wicht
  */
 public interface Transformer {
-    /**
-     * Transform the value to another.
-     *
-     * @param value The value.
-     * @return The new value.
-     */
-    String transform(String value);
+	/**
+	 * Transform the value to another.
+	 *
+	 * @param value The value.
+	 *
+	 * @return The new value.
+	 */
+	String transform(String value);
 }

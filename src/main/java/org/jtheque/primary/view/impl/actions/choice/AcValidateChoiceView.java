@@ -29,23 +29,23 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateChoiceView extends JThequeAction {
-    @Resource
-    private IChoiceController choiceController;
+	@Resource
+	private IChoiceController choiceController;
 
-    @Resource
-    private IChoiceView choiceView;
+	@Resource
+	private IChoiceView choiceView;
 
-    /**
-     * Construct a new AcValidateChoiceView.
-     */
-    public AcValidateChoiceView() {
-        super("choice.actions.validate");
-    }
+	/**
+	 * Construct a new AcValidateChoiceView.
+	 */
+	public AcValidateChoiceView(){
+		super("choice.actions.validate");
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (choiceView.validateContent()) {
-            choiceController.doAction(choiceView.getSelectedItem());
-        }
-    }
+	@Override
+	public void actionPerformed(ActionEvent e){
+		if (choiceView.validateContent()){
+			choiceController.doAction(choiceView.getSelectedItem());
+		}
+	}
 }

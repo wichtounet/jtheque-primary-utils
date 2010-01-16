@@ -16,6 +16,11 @@ package org.jtheque.primary.od.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface PrimarySimpleData extends SimpleData, PrimaryData{
+/**
+ * A primary simple data.
+ *
+ * @author Baptiste Wicht
+ */
+public interface PrimarySimpleData extends SimpleData, PrimaryData {
 
 }

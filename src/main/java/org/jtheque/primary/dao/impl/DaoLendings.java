@@ -42,152 +42,158 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class DaoLendings extends GenericDao<Lending> implements IDaoLendings {
-    private final ParameterizedRowMapper<Lending> rowMapper = new LendingRowMapper();
-    private final QueryMapper queryMapper = new LendingQueryMapper();
+	private final ParameterizedRowMapper<Lending> rowMapper = new LendingRowMapper();
+	private final QueryMapper queryMapper = new LendingQueryMapper();
 
-    @Resource
-    private IDaoPersistenceContext persistenceContext;
+	@Resource
+	private IDaoPersistenceContext persistenceContext;
 
-    @Resource
-    private IDaoPersons daoPersons;
+	@Resource
+	private IDaoPersons daoPersons;
 
-    /**
-     * Construct a new DaoLendings.
-     */
-    public DaoLendings() {
-        super(TABLE);
-    }
+	/**
+	 * Construct a new DaoLendings.
+	 */
+	public DaoLendings(){
+		super(TABLE);
+	}
 
-    @Override
-    public void create(Lending entity) {
-        entity.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
+	@Override
+	public void create(Lending entity){
+		entity.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
 
-        super.create(entity);
-    }
+		super.create(entity);
+	}
 
-    @Override
-    public Lending getLending(int id) {
-        return get(id);
-    }
+	@Override
+	public Lending getLending(int id){
+		return get(id);
+	}
 
-    @Override
-    protected ParameterizedRowMapper<Lending> getRowMapper() {
-        return rowMapper;
-    }
+	@Override
+	protected ParameterizedRowMapper<Lending> getRowMapper(){
+		return rowMapper;
+	}
 
-    @Override
-    protected QueryMapper getQueryMapper() {
-        return queryMapper;
-    }
+	@Override
+	protected QueryMapper getQueryMapper(){
+		return queryMapper;
+	}
 
-    @Override
-    protected void loadCache() {
-        Collection<Lending> lendings = persistenceContext.getSortedList(TABLE, rowMapper);
+	@Override
+	protected void loadCache(){
+		Collection<Lending> lendings = persistenceContext.getSortedList(TABLE, rowMapper);
 
-        for (Lending lending : lendings) {
-            getCache().put(lending.getId(), lending);
-        }
+		for (Lending lending : lendings){
+			getCache().put(lending.getId(), lending);
+		}
 
-        setCacheEntirelyLoaded();
-    }
+		setCacheEntirelyLoaded();
+	}
 
-    @Override
-    public Collection<Lending> getLendings() {
-        return getLendings(PrimaryUtils.getPrimaryImpl());
-    }
+	@Override
+	public Collection<Lending> getLendings(){
+		return getLendings(PrimaryUtils.getPrimaryImpl());
+	}
 
-    /**
-     * Return all the lendings of the specific primary implementation.
-     *
-     * @param impl The primary implementation.
-     * @return A Collection containing all the lendings of the specific primary implementation.
-     */
-    private Collection<Lending> getLendings(CharSequence impl) {
-        if (StringUtils.isEmpty(impl)) {
-            return getAll();
-        }
+	/**
+	 * Return all the lendings of the specific primary implementation.
+	 *
+	 * @param impl The primary implementation.
+	 *
+	 * @return A Collection containing all the lendings of the specific primary implementation.
+	 */
+	private Collection<Lending> getLendings(CharSequence impl){
+		if (StringUtils.isEmpty(impl)){
+			return getAll();
+		}
 
-        load();
+		load();
 
-        Collection<Lending> lendings = new ArrayList<Lending>(getCache().size() / 2);
+		Collection<Lending> lendings = new ArrayList<Lending>(getCache().size() / 2);
 
-        for (Lending lending : getCache().values()) {
-            if (impl.equals(lending.getPrimaryImpl())) {
-                lendings.add(lending);
-            }
-        }
+		for (Lending lending : getCache().values()){
+			if (impl.equals(lending.getPrimaryImpl())){
+				lendings.add(lending);
+			}
+		}
 
-        return lendings;
-    }
+		return lendings;
+	}
 
-    @Override
-    protected void load(int i) {
-        Lending lending = persistenceContext.getDataByID(TABLE, i, rowMapper);
+	@Override
+	protected void load(int i){
+		Lending lending = persistenceContext.getDataByID(TABLE, i, rowMapper);
 
-        getCache().put(i, lending);
-    }
+		getCache().put(i, lending);
+	}
 
-    @Override
-    public Lending createLending() {
-        return new LendingImpl();
-    }
+	@Override
+	public Lending createLending(){
+		return new LendingImpl();
+	}
 
-    /**
-     * A mapper to map resultset to lending.
-     *
-     * @author Baptiste Wicht
-     */
-    private final class LendingRowMapper implements ParameterizedRowMapper<Lending> {
-        @Override
-        public Lending mapRow(ResultSet rs, int i) throws SQLException {
-            Lending lending = createLending();
+	/**
+	 * A mapper to map resultset to lending.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class LendingRowMapper implements ParameterizedRowMapper<Lending> {
+		@Override
+		public Lending mapRow(ResultSet rs, int i) throws SQLException{
+			Lending lending = createLending();
 
-            lending.setId(rs.getInt("ID"));
-            lending.setTheOther(rs.getInt("THE_OTHER_FK"));
-            lending.setThePerson(daoPersons.getPerson(rs.getInt("THE_PERSON_FK")));
-            lending.setDate(new IntDate(rs.getInt("DATE")));
-            lending.setPrimaryImpl(rs.getString("IMPL"));
+			lending.setId(rs.getInt("ID"));
+			lending.setTheOther(rs.getInt("THE_OTHER_FK"));
+			lending.setThePerson(daoPersons.getPerson(rs.getInt("THE_PERSON_FK")));
+			lending.setDate(new IntDate(rs.getInt("DATE")));
+			lending.setPrimaryImpl(rs.getString("IMPL"));
 
-            return lending;
-        }
-    }
+			return lending;
+		}
+	}
 
-    /**
-     * A mapper to map lending to query.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class LendingQueryMapper implements QueryMapper {
-        @Override
-        public Query constructInsertQuery(Entity entity) {
-            Lending lending = (Lending) entity;
+	/**
+	 * A mapper to map lending to query.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class LendingQueryMapper implements QueryMapper {
+		@Override
+		public Query constructInsertQuery(Entity entity){
+			String query = "INSERT INTO " + TABLE + " (THE_OTHER_FK, THE_PERSON_FK, DATE, IMPL) VALUES(?,?,?, ?)";
 
-            String query = "INSERT INTO " + TABLE + " (THE_OTHER_FK, THE_PERSON_FK, DATE, IMPL) VALUES(?,?,?, ?)";
+			return new Query(query, fillArray((Lending) entity, false));
+		}
 
-            Object[] parameters = {
-                    lending.getTheOther(),
-                    lending.getThePerson().getId(),
-                    lending.getDate().intValue(),
-                    lending.getPrimaryImpl()
-            };
+		@Override
+		public Query constructUpdateQuery(Entity entity){
+			String query = "UPDATE " + TABLE + " SET THE_OTHER_FK = ?, THE_BORROWER_FK = ?, DATE = ?, IMPL = ? WHERE ID = ?";
 
-            return new Query(query, parameters);
-        }
+			return new Query(query, fillArray((Lending) entity, true));
+		}
 
-        @Override
-        public Query constructUpdateQuery(Entity entity) {
-            Lending lending = (Lending) entity;
+		/**
+		 * Fill the array with the informations of the lending.
+		 *
+		 * @param lending The lending to use to fill the array.
+		 * @param id Indicate if we must add the id to the array.
+		 *
+		 * @return The filled array.
+		 */
+		private static Object[] fillArray(Lending lending, boolean id){
+			Object[] values = new Object[4 + (id ? 1 : 0)];
 
-            String query = "UPDATE " + TABLE + " SET THE_OTHER_FK = ?, THE_BORROWER_FK = ?, DATE = ?, IMPL = ? WHERE ID = ?";
+			values[0] = lending.getTheOther();
+			values[1] = lending.getThePerson().getId();
+			values[2] = lending.getDate().intValue();
+			values[3] = lending.getPrimaryImpl();
 
-            Object[] parameters = {
-                    lending.getTheOther(),
-                    lending.getThePerson().getId(),
-                    lending.getDate().intValue(),
-                    lending.getPrimaryImpl(),
-                    lending.getId()};
+			if (id){
+				values[4] = lending.getId();
+			}
 
-            return new Query(query, parameters);
-        }
-    }
+			return values;
+		}
+	}
 }

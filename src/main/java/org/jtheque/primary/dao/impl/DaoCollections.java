@@ -41,186 +41,191 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class DaoCollections extends GenericDao<Collection> implements IDaoCollections {
-    private final ParameterizedRowMapper<Collection> rowMapper = new CollectionRowMapper();
-    private final QueryMapper queryMapper = new CollectionQueryMapper();
+	private final ParameterizedRowMapper<Collection> rowMapper = new CollectionRowMapper();
+	private final QueryMapper queryMapper = new CollectionQueryMapper();
 
-    @Resource
-    private IDaoPersistenceContext persistenceContext;
+	@Resource
+	private IDaoPersistenceContext persistenceContext;
 
-    @Resource
-    private SimpleJdbcTemplate jdbcTemplate;
+	@Resource
+	private SimpleJdbcTemplate jdbcTemplate;
 
-    /**
-     * The current collection.
-     */
-    private Collection currentCollection;
+	/**
+	 * The current collection.
+	 */
+	private Collection currentCollection;
 
-    /**
-     * Construct a new DaoCollections.
-     */
-    public DaoCollections() {
-        super(TABLE);
-    }
+	/**
+	 * Construct a new DaoCollections.
+	 */
+	public DaoCollections(){
+		super(TABLE);
+	}
 
-    @Override
-    public void create(Collection entity) {
-        entity.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
+	@Override
+	public void create(Collection entity){
+		entity.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
 
-        super.create(entity);
-    }
+		super.create(entity);
+	}
 
-    @Override
-    public java.util.Collection<Collection> getCollections() {
-        return getCollections(PrimaryUtils.getPrimaryImpl());
-    }
+	@Override
+	public java.util.Collection<Collection> getCollections(){
+		return getCollections(PrimaryUtils.getPrimaryImpl());
+	}
 
-    /**
-     * Return all the collections of the specific implementations.
-     *
-     * @param impl The primary implementation.
-     * @return A Collection of Collection.
-     */
-    private java.util.Collection<Collection> getCollections(CharSequence impl) {
-        if (StringUtils.isEmpty(impl)) {
-            return getAll();
-        }
+	/**
+	 * Return all the collections of the specific implementations.
+	 *
+	 * @param impl The primary implementation.
+	 *
+	 * @return A Collection of Collection.
+	 */
+	private java.util.Collection<Collection> getCollections(CharSequence impl){
+		if (StringUtils.isEmpty(impl)){
+			return getAll();
+		}
 
-        load();
+		load();
 
-        java.util.Collection<Collection> collections = new ArrayList<Collection>(getCache().size() / 2);
+		java.util.Collection<Collection> collections = new ArrayList<Collection>(getCache().size() / 2);
 
-        for (Collection collection : getCache().values()) {
-            if (impl.equals(collection.getPrimaryImpl())) {
-                collections.add(collection);
-            }
-        }
+		for (Collection collection : getCache().values()){
+			if (impl.equals(collection.getPrimaryImpl())){
+				collections.add(collection);
+			}
+		}
 
-        return collections;
-    }
+		return collections;
+	}
 
-    @Override
-    public Collection getCollection(int id) {
-        return get(id);
-    }
+	@Override
+	public Collection getCollection(int id){
+		return get(id);
+	}
 
-    @Override
-    public Collection getCollection(String name) {
-        List<Collection> collections = jdbcTemplate.query("SELECT * FROM " + TABLE + " WHERE TITLE = ? AND IMPL = ?",
-                rowMapper, name, PrimaryUtils.getPrimaryImpl());
+	@Override
+	public Collection getCollection(String name){
+		List<Collection> collections = jdbcTemplate.query("SELECT * FROM " + TABLE + " WHERE TITLE = ? AND IMPL = ?",
+				rowMapper, name, PrimaryUtils.getPrimaryImpl());
 
-        if (collections.isEmpty()) {
-            return null;
-        }
+		if (collections.isEmpty()){
+			return null;
+		}
 
-        Collection collection = collections.get(0);
+		Collection collection = collections.get(0);
 
-        if (isNotInCache(collection.getId())) {
-            getCache().put(collection.getId(), collection);
-        }
+		if (isNotInCache(collection.getId())){
+			getCache().put(collection.getId(), collection);
+		}
 
-        return getCache().get(collection.getId());
-    }
+		return getCache().get(collection.getId());
+	}
 
-    @Override
-    protected ParameterizedRowMapper<Collection> getRowMapper() {
-        return rowMapper;
-    }
+	@Override
+	protected ParameterizedRowMapper<Collection> getRowMapper(){
+		return rowMapper;
+	}
 
-    @Override
-    protected QueryMapper getQueryMapper() {
-        return queryMapper;
-    }
+	@Override
+	protected QueryMapper getQueryMapper(){
+		return queryMapper;
+	}
 
-    @Override
-    protected void loadCache() {
-        java.util.Collection<Collection> collections = persistenceContext.getSortedList(TABLE, rowMapper);
+	@Override
+	protected void loadCache(){
+		java.util.Collection<Collection> collections = persistenceContext.getSortedList(TABLE, rowMapper);
 
-        for (Collection collection : collections) {
-            getCache().put(collection.getId(), collection);
-        }
+		for (Collection collection : collections){
+			getCache().put(collection.getId(), collection);
+		}
 
-        setCacheEntirelyLoaded();
-    }
+		setCacheEntirelyLoaded();
+	}
 
-    @Override
-    protected void load(int i) {
-        Collection collection = persistenceContext.getDataByID(TABLE, i, rowMapper);
+	@Override
+	protected void load(int i){
+		Collection collection = persistenceContext.getDataByID(TABLE, i, rowMapper);
 
-        getCache().put(i, collection);
-    }
+		getCache().put(i, collection);
+	}
 
-    @Override
-    public Collection getCurrentCollection() {
-        return currentCollection;
-    }
+	@Override
+	public Collection getCurrentCollection(){
+		return currentCollection;
+	}
 
-    @Override
-    public void setCurrentCollection(Collection collection) {
-        currentCollection = collection;
-    }
+	@Override
+	public void setCurrentCollection(Collection collection){
+		currentCollection = collection;
+	}
 
-    @Override
-    public Collection createCollection() {
-        return new CollectionImpl();
-    }
+	@Override
+	public Collection createCollection(){
+		return new CollectionImpl();
+	}
 
-    /**
-     * A row mapper to map resultset to collection.
-     *
-     * @author Baptiste Wicht
-     */
-    private final class CollectionRowMapper implements ParameterizedRowMapper<Collection> {
-        @Override
-        public Collection mapRow(ResultSet rs, int i) throws SQLException {
-            Collection collection = createCollection();
+	/**
+	 * A row mapper to map resultset to collection.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class CollectionRowMapper implements ParameterizedRowMapper<Collection> {
+		@Override
+		public Collection mapRow(ResultSet rs, int i) throws SQLException{
+			Collection collection = createCollection();
 
-            collection.setId(rs.getInt("ID"));
-            collection.setTitle(rs.getString("TITLE"));
-            collection.setPassword(rs.getString("PASSWORD"));
-            collection.setProtection(rs.getBoolean("PROTECTED"));
-            collection.setPrimaryImpl(rs.getString("IMPL"));
+			collection.setId(rs.getInt("ID"));
+			collection.setTitle(rs.getString("TITLE"));
+			collection.setPassword(rs.getString("PASSWORD"));
+			collection.setProtection(rs.getBoolean("PROTECTED"));
+			collection.setPrimaryImpl(rs.getString("IMPL"));
 
-            return collection;
-        }
-    }
+			return collection;
+		}
+	}
 
-    /**
-     * A query mapper to map collection to sql query.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class CollectionQueryMapper implements QueryMapper {
-        @Override
-        public Query constructInsertQuery(Entity entity) {
-            Collection collection = (Collection) entity;
+	/**
+	 * A query mapper to map collection to sql query.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class CollectionQueryMapper implements QueryMapper {
+		@Override
+		public Query constructInsertQuery(Entity entity){
+			String query = "INSERT INTO " + TABLE + " (TITLE, PASSWORD, PROTECTED, IMPL) VALUES(?,?,?,?)";
 
-            String query = "INSERT INTO " + TABLE + " (TITLE, PASSWORD, PROTECTED, IMPL) VALUES(?,?,?,?)";
+			return new Query(query, fillArray((Collection) entity, false));
+		}
 
-            Object[] parameters = {
-                    collection.getTitle(),
-                    collection.getPassword(),
-                    collection.isProtection(),
-                    collection.getPrimaryImpl()
-            };
+		@Override
+		public Query constructUpdateQuery(Entity entity){
+			String query = "UPDATE " + TABLE + " SET TITLE = ?, PASSWORD = ?, PROTECTED = ?, IMPL = ? WHERE ID = ?";
 
-            return new Query(query, parameters);
-        }
+			return new Query(query, fillArray((Collection) entity, true));
+		}
 
-        @Override
-        public Query constructUpdateQuery(Entity entity) {
-            Collection collection = (Collection) entity;
+		/**
+		 * Fill the array with the informations of the collection.
+		 *
+		 * @param collection The collection to use to fill the array.
+		 * @param id Indicate if we must add the id to the array.
+		 *
+		 * @return The filled array.
+		 */
+		private static Object[] fillArray(Collection collection, boolean id){
+			Object[] values = new Object[4 + (id ? 1 : 0)];
 
-            String query = "UPDATE " + TABLE + " SET TITLE = ?, PASSWORD = ?, PROTECTED = ?, IMPL = ? WHERE ID = ?";
+			values[0] = collection.getTitle();
+			values[1] = collection.getPassword();
+			values[2] = collection.isProtection();
+			values[3] = collection.getPrimaryImpl();
 
-            Object[] parameters = {
-                    collection.getTitle(),
-                    collection.getPassword(),
-                    collection.isProtection(),
-                    collection.getPrimaryImpl(),
-                    collection.getId()
-            };
+			if (id){
+				values[4] = collection.getId();
+			}
 
-            return new Query(query, parameters);
-        }
-    }
+			return values;
+		}
+	}
 }

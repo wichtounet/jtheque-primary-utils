@@ -25,25 +25,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class LineEndPositionFactory implements Factory<Position> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "lineEnd".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "lineEnd".equals(element.getName());
+	}
 
-    @Override
-    public Position factor(Element n, XMLReader reader) throws XMLException {
-        return new LineEndPosition();
-    }
+	@Override
+	public Position factor(Element n, XMLReader reader) throws XMLException{
+		return new LineEndPosition();
+	}
 
-    /**
-     * A position who indicate the end of the line.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class LineEndPosition implements Position {
-        @Override
-        public int intValue(String line) {
-            return line.length();
-        }
-    }
+	/**
+	 * A position who indicate the end of the line.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class LineEndPosition implements Position {
+		@Override
+		public int intValue(String line){
+			return line.length();
+		}
+	}
 }

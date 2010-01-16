@@ -29,21 +29,21 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class JThequeTreeCellRenderer extends DefaultTreeCellRenderer {
-    @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                  boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+	@Override
+	public Component getTreeCellRendererComponent(JTree tree, Object value,
+												  boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus){
 
-        JLabel component = (JLabel) super.getTreeCellRendererComponent(tree, value, selected, expanded,
-                leaf, row, hasFocus);
+		JLabel component = (JLabel) super.getTreeCellRendererComponent(tree, value, selected, expanded,
+				leaf, row, hasFocus);
 
-        TreeElement element = (TreeElement) value;
+		TreeElement element = (TreeElement) value;
 
-        component.setText(element.getElementName());
+		component.setText(element.getElementName());
 
-        if (element.isLeaf()) {
-            component.setIcon(element.getIcon());
-        }
+		if (element.isLeaf()){
+			component.setIcon(element.getIcon());
+		}
 
-        return component;
-    }
+		return component;
+	}
 }

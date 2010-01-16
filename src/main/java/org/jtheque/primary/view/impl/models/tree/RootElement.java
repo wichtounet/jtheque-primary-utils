@@ -26,116 +26,116 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class RootElement implements TreeElement {
-    private final List<TreeElement> categories = new ArrayList<TreeElement>(10);
-    private final List<TreeElement> elements = new ArrayList<TreeElement>(25);
-    private final String name;
+	private final List<TreeElement> categories = new ArrayList<TreeElement>(10);
+	private final List<TreeElement> elements = new ArrayList<TreeElement>(25);
+	private final String name;
 
-    /**
-     * Constructs a new <code>RootElement</code>.
-     *
-     * @param name The name of element
-     */
-    public RootElement(String name) {
-        super();
+	/**
+	 * Constructs a new <code>RootElement</code>.
+	 *
+	 * @param name The name of element
+	 */
+	public RootElement(String name){
+		super();
 
-        this.name = name;
-    }
+		this.name = name;
+	}
 
-    @Override
-    public void add(TreeElement element) {
-        if (element.isLeaf()) {
-            elements.add(element);
-        } else if (element.isCategory()) {
-            categories.add(element);
-        }
-    }
+	@Override
+	public void add(TreeElement element){
+		if (element.isLeaf()){
+			elements.add(element);
+		} else if (element.isCategory()){
+			categories.add(element);
+		}
+	}
 
-    @Override
-    public void addAll(Iterable<? extends TreeElement> elements) {
-        for (TreeElement element : elements) {
-            add(element);
-        }
-    }
+	@Override
+	public void addAll(Iterable<? extends TreeElement> elements){
+		for (TreeElement element : elements){
+			add(element);
+		}
+	}
 
-    @Override
-    public String getElementName() {
-        return name;
-    }
+	@Override
+	public String getElementName(){
+		return name;
+	}
 
-    @Override
-    public Icon getIcon() {
-        return null;
-    }
+	@Override
+	public Icon getIcon(){
+		return null;
+	}
 
-    @Override
-    public boolean isRoot() {
-        return true;
-    }
+	@Override
+	public boolean isRoot(){
+		return true;
+	}
 
-    @Override
-    public boolean isCategory() {
-        return false;
-    }
+	@Override
+	public boolean isCategory(){
+		return false;
+	}
 
-    @Override
-    public boolean isLeaf() {
-        return false;
-    }
+	@Override
+	public boolean isLeaf(){
+		return false;
+	}
 
-    @Override
-    public TreeElement getChild(int index) {
-        if (hasCategories()) {
-            return categories.get(index);
-        } else if (hasElements()) {
-            return elements.get(index);
-        }
+	@Override
+	public TreeElement getChild(int index){
+		if (hasCategories()){
+			return categories.get(index);
+		} else if (hasElements()){
+			return elements.get(index);
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    /**
-     * Test if there is elements.
-     *
-     * @return <code>true</code> if there is elements else <code>false</code>.
-     */
-    private boolean hasElements() {
-        return !elements.isEmpty();
-    }
+	/**
+	 * Test if there is elements.
+	 *
+	 * @return <code>true</code> if there is elements else <code>false</code>.
+	 */
+	private boolean hasElements(){
+		return !elements.isEmpty();
+	}
 
-    /**
-     * Test if there is categories.
-     *
-     * @return <code>true</code> if there is categories else <code>false</code>.
-     */
-    private boolean hasCategories() {
-        return !categories.isEmpty();
-    }
+	/**
+	 * Test if there is categories.
+	 *
+	 * @return <code>true</code> if there is categories else <code>false</code>.
+	 */
+	private boolean hasCategories(){
+		return !categories.isEmpty();
+	}
 
-    @Override
-    public int getChildCount() {
-        if (hasCategories()) {
-            return categories.size();
-        } else if (hasElements()) {
-            return elements.size();
-        }
+	@Override
+	public int getChildCount(){
+		if (hasCategories()){
+			return categories.size();
+		} else if (hasElements()){
+			return elements.size();
+		}
 
-        return 0;
-    }
+		return 0;
+	}
 
-    @Override
-    public int indexOf(TreeElement element) {
-        if (categories.contains(element)) {
-            return categories.indexOf(element);
-        } else if (hasElements()) {
-            return elements.indexOf(element);
-        }
+	@Override
+	public int indexOf(TreeElement element){
+		if (categories.contains(element)){
+			return categories.indexOf(element);
+		} else if (hasElements()){
+			return elements.indexOf(element);
+		}
 
-        return -1;
-    }
+		return -1;
+	}
 
-    @Override
-    public void clear() {
-        elements.clear();
-        categories.clear();
-    }
+	@Override
+	public void clear(){
+		elements.clear();
+		categories.clear();
+	}
 }

@@ -25,45 +25,45 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class ContainFactory implements Factory<Condition> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
-        return "contains".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+		return "contains".equals(element.getName());
+	}
 
-    @Override
-    public Condition factor(Element element, XMLReader reader) {
-        return new Contain(element.getText());
-    }
+	@Override
+	public Condition factor(Element element, XMLReader reader){
+		return new Contain(element.getText());
+	}
 
-    /**
-     * A contains condition. It seems a condition who test if the line contains a certain text or not.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class Contain implements Condition {
-        private final String text;
+	/**
+	 * A contains condition. It seems a condition who test if the line contains a certain text or not.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class Contain implements Condition {
+		private final String text;
 
-        /**
-         * Construct a new Contain.
-         *
-         * @param text The text the line must contain to match the condition.
-         */
-        private Contain(String text) {
-            super();
+		/**
+		 * Construct a new Contain.
+		 *
+		 * @param text The text the line must contain to match the condition.
+		 */
+		private Contain(String text){
+			super();
 
-            this.text = text;
-        }
+			this.text = text;
+		}
 
-        @Override
-        public boolean match(String line) {
-            return line.contains(text);
-        }
+		@Override
+		public boolean match(String line){
+			return line.contains(text);
+		}
 
-        @Override
-        public String toString() {
-            return "Contain{" +
-                    "text='" + text + '\'' +
-                    '}';
-        }
-    }
+		@Override
+		public String toString(){
+			return "Contain{" +
+					"text='" + text + '\'' +
+					'}';
+		}
+	}
 }

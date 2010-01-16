@@ -27,27 +27,27 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
  * @author Baptiste Wicht
  */
 final class AppendLineFactory implements Factory<IteratorOperation> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "appendLine".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "appendLine".equals(element.getName());
+	}
 
-    @Override
-    public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
-        return new AppendLineIteratorOperation();
-    }
+	@Override
+	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException{
+		return new AppendLineIteratorOperation();
+	}
 
-    /**
-     * An operation which append the line to the builder.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class AppendLineIteratorOperation implements IteratorOperation {
-        @Override
-        public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator) {
-            iterator.getBuilder().append(line);
+	/**
+	 * An operation which append the line to the builder.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class AppendLineIteratorOperation implements IteratorOperation {
+		@Override
+		public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator){
+			iterator.getBuilder().append(line);
 
-            return line;
-        }
-    }
+			return line;
+		}
+	}
 }

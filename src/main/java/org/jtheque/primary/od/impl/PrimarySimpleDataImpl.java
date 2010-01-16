@@ -20,36 +20,47 @@ import org.jtheque.primary.utils.TempUtils;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * A primary simple data implementation.
+ *
+ * @author Baptiste Wicht
+ */
 public final class PrimarySimpleDataImpl extends SimpleDataImpl implements PrimarySimpleData {
-    private String primaryImpl;
-    
-    public PrimarySimpleDataImpl(SimpleData.DataType type, String primaryImpl){
-        super(type);
+	private String primaryImpl;
 
-        this.primaryImpl = primaryImpl;
-    }
+	/**
+	 * Construct a new PrimarySimpleDataImpl.
+	 *
+	 * @param type The simple data type.
+	 * @param primaryImpl The primary implementation.
+	 */
+	public PrimarySimpleDataImpl(SimpleData.DataType type, String primaryImpl){
+		super(type);
 
-    @Override
-    public String getPrimaryImpl() {
-        return primaryImpl;
-    }
+		this.primaryImpl = primaryImpl;
+	}
 
-    @Override
-    public void setPrimaryImpl(String impl) {
-        primaryImpl = impl;
-    }
+	@Override
+	public String getPrimaryImpl(){
+		return primaryImpl;
+	}
 
-    @Override
-    public int hashCode(){
-        return TempUtils.hashCodeDirect(this, getName(), primaryImpl);
-    }
+	@Override
+	public void setPrimaryImpl(String impl){
+		primaryImpl = impl;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        PrimarySimpleData other = (PrimarySimpleData)obj;
+	@Override
+	public int hashCode(){
+		return TempUtils.hashCodeDirect(this, getName(), primaryImpl);
+	}
 
-        return TempUtils.areEqualsDirect(this, obj,
-                getName(), primaryImpl,
-                other.getName(), other.getPrimaryImpl());
-    }
+	@Override
+	public boolean equals(Object obj){
+		PrimarySimpleData other = (PrimarySimpleData) obj;
+
+		return TempUtils.areEqualsDirect(this, obj,
+				getName(), primaryImpl,
+				other.getName(), other.getPrimaryImpl());
+	}
 }

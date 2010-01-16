@@ -27,49 +27,51 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IDaoLendings extends JThequeDao {
-    String TABLE = "T_LENDINGS";
+	String TABLE = "T_LENDINGS";
 
-    /**
-     * Return the lending with the specified ID.
-     *
-     * @param id The ID of the searched lending.
-     * @return The lending.
-     */
-    Lending getLending(int id);
+	/**
+	 * Return the lending with the specified ID.
+	 *
+	 * @param id The ID of the searched lending.
+	 *
+	 * @return The lending.
+	 */
+	Lending getLending(int id);
 
-    /**
-     * Create the lending.
-     *
-     * @param lending The lending to create.
-     */
-    void create(Lending lending);
+	/**
+	 * Create the lending.
+	 *
+	 * @param lending The lending to create.
+	 */
+	void create(Lending lending);
 
-    /**
-     * Delete the lending.
-     *
-     * @param lending The lending to delete.
-     * @return true if the object is deleted else false.
-     */
-    boolean delete(Lending lending);
+	/**
+	 * Delete the lending.
+	 *
+	 * @param lending The lending to delete.
+	 *
+	 * @return true if the object is deleted else false.
+	 */
+	boolean delete(Lending lending);
 
-    /**
-     * Return all the lendings.
-     *
-     * @return All the lendings.
-     */
-    Collection<Lending> getLendings();
+	/**
+	 * Return all the lendings.
+	 *
+	 * @return All the lendings.
+	 */
+	Collection<Lending> getLendings();
 
-    /**
-     * Save the specified lending.
-     *
-     * @param lending The lending to save.
-     */
-    void save(Lending lending);
+	/**
+	 * Save the specified lending.
+	 *
+	 * @param lending The lending to save.
+	 */
+	void save(Lending lending);
 
-    /**
-     * Create the lending.
-     *
-     * @return The created lending.
-     */
-    Lending createLending();
+	/**
+	 * Create the lending.
+	 *
+	 * @return The created lending.
+	 */
+	Lending createLending();
 }

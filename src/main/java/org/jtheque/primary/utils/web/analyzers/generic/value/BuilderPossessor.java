@@ -20,10 +20,10 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
  * @author Baptiste Wicht
  */
 public interface BuilderPossessor {
-    /**
-     * Return the value builder.
-     *
-     * @return The value builder.
-     */
-    StringBuilder getBuilder();
+	/**
+	 * Return the value builder.
+	 *
+	 * @return The value builder.
+	 */
+	StringBuilder getBuilder();
 }

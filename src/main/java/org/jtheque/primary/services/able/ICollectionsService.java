@@ -25,22 +25,23 @@ import org.jtheque.primary.od.able.Collection;
  * @author Baptiste Wicht
  */
 public interface ICollectionsService extends DataContainer<Collection> {
-    String DATA_TYPE = "Collections";
+	String DATA_TYPE = "Collections";
 
-    /**
-     * Create the collection and directly set it as the current collection.
-     *
-     * @param collection The collection.
-     * @param password   The password.
-     */
-    void createCollectionAndUse(String collection, String password);
+	/**
+	 * Create the collection and directly set it as the current collection.
+	 *
+	 * @param collection The collection.
+	 * @param password The password.
+	 */
+	void createCollectionAndUse(String collection, String password);
 
-    /**
-     * Login using the specified collection and password.
-     *
-     * @param collection The collection.
-     * @param password   The password.
-     * @return <code>true</code> if the login is correct else <code>false</code>.
-     */
-    boolean login(String collection, String password);
+	/**
+	 * Login using the specified collection and password.
+	 *
+	 * @param collection The collection.
+	 * @param password The password.
+	 *
+	 * @return <code>true</code> if the login is correct else <code>false</code>.
+	 */
+	boolean login(String collection, String password);
 }

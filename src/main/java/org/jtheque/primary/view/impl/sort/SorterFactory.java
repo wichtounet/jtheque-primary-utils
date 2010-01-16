@@ -25,71 +25,72 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class SorterFactory {
-    private final Collection<Sorter> sorters;
+	private final Collection<Sorter> sorters;
 
-    private static final SorterFactory INSTANCE = new SorterFactory();
+	private static final SorterFactory INSTANCE = new SorterFactory();
 
-    /**
-     * Utility class, cannot be instanciated.
-     */
-    private SorterFactory() {
-        super();
+	/**
+	 * Utility class, cannot be instanciated.
+	 */
+	private SorterFactory(){
+		super();
 
-        sorters = new ArrayList<Sorter>(10);
-    }
+		sorters = new ArrayList<Sorter>(10);
+	}
 
-    /**
-     * Return the unique instance of the class.
-     *
-     * @return The singleton of the class.
-     */
-    public static SorterFactory getInstance() {
-        return INSTANCE;
-    }
+	/**
+	 * Return the unique instance of the class.
+	 *
+	 * @return The singleton of the class.
+	 */
+	public static SorterFactory getInstance(){
+		return INSTANCE;
+	}
 
-    /**
-     * Add a sorter to manage.
-     *
-     * @param sorter The sorter to add.
-     */
-    public void addSorter(Sorter sorter) {
-        sorters.add(sorter);
-    }
+	/**
+	 * Add a sorter to manage.
+	 *
+	 * @param sorter The sorter to add.
+	 */
+	public void addSorter(Sorter sorter){
+		sorters.add(sorter);
+	}
 
-    /**
-     * Remove a sorter to manage.
-     *
-     * @param sorter The sorter to remove.
-     */
-    public void removeSorter(Sorter sorter) {
-        sorters.remove(sorter);
-    }
+	/**
+	 * Remove a sorter to manage.
+	 *
+	 * @param sorter The sorter to remove.
+	 */
+	public void removeSorter(Sorter sorter){
+		sorters.remove(sorter);
+	}
 
-    /**
-     * Return the sorter for the specified content and sort types.
-     *
-     * @param content  The content type.
-     * @param sortType The sort type.
-     * @return The sorter of the specified or <code>null</code> if no sorter of this type exist.
-     */
-    public Sorter getSorter(String content, String sortType) {
-        for (Sorter sorter : sorters) {
-            if (sorter.canSort(content, sortType)) {
-                return sorter;
-            }
-        }
+	/**
+	 * Return the sorter for the specified content and sort types.
+	 *
+	 * @param content The content type.
+	 * @param sortType The sort type.
+	 *
+	 * @return The sorter of the specified or <code>null</code> if no sorter of this type exist.
+	 */
+	public Sorter getSorter(String content, String sortType){
+		for (Sorter sorter : sorters){
+			if (sorter.canSort(content, sortType)){
+				return sorter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    /**
-     * Remove the specified sorters.
-     *
-     * @param sorters The sorters to remove.
-     */
-    public void removeSorters(Sorter[] sorters) {
-        for (Sorter sorter : sorters) {
-            removeSorter(sorter);
-        }
-    }
+	/**
+	 * Remove the specified sorters.
+	 *
+	 * @param sorters The sorters to remove.
+	 */
+	public void removeSorters(Sorter[] sorters){
+		for (Sorter sorter : sorters){
+			removeSorter(sorter);
+		}
+	}
 }

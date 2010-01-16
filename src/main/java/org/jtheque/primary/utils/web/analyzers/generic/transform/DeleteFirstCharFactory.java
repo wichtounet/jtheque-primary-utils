@@ -25,25 +25,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class DeleteFirstCharFactory implements Factory<Transformer> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "deleteFirstChar".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "deleteFirstChar".equals(element.getName());
+	}
 
-    @Override
-    public Transformer factor(Element n, XMLReader reader) throws XMLException {
-        return new DeleteFirstChar();
-    }
+	@Override
+	public Transformer factor(Element n, XMLReader reader) throws XMLException{
+		return new DeleteFirstChar();
+	}
 
-    /**
-     * A Transformer who delete the first char of the value.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class DeleteFirstChar implements Transformer {
-        @Override
-        public String transform(String value) {
-            return value.substring(1);
-        }
-    }
+	/**
+	 * A Transformer who delete the first char of the value.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class DeleteFirstChar implements Transformer {
+		@Override
+		public String transform(String value){
+			return value.substring(1);
+		}
+	}
 }

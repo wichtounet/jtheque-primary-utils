@@ -23,55 +23,89 @@ import org.jtheque.primary.view.impl.sort.SortManager;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * An abstract principal data panel.
+ *
+ * @author Baptiste Wicht
+ * @param <M> The type of model.
+ */
 public abstract class AbstractPrincipalDataPanel<M extends IModel> extends PrincipalDataPanel<M> {
-    private ToolbarView toolBar;
-    private JXTree tree;
+	private ToolbarView toolBar;
+	private JXTree tree;
 
-    private final String dataType;
+	private final String dataType;
 
-    private static final SortManager SORTER = new SortManager();
-    
-    public AbstractPrincipalDataPanel(String dataType) {
-        super();
-        
-        this.dataType = dataType;
-    }
+	private static final SortManager SORTER = new SortManager();
 
-    @Override
-    public final Object getImpl() {
-        return this;
-    }
+	/**
+	 * Construct a new AbstractPrincipalDataPanel for a specific data type.
+	 *
+	 * @param dataType The data type.
+	 */
+	public AbstractPrincipalDataPanel(String dataType){
+		super();
 
-    @Override
-    public final ToolbarView getToolbarView() {
-        return toolBar;
-    }
-    
-    @Override
-    protected final JXTree getTree() {
-        return tree;
-    }
+		this.dataType = dataType;
+	}
 
-    @Override
-    public final String getDataType() {
-        return dataType;
-    }
-    
-    public final void setToolBar(ToolbarView toolBar) {
-        this.toolBar = toolBar;
-    }
+	@Override
+	public final Object getImpl(){
+		return this;
+	}
 
-    public final void initTree(){
-        tree = new JXTree(getTreeModel());
-        tree.setCellRenderer(new JThequeTreeCellRenderer());
-        tree.putClientProperty("JTree.lineStyle", "None");
-    }
+	@Override
+	public final ToolbarView getToolbarView(){
+		return toolBar;
+	}
 
-    public static SortManager getSorter() {
-        return SORTER;
-    }
+	@Override
+	protected final JXTree getTree(){
+		return tree;
+	}
 
-    public abstract void fillFormBean(FormBean fb);
+	@Override
+	public final String getDataType(){
+		return dataType;
+	}
 
-    public abstract void setCurrent(Object object);
+	/**
+	 * Set the tool bar of the view.
+	 *
+	 * @param toolBar The tool bar of the view.
+	 */
+	public final void setToolBar(ToolbarView toolBar){
+		this.toolBar = toolBar;
+	}
+
+	/**
+	 * Init the tree.
+	 */
+	public final void initTree(){
+		tree = new JXTree(getTreeModel());
+		tree.setCellRenderer(new JThequeTreeCellRenderer());
+		tree.putClientProperty("JTree.lineStyle", "None");
+	}
+
+	/**
+	 * Return the sorter used to sort the datas of the view.
+	 *
+	 * @return A SortManager instance to sort the datas.
+	 */
+	public static SortManager getSorter(){
+		return SORTER;
+	}
+
+	/**
+	 * Fill the form bean with the informations of the view.
+	 *
+	 * @param fb The form bean to fill.
+	 */
+	public abstract void fillFormBean(FormBean fb);
+
+	/**
+	 * Set the current object.
+	 *
+	 * @param object The objec to set as the current object.
+	 */
+	public abstract void setCurrent(Object object);
 }

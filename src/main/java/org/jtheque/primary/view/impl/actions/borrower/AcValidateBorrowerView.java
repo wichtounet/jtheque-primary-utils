@@ -29,28 +29,28 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateBorrowerView extends JThequeAction {
-    @Resource
-    private IBorrowerController borrowerController;
+	@Resource
+	private IBorrowerController borrowerController;
 
-    @Resource
-    private IBorrowerView borrowerView;
+	@Resource
+	private IBorrowerView borrowerView;
 
-    /**
-     * Construct a new AcValidateBorrowerView.
-     */
-    public AcValidateBorrowerView() {
-        super("borrower.actions.ok");
-    }
+	/**
+	 * Construct a new AcValidateBorrowerView.
+	 */
+	public AcValidateBorrowerView(){
+		super("borrower.actions.ok");
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        if (borrowerView.validateContent()) {
-            borrowerController.save(
-                    borrowerView.getFieldFirstName().getText(),
-                    borrowerView.getFieldNom().getText(),
-                    borrowerView.getFieldEmail().getText());
+	@Override
+	public void actionPerformed(ActionEvent event){
+		if (borrowerView.validateContent()){
+			borrowerController.save(
+					borrowerView.getFieldFirstName().getText(),
+					borrowerView.getFieldNom().getText(),
+					borrowerView.getFieldEmail().getText());
 
-            borrowerView.closeDown();
-        }
-    }
+			borrowerView.closeDown();
+		}
+	}
 }

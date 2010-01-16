@@ -27,25 +27,25 @@ import org.jtheque.core.managers.language.Internationalizable;
  * @author Baptiste Wicht
  */
 public final class JThequeTitledPanel extends JXTitledPanel implements Internationalizable {
-    private final String key;
+	private final String key;
 
-    /**
-     * Construct a new JThequeTitledPanel.
-     *
-     * @param key The internationalization key.
-     */
-    public JThequeTitledPanel(String key) {
-        super();
+	/**
+	 * Construct a new JThequeTitledPanel.
+	 *
+	 * @param key The internationalization key.
+	 */
+	public JThequeTitledPanel(String key){
+		super();
 
-        this.key = key;
+		this.key = key;
 
-        setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
+		setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
 
-        Managers.getManager(ILanguageManager.class).addInternationalizable(this);
-    }
+		Managers.getManager(ILanguageManager.class).addInternationalizable(this);
+	}
 
-    @Override
-    public void refreshText() {
-        setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
-    }
+	@Override
+	public void refreshText(){
+		setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
+	}
 }

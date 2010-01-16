@@ -34,27 +34,27 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer {
-    /**
-     * Construct a new <code>NoteComboRenderer</code>.
-     */
-    public NoteComboRenderer() {
-        super();
+	/**
+	 * Construct a new <code>NoteComboRenderer</code>.
+	 */
+	public NoteComboRenderer(){
+		super();
 
-        setOpaque(false);
-    }
+		setOpaque(false);
+	}
 
-    @Override
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        if (value != null) {
-            setImage(DaoNotes.getImage((Note) value));
-        }
+	@Override
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+		if (value != null){
+			setImage(DaoNotes.getImage((Note) value));
+		}
 
-        if (isSelected) {
-            setBorder(BorderFactory.createLineBorder(Managers.getManager(IResourceManager.class).getColor("filthyInputBorderColor"), 2));
-        } else {
-            setBorder(Borders.EMPTY_BORDER);
-        }
+		if (isSelected){
+			setBorder(BorderFactory.createLineBorder(Managers.getManager(IResourceManager.class).getColor("filthyInputBorderColor"), 2));
+		} else {
+			setBorder(Borders.EMPTY_BORDER);
+		}
 
-        return this;
-    }
+		return this;
+	}
 }

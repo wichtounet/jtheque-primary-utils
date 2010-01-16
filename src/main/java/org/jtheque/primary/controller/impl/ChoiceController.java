@@ -31,39 +31,39 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class ChoiceController extends AbstractController implements IChoiceController {
-    private String action;
-    private String content;
+	private String action;
+	private String content;
 
-    @Resource
-    private IChoiceView choiceView;
+	@Resource
+	private IChoiceView choiceView;
 
-    @Override
-    public void doAction(Object selectedItem) {
-        ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
-        choiceAction.setSelectedItem(selectedItem);
-        choiceAction.setContent(content);
-        choiceAction.execute();
+	@Override
+	public void doAction(Object selectedItem){
+		ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
+		choiceAction.setSelectedItem(selectedItem);
+		choiceAction.setContent(content);
+		choiceAction.execute();
 
-        closeView();
-    }
+		closeView();
+	}
 
-    @Override
-    public void setAction(String action) {
-        this.action = action;
-    }
+	@Override
+	public void setAction(String action){
+		this.action = action;
+	}
 
-    @Override
-    public void setContent(String content) {
-        this.content = content;
-    }
+	@Override
+	public void setContent(String content){
+		this.content = content;
+	}
 
-    @Override
-    public void displayView() {
-        choiceView.display(content);
-    }
+	@Override
+	public void displayView(){
+		choiceView.display(content);
+	}
 
-    @Override
-    public IView getView() {
-        return choiceView;
-    }
+	@Override
+	public IView getView(){
+		return choiceView;
+	}
 }

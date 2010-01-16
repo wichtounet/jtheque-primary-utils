@@ -21,20 +21,73 @@ import org.jtheque.primary.od.able.SimpleData;
 
 import java.util.Collection;
 
+/**
+ * A dao for simple data specification.
+ *
+ * @author Baptiste Wicht
+ */
 public interface IDaoSimpleDatas extends JThequeDao {
-    Collection<SimpleData> getSimpleDatas();
+	/**
+	 * Return all the simple datas.
+	 *
+	 * @return A Collection containing all the simple datas.
+	 */
+	Collection<SimpleData> getSimpleDatas();
 
-    SimpleData getSimpleData(int id);
+	/**
+	 * Return the simple data of the specified id.
+	 *
+	 * @param id The id to search.
+	 *
+	 * @return The simple data with the specified id.
+	 */
+	SimpleData getSimpleData(int id);
 
-    SimpleData getSimpleData(String title);
+	/**
+	 * Return the simple data of the specified title.
+	 *
+	 * @param title The title to search.
+	 *
+	 * @return The simple data with the specified title.
+	 */
+	SimpleData getSimpleData(String title);
 
-    boolean exist(SimpleData data);
+	/**
+	 * Indicate if the simple data exists or not.
+	 *
+	 * @param data The data to test for exists or not.
+	 *
+	 * @return <code>true</code> if the data exists else <code>false</code>.
+	 */
+	boolean exist(SimpleData data);
 
-    boolean delete(SimpleData data);
+	/**
+	 * Delete the simple data.
+	 *
+	 * @param data The simple data to delete.
+	 *
+	 * @return <code>true</code> if the data has been deleted else <code>false</code>.
+	 */
+	boolean delete(SimpleData data);
 
-    void create(SimpleData data);
+	/**
+	 * Create the specified simple data.
+	 *
+	 * @param data The data to create.
+	 */
+	void create(SimpleData data);
 
-    void save(SimpleData data);
+	/**
+	 * Save the specified data.
+	 *
+	 * @param data The data to save.
+	 */
+	void save(SimpleData data);
 
-    SimpleData createSimpleData();
+	/**
+	 * Create an empty simple data.
+	 *
+	 * @return An empty simple data.
+	 */
+	SimpleData createSimpleData();
 }

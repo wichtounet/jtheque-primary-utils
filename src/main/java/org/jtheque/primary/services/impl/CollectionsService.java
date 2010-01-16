@@ -35,107 +35,108 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class CollectionsService implements ICollectionsService {
-    @Resource
-    private IDaoCollections daoCollections;
+	@Resource
+	private IDaoCollections daoCollections;
 
-    /**
-     * Return an empty collection.
-     *
-     * @return An empty collection.
-     */
-    private Collection getEmptyCollection() {
-        Collection emptyCollection = daoCollections.createCollection();
+	/**
+	 * Return an empty collection.
+	 *
+	 * @return An empty collection.
+	 */
+	private Collection getEmptyCollection(){
+		Collection emptyCollection = daoCollections.createCollection();
 
-        emptyCollection.setTitle(Managers.getManager(ILanguageManager.class).getMessage("generic.view.actions.new"));
-        emptyCollection.setProtection(false);
-        emptyCollection.setPassword("");
+		emptyCollection.setTitle(Managers.getManager(ILanguageManager.class).getMessage("generic.view.actions.new"));
+		emptyCollection.setProtection(false);
+		emptyCollection.setPassword("");
 
-        return emptyCollection;
-    }
+		return emptyCollection;
+	}
 
-    /**
-     * Indicate if a login is correct or not
-     *
-     * @param title    The title of the collection.
-     * @param password The password to login to the collection.
-     * @return true if the login is correct else false.
-     */
-    private boolean isLoginCorrect(String title, String password) {
-        Collection collection = daoCollections.getCollection(title);
+	/**
+	 * Indicate if a login is correct or not
+	 *
+	 * @param title The title of the collection.
+	 * @param password The password to login to the collection.
+	 *
+	 * @return true if the login is correct else false.
+	 */
+	private boolean isLoginCorrect(String title, String password){
+		Collection collection = daoCollections.getCollection(title);
 
-        if (collection == null) {
-            return false;
-        }
+		if (collection == null){
+			return false;
+		}
 
-        if (collection.isProtection()) {
-            String encrypted = FileUtils.encryptKey(password);
+		if (collection.isProtection()){
+			String encrypted = FileUtils.encryptKey(password);
 
-            if (!encrypted.equals(collection.getPassword())) {
-                return false;
-            }
-        }
+			if (!encrypted.equals(collection.getPassword())){
+				return false;
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * Create a collection.
-     *
-     * @param title    The title of the collection.
-     * @param password The password of the collection.
-     */
-    @Transactional
-    private void createCollection(String title, String password) {
-        Collection collection = getEmptyCollection();
+	/**
+	 * Create a collection.
+	 *
+	 * @param title The title of the collection.
+	 * @param password The password of the collection.
+	 */
+	@Transactional
+	private void createCollection(String title, String password){
+		Collection collection = getEmptyCollection();
 
-        collection.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
-        collection.setTitle(title);
+		collection.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
+		collection.setTitle(title);
 
-        if (StringUtils.isEmpty(password)) {
-            collection.setProtection(false);
-        } else {
-            collection.setProtection(true);
-            collection.setPassword(FileUtils.encryptKey(password));
-        }
+		if (StringUtils.isEmpty(password)){
+			collection.setProtection(false);
+		} else {
+			collection.setProtection(true);
+			collection.setPassword(FileUtils.encryptKey(password));
+		}
 
-        daoCollections.create(collection);
-    }
+		daoCollections.create(collection);
+	}
 
-    @Override
-    public void createCollectionAndUse(String title, String password) {
-        createCollection(title, password);
-        daoCollections.setCurrentCollection(daoCollections.getCollection(title));
-    }
+	@Override
+	public void createCollectionAndUse(String title, String password){
+		createCollection(title, password);
+		daoCollections.setCurrentCollection(daoCollections.getCollection(title));
+	}
 
-    @Override
-    public boolean login(String title, String password) {
-        if (!isLoginCorrect(title, password)) {
-            return false;
-        }
+	@Override
+	public boolean login(String title, String password){
+		if (!isLoginCorrect(title, password)){
+			return false;
+		}
 
-        daoCollections.setCurrentCollection(daoCollections.getCollection(title));
+		daoCollections.setCurrentCollection(daoCollections.getCollection(title));
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public java.util.Collection<Collection> getDatas() {
-        return daoCollections.getCollections();
-    }
+	@Override
+	public java.util.Collection<Collection> getDatas(){
+		return daoCollections.getCollections();
+	}
 
-    @Override
-    public void addDataListener(DataListener listener) {
-        daoCollections.addDataListener(listener);
-    }
+	@Override
+	public void addDataListener(DataListener listener){
+		daoCollections.addDataListener(listener);
+	}
 
-    @Override
-    @Transactional
-    public void clearAll() {
-        daoCollections.clearAll();
-    }
+	@Override
+	@Transactional
+	public void clearAll(){
+		daoCollections.clearAll();
+	}
 
-    @Override
-    public String getDataType() {
-        return DATA_TYPE;
-    }
+	@Override
+	public String getDataType(){
+		return DATA_TYPE;
+	}
 }

@@ -34,55 +34,60 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class SimpleController extends AbstractController implements ISimpleController {
-    private ViewMode state = ViewMode.NEW;
+	private ViewMode state = ViewMode.NEW;
 
-    private SimpleData currentData;
-    
-    private final ISimpleDataService simpleService;
+	private SimpleData currentData;
 
-    @Resource
-    private ISimpleDataView simpleDataView;
+	private final ISimpleDataService simpleService;
 
-    public SimpleController(ISimpleDataService simpleService){
-        super();
+	@Resource
+	private ISimpleDataView simpleDataView;
 
-        this.simpleService = simpleService;
-    }
+	/**
+	 * Construct a new SimpleController.
+	 *
+	 * @param simpleService The simple service to use
+	 */
+	public SimpleController(ISimpleDataService simpleService){
+		super();
 
-    @Override
-    public void create() {
-        state = ViewMode.NEW;
+		this.simpleService = simpleService;
+	}
 
-        simpleDataView.reload();
-        currentData = simpleService.getEmptySimpleData();
-    }
+	@Override
+	public void create(){
+		state = ViewMode.NEW;
 
-    @Override
-    public void edit(SimpleData data) {
-        state = ViewMode.EDIT;
+		simpleDataView.reload();
+		currentData = simpleService.getEmptySimpleData();
+	}
 
-        simpleDataView.reload(data);
-        currentData = data;
+	@Override
+	public void edit(SimpleData data){
+		state = ViewMode.EDIT;
 
-        displayView();
-    }
+		simpleDataView.reload(data);
+		currentData = data;
 
-    @Override
-    public void save(String name) {
-        currentData.setName(name);
+		displayView();
+	}
 
-        if (state == ViewMode.NEW) {
-            simpleService.create(currentData);
+	@Override
+	public void save(String name){
+		currentData.setName(name);
 
-            Managers.getManager(IUndoRedoManager.class).addEdit(
-                    new GenericDataCreatedEdit<SimpleData>("simpleService", currentData));
-        } else {
-            simpleService.save(currentData);
-        }
-    }
+		if (state == ViewMode.NEW){
+			simpleService.create(currentData);
 
-    @Override
-    public ISimpleDataView getView() {
-        return simpleDataView;
-    }
+			Managers.getManager(IUndoRedoManager.class).addEdit(
+					new GenericDataCreatedEdit<SimpleData>("simpleService", currentData));
+		} else {
+			simpleService.save(currentData);
+		}
+	}
+
+	@Override
+	public ISimpleDataView getView(){
+		return simpleDataView;
+	}
 }

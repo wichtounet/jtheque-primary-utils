@@ -22,8 +22,8 @@ package org.jtheque.primary.view.able;
  * @author Baptiste Wicht
  */
 public enum ViewMode {
-    NEW,
-    EDIT,
-    VIEW,
-    AUTO
+	NEW,
+	EDIT,
+	VIEW,
+	AUTO
 }

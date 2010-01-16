@@ -25,25 +25,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class EmptyValueFactory implements Factory<ValueGetter> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
-        return !reader.getNodes("emptyValue", element).isEmpty();
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+		return !reader.getNodes("emptyValue", element).isEmpty();
+	}
 
-    @Override
-    public ValueGetter factor(Element element, XMLReader reader) {
-        return new EmptyValue();
-    }
+	@Override
+	public ValueGetter factor(Element element, XMLReader reader){
+		return new EmptyValue();
+	}
 
-    /**
-     * A value getter that always return an empty value.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class EmptyValue implements ValueGetter {
-        @Override
-        public String getValue(String line) {
-            return "";
-        }
-    }
+	/**
+	 * A value getter that always return an empty value.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class EmptyValue implements ValueGetter {
+		@Override
+		public String getValue(String line){
+			return "";
+		}
+	}
 }

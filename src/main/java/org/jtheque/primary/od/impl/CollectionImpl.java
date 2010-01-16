@@ -26,65 +26,65 @@ import org.jtheque.primary.utils.TempUtils;
  * @author Baptiste Wicht
  */
 public final class CollectionImpl extends AbstractPrimaryData implements Collection {
-    private String title;
-    private boolean protection;
-    private String password;
+	private String title;
+	private boolean protection;
+	private String password;
 
-    //Data methods
+	//Data methods
 
-    @Override
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	@Override
+	public void setTitle(String title){
+		this.title = title;
+	}
 
-    @Override
-    public String getTitle() {
-        return title;
-    }
+	@Override
+	public String getTitle(){
+		return title;
+	}
 
-    @Override
-    public boolean isProtection() {
-        return protection;
-    }
+	@Override
+	public boolean isProtection(){
+		return protection;
+	}
 
-    @Override
-    public void setProtection(boolean protection) {
-        this.protection = protection;
-    }
+	@Override
+	public void setProtection(boolean protection){
+		this.protection = protection;
+	}
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+	@Override
+	public String getPassword(){
+		return password;
+	}
 
-    @Override
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	@Override
+	public void setPassword(String password){
+		this.password = password;
+	}
 
-    //Utility class
+	//Utility class
 
-    @Override
-    public String getDisplayableText() {
-        return title;
-    }
+	@Override
+	public String getDisplayableText(){
+		return title;
+	}
 
-    @Override
-    public String toString() {
-        return title;
-    }
+	@Override
+	public String toString(){
+		return title;
+	}
 
-    @Override
-    public int hashCode() {
-        return TempUtils.hashCodeDirect(title, protection, password);
-    }
+	@Override
+	public int hashCode(){
+		return TempUtils.hashCodeDirect(title, protection, password);
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        Collection other = (Collection)obj;
+	@Override
+	public boolean equals(Object obj){
+		Collection other = (Collection) obj;
 
-        return TempUtils.areEqualsDirect(this, obj,
-                title, protection, password,
-                other.getTitle(), other.isProtection(), other.getPassword());
-    }
+		return TempUtils.areEqualsDirect(this, obj,
+				title, protection, password,
+				other.getTitle(), other.isProtection(), other.getPassword());
+	}
 }

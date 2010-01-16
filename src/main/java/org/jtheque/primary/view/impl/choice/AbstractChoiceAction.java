@@ -22,34 +22,34 @@ package org.jtheque.primary.view.impl.choice;
  * @author Baptiste Wicht
  */
 public abstract class AbstractChoiceAction implements ChoiceAction {
-    private Object selectedItem;
-    private String content;
+	private Object selectedItem;
+	private String content;
 
-    @Override
-    public final void setSelectedItem(Object selectedItem) {
-        this.selectedItem = selectedItem;
-    }
+	@Override
+	public final void setSelectedItem(Object selectedItem){
+		this.selectedItem = selectedItem;
+	}
 
-    /**
-     * Return the selected item. It's the item in which we execute the action.
-     *
-     * @return The selected item.
-     */
-    protected final Object getSelectedItem() {
-        return selectedItem;
-    }
+	/**
+	 * Return the selected item. It's the item in which we execute the action.
+	 *
+	 * @return The selected item.
+	 */
+	protected final Object getSelectedItem(){
+		return selectedItem;
+	}
 
-    /**
-     * Return the type of the content.
-     *
-     * @return The type of the content.
-     */
-    protected final String getContent() {
-        return content;
-    }
+	/**
+	 * Return the type of the content.
+	 *
+	 * @return The type of the content.
+	 */
+	protected final String getContent(){
+		return content;
+	}
 
-    @Override
-    public final void setContent(String content) {
-        this.content = content;
-    }
+	@Override
+	public final void setContent(String content){
+		this.content = content;
+	}
 }

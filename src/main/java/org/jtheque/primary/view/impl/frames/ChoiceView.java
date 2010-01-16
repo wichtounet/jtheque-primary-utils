@@ -39,64 +39,64 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class ChoiceView extends SwingDialogView implements IChoiceView {
-    private DataContainerCachedComboBoxModel<?> model;
+	private DataContainerCachedComboBoxModel<?> model;
 
-    private String content;
+	private String content;
 
-    /**
-     * Reload the content of the view.
-     *
-     * @param content The content.
-     */
-    private void reload(String content){
-        this.content = content;
+	/**
+	 * Reload the content of the view.
+	 *
+	 * @param content The content.
+	 */
+	private void reload(String content){
+		this.content = content;
 
-        setTitle(DataTypeManager.getTextForDataType(content));
-        setContentPane(buildContentPane());
-        pack();
-    }
+		setTitle(DataTypeManager.getTextForDataType(content));
+		setContentPane(buildContentPane());
+		pack();
+	}
 
-    /**
-     * Build and return the content pane.
-     *
-     * @return Le content pane
-     */
-    private Container buildContentPane(){
-        PanelBuilder builder = new PanelBuilder();
+	/**
+	 * Build and return the content pane.
+	 *
+	 * @return Le content pane
+	 */
+	private Container buildContentPane(){
+		PanelBuilder builder = new PanelBuilder();
 
-        model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
+		model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
 
-        Action validateAction = new AcValidateChoiceView();
+		Action validateAction = new AcValidateChoiceView();
 
-        JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
-        SwingUtils.addFieldValidateAction(comboElements, validateAction);
+		JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
+		SwingUtils.addFieldValidateAction(comboElements, validateAction);
 
-        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getCloseAction("choice.actions.cancel"));
+		builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getCloseAction("choice.actions.cancel"));
 
-        return builder.getPanel();
-    }
+		return builder.getPanel();
+	}
 
-    @Override
-    public Data getSelectedItem(){
-        return model.getSelectedData();
-    }
+	@Override
+	public Data getSelectedItem(){
+		return model.getSelectedData();
+	}
 
-    @Override
-    public void display(String content){
-        reload(content);
+	@Override
+	public void display(String content){
+		reload(content);
 
-        display();
-    }
+		display();
+	}
 
-    @Override
-    public void refreshText(){
-        if (content != null){
-            setTitle(DataTypeManager.getTextForDataType(content));
-        }
-    }
+	@Override
+	public void refreshText(){
+		if (content != null){
+			setTitle(DataTypeManager.getTextForDataType(content));
+		}
+	}
 
-    @Override
-    protected void validate(Collection<JThequeError> errors){
-        ValidationUtils.rejectIfNothingSelected(model, "choice.view.title", errors);
-    }
+	@Override
+	protected void validate(Collection<JThequeError> errors){
+		ValidationUtils.rejectIfNothingSelected(model, "choice.view.title", errors);
+	}
 }

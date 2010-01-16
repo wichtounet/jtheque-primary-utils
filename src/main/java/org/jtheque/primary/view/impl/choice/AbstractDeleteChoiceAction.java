@@ -29,42 +29,42 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
-    private Collection<Deleter> deleters;
+	private Collection<Deleter> deleters;
 
-    /**
-     * Set the deleters to use to execute the action.
-     *
-     * @param deleters The deleters to use.
-     */
-    protected final void setDeleters(Deleter... deleters) {
-        this.deleters = Arrays.asList(deleters);
-    }
+	/**
+	 * Set the deleters to use to execute the action.
+	 *
+	 * @param deleters The deleters to use.
+	 */
+	protected final void setDeleters(Deleter... deleters){
+		this.deleters = Arrays.asList(deleters);
+	}
 
-    @Override
-    public final boolean canDoAction(String action) {
-        return "delete".equals(action);
-    }
+	@Override
+	public final boolean canDoAction(String action){
+		return "delete".equals(action);
+	}
 
-    /**
-     * Delete the current content of the view.
-     */
-    protected final void delete() {
-        for (Deleter deleter : deleters) {
-            if (deleter.canDelete(getContent())) {
-                deleter.delete(getSelectedItem());
-            }
-        }
-    }
+	/**
+	 * Delete the current content of the view.
+	 */
+	protected final void delete(){
+		for (Deleter deleter : deleters){
+			if (deleter.canDelete(getContent())){
+				deleter.delete(getSelectedItem());
+			}
+		}
+	}
 
-    /**
-     * Add an edit to undo-redo manager if deleted.
-     *
-     * @param deleted The boolean tag of the delete operation.
-     * @param edit    The undoable edit.
-     */
-    protected static void addEditIfDeleted(boolean deleted, UndoableEdit edit) {
-        if (deleted) {
-            Managers.getManager(IUndoRedoManager.class).addEdit(edit);
-        }
-    }
+	/**
+	 * Add an edit to undo-redo manager if deleted.
+	 *
+	 * @param deleted The boolean tag of the delete operation.
+	 * @param edit The undoable edit.
+	 */
+	protected static void addEditIfDeleted(boolean deleted, UndoableEdit edit){
+		if (deleted){
+			Managers.getManager(IUndoRedoManager.class).addEdit(edit);
+		}
+	}
 }

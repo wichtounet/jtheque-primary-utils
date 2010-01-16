@@ -18,27 +18,33 @@ import org.jtheque.core.managers.persistence.able.Entity;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * A data service specification.
+ *
+ * @author Baptiste Wicht
+ * @param <T> The type of entity of this service.
+ */
 public interface DataService<T extends Entity> {
-    /**
-     * Delete the data.
-     *
-     * @param data The data to delete.
-     *
-     * @return true if the data has been deleted else false.
-     */
-    boolean delete(T data);
+	/**
+	 * Delete the data.
+	 *
+	 * @param data The data to delete.
+	 *
+	 * @return true if the data has been deleted else false.
+	 */
+	boolean delete(T data);
 
-    /**
-     * Save the data.
-     *
-     * @param data The data to save.
-     */
-    void save(T data);
+	/**
+	 * Save the data.
+	 *
+	 * @param data The data to save.
+	 */
+	void save(T data);
 
-    /**
-     * Create the data.
-     *
-     * @param data The data to create.
-     */
-    void create(T data);
+	/**
+	 * Create the data.
+	 *
+	 * @param data The data to create.
+	 */
+	void create(T data);
 }

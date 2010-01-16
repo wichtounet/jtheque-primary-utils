@@ -25,25 +25,25 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  * @author Baptiste Wicht
  */
 final class TrimFactory implements Factory<Operation> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
-        return "trim".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+		return "trim".equals(element.getName());
+	}
 
-    @Override
-    public Operation factor(Element element, XMLReader reader) {
-        return new TrimOperation();
-    }
+	@Override
+	public Operation factor(Element element, XMLReader reader){
+		return new TrimOperation();
+	}
 
-    /**
-     * An operation which trim the line.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class TrimOperation implements Operation {
-        @Override
-        public String perform(String line, ScannerPossessor analyzer) {
-            return line.trim();
-        }
-    }
+	/**
+	 * An operation which trim the line.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class TrimOperation implements Operation {
+		@Override
+		public String perform(String line, ScannerPossessor analyzer){
+			return line.trim();
+		}
+	}
 }

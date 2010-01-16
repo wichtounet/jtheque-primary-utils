@@ -27,40 +27,40 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
  * @author Baptiste Wicht
  */
 final class AppendTextFactory implements Factory<IteratorOperation> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "appendText".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "appendText".equals(element.getName());
+	}
 
-    @Override
-    public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
-        return new AppendTextIteratorOperation(n.getText());
-    }
+	@Override
+	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException{
+		return new AppendTextIteratorOperation(n.getText());
+	}
 
-    /**
-     * An operation which append some text to the builder.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class AppendTextIteratorOperation implements IteratorOperation {
-        private final String text;
+	/**
+	 * An operation which append some text to the builder.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class AppendTextIteratorOperation implements IteratorOperation {
+		private final String text;
 
-        /**
-         * Construct a new AppendTextIteratorOperation.
-         *
-         * @param text The text to append to the value.
-         */
-        private AppendTextIteratorOperation(String text) {
-            super();
+		/**
+		 * Construct a new AppendTextIteratorOperation.
+		 *
+		 * @param text The text to append to the value.
+		 */
+		private AppendTextIteratorOperation(String text){
+			super();
 
-            this.text = text;
-        }
+			this.text = text;
+		}
 
-        @Override
-        public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator) {
-            iterator.getBuilder().append(text);
+		@Override
+		public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator){
+			iterator.getBuilder().append(text);
 
-            return line;
-        }
-    }
+			return line;
+		}
+	}
 }

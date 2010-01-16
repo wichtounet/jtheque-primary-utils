@@ -25,32 +25,32 @@ import org.jtheque.primary.od.able.Data;
  * @author Baptiste Wicht
  */
 public interface PrincipalDataView extends View {
-    /**
-     * Select a specific data in the view.
-     *
-     * @param data The data to select.
-     */
-    void select(Data data);
+	/**
+	 * Select a specific data in the view.
+	 *
+	 * @param data The data to select.
+	 */
+	void select(Data data);
 
-    /**
-     * Sort the datas in the view.
-     *
-     * @param sort The sort type.
-     */
-    void sort(String sort);
+	/**
+	 * Sort the datas in the view.
+	 *
+	 * @param sort The sort type.
+	 */
+	void sort(String sort);
 
-    /**
-     * Sort again the view with the same sort type.
-     */
-    void resort();
+	/**
+	 * Sort again the view with the same sort type.
+	 */
+	void resort();
 
-    /**
-     * Select the first data in the view.
-     */
-    void selectFirst();
+	/**
+	 * Select the first data in the view.
+	 */
+	void selectFirst();
 
-    /**
-     * Clear the view.
-     */
-    void clear();
+	/**
+	 * Clear the view.
+	 */
+	void clear();
 }

@@ -28,97 +28,97 @@ import org.jtheque.utils.StringUtils;
  * @author Baptiste Wicht
  */
 final class SplitterFactory implements Factory<Transformer> {
-    @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "splitter".equals(element.getName());
-    }
+	@Override
+	public boolean canFactor(Element element, XMLReader reader){
+		return "splitter".equals(element.getName());
+	}
 
-    @Override
-    public Transformer factor(Element n, XMLReader reader) throws XMLException {
-        Splitter splitter = new Splitter();
+	@Override
+	public Transformer factor(Element n, XMLReader reader) throws XMLException{
+		Splitter splitter = new Splitter();
 
-        splitter.setSplitter(reader.readString("split", n));
-        splitter.setSplitReplace(reader.readString("new", n));
-        splitter.setGetter(ValueGetterFactory.getValueGetter(n, reader));
+		splitter.setSplitter(reader.readString("split", n));
+		splitter.setSplitReplace(reader.readString("new", n));
+		splitter.setGetter(ValueGetterFactory.getValueGetter(n, reader));
 
-        return splitter;
-    }
+		return splitter;
+	}
 
-    /**
-     * A Transformer who split the value and rebuild the value in a different String.
-     *
-     * @author Baptiste Wicht
-     */
-    private static final class Splitter implements Transformer {
-        private String splitter;
-        private String splitReplace;
-        private ValueGetter getter;
+	/**
+	 * A Transformer who split the value and rebuild the value in a different String.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private static final class Splitter implements Transformer {
+		private String splitter;
+		private String splitReplace;
+		private ValueGetter getter;
 
-        @Override
-        public String transform(String value) {
-            if (!StringUtils.isEmpty(value)) {
-                StringBuilder builder = new StringBuilder(50);
+		@Override
+		public String transform(String value){
+			if (!StringUtils.isEmpty(value)){
+				StringBuilder builder = new StringBuilder(50);
 
-                String[] temp = value.split(splitter);
+				String[] temp = value.split(splitter);
 
-                boolean first = true;
+				boolean first = true;
 
-                for (String v : temp) {
-                    if (StringUtils.isEmpty(v)) {
-                        continue;
-                    }
+				for (String v : temp){
+					if (StringUtils.isEmpty(v)){
+						continue;
+					}
 
-                    String real = getter.getValue(v);
+					String real = getter.getValue(v);
 
-                    if (first) {
-                        first = false;
-                    } else {
-                        builder.append(splitReplace);
-                    }
+					if (first){
+						first = false;
+					} else {
+						builder.append(splitReplace);
+					}
 
-                    builder.append(real);
-                }
+					builder.append(real);
+				}
 
-                return builder.toString();
-            }
+				return builder.toString();
+			}
 
-            return value;
-        }
+			return value;
+		}
 
-        /**
-         * Set the String with which we split the value.
-         *
-         * @param splitter The split string.
-         */
-        public void setSplitter(String splitter) {
-            this.splitter = splitter;
-        }
+		/**
+		 * Set the String with which we split the value.
+		 *
+		 * @param splitter The split string.
+		 */
+		public void setSplitter(String splitter){
+			this.splitter = splitter;
+		}
 
-        /**
-         * Set the new separator.
-         *
-         * @param splitReplace The new separator.
-         */
-        public void setSplitReplace(String splitReplace) {
-            this.splitReplace = splitReplace;
-        }
+		/**
+		 * Set the new separator.
+		 *
+		 * @param splitReplace The new separator.
+		 */
+		public void setSplitReplace(String splitReplace){
+			this.splitReplace = splitReplace;
+		}
 
-        /**
-         * Set the ValueGetter to take the value.
-         *
-         * @param getter The value getter.
-         */
-        public void setGetter(ValueGetter getter) {
-            this.getter = getter;
-        }
+		/**
+		 * Set the ValueGetter to take the value.
+		 *
+		 * @param getter The value getter.
+		 */
+		public void setGetter(ValueGetter getter){
+			this.getter = getter;
+		}
 
-        @Override
-        public String toString() {
-            return "Splitter{" +
-                    "splitter='" + splitter + '\'' +
-                    ", splitReplace='" + splitReplace + '\'' +
-                    ", getter=" + getter +
-                    '}';
-        }
-    }
+		@Override
+		public String toString(){
+			return "Splitter{" +
+					"splitter='" + splitter + '\'' +
+					", splitReplace='" + splitReplace + '\'' +
+					", getter=" + getter +
+					'}';
+		}
+	}
 }

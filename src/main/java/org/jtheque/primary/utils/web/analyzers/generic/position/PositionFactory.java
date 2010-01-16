@@ -27,31 +27,33 @@ import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
  * @author Baptiste Wicht
  */
 public final class PositionFactory {
-    private static final FactoryContainer<Position> FACTORY = new FactoryContainer<Position>();
+	private static final FactoryContainer<Position> FACTORY = new FactoryContainer<Position>();
 
-    /**
-     * This an utility class, not instanciable.
-     */
-    private PositionFactory() {
-        super();
-    }
+	/**
+	 * This an utility class, not instanciable.
+	 */
+	private PositionFactory(){
+		super();
+	}
 
-    static {
-        FACTORY.add(new StringPositionFactory());
-        FACTORY.add(new AbsolutePositionFactory());
-        FACTORY.add(new LineEndPositionFactory());
-    }
+	static{
+		FACTORY.add(new StringPositionFactory());
+		FACTORY.add(new AbsolutePositionFactory());
+		FACTORY.add(new LineEndPositionFactory());
+	}
 
-    /**
-     * Return the position on the element.
-     *
-     * @param element The element to get the value getter for.
-     * @param reader  The reader to use.
-     * @return The factored Position to use.
-     * @throws XMLException If an error occurs during the XML processing.
-     */
-    public static Position getPosition(Element element, XMLReader reader) throws XMLException {
-        return FACTORY.getFactoredObject(element, reader);
-    }
+	/**
+	 * Return the position on the element.
+	 *
+	 * @param element The element to get the value getter for.
+	 * @param reader The reader to use.
+	 *
+	 * @return The factored Position to use.
+	 *
+	 * @throws XMLException If an error occurs during the XML processing.
+	 */
+	public static Position getPosition(Element element, XMLReader reader) throws XMLException{
+		return FACTORY.getFactoredObject(element, reader);
+	}
 
 }

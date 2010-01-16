@@ -27,69 +27,74 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IPersonService extends DataContainer<Person>, DataService<Person> {
-    /**
-     * Return an empty person.
-     *
-     * @return An empty person.
-     */
-    Person getDefaultPerson();
-
-    /**
-     * Indicate if the service has nos persons.
-     *
-     * @return true if there is no persons else false.
-     */
-    boolean hasNoPerson();
-
-    /**
-     * Return all the persons.
-     *
-     * @return A List containing all the persons.
-     */
-    Collection<Person> getPersons();
-
-    /**
-     * Indicate if an person exists or not.
-     *
-     * @param person The person to test.
+	/**
+	 * Return an empty person.
 	 *
-     * @return true if the person exists else false.
-     */
-    boolean exist(Person person);
+	 * @return An empty person.
+	 */
+	Person getDefaultPerson();
 
-    /**
-     * Return the actor denoted by this first name and name.
-     *
-     * @param firstName The first name of the person.
-     * @param name      The name of the person.
+	/**
+	 * Indicate if the service has nos persons.
 	 *
-     * @return The person.
-     */
-    Person getPerson(String firstName, String name);
+	 * @return true if there is no persons else false.
+	 */
+	boolean hasNoPerson();
 
-    /**
-     * Indicate if a person with this first name and name exist or not.
-     *
-     * @param firstName The first name of the person.
-     * @param name      The name of the person.
+	/**
+	 * Return all the persons.
 	 *
-     * @return true if the person exists else false.
-     */
-    boolean exist(String firstName, String name);
+	 * @return A List containing all the persons.
+	 */
+	Collection<Person> getPersons();
 
-    /**
-     * Return an empty person.
-     *
-     * @return An empty person.
-     */
-    Person getEmptyPerson();
+	/**
+	 * Indicate if an person exists or not.
+	 *
+	 * @param person The person to test.
+	 *
+	 * @return true if the person exists else false.
+	 */
+	boolean exist(Person person);
 
-    /**
-     * Create all the persons.
-     *
-     * @param persons The persons to create.
-     */
-    void createAll(Iterable<Person> persons);
+	/**
+	 * Return the actor denoted by this first name and name.
+	 *
+	 * @param firstName The first name of the person.
+	 * @param name The name of the person.
+	 *
+	 * @return The person.
+	 */
+	Person getPerson(String firstName, String name);
 
+	/**
+	 * Indicate if a person with this first name and name exist or not.
+	 *
+	 * @param firstName The first name of the person.
+	 * @param name The name of the person.
+	 *
+	 * @return true if the person exists else false.
+	 */
+	boolean exist(String firstName, String name);
+
+	/**
+	 * Return an empty person.
+	 *
+	 * @return An empty person.
+	 */
+	Person getEmptyPerson();
+
+	/**
+	 * Create all the persons.
+	 *
+	 * @param persons The persons to create.
+	 */
+	void createAll(Iterable<Person> persons);
+
+	/**
+	 * Return the type of person managed by this service.
+	 *
+	 * @return The person type.
+	 */
 	String getPersonType();
 }

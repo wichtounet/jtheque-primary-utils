@@ -34,83 +34,90 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class PrimaryUtils {
-    private static final String BASE_NAME = "classpath:/org/jtheque/primary/i18n/utils";
+	private static final String BASE_NAME = "classpath:/org/jtheque/primary/i18n/utils";
 
-    private static Schema schema;
+	private static Schema schema;
 
-    private static Menu menu;
+	private static Menu menu;
 
-    private static String primaryImpl;
+	private static String primaryImpl;
 
-    /**
-     * Construct a new PrimaryUtils.
-     */
-    private PrimaryUtils(){
-        super();
-    }
+	/**
+	 * Construct a new PrimaryUtils.
+	 */
+	private PrimaryUtils(){
+		super();
+	}
 
-    /**
-     * Preplug the elements of the utils.
-     */
-    public static void prePlug(){
-        schema = new PrimaryUtilsSchema();
+	/**
+	 * Preplug the elements of the utils.
+	 */
+	public static void prePlug(){
+		schema = new PrimaryUtilsSchema();
 
-        Managers.getManager(ISchemaManager.class).registerSchema(schema);
+		Managers.getManager(ISchemaManager.class).registerSchema(schema);
 
-        Managers.getManager(ILanguageManager.class).addBaseName(BASE_NAME);
-    }
+		Managers.getManager(ILanguageManager.class).addBaseName(BASE_NAME);
+	}
 
-    /**
-     * Plug the elements of the utils.
-     */
-    public static void plug(){
-        DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
-        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.COUNTRY.getDataType(), "data.titles.country");
-        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.LANGUAGE.getDataType(), "data.titles.language");
-        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "type.data.title");
-        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "kind.data.title");
-        DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "saga.data.title");
-    }
+	/**
+	 * Plug the elements of the utils.
+	 */
+	public static void plug(){
+		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.COUNTRY.getDataType(), "data.titles.country");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.LANGUAGE.getDataType(), "data.titles.language");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "type.data.title");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "kind.data.title");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "saga.data.title");
+	}
 
-    /**
-     * Unplug the elements of the utils.
-     */
-    public static void unplug(){
-        DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
-        DataTypeManager.unbindDataType(SimpleData.DataType.COUNTRY.getDataType());
-        DataTypeManager.unbindDataType(SimpleData.DataType.LANGUAGE.getDataType());
-        DataTypeManager.unbindDataType(SimpleData.DataType.TYPE.getDataType());
-        DataTypeManager.unbindDataType(SimpleData.DataType.KIND.getDataType());
-        DataTypeManager.unbindDataType(SimpleData.DataType.SAGA.getDataType());
+	/**
+	 * Unplug the elements of the utils.
+	 */
+	public static void unplug(){
+		DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
+		DataTypeManager.unbindDataType(SimpleData.DataType.COUNTRY.getDataType());
+		DataTypeManager.unbindDataType(SimpleData.DataType.LANGUAGE.getDataType());
+		DataTypeManager.unbindDataType(SimpleData.DataType.TYPE.getDataType());
+		DataTypeManager.unbindDataType(SimpleData.DataType.KIND.getDataType());
+		DataTypeManager.unbindDataType(SimpleData.DataType.SAGA.getDataType());
 
-        Managers.getManager(ISchemaManager.class).unregisterSchema(schema);
+		Managers.getManager(ISchemaManager.class).unregisterSchema(schema);
 
-        Managers.getManager(ILanguageManager.class).removeBaseName(BASE_NAME);
+		Managers.getManager(ILanguageManager.class).removeBaseName(BASE_NAME);
 
-        if (menu != null){
-            Managers.getManager(IFeatureManager.class).removeMenu(menu);
-        }
-    }
+		if (menu != null){
+			Managers.getManager(IFeatureManager.class).removeMenu(menu);
+		}
+	}
 
-    /**
-     * Return the current primary implementation.
-     *
-     * @return The current primary implementation.
-     */
-    public static String getPrimaryImpl(){
-        return primaryImpl;
-    }
+	/**
+	 * Return the current primary implementation.
+	 *
+	 * @return The current primary implementation.
+	 */
+	public static String getPrimaryImpl(){
+		return primaryImpl;
+	}
 
-    /**
-     * Set the current primary implementation.
-     *
-     * @param primaryImpl The current primary implementation.
-     */
-    public static void setPrimaryImpl(String primaryImpl){
-        PrimaryUtils.primaryImpl = primaryImpl;
-    }
+	/**
+	 * Set the current primary implementation.
+	 *
+	 * @param primaryImpl The current primary implementation.
+	 */
+	public static void setPrimaryImpl(String primaryImpl){
+		PrimaryUtils.primaryImpl = primaryImpl;
+	}
 
-    public static void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
-        menu = new PrimaryMenu(addFeatures, removeFeatures, editFeatures);
-    }
+	/**
+	 * Enable the menu of the primary utils module.
+	 *
+	 * @param addFeatures The sub features of the add menu.
+	 * @param removeFeatures The sub features of the remove menu.
+	 * @param editFeatures The sub features of the edit menu.
+	 */
+	public static void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
+		menu = new PrimaryMenu(addFeatures, removeFeatures, editFeatures);
+	}
 }
