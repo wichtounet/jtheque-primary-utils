@@ -63,7 +63,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void valueChanged(TreeSelectionEvent event) {
+    public final void valueChanged(TreeSelectionEvent event) {
         TreePath current = ((JTree) event.getSource()).getSelectionPath();
 
         if (current != null && current.getLastPathComponent() instanceof TreeElement) {
@@ -76,7 +76,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void save(FormBean formBean) {
+    public final void save(FormBean formBean) {
         ControllerState newState = state.save(formBean);
 
         if (newState != null) {
@@ -85,7 +85,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void view(T data) {
+    public final void view(T data) {
         ControllerState newState = state.view(data);
 
         if (newState != null) {
@@ -94,7 +94,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void manualEdit() {
+    public final void manualEdit() {
         ControllerState newState = state.manualEdit();
 
         if (newState != null) {
@@ -103,7 +103,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void create() {
+    public final void create() {
         ControllerState newState = state.create();
 
         if (newState != null) {
@@ -112,7 +112,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void deleteCurrent() {
+    public final void deleteCurrent() {
         ControllerState newState = state.delete();
 
         if (newState != null) {
@@ -121,7 +121,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public void cancel() {
+    public final void cancel() {
         ControllerState newState = state.cancel();
 
         if (newState != null) {
@@ -165,7 +165,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
 
     /**
      * Set the state of the controller.
-     *
+     * 
      * @param state The new state to apply.
      */
     protected final void setAndApplyState(ControllerState state) {

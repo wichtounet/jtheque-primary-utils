@@ -53,7 +53,7 @@ public final class PrimaryMenu extends AbstractMenu {
     private Feature createNewFeature(){
         Feature newFeature = createSubFeature(1, "actions.others.new",
                 createSubFeature(1, new NewSimpleDataAction("menu.others.kind", "kindController")),
-                createSubFeature(2, new NewSimpleDataAction("menu.others.kind", "typeController")),
+                createSubFeature(2, new NewSimpleDataAction("menu.others.type", "typeController")),
                 createSubFeature(3, new NewSimpleDataAction("menu.others.language", "languageController")),
                 createSubFeature(4, new NewSimpleDataAction("menu.others.country", "countryController")),
                 createSubFeature(5, new AcNewBorrower()),
@@ -66,12 +66,12 @@ public final class PrimaryMenu extends AbstractMenu {
 
     private Feature createDeleteFeature(){
         Feature deleteFeature = createSubFeature(2, "actions.others.delete",
-                createSubFeature(1, new ChoiceViewAction("menu.others.kind", "delete", SimpleData.DataType.KIND.getDataType())),
-                createSubFeature(2, new ChoiceViewAction("menu.others.type", "delete", SimpleData.DataType.TYPE.getDataType())),
-                createSubFeature(3, new ChoiceViewAction("menu.others.language", "delete", SimpleData.DataType.LANGUAGE.getDataType())),
-                createSubFeature(4, new ChoiceViewAction("menu.others.country", "delete", SimpleData.DataType.COUNTRY.getDataType())),
-                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", "delete", "Borrowers")),
-                createSubFeature(6, new ChoiceViewAction("menu.others.saga", "delete", SimpleData.DataType.SAGA.getDataType())));
+                createSubFeature(1, new ChoiceViewAction("menu.others.kind", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.KIND.getDataType())),
+                createSubFeature(2, new ChoiceViewAction("menu.others.type", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.TYPE.getDataType())),
+                createSubFeature(3, new ChoiceViewAction("menu.others.language", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.LANGUAGE.getDataType())),
+                createSubFeature(4, new ChoiceViewAction("menu.others.country", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.COUNTRY.getDataType())),
+                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", PrimaryConstants.ChoiceActions.DELETE, "Borrowers")),
+                createSubFeature(6, new ChoiceViewAction("menu.others.saga", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.SAGA.getDataType())));
 
 
         fillFeature(deleteFeature, removeFeatures);
@@ -81,12 +81,12 @@ public final class PrimaryMenu extends AbstractMenu {
 
     private Feature createEditFeature(){
         Feature editFeature = createSubFeature(3, "actions.others.modify",
-                createSubFeature(1, new ChoiceViewAction("menu.others.kind", "edit", SimpleData.DataType.KIND.getDataType())),
-                createSubFeature(2, new ChoiceViewAction("menu.others.type", "edit", SimpleData.DataType.TYPE.getDataType())),
-                createSubFeature(3, new ChoiceViewAction("menu.others.language", "edit", SimpleData.DataType.LANGUAGE.getDataType())),
-                createSubFeature(4, new ChoiceViewAction("menu.others.country", "edit", SimpleData.DataType.COUNTRY.getDataType())),
-                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", "edit", "Borrowers")),
-                createSubFeature(6, new ChoiceViewAction("menu.others.saga", "edit", SimpleData.DataType.SAGA.getDataType())));
+                createSubFeature(1, new ChoiceViewAction("menu.others.kind", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.KIND.getDataType())),
+                createSubFeature(2, new ChoiceViewAction("menu.others.type", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.TYPE.getDataType())),
+                createSubFeature(3, new ChoiceViewAction("menu.others.language", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.LANGUAGE.getDataType())),
+                createSubFeature(4, new ChoiceViewAction("menu.others.country", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.COUNTRY.getDataType())),
+                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", PrimaryConstants.ChoiceActions.EDIT, "Borrowers")),
+                createSubFeature(6, new ChoiceViewAction("menu.others.saga", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.SAGA.getDataType())));
 
         fillFeature(editFeature, editFeatures);
 

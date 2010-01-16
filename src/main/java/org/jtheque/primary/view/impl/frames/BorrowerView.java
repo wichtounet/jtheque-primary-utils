@@ -93,8 +93,6 @@ public final class BorrowerView extends SwingBuildedDialogView<IBorrowerModel> i
         fieldNom.setText("");
         fieldFirstName.setText("");
         fieldEmail.setText("");
-
-        getModel().setBorrower(null);
     }
 
     @Override

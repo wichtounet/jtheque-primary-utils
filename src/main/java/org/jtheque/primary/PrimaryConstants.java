@@ -16,7 +16,12 @@ package org.jtheque.primary;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PrimaryConstants {
-	public static final String BORROWER = "Borrower";
-	public static final String BORROWERS = "Borrowers";
+public interface PrimaryConstants {
+	String BORROWER = "Borrower";
+	String BORROWERS = "Borrowers";
+
+	interface ChoiceActions {
+		String EDIT = "edit";
+		String DELETE = "delete";
+	}
 }

@@ -23,6 +23,8 @@ import org.jtheque.primary.view.impl.listeners.DisplayListListener;
 import org.jtheque.primary.view.impl.listeners.ObjectChangedEvent;
 import org.jtheque.primary.view.impl.models.able.IPrincipalDataModel;
 
+import java.util.Collection;
+
 /**
  * A model for the principal data.
  *
@@ -30,6 +32,8 @@ import org.jtheque.primary.view.impl.models.able.IPrincipalDataModel;
  */
 public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDataModel<T> {
     private final WeakEventListenerList listenerList;
+
+    private Collection<T> displayList;
 
     /**
      * Construct a new PrincipalDataModel.
@@ -39,6 +43,8 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
 
         listenerList = new WeakEventListenerList();
     }
+
+	public abstract Collection<T> getDatas();
 
     /**
      * Return the event listener list.
@@ -84,11 +90,33 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
     }
 
     @Override
+    public final Collection<T> getDisplayList() {
+        if (displayList == null) {
+            displayList = getDatas();
+        }
+
+        return displayList;
+    }
+
+    @Override
+    public final void updateDisplayList(Collection<T> datas) {
+        getDisplayList().clear();
+
+        if (datas != null) {
+            getDisplayList().addAll(datas);
+        } else {
+            getDisplayList().addAll(getDatas());
+        }
+
+        fireDisplayListChanged();
+    }
+
+    @Override
     public final void dataChanged() {
         updateDisplayList();
     }
 
-    public void updateDisplayList() {
+    public final void updateDisplayList() {
         updateDisplayList(null);
     }
 }

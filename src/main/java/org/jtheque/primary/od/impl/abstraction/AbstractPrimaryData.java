@@ -27,7 +27,7 @@ public abstract class AbstractPrimaryData extends AbstractData implements Primar
     }
 
     @Override
-    public void setPrimaryImpl(String primaryImpl) {
+    public final void setPrimaryImpl(String primaryImpl) {
         this.primaryImpl = primaryImpl;
     }
 }

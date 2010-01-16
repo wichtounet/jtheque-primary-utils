@@ -58,27 +58,27 @@ public abstract class AbstractPrincipalDelegatedView<T extends IView> extends Ab
     }
 
     @Override
-    public void select(Data data) {
+    public final void select(Data data) {
         view.select(data);
     }
 
     @Override
-    public void sort(String sort) {
+    public final void sort(String sort) {
         view.sort(sort);
     }
 
     @Override
-    public void resort() {
+    public final void resort() {
         view.resort();
     }
 
     @Override
-    public void selectFirst() {
+    public final void selectFirst() {
         view.selectFirst();
     }
 
     @Override
-    public ToolbarView getToolbarView() {
+    public final ToolbarView getToolbarView() {
         return view.getToolbarView();
     }
     
@@ -88,7 +88,7 @@ public abstract class AbstractPrincipalDelegatedView<T extends IView> extends Ab
     }
 
     @Override
-    public void clear() {
+    public final void clear() {
         view.clear();
     }
     
@@ -97,7 +97,7 @@ public abstract class AbstractPrincipalDelegatedView<T extends IView> extends Ab
         view.setCurrent(event.getObject());
     }
 
-    public void setView(AbstractPrincipalDataPanel<? extends IModel> view) {
+    public final void setView(AbstractPrincipalDataPanel<? extends IModel> view) {
         this.view = view;
     }
 }

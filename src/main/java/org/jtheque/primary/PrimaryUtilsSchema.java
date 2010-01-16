@@ -43,7 +43,9 @@ public final class PrimaryUtilsSchema extends AbstractSchema {
     @Resource
     private SimpleJdbcTemplate jdbcTemplate;
 
-    /**
+	private static final String[] DEPENDENCIES = {};
+
+	/**
      * Construct a new MoviesSchema.
      */
     public PrimaryUtilsSchema() {
@@ -64,7 +66,7 @@ public final class PrimaryUtilsSchema extends AbstractSchema {
 
     @Override
     public String[] getDependencies() {
-        return null;
+        return DEPENDENCIES;
     }
 
     @Override

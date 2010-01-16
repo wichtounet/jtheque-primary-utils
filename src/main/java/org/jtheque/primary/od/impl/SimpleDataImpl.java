@@ -52,7 +52,7 @@ public class SimpleDataImpl extends AbstractData implements SimpleData {
     }
 
     @Override
-    public DataType getType(){
+    public final DataType getType(){
         return type;
     }
 

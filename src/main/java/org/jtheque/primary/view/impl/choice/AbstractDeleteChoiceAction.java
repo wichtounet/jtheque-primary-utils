@@ -41,7 +41,7 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
     }
 
     @Override
-    public boolean canDoAction(String action) {
+    public final boolean canDoAction(String action) {
         return "delete".equals(action);
     }
 

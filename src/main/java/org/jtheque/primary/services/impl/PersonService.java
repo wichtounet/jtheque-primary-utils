@@ -77,7 +77,7 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public boolean hasNoPerson() {
+    public final boolean hasNoPerson() {
         return getPersons().isEmpty();
     }
 
@@ -87,17 +87,17 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public boolean exist(Person actor) {
+    public final boolean exist(Person actor) {
         return daoPersons.exist(actor);
     }
 
     @Override
-    public Person getPerson(String firstName, String name) {
+    public final Person getPerson(String firstName, String name) {
         return daoPersons.getPerson(firstName, name, personType);
     }
 
     @Override
-    public boolean exist(String firstName, String name) {
+    public final boolean exist(String firstName, String name) {
         return daoPersons.exists(firstName, name, personType);
     }
 
