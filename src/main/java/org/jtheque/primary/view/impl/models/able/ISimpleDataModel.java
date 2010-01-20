@@ -39,7 +39,17 @@ public interface ISimpleDataModel extends IModel {
 	 */
 	void setSimpleData(SimpleData data);
 
+	/**
+	 * Set the current controller of the model.
+	 *
+	 * @param id The bean ide of the controller.
+	 */
     void setCurrentController(String id);
 
+	/**
+	 * Return the id of the controller.
+	 *
+	 * @return The bean id of the current controller.
+	 */
     String getId();
 }

@@ -43,6 +43,9 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 
 	private String content;
 
+	/**
+	 * Construct a new ChoiceView. 
+	 */
 	public ChoiceView(){
 		super();
 

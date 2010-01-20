@@ -57,5 +57,10 @@ public abstract class Deleter<T extends Entity> {
 		delete((T) item);
 	}
 
+	/**
+	 * Delete the specified item.
+	 *
+	 * @param item The item to delete. 
+	 */
 	public abstract void delete(T item);
 }

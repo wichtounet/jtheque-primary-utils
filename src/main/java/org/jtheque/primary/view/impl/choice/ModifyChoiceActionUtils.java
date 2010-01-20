@@ -23,11 +23,28 @@ import org.jtheque.primary.od.able.SimpleData;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * An utility class for modify choice actions.
+ *
+ * @author Baptiste Wicht
+ */
 public final class ModifyChoiceActionUtils {
+	/**
+	 * Utility class, not instanciable.
+	 */
 	private ModifyChoiceActionUtils(){
 		super();
 	}
 
+	/**
+	 * Execute the action for the datas of the primary utils.
+	 *
+	 * @param item The item to execute the action on.
+	 * @param content The current content.
+	 *
+	 * @return <code>true</code> if the primary choice action can execute this action on this
+	 * content else <code>false</code>. 
+	 */
 	public static boolean execute(Object item, String content) {
         if (SimpleData.DataType.KIND.getDataType().equals(content)){
             CoreUtils.<ISimpleController>getBean("kindController").edit((SimpleData) item);

@@ -32,6 +32,9 @@ import org.jtheque.primary.services.able.ISimpleDataService;
  * @author Baptiste Wicht
  */
 public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteChoiceAction {
+	/**
+	 * Add the deleters for the datas of the primary utils. 	 * 
+	 */
 	protected final void addPrimaryDeleters(){
 		addDeleters(new CountryDeleter(), new BorrowerDeleter(), new SagaDeleter(),
 				new KindDeleter(), new TypeDeleter(), new LanguageDeleter(), new LendingDeleter());
