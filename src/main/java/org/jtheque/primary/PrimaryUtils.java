@@ -67,9 +67,9 @@ public final class PrimaryUtils {
 		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
 		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.COUNTRY.getDataType(), "data.titles.country");
 		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.LANGUAGE.getDataType(), "data.titles.language");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "type.data.title");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "kind.data.title");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "saga.data.title");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "data.titles.type");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "data.titles.kind");
+		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "data.titles.saga");
 	}
 
 	/**
@@ -119,5 +119,6 @@ public final class PrimaryUtils {
 	 */
 	public static void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
 		menu = new PrimaryMenu(addFeatures, removeFeatures, editFeatures);
+        Managers.getManager(IFeatureManager.class).addMenu(menu);
 	}
 }

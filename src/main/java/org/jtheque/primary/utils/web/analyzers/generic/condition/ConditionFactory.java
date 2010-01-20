@@ -26,7 +26,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
  *
  * @author Baptiste Wicht
  */
-public final class ConditionFactory {
+final class ConditionFactory {
 	private static final FactoryContainer<Condition> FACTORY = new FactoryContainer<Condition>();
 
 	/**

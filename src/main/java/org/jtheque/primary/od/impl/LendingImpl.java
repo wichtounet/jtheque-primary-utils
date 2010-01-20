@@ -86,6 +86,10 @@ public final class LendingImpl extends AbstractPrimaryData implements Lending {
 
 	@Override
 	public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
 		Lending other = (Lending) obj;
 
 		return TempUtils.areEqualsDirect(

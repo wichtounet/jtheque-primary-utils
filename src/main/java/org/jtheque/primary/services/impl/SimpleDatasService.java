@@ -33,16 +33,20 @@ public final class SimpleDatasService implements ISimpleDataService {
 	private SimpleData defaultSimpleData;
 
 	private final IDaoSimpleDatas daoSimpleDatas;
+	private final SimpleData.DataType dataType;
 
 	/**
 	 * Construct a new SimpleDatasService.
 	 *
 	 * @param daoSimpleDatas The dao to use.
+	 * @param dataType The data type
 	 */
-	public SimpleDatasService(IDaoSimpleDatas daoSimpleDatas){
+	public SimpleDatasService(IDaoSimpleDatas daoSimpleDatas, String dataType){
 		super();
 
 		this.daoSimpleDatas = daoSimpleDatas;
+		this.dataType = SimpleData.DataType.valueOf(dataType);
+
 	}
 
 	@Override
@@ -137,6 +141,6 @@ public final class SimpleDatasService implements ISimpleDataService {
 
 	@Override
 	public String getDataType(){
-		return DATA_TYPE;
+		return dataType.getDataType();
 	}
 }

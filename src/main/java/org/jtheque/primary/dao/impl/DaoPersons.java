@@ -46,7 +46,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 	private final QueryMapper queryMapper = new PersonQueryMapper();
 
 	@Resource
-	private IDaoPersistenceContext persistenceContext;
+	private IDaoPersistenceContext daoPersistenceContext;
 
 	@Resource
 	private SimpleJdbcTemplate jdbcTemplate;
@@ -143,7 +143,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 
 	@Override
 	protected void loadCache(){
-		Collection<Person> persons = persistenceContext.getSortedList(TABLE, rowMapper);
+		Collection<Person> persons = daoPersistenceContext.getSortedList(TABLE, rowMapper);
 
 		for (Person borrower : persons){
 			getCache().put(borrower.getId(), borrower);
@@ -154,7 +154,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 
 	@Override
 	protected void load(int i){
-		Person person = persistenceContext.getDataByID(TABLE, i, rowMapper);
+		Person person = daoPersistenceContext.getDataByID(TABLE, i, rowMapper);
 
 		getCache().put(i, person);
 	}
@@ -229,7 +229,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 			values[1] = person.getFirstName();
 			values[2] = person.getEmail();
 			values[3] = person.getNote() == null ? 0 : person.getNote().getValue().intValue();
-			values[4] = person.getTheCountry() == null ? 0 : person.getTheCountry().getId();
+			values[4] = person.getTheCountry() == null ? null : person.getTheCountry().getId();
 			values[5] = person.getType();
 
 			if (id){

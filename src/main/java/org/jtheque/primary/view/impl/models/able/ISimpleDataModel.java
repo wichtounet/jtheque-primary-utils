@@ -38,4 +38,8 @@ public interface ISimpleDataModel extends IModel {
 	 * @param data The simple data to set as current.
 	 */
 	void setSimpleData(SimpleData data);
+
+    void setCurrentController(String id);
+
+    String getId();
 }

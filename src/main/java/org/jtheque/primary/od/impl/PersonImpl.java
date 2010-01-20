@@ -134,6 +134,10 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
 
 	@Override
 	public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
 		Person other = (Person) obj;
 
 		return TempUtils.areEqualsDirect(

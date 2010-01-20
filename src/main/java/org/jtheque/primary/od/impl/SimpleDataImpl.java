@@ -84,6 +84,10 @@ public class SimpleDataImpl extends AbstractData implements SimpleData {
 
 	@Override
 	public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
 		SimpleData other = (SimpleData) obj;
 
 		return TempUtils.areEqualsDirect(this, obj,

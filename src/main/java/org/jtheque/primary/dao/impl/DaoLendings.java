@@ -46,7 +46,7 @@ public final class DaoLendings extends GenericDao<Lending> implements IDaoLendin
 	private final QueryMapper queryMapper = new LendingQueryMapper();
 
 	@Resource
-	private IDaoPersistenceContext persistenceContext;
+	private IDaoPersistenceContext daoPersistenceContext;
 
 	@Resource
 	private IDaoPersons daoPersons;
@@ -82,7 +82,7 @@ public final class DaoLendings extends GenericDao<Lending> implements IDaoLendin
 
 	@Override
 	protected void loadCache(){
-		Collection<Lending> lendings = persistenceContext.getSortedList(TABLE, rowMapper);
+		Collection<Lending> lendings = daoPersistenceContext.getSortedList(TABLE, rowMapper);
 
 		for (Lending lending : lendings){
 			getCache().put(lending.getId(), lending);
@@ -123,7 +123,7 @@ public final class DaoLendings extends GenericDao<Lending> implements IDaoLendin
 
 	@Override
 	protected void load(int i){
-		Lending lending = persistenceContext.getDataByID(TABLE, i, rowMapper);
+		Lending lending = daoPersistenceContext.getDataByID(TABLE, i, rowMapper);
 
 		getCache().put(i, lending);
 	}

@@ -16,8 +16,6 @@ package org.jtheque.primary.view.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.primary.od.able.Data;
-
 /**
  * A view for a data.
  *
@@ -28,11 +26,4 @@ public interface DataView {
 	 * Reload the view with the default value.
 	 */
 	void reload();
-
-	/**
-	 * Reload the view with a new <code>Data</code>.
-	 *
-	 * @param data The data to load on the view.
-	 */
-	void reload(Data data);
 }

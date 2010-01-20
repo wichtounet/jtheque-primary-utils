@@ -1,5 +1,7 @@
 package org.jtheque.primary.view.impl.choice;
 
+import org.jtheque.core.managers.persistence.able.Entity;
+
 /*
  * This file is part of JTheque.
  * 	   
@@ -21,7 +23,7 @@ package org.jtheque.primary.view.impl.choice;
  *
  * @author Baptiste Wicht
  */
-public abstract class Deleter {
+public abstract class Deleter<T extends Entity> {
 	private final String content;
 
 	/**
@@ -51,5 +53,9 @@ public abstract class Deleter {
 	 *
 	 * @param item The object to delete.
 	 */
-	public abstract void delete(Object item);
+	public final void delete(Object item){
+		delete((T) item);
+	}
+
+	public abstract void delete(T item);
 }

@@ -14,28 +14,33 @@
 
     <!-- Services -->
 
-    <bean id="borrowersService" class="org.jtheque.primary.services.impl.PersonService">
+    <bean id="borrowersService" class="org.jtheque.primary.services.impl.PersonService" lazy-init="false">
         <constructor-arg value="Borrower"/>
         <constructor-arg value="Borrowers"/>
     </bean>
 
-    <bean id="lendingsService" class="org.jtheque.primary.services.impl.LendingsService"/>
-    <bean id="collectionsService" class="org.jtheque.primary.services.impl.CollectionsService"/>
+    <bean id="lendingsService" class="org.jtheque.primary.services.impl.LendingsService" lazy-init="false"/>
+    <bean id="collectionsService" class="org.jtheque.primary.services.impl.CollectionsService" lazy-init="false"/>
 
-    <bean id="countriesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+    <bean id="countriesService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoCountries"/>
+        <constructor-arg value="COUNTRY" />
     </bean>
-    <bean id="languagesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+    <bean id="languagesService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoLanguages"/>
+        <constructor-arg value="LANGUAGE" />
     </bean>
-    <bean id="typesService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+    <bean id="typesService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoTypes"/>
+        <constructor-arg value="TYPE" />
     </bean>
-    <bean id="kindsService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+    <bean id="kindsService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoKinds"/>
+        <constructor-arg value="KIND" />
     </bean>
-    <bean id="sagasService" class="org.jtheque.primary.services.impl.SimpleDatasService">
+    <bean id="sagasService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoSagas"/>
+        <constructor-arg value="SAGA" />
     </bean>
     <bean id="notesService" class="org.jtheque.primary.services.impl.NotesService"/>
 
@@ -68,18 +73,23 @@
 
     <bean id="countryController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="countriesService"/>
+        <constructor-arg value="countryController" />
     </bean>
     <bean id="languageController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="languagesService"/>
+        <constructor-arg value="languageController" />
     </bean>
     <bean id="typeController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="typesService"/>
+        <constructor-arg value="typeController" />
     </bean>
     <bean id="kindController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="kindsService"/>
+        <constructor-arg value="kindController" />
     </bean>
     <bean id="sagaController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="sagasService"/>
+        <constructor-arg value="sagaController" />
     </bean>
 
     <!-- Proxy views -->

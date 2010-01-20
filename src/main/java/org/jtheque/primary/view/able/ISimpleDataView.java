@@ -17,6 +17,7 @@ package org.jtheque.primary.view.able;
  */
 
 import org.jtheque.core.managers.view.able.IView;
+import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
 
 /**
  * A country view specification.
@@ -24,7 +25,10 @@ import org.jtheque.core.managers.view.able.IView;
  * @author Baptiste Wicht
  */
 public interface ISimpleDataView extends DataView, IView {
-	/**
+    @Override
+    ISimpleDataModel getModel();
+
+    /**
 	 * Return the entered name.
 	 *
 	 * @return The entered name.

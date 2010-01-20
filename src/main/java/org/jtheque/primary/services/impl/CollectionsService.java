@@ -61,22 +61,22 @@ public final class CollectionsService implements ICollectionsService {
 	 *
 	 * @return true if the login is correct else false.
 	 */
-	private boolean isLoginCorrect(String title, String password){
+	private boolean isLoginIncorrect(String title, String password){
 		Collection collection = daoCollections.getCollection(title);
 
 		if (collection == null){
-			return false;
+			return true;
 		}
 
 		if (collection.isProtection()){
 			String encrypted = FileUtils.encryptKey(password);
 
 			if (!encrypted.equals(collection.getPassword())){
-				return false;
+				return true;
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -110,7 +110,7 @@ public final class CollectionsService implements ICollectionsService {
 
 	@Override
 	public boolean login(String title, String password){
-		if (!isLoginCorrect(title, password)){
+		if (isLoginIncorrect(title, password)){
 			return false;
 		}
 

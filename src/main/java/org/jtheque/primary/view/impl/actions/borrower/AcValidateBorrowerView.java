@@ -17,10 +17,10 @@ package org.jtheque.primary.view.impl.actions.borrower;
  */
 
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
+import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IBorrowerController;
 import org.jtheque.primary.view.able.IBorrowerView;
 
-import javax.annotation.Resource;
 import java.awt.event.ActionEvent;
 
 /**
@@ -29,12 +29,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateBorrowerView extends JThequeAction {
-	@Resource
-	private IBorrowerController borrowerController;
-
-	@Resource
-	private IBorrowerView borrowerView;
-
 	/**
 	 * Construct a new AcValidateBorrowerView.
 	 */
@@ -44,6 +38,9 @@ public final class AcValidateBorrowerView extends JThequeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent event){
+        IBorrowerController borrowerController = CoreUtils.getBean("borrowerController");
+        IBorrowerView borrowerView = (IBorrowerView)borrowerController.getView();
+
 		if (borrowerView.validateContent()){
 			borrowerController.save(
 					borrowerView.getFieldFirstName().getText(),

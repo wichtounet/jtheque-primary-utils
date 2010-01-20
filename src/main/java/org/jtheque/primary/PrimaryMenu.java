@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Baptiste Wicht
  */
-public final class PrimaryMenu extends AbstractMenu {
+final class PrimaryMenu extends AbstractMenu {
 	private final Collection<Feature> addFeatures;
 	private final Collection<Feature> removeFeatures;
 	private final Collection<Feature> editFeatures;
@@ -55,7 +55,7 @@ public final class PrimaryMenu extends AbstractMenu {
 	@Override
 	protected List<Feature> getMenuMainFeatures(){
 		return features(
-				createMainFeature(500, "actions.others",
+				createMainFeature(500, "menu.others",
 						createNewFeature(),
 						createDeleteFeature(),
 						createEditFeature())
@@ -68,7 +68,7 @@ public final class PrimaryMenu extends AbstractMenu {
 	 * @return The Feature for the new menu.
 	 */
 	private Feature createNewFeature(){
-		Feature newFeature = createSubFeature(1, "actions.others.new",
+		Feature newFeature = createSubFeature(1, "menu.others.new",
 				createSubFeature(1, new NewSimpleDataAction("menu.others.kind", "kindController")),
 				createSubFeature(2, new NewSimpleDataAction("menu.others.type", "typeController")),
 				createSubFeature(3, new NewSimpleDataAction("menu.others.language", "languageController")),
@@ -87,7 +87,7 @@ public final class PrimaryMenu extends AbstractMenu {
 	 * @return The Feature for the delete menu.
 	 */
 	private Feature createDeleteFeature(){
-		Feature deleteFeature = createSubFeature(2, "actions.others.delete",
+		Feature deleteFeature = createSubFeature(2, "menu.others.delete",
 				createSubFeature(1, new ChoiceViewAction("menu.others.kind", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.KIND.getDataType())),
 				createSubFeature(2, new ChoiceViewAction("menu.others.type", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.TYPE.getDataType())),
 				createSubFeature(3, new ChoiceViewAction("menu.others.language", PrimaryConstants.ChoiceActions.DELETE, SimpleData.DataType.LANGUAGE.getDataType())),
@@ -107,7 +107,7 @@ public final class PrimaryMenu extends AbstractMenu {
 	 * @return The Feature for the edit menu.
 	 */
 	private Feature createEditFeature(){
-		Feature editFeature = createSubFeature(3, "actions.others.modify",
+		Feature editFeature = createSubFeature(3, "menu.others.edit",
 				createSubFeature(1, new ChoiceViewAction("menu.others.kind", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.KIND.getDataType())),
 				createSubFeature(2, new ChoiceViewAction("menu.others.type", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.TYPE.getDataType())),
 				createSubFeature(3, new ChoiceViewAction("menu.others.language", PrimaryConstants.ChoiceActions.EDIT, SimpleData.DataType.LANGUAGE.getDataType())),

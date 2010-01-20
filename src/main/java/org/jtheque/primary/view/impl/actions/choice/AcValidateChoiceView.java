@@ -17,10 +17,10 @@ package org.jtheque.primary.view.impl.actions.choice;
  */
 
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
+import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IChoiceController;
 import org.jtheque.primary.view.able.IChoiceView;
 
-import javax.annotation.Resource;
 import java.awt.event.ActionEvent;
 
 /**
@@ -29,12 +29,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateChoiceView extends JThequeAction {
-	@Resource
-	private IChoiceController choiceController;
-
-	@Resource
-	private IChoiceView choiceView;
-
 	/**
 	 * Construct a new AcValidateChoiceView.
 	 */
@@ -44,6 +38,9 @@ public final class AcValidateChoiceView extends JThequeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e){
+        IChoiceController choiceController = CoreUtils.getBean("choiceController");
+        IChoiceView choiceView = (IChoiceView)choiceController.getView();
+
 		if (choiceView.validateContent()){
 			choiceController.doAction(choiceView.getSelectedItem());
 		}

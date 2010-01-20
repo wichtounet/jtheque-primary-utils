@@ -20,8 +20,6 @@ import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
 import org.jtheque.core.utils.ui.PanelBuilder;
 import org.jtheque.core.utils.ui.ValidationUtils;
-import org.jtheque.primary.PrimaryConstants;
-import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.view.able.IBorrowerView;
 import org.jtheque.primary.view.impl.actions.borrower.AcValidateBorrowerView;
@@ -82,32 +80,21 @@ public final class BorrowerView extends SwingBuildedDialogView<IBorrowerModel> i
 
 		builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
 				validateAction, getCloseAction("borrower.actions.cancel"));
-
-		reload();
 	}
 
 	@Override
 	public void reload(){
-		setTitleKey("borrower.view.title");
+        Person borrower = getModel().getBorrower();
 
-		fieldNom.setText("");
-		fieldFirstName.setText("");
-		fieldEmail.setText("");
-	}
-
-	@Override
-	public void reload(Data data){
-		Person borrower = (Person) data;
-
-		assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
-
-		setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
+        if(borrower.isSaved()){
+		    setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
+        } else {
+            setTitleKey("borrower.view.title");
+        }
 
 		fieldNom.setText(borrower.getName());
 		fieldFirstName.setText(borrower.getFirstName());
 		fieldEmail.setText(borrower.getEmail());
-
-		getModel().setBorrower(borrower);
 	}
 
 	@Override

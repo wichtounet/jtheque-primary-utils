@@ -47,10 +47,11 @@ import java.util.List;
  */
 public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDaoSimpleDatas {
 	private final ParameterizedRowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
-	private final QueryMapper queryMapper = new SimpleDataQueryMapper();
+
+	private final QueryMapper queryMapper;
 
 	@Resource
-	private IDaoPersistenceContext persistenceContext;
+	private IDaoPersistenceContext daoPersistenceContext;
 
 	@Resource
 	private SimpleJdbcTemplate jdbcTemplate;
@@ -60,12 +61,14 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 	/**
 	 * Create a new DaoSimpleDatas.
 	 *
-	 * @param dataType The data type to manage.
+	 * @param dataTypeStr The data type to manage.
 	 */
-	public DaoSimpleDatas(String dataType){
-		super(DataType.valueOf(dataType).getTable());
+	public DaoSimpleDatas(String dataTypeStr){
+		super(DataType.valueOf(dataTypeStr).getTable());
 
-		this.dataType = DataType.valueOf(dataType);
+		dataType = DataType.valueOf(dataTypeStr);
+
+        queryMapper = dataType.isPrimary() ? new PrimarySimpleDataQueryMapper() : new SimpleDataQueryMapper();
 	}
 
 	@Override
@@ -163,13 +166,13 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 	@Override
 	public SimpleData createSimpleData(){
 		return dataType.isPrimary() ?
-				new SimpleDataImpl(dataType) :
-				new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl());
+                new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl()) :
+				new SimpleDataImpl(dataType);
 	}
 
 	@Override
 	protected void loadCache(){
-		Collection<SimpleData> simpleDatas = persistenceContext.getSortedList(dataType.getTable(), rowMapper);
+		Collection<SimpleData> simpleDatas = daoPersistenceContext.getSortedList(dataType.getTable(), rowMapper);
 
 		for (SimpleData simpleData : simpleDatas){
 			getCache().put(simpleData.getId(), simpleData);
@@ -180,7 +183,7 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 
 	@Override
 	protected void load(int i){
-		SimpleData country = persistenceContext.getDataByID(dataType.getTable(), i, rowMapper);
+		SimpleData country = daoPersistenceContext.getDataByID(dataType.getTable(), i, rowMapper);
 
 		getCache().put(i, country);
 	}
@@ -242,6 +245,38 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 
 			Object[] parameters = {
 					simpleData.getName(),
+					simpleData.getId()};
+
+			return new Query(query, parameters);
+		}
+	}
+
+	/**
+	 * A query mapper to map SimpleData to query.
+	 *
+	 * @author Baptiste Wicht
+	 */
+	private final class PrimarySimpleDataQueryMapper implements QueryMapper {
+		@Override
+		public Query constructInsertQuery(Entity entity){
+			PrimarySimpleData simpleData = (PrimarySimpleData) entity;
+
+			String query = "INSERT INTO " + dataType.getTable() + " (NAME, IMPL) VALUES(?, ?)";
+
+			Object[] parameters = {simpleData.getName(), simpleData.getPrimaryImpl()};
+
+			return new Query(query, parameters);
+		}
+
+		@Override
+		public Query constructUpdateQuery(Entity entity){
+			PrimarySimpleData simpleData = (PrimarySimpleData) entity;
+
+			String query = "UPDATE " + dataType.getTable() + " SET NAME = ?, IMPL = ? WHERE ID = ?";
+
+			Object[] parameters = {
+					simpleData.getName(),
+                    simpleData.getPrimaryImpl(),
 					simpleData.getId()};
 
 			return new Query(query, parameters);

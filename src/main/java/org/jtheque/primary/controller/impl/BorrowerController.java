@@ -35,7 +35,6 @@ import javax.annotation.Resource;
  */
 public final class BorrowerController extends AbstractController implements IBorrowerController {
 	private ViewMode state = ViewMode.NEW;
-	private Person currentBorrower;
 
 	@Resource
 	private IPersonService borrowersService;
@@ -47,8 +46,8 @@ public final class BorrowerController extends AbstractController implements IBor
 	public void newBorrower(){
 		state = ViewMode.NEW;
 
+        borrowerView.getModel().setBorrower(borrowersService.getEmptyPerson());
 		borrowerView.reload();
-		currentBorrower = borrowersService.getEmptyPerson();
 	}
 
 	@Override
@@ -57,24 +56,26 @@ public final class BorrowerController extends AbstractController implements IBor
 
 		state = ViewMode.EDIT;
 
-		borrowerView.reload(borrower);
-		currentBorrower = borrower;
+		borrowerView.getModel().setBorrower(borrower);
+		borrowerView.reload();
 
 		displayView();
 	}
 
 	@Override
 	public void save(String firstName, String name, String email){
-		currentBorrower.setFirstName(firstName);
-		currentBorrower.setEmail(email);
-		currentBorrower.setName(name);
+        Person borrower = borrowerView.getModel().getBorrower();
+
+		borrower.setFirstName(firstName);
+		borrower.setEmail(email);
+		borrower.setName(name);
 
 		if (state == ViewMode.NEW){
-			borrowersService.create(currentBorrower);
+			borrowersService.create(borrower);
 
-			Managers.getManager(IUndoRedoManager.class).addEdit(new GenericDataCreatedEdit<Person>("personsService", currentBorrower));
+			Managers.getManager(IUndoRedoManager.class).addEdit(new GenericDataCreatedEdit<Person>("personsService", borrower));
 		} else {
-			borrowersService.save(currentBorrower);
+			borrowersService.save(borrower);
 		}
 	}
 

@@ -1,9 +1,13 @@
 package org.jtheque.primary.view.impl.choice;
 
 import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.persistence.able.Entity;
 import org.jtheque.core.managers.undo.IUndoRedoManager;
+import org.jtheque.core.managers.view.able.IViewManager;
+import org.jtheque.core.utils.CoreUtils;
 
 import javax.swing.undo.UndoableEdit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -29,15 +33,15 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
-	private Collection<Deleter> deleters;
+	private final Collection<Deleter<? extends Entity>> deleters = new ArrayList<Deleter<? extends Entity>>(10);
 
 	/**
 	 * Set the deleters to use to execute the action.
 	 *
 	 * @param deleters The deleters to use.
 	 */
-	protected final void setDeleters(Deleter... deleters){
-		this.deleters = Arrays.asList(deleters);
+	protected final void addDeleters(Deleter<? extends Entity>... deleters){
+		this.deleters.addAll(Arrays.asList(deleters));
 	}
 
 	@Override
@@ -45,16 +49,22 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
 		return "delete".equals(action);
 	}
 
-	/**
-	 * Delete the current content of the view.
-	 */
-	protected final void delete(){
-		for (Deleter deleter : deleters){
-			if (deleter.canDelete(getContent())){
-				deleter.delete(getSelectedItem());
+    @Override
+    public void execute() {
+        final boolean yes = Managers.getManager(IViewManager.class).askUserForConfirmation(
+                CoreUtils.getMessage("choice.dialogs.delete") + ' ' + getSelectedItem().toString(),
+                CoreUtils.getMessage("choice.dialogs.delete.title"));
+
+        if (yes) {
+			for (Deleter<? extends Entity> deleter : deleters){
+				if (deleter.canDelete(getContent())){
+					deleter.delete(getSelectedItem());
+
+					break;
+				}
 			}
 		}
-	}
+    }
 
 	/**
 	 * Add an edit to undo-redo manager if deleted.

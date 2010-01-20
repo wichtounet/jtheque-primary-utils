@@ -81,10 +81,14 @@ public final class CollectionImpl extends AbstractPrimaryData implements Collect
 
 	@Override
 	public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
 		Collection other = (Collection) obj;
 
 		return TempUtils.areEqualsDirect(this, obj,
-				title, protection, password,
-				other.getTitle(), other.isProtection(), other.getPassword());
+				getId(), title, protection, password,
+				other.getId(), other.getTitle(), other.isProtection(), other.getPassword());
 	}
 }

@@ -17,10 +17,10 @@ package org.jtheque.primary.view.impl.actions.simple;
  */
 
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
+import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.ISimpleController;
 import org.jtheque.primary.view.able.ISimpleDataView;
 
-import javax.annotation.Resource;
 import java.awt.event.ActionEvent;
 
 /**
@@ -29,24 +29,21 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class ValidateSimpleDataViewAction extends JThequeAction {
-	@Resource
-	private ISimpleController simpleController;
-
 	/**
 	 * Construct a AcValidateKindView.
 	 */
 	public ValidateSimpleDataViewAction(){
-		super("kind.actions.ok");
+		super("data.view.actions.ok");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		ISimpleDataView view = simpleController.getView();
+        ISimpleDataView simpleDataView = CoreUtils.getBean("simpleDataView");
 
-		if (view.validateContent()){
-			simpleController.save(view.getDataName());
+		if (simpleDataView.validateContent()){
+			CoreUtils.<ISimpleController>getBean(simpleDataView.getModel().getId()).save(simpleDataView.getDataName());
 
-			view.closeDown();
+			simpleDataView.closeDown();
 		}
 	}
 }

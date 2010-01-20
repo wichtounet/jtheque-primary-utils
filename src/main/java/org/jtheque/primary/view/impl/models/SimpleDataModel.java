@@ -26,6 +26,7 @@ import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
  */
 public final class SimpleDataModel implements ISimpleDataModel {
 	private SimpleData data;
+    private String id;
 
 	@Override
 	public SimpleData getSimpleData(){
@@ -36,4 +37,14 @@ public final class SimpleDataModel implements ISimpleDataModel {
 	public void setSimpleData(SimpleData data){
 		this.data = data;
 	}
+
+    @Override
+    public void setCurrentController(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
 }

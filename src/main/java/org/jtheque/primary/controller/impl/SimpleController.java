@@ -36,9 +36,8 @@ import javax.annotation.Resource;
 public final class SimpleController extends AbstractController implements ISimpleController {
 	private ViewMode state = ViewMode.NEW;
 
-	private SimpleData currentData;
-
 	private final ISimpleDataService simpleService;
+    private final String id;
 
 	@Resource
 	private ISimpleDataView simpleDataView;
@@ -47,42 +46,46 @@ public final class SimpleController extends AbstractController implements ISimpl
 	 * Construct a new SimpleController.
 	 *
 	 * @param simpleService The simple service to use
+	 * @param id The bean identifier of this controller. 
 	 */
-	public SimpleController(ISimpleDataService simpleService){
+	public SimpleController(ISimpleDataService simpleService, String id){
 		super();
 
 		this.simpleService = simpleService;
-	}
+        this.id = id;
+    }
 
 	@Override
 	public void create(){
 		state = ViewMode.NEW;
 
+        simpleDataView.getModel().setCurrentController(id);
+        simpleDataView.getModel().setSimpleData(simpleService.getEmptySimpleData());
 		simpleDataView.reload();
-		currentData = simpleService.getEmptySimpleData();
 	}
 
 	@Override
 	public void edit(SimpleData data){
 		state = ViewMode.EDIT;
 
-		simpleDataView.reload(data);
-		currentData = data;
+        simpleDataView.getModel().setCurrentController(id);
+        simpleDataView.getModel().setSimpleData(data);
+		simpleDataView.reload();
 
 		displayView();
 	}
 
 	@Override
 	public void save(String name){
-		currentData.setName(name);
+		simpleDataView.getModel().getSimpleData().setName(name);
 
 		if (state == ViewMode.NEW){
-			simpleService.create(currentData);
+			simpleService.create(simpleDataView.getModel().getSimpleData());
 
 			Managers.getManager(IUndoRedoManager.class).addEdit(
-					new GenericDataCreatedEdit<SimpleData>("simpleService", currentData));
+					new GenericDataCreatedEdit<SimpleData>("simpleService", simpleDataView.getModel().getSimpleData()));
 		} else {
-			simpleService.save(currentData);
+			simpleService.save(simpleDataView.getModel().getSimpleData());
 		}
 	}
 

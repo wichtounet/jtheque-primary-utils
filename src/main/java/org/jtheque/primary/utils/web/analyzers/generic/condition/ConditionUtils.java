@@ -25,7 +25,7 @@ import org.jtheque.core.utils.file.XMLReader;
  *
  * @author Baptiste Wicht
  */
-public class ConditionUtils {
+public final class ConditionUtils {
 	/**
 	 * Utility class, not instanciable.
 	 */

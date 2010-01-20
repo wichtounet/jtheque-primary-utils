@@ -57,6 +57,10 @@ public final class PrimarySimpleDataImpl extends SimpleDataImpl implements Prima
 
 	@Override
 	public boolean equals(Object obj){
+		if(obj == null){
+			return false;
+		}
+
 		PrimarySimpleData other = (PrimarySimpleData) obj;
 
 		return TempUtils.areEqualsDirect(this, obj,

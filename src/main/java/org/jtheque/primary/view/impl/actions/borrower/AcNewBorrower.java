@@ -17,9 +17,9 @@ package org.jtheque.primary.view.impl.actions.borrower;
  */
 
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
+import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IBorrowerController;
 
-import javax.annotation.Resource;
 import java.awt.event.ActionEvent;
 
 /**
@@ -28,9 +28,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcNewBorrower extends JThequeAction {
-	@Resource
-	private IBorrowerController borrowerController;
-
 	/**
 	 * Construct a new AcNewBorrower.
 	 */
@@ -40,6 +37,8 @@ public final class AcNewBorrower extends JThequeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent event){
+        IBorrowerController borrowerController = CoreUtils.getBean("borrowerController");
+
 		borrowerController.newBorrower();
 		borrowerController.displayView();
 	}

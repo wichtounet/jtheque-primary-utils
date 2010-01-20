@@ -47,7 +47,7 @@ public final class TempUtils {
 
 		for (Object property : properties){
 			result = computeValue(result, property);
-		}
+        }
 
 		return result;
 	}
@@ -97,9 +97,11 @@ public final class TempUtils {
 			return false;
 		}
 
-		for (int i = 0; i < properties.length / 2; i++){
+        int numberOfProperties = properties.length / 2;
+
+		for (int i = 0; i < numberOfProperties; i++){
 			Object propertyBean = properties[i];
-			Object propertyOther = properties[i + properties.length];
+			Object propertyOther = properties[i + numberOfProperties];
 
 			if (propertyBean == null){
 				if (propertyOther != null){

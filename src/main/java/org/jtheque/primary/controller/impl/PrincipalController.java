@@ -24,7 +24,6 @@ import org.jtheque.primary.controller.able.ControllerState;
 import org.jtheque.primary.controller.able.FormBean;
 import org.jtheque.primary.controller.able.IPrincipalController;
 import org.jtheque.primary.od.able.Data;
-import org.jtheque.primary.view.impl.models.tree.TreeElement;
 
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -74,7 +73,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
 	public final void valueChanged(TreeSelectionEvent event){
 		TreePath current = ((JTree) event.getSource()).getSelectionPath();
 
-		if (current != null && current.getLastPathComponent() instanceof TreeElement){
+		if (current != null && current.getLastPathComponent() instanceof Data){
 			T data = (T) current.getLastPathComponent();
 
 			if (data != null){

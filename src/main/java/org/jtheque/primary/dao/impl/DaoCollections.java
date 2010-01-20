@@ -45,7 +45,7 @@ public final class DaoCollections extends GenericDao<Collection> implements IDao
 	private final QueryMapper queryMapper = new CollectionQueryMapper();
 
 	@Resource
-	private IDaoPersistenceContext persistenceContext;
+	private IDaoPersistenceContext daoPersistenceContext;
 
 	@Resource
 	private SimpleJdbcTemplate jdbcTemplate;
@@ -134,7 +134,7 @@ public final class DaoCollections extends GenericDao<Collection> implements IDao
 
 	@Override
 	protected void loadCache(){
-		java.util.Collection<Collection> collections = persistenceContext.getSortedList(TABLE, rowMapper);
+		java.util.Collection<Collection> collections = daoPersistenceContext.getSortedList(TABLE, rowMapper);
 
 		for (Collection collection : collections){
 			getCache().put(collection.getId(), collection);
@@ -145,7 +145,7 @@ public final class DaoCollections extends GenericDao<Collection> implements IDao
 
 	@Override
 	protected void load(int i){
-		Collection collection = persistenceContext.getDataByID(TABLE, i, rowMapper);
+		Collection collection = daoPersistenceContext.getDataByID(TABLE, i, rowMapper);
 
 		getCache().put(i, collection);
 	}

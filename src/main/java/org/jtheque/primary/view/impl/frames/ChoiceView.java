@@ -43,6 +43,12 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 
 	private String content;
 
+	public ChoiceView(){
+		super();
+
+		setLocationRelativeTo(getParent());
+	}
+
 	/**
 	 * Reload the content of the view.
 	 *

@@ -20,7 +20,6 @@ import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
 import org.jtheque.core.utils.ui.PanelBuilder;
 import org.jtheque.core.utils.ui.ValidationUtils;
-import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.view.able.ISimpleDataView;
 import org.jtheque.primary.view.impl.actions.simple.ValidateSimpleDataViewAction;
@@ -69,29 +68,20 @@ public final class SimpleDataView extends SwingBuildedDialogView<ISimpleDataMode
 		SwingUtils.addFieldLengthLimit(fieldName, NAME_LENGTH_LIMIT);
 
 		builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
-				validateAction, getCloseAction("data.actions.cancel"));
-
-		reload();
+				validateAction, getCloseAction("data.view.actions.cancel"));
 	}
 
 	@Override
 	public void reload(){
-		setTitleKey("data.view.title");
+        SimpleData simpleData = getModel().getSimpleData();
 
-		fieldName.setText("");
-
-		getModel().setSimpleData(null);
-	}
-
-	@Override
-	public void reload(Data data){
-		SimpleData simpleData = (SimpleData) data;
+        if(simpleData.isSaved()){
+            refreshText();
+        } else {
+            setTitleKey("data.view.title");
+        }
 
 		fieldName.setText(simpleData.getName());
-
-		getModel().setSimpleData(simpleData);
-
-		refreshText();
 	}
 
 	@Override

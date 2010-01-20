@@ -17,6 +17,7 @@ package org.jtheque.primary.view.able;
  */
 
 import org.jtheque.core.managers.view.able.IView;
+import org.jtheque.primary.view.impl.models.able.IBorrowerModel;
 
 import javax.swing.JTextField;
 
@@ -46,4 +47,7 @@ public interface IBorrowerView extends DataView, IView {
 	 * @return The text field who contains the email.
 	 */
 	JTextField getFieldEmail();
+
+    @Override
+    IBorrowerModel getModel();
 }
