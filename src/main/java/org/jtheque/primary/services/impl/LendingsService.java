@@ -100,6 +100,6 @@ public final class LendingsService implements ILendingsService {
 
 	@Override
 	public Lending getEmptyLending(){
-		return daoLendings.createLending();
+		return daoLendings.create();
 	}
 }

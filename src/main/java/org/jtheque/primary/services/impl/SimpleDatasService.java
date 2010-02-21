@@ -67,7 +67,7 @@ public final class SimpleDatasService implements ISimpleDataService {
 	 */
 	@Transactional
 	private void createDefaultSimpleData(){
-		defaultSimpleData = daoSimpleDatas.createSimpleData();
+		defaultSimpleData = daoSimpleDatas.create();
 		defaultSimpleData.setName("Unknown");
 		daoSimpleDatas.create(defaultSimpleData);
 	}
@@ -105,12 +105,12 @@ public final class SimpleDatasService implements ISimpleDataService {
 
 	@Override
 	public boolean exist(SimpleData simpleData){
-		return daoSimpleDatas.exist(simpleData);
+		return daoSimpleDatas.exists(simpleData);
 	}
 
 	@Override
 	public SimpleData getEmptySimpleData(){
-		return daoSimpleDatas.createSimpleData();
+		return daoSimpleDatas.create();
 	}
 
 	@Override

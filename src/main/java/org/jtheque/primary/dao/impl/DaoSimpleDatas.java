@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.GenericDao;
+import org.jtheque.core.managers.persistence.CachedJDBCDao;
 import org.jtheque.core.managers.persistence.Query;
 import org.jtheque.core.managers.persistence.QueryMapper;
 import org.jtheque.core.managers.persistence.able.Entity;
@@ -45,7 +45,7 @@ import java.util.List;
  *
  * @author Baptiste Wicht
  */
-public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDaoSimpleDatas {
+public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements IDaoSimpleDatas {
 	private final ParameterizedRowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
 
 	private final QueryMapper queryMapper;
@@ -159,12 +159,12 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 	}
 
 	@Override
-	public boolean exist(SimpleData simpleData){
+	public boolean exists(SimpleData simpleData){
 		return getSimpleData(simpleData.getName()) != null;
 	}
 
 	@Override
-	public SimpleData createSimpleData(){
+	public SimpleData create(){
 		return dataType.isPrimary() ?
                 new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl()) :
 				new SimpleDataImpl(dataType);
@@ -207,7 +207,7 @@ public final class DaoSimpleDatas extends GenericDao<SimpleData> implements IDao
 		@Override
 		public SimpleData mapRow(ResultSet rs, int i) throws SQLException{
 
-			SimpleData simpleData = createSimpleData();
+			SimpleData simpleData = create();
 
 			simpleData.setId(rs.getInt("ID"));
 			simpleData.setName(rs.getString("NAME"));

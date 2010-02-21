@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.JThequeDao;
+import org.jtheque.core.managers.persistence.able.Dao;
 import org.jtheque.primary.od.able.Person;
 
 import java.util.Collection;
@@ -26,7 +26,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public interface IDaoPersons extends JThequeDao {
+public interface IDaoPersons extends Dao<Person> {
 	String TABLE = "T_PERSONS";
 
 	/**
@@ -68,45 +68,6 @@ public interface IDaoPersons extends JThequeDao {
 	 * @return <code>true</code> if an person exist with first name and this name else <code>false</code>.
 	 */
 	boolean exists(String firstName, String name, String type);
-
-	/**
-	 * Indicate if the person exist in the Dao.
-	 *
-	 * @param person The person we must test if it's exist.
-	 *
-	 * @return <code>true</code> if the person exists else <code>false</code>.
-	 */
-	boolean exist(Person person);
-
-	/**
-	 * Create a new person.
-	 *
-	 * @param person The new person
-	 */
-	void create(Person person);
-
-	/**
-	 * Save the person.
-	 *
-	 * @param person The person to save.
-	 */
-	void save(Person person);
-
-	/**
-	 * Delete a person.
-	 *
-	 * @param person The person to delete.
-	 *
-	 * @return <code>true</code> if the object is deleted else <code>false</code>.
-	 */
-	boolean delete(Person person);
-
-	/**
-	 * Create a person.
-	 *
-	 * @return A created empty person.
-	 */
-	Person createPerson();
 
 	/**
 	 * Clear all the entities with the specified type.

@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.JThequeDao;
+import org.jtheque.core.managers.persistence.able.Dao;
 import org.jtheque.primary.od.able.SimpleData;
 
 import java.util.Collection;
@@ -26,7 +26,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public interface IDaoSimpleDatas extends JThequeDao {
+public interface IDaoSimpleDatas extends Dao<SimpleData> {
 	/**
 	 * Return all the simple datas.
 	 *
@@ -51,43 +51,4 @@ public interface IDaoSimpleDatas extends JThequeDao {
 	 * @return The simple data with the specified title.
 	 */
 	SimpleData getSimpleData(String title);
-
-	/**
-	 * Indicate if the simple data exists or not.
-	 *
-	 * @param data The data to test for exists or not.
-	 *
-	 * @return <code>true</code> if the data exists else <code>false</code>.
-	 */
-	boolean exist(SimpleData data);
-
-	/**
-	 * Delete the simple data.
-	 *
-	 * @param data The simple data to delete.
-	 *
-	 * @return <code>true</code> if the data has been deleted else <code>false</code>.
-	 */
-	boolean delete(SimpleData data);
-
-	/**
-	 * Create the specified simple data.
-	 *
-	 * @param data The data to create.
-	 */
-	void create(SimpleData data);
-
-	/**
-	 * Save the specified data.
-	 *
-	 * @param data The data to save.
-	 */
-	void save(SimpleData data);
-
-	/**
-	 * Create an empty simple data.
-	 *
-	 * @return An empty simple data.
-	 */
-	SimpleData createSimpleData();
 }

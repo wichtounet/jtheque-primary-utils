@@ -94,7 +94,7 @@ public class PersonService implements IPersonService {
 
 	@Override
 	public final boolean exist(Person actor){
-		return daoPersons.exist(actor);
+		return daoPersons.exists(actor);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class PersonService implements IPersonService {
 
 	@Override
 	public Person getEmptyPerson(){
-		Person person = daoPersons.createPerson();
+		Person person = daoPersons.create();
 
 		person.setType(personType);
 

@@ -18,7 +18,8 @@ package org.jtheque.primary.view.impl.frames;
 
 import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
-import org.jtheque.core.utils.ui.PanelBuilder;
+import org.jtheque.core.managers.view.impl.frame.abstraction.SwingFilthyBuildedDialogView;
+import org.jtheque.core.utils.ui.builders.I18nPanelBuilder;
 import org.jtheque.core.utils.ui.ValidationUtils;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.view.able.IBorrowerView;
@@ -37,7 +38,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public final class BorrowerView extends SwingBuildedDialogView<IBorrowerModel> implements IBorrowerView {
+public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerModel> implements IBorrowerView {
 	private JTextField fieldNom;
 	private JTextField fieldFirstName;
 	private JTextField fieldEmail;
@@ -60,7 +61,7 @@ public final class BorrowerView extends SwingBuildedDialogView<IBorrowerModel> i
 	}
 
 	@Override
-	protected void buildView(PanelBuilder builder){
+	protected void buildView(I18nPanelBuilder builder){
 		Action validateAction = new AcValidateBorrowerView();
 
 		builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));

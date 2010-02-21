@@ -19,8 +19,10 @@ package org.jtheque.primary.view.impl.frames;
 import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.persistence.able.DataContainerProvider;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingDialogView;
-import org.jtheque.core.utils.ui.PanelBuilder;
+import org.jtheque.core.utils.ui.builders.FilthyPanelBuilder;
+import org.jtheque.core.utils.ui.builders.JThequePanelBuilder;
 import org.jtheque.core.utils.ui.ValidationUtils;
+import org.jtheque.core.utils.ui.builders.PanelBuilder;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.view.able.IChoiceView;
@@ -71,7 +73,7 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 	 * @return Le content pane
 	 */
 	private Container buildContentPane(){
-		PanelBuilder builder = new PanelBuilder();
+		PanelBuilder builder = new FilthyPanelBuilder();
 
 		model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
 

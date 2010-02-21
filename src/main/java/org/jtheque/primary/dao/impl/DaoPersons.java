@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.GenericDao;
+import org.jtheque.core.managers.persistence.CachedJDBCDao;
 import org.jtheque.core.managers.persistence.Query;
 import org.jtheque.core.managers.persistence.QueryMapper;
 import org.jtheque.core.managers.persistence.able.Entity;
@@ -41,7 +41,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public final class DaoPersons extends GenericDao<Person> implements IDaoPersons {
+public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPersons {
 	private final ParameterizedRowMapper<Person> rowMapper = new PersonRowMapper();
 	private final QueryMapper queryMapper = new PersonQueryMapper();
 
@@ -121,12 +121,12 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 	}
 
 	@Override
-	public boolean exist(Person person){
+	public boolean exists(Person person){
 		return getPerson(person.getFirstName(), person.getName(), person.getType()) != null;
 	}
 
 	@Override
-	public Person createPerson(){
+	public Person create(){
 		return new PersonImpl();
 	}
 
@@ -177,7 +177,7 @@ public final class DaoPersons extends GenericDao<Person> implements IDaoPersons 
 	private final class PersonRowMapper implements ParameterizedRowMapper<Person> {
 		@Override
 		public Person mapRow(ResultSet rs, int i) throws SQLException{
-			Person person = createPerson();
+			Person person = create();
 
 			person.setId(rs.getInt("ID"));
 			person.setName(rs.getString("NAME"));

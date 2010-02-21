@@ -18,7 +18,8 @@ package org.jtheque.primary.view.impl.frames;
 
 import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
-import org.jtheque.core.utils.ui.PanelBuilder;
+import org.jtheque.core.managers.view.impl.frame.abstraction.SwingFilthyBuildedDialogView;
+import org.jtheque.core.utils.ui.builders.I18nPanelBuilder;
 import org.jtheque.core.utils.ui.ValidationUtils;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.view.able.ISimpleDataView;
@@ -37,7 +38,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public final class SimpleDataView extends SwingBuildedDialogView<ISimpleDataModel> implements ISimpleDataView {
+public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDataModel> implements ISimpleDataView {
 	private JTextField fieldName;
 
 	private static final int NAME_LENGTH_LIMIT = 100;
@@ -58,7 +59,7 @@ public final class SimpleDataView extends SwingBuildedDialogView<ISimpleDataMode
 	}
 
 	@Override
-	protected void buildView(PanelBuilder builder){
+	protected void buildView(I18nPanelBuilder builder){
 		Action validateAction = new ValidateSimpleDataViewAction();
 
 		builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));

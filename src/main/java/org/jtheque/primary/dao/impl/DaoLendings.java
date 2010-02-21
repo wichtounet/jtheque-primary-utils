@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.GenericDao;
+import org.jtheque.core.managers.persistence.CachedJDBCDao;
 import org.jtheque.core.managers.persistence.Query;
 import org.jtheque.core.managers.persistence.QueryMapper;
 import org.jtheque.core.managers.persistence.able.Entity;
@@ -41,7 +41,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public final class DaoLendings extends GenericDao<Lending> implements IDaoLendings {
+public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLendings {
 	private final ParameterizedRowMapper<Lending> rowMapper = new LendingRowMapper();
 	private final QueryMapper queryMapper = new LendingQueryMapper();
 
@@ -129,11 +129,16 @@ public final class DaoLendings extends GenericDao<Lending> implements IDaoLendin
 	}
 
 	@Override
-	public Lending createLending(){
+	public Lending create(){
 		return new LendingImpl();
 	}
 
-	/**
+    @Override
+    public boolean exists(Lending entity) {
+        return get(entity.getId()) != null;
+    }
+
+    /**
 	 * A mapper to map resultset to lending.
 	 *
 	 * @author Baptiste Wicht
@@ -141,7 +146,7 @@ public final class DaoLendings extends GenericDao<Lending> implements IDaoLendin
 	private final class LendingRowMapper implements ParameterizedRowMapper<Lending> {
 		@Override
 		public Lending mapRow(ResultSet rs, int i) throws SQLException{
-			Lending lending = createLending();
+			Lending lending = create();
 
 			lending.setId(rs.getInt("ID"));
 			lending.setTheOther(rs.getInt("THE_OTHER_FK"));

@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.JThequeDao;
+import org.jtheque.core.managers.persistence.able.Dao;
 import org.jtheque.primary.od.able.Lending;
 
 import java.util.Collection;
@@ -26,7 +26,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public interface IDaoLendings extends JThequeDao {
+public interface IDaoLendings extends Dao<Lending> {
 	String TABLE = "T_LENDINGS";
 
 	/**
@@ -39,39 +39,9 @@ public interface IDaoLendings extends JThequeDao {
 	Lending getLending(int id);
 
 	/**
-	 * Create the lending.
-	 *
-	 * @param lending The lending to create.
-	 */
-	void create(Lending lending);
-
-	/**
-	 * Delete the lending.
-	 *
-	 * @param lending The lending to delete.
-	 *
-	 * @return true if the object is deleted else false.
-	 */
-	boolean delete(Lending lending);
-
-	/**
 	 * Return all the lendings.
 	 *
 	 * @return All the lendings.
 	 */
 	Collection<Lending> getLendings();
-
-	/**
-	 * Save the specified lending.
-	 *
-	 * @param lending The lending to save.
-	 */
-	void save(Lending lending);
-
-	/**
-	 * Create the lending.
-	 *
-	 * @return The created lending.
-	 */
-	Lending createLending();
 }

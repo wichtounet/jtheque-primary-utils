@@ -20,7 +20,6 @@
     </bean>
 
     <bean id="lendingsService" class="org.jtheque.primary.services.impl.LendingsService" lazy-init="false"/>
-    <bean id="collectionsService" class="org.jtheque.primary.services.impl.CollectionsService" lazy-init="false"/>
 
     <bean id="countriesService" class="org.jtheque.primary.services.impl.SimpleDatasService" lazy-init="false">
         <constructor-arg ref="daoCountries"/>
@@ -48,7 +47,6 @@
 
     <bean id="daoPersons" class="org.jtheque.primary.dao.impl.DaoPersons"/>
     <bean id="daoLendings" class="org.jtheque.primary.dao.impl.DaoLendings"/>
-    <bean id="daoCollections" class="org.jtheque.primary.dao.impl.DaoCollections"/>
 
     <bean id="daoCountries" class="org.jtheque.primary.dao.impl.DaoSimpleDatas">
         <constructor-arg value="COUNTRY"/>
