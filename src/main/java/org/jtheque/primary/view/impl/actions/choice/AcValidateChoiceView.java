@@ -16,10 +16,9 @@ package org.jtheque.primary.view.impl.actions.choice;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IChoiceController;
 import org.jtheque.primary.view.able.IChoiceView;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -29,16 +28,21 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateChoiceView extends JThequeAction {
+	private final IChoiceController choiceController;
+
 	/**
 	 * Construct a new AcValidateChoiceView.
+	 *
+	 * @param choiceController
 	 */
-	public AcValidateChoiceView(){
+	public AcValidateChoiceView(IChoiceController choiceController){
 		super("choice.actions.validate");
+
+		this.choiceController = choiceController;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-        IChoiceController choiceController = CoreUtils.getBean("choiceController");
         IChoiceView choiceView = (IChoiceView)choiceController.getView();
 
 		if (choiceView.validateContent()){

@@ -17,6 +17,7 @@ package org.jtheque.primary.view.able;
  */
 
 import org.jtheque.primary.od.able.Data;
+import org.jtheque.views.able.components.MainComponent;
 
 /**
  * A view for the principal data. It seems a view that display film, realizer or actor. These views have the same
@@ -24,7 +25,7 @@ import org.jtheque.primary.od.able.Data;
  *
  * @author Baptiste Wicht
  */
-public interface PrincipalDataView extends View {
+public interface PrincipalDataView extends View, MainComponent {
 	/**
 	 * Select a specific data in the view.
 	 *

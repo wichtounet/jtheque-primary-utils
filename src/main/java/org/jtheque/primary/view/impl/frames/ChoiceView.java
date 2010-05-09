@@ -16,18 +16,19 @@ package org.jtheque.primary.view.impl.frames;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.error.JThequeError;
-import org.jtheque.core.managers.persistence.able.DataContainerProvider;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingDialogView;
-import org.jtheque.core.utils.ui.builders.FilthyPanelBuilder;
-import org.jtheque.core.utils.ui.builders.JThequePanelBuilder;
-import org.jtheque.core.utils.ui.ValidationUtils;
-import org.jtheque.core.utils.ui.builders.PanelBuilder;
+import org.jtheque.errors.JThequeError;
+import org.jtheque.i18n.ILanguageService;
+import org.jtheque.persistence.able.DataContainerProvider;
+import org.jtheque.primary.controller.able.IChoiceController;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.view.able.IChoiceView;
 import org.jtheque.primary.view.impl.actions.choice.AcValidateChoiceView;
 import org.jtheque.primary.view.impl.models.DataContainerCachedComboBoxModel;
+import org.jtheque.ui.utils.ValidationUtils;
+import org.jtheque.ui.utils.builders.FilthyPanelBuilder;
+import org.jtheque.ui.utils.builders.PanelBuilder;
+import org.jtheque.ui.utils.windows.dialogs.SwingDialogView;
 import org.jtheque.utils.ui.SwingUtils;
 
 import javax.swing.Action;
@@ -51,7 +52,12 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 	public ChoiceView(){
 		super();
 
-		setLocationRelativeTo(getParent());
+		build();
+	}
+
+	@Override
+	protected void init() {
+		//Nothing to init here
 	}
 
 	/**
@@ -62,7 +68,7 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 	private void reload(String content){
 		this.content = content;
 
-		setTitle(DataTypeManager.getTextForDataType(content));
+		setTitleKey(DataTypeManager.getKeyForDataType(content));
 		setContentPane(buildContentPane());
 		pack();
 	}
@@ -77,7 +83,7 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 
 		model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
 
-		Action validateAction = new AcValidateChoiceView();
+		Action validateAction = new AcValidateChoiceView(getService(IChoiceController.class));
 
 		JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
 		SwingUtils.addFieldValidateAction(comboElements, validateAction);
@@ -100,9 +106,9 @@ public final class ChoiceView extends SwingDialogView implements IChoiceView {
 	}
 
 	@Override
-	public void refreshText(){
+	public void refreshText(ILanguageService languageService){
 		if (content != null){
-			setTitle(DataTypeManager.getTextForDataType(content));
+			setTitle(languageService.getMessage(DataTypeManager.getKeyForDataType(content)));
 		}
 	}
 

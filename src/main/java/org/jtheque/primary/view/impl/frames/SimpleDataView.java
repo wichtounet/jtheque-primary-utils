@@ -16,16 +16,16 @@ package org.jtheque.primary.view.impl.frames;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.error.JThequeError;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingFilthyBuildedDialogView;
-import org.jtheque.core.utils.ui.builders.I18nPanelBuilder;
-import org.jtheque.core.utils.ui.ValidationUtils;
+import org.jtheque.errors.JThequeError;
+import org.jtheque.i18n.ILanguageService;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.view.able.ISimpleDataView;
 import org.jtheque.primary.view.impl.actions.simple.ValidateSimpleDataViewAction;
 import org.jtheque.primary.view.impl.models.SimpleDataModel;
 import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
+import org.jtheque.ui.utils.ValidationUtils;
+import org.jtheque.ui.utils.builders.I18nPanelBuilder;
+import org.jtheque.ui.utils.windows.dialogs.SwingFilthyBuildedDialogView;
 import org.jtheque.utils.ui.GridBagUtils;
 import org.jtheque.utils.ui.SwingUtils;
 
@@ -44,13 +44,17 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
 	private static final int NAME_LENGTH_LIMIT = 100;
 	private static final int FIELD_COLUMNS = 15;
 
-	/**
+    private final ILanguageService languageService;
+
+    /**
 	 * Construct a new SimpleDataView.
 	 */
-	public SimpleDataView(){
+	public SimpleDataView(ILanguageService languageService){
 		super();
 
-		build();
+        this.languageService = languageService;
+
+        build();
 	}
 
 	@Override
@@ -60,7 +64,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
 
 	@Override
 	protected void buildView(I18nPanelBuilder builder){
-		Action validateAction = new ValidateSimpleDataViewAction();
+		Action validateAction = new ValidateSimpleDataViewAction(this);
 
 		builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));
 
@@ -77,7 +81,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
         SimpleData simpleData = getModel().getSimpleData();
 
         if(simpleData.isSaved()){
-            refreshText();
+            refreshText(languageService);
         } else {
             setTitleKey("data.view.title");
         }
@@ -91,7 +95,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
 	}
 
 	@Override
-	public void refreshText(){
+	public void refreshText(ILanguageService languageService){
 		if (getModel().getSimpleData() != null){
 			setTitle(getMessage("data.view.title.modify", getModel().getSimpleData().getName()));
 		}

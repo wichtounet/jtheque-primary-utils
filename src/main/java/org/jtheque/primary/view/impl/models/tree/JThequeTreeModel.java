@@ -16,7 +16,7 @@ package org.jtheque.primary.view.impl.models.tree;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdesktop.swingx.event.WeakEventListenerList;
+import org.jtheque.core.utils.WeakEventListenerList;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;

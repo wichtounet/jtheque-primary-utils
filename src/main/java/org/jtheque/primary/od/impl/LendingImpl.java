@@ -20,7 +20,8 @@ import org.jtheque.primary.od.able.Lending;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.od.impl.abstraction.AbstractPrimaryData;
 import org.jtheque.primary.od.impl.temp.LendingTemporaryContext;
-import org.jtheque.primary.utils.TempUtils;
+import org.jtheque.utils.bean.EqualsUtils;
+import org.jtheque.utils.bean.HashCodeUtils;
 import org.jtheque.utils.bean.IntDate;
 
 /**
@@ -81,7 +82,7 @@ public final class LendingImpl extends AbstractPrimaryData implements Lending {
 
 	@Override
 	public int hashCode(){
-		return TempUtils.hashCodeDirect(getId(), date, thePerson, getPrimaryImpl(), theOther);
+		return HashCodeUtils.hashCodeDirect(getId(), date, thePerson, getPrimaryImpl(), theOther);
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public final class LendingImpl extends AbstractPrimaryData implements Lending {
 
 		Lending other = (Lending) obj;
 
-		return TempUtils.areEqualsDirect(
+		return EqualsUtils.areEqualsDirect(
 				this, obj,
 				getId(), date, theOther, getPrimaryImpl(),
 				other.getId(), other.getDate(), other.getTheOther(), other.getPrimaryImpl());

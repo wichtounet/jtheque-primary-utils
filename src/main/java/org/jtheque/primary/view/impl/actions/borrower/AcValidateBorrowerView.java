@@ -16,10 +16,9 @@ package org.jtheque.primary.view.impl.actions.borrower;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IBorrowerController;
 import org.jtheque.primary.view.able.IBorrowerView;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -29,17 +28,22 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcValidateBorrowerView extends JThequeAction {
+	private final IBorrowerController borrowerController;
+
 	/**
 	 * Construct a new AcValidateBorrowerView.
+	 *
+	 * @param borrowerController
 	 */
-	public AcValidateBorrowerView(){
+	public AcValidateBorrowerView(IBorrowerController borrowerController){
 		super("borrower.actions.ok");
+
+		this.borrowerController = borrowerController;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event){
-        IBorrowerController borrowerController = CoreUtils.getBean("borrowerController");
-        IBorrowerView borrowerView = (IBorrowerView)borrowerController.getView();
+        IBorrowerView borrowerView = (IBorrowerView) borrowerController.getView();
 
 		if (borrowerView.validateContent()){
 			borrowerController.save(

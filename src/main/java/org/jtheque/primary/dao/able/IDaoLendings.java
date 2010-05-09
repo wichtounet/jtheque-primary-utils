@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.Dao;
+import org.jtheque.persistence.able.Dao;
 import org.jtheque.primary.od.able.Lending;
 
 import java.util.Collection;
@@ -38,10 +38,12 @@ public interface IDaoLendings extends Dao<Lending> {
 	 */
 	Lending getLending(int id);
 
+	Collection<Lending> getAllLendings();
+
 	/**
-	 * Return all the lendings.
+	 * Return all the lendings of the current collection.
 	 *
-	 * @return All the lendings.
+	 * @return All the lendings of the current collection.
 	 */
 	Collection<Lending> getLendings();
 }

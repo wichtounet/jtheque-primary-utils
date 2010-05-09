@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 
 /**

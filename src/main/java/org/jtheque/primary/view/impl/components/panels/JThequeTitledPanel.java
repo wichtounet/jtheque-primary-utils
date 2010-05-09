@@ -17,9 +17,8 @@ package org.jtheque.primary.view.impl.components.panels;
  */
 
 import org.jdesktop.swingx.JXTitledPanel;
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.language.ILanguageManager;
-import org.jtheque.core.managers.language.Internationalizable;
+import org.jtheque.i18n.ILanguageService;
+import org.jtheque.i18n.Internationalizable;
 
 /**
  * A JTheque Titled Panel.
@@ -38,14 +37,10 @@ public final class JThequeTitledPanel extends JXTitledPanel implements Internati
 		super();
 
 		this.key = key;
-
-		setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
-
-		Managers.getManager(ILanguageManager.class).addInternationalizable(this);
 	}
 
 	@Override
-	public void refreshText(){
-		setTitle(Managers.getManager(ILanguageManager.class).getMessage(key));
+	public void refreshText(ILanguageService languageService){
+		setTitle(languageService.getMessage(key));
 	}
 }

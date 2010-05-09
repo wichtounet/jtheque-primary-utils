@@ -16,15 +16,14 @@ package org.jtheque.primary.controller.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.undo.IUndoRedoManager;
-import org.jtheque.core.managers.view.able.controller.AbstractController;
 import org.jtheque.primary.controller.able.ISimpleController;
 import org.jtheque.primary.controller.impl.undo.GenericDataCreatedEdit;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.services.able.ISimpleDataService;
 import org.jtheque.primary.view.able.ISimpleDataView;
 import org.jtheque.primary.view.able.ViewMode;
+import org.jtheque.undo.IUndoRedoService;
+import org.jtheque.views.impl.AbstractController;
 
 import javax.annotation.Resource;
 
@@ -41,6 +40,9 @@ public final class SimpleController extends AbstractController implements ISimpl
 
 	@Resource
 	private ISimpleDataView simpleDataView;
+
+	@Resource
+	private IUndoRedoService undoRedoService;
 
 	/**
 	 * Construct a new SimpleController.
@@ -59,7 +61,7 @@ public final class SimpleController extends AbstractController implements ISimpl
 	public void create(){
 		state = ViewMode.NEW;
 
-        simpleDataView.getModel().setCurrentController(id);
+        simpleDataView.getModel().setCurrentController(this);
         simpleDataView.getModel().setSimpleData(simpleService.getEmptySimpleData());
 		simpleDataView.reload();
 	}
@@ -68,7 +70,7 @@ public final class SimpleController extends AbstractController implements ISimpl
 	public void edit(SimpleData data){
 		state = ViewMode.EDIT;
 
-        simpleDataView.getModel().setCurrentController(id);
+        simpleDataView.getModel().setCurrentController(this);
         simpleDataView.getModel().setSimpleData(data);
 		simpleDataView.reload();
 
@@ -82,8 +84,7 @@ public final class SimpleController extends AbstractController implements ISimpl
 		if (state == ViewMode.NEW){
 			simpleService.create(simpleDataView.getModel().getSimpleData());
 
-			Managers.getManager(IUndoRedoManager.class).addEdit(
-					new GenericDataCreatedEdit<SimpleData>("simpleService", simpleDataView.getModel().getSimpleData()));
+			undoRedoService.addEdit(new GenericDataCreatedEdit<SimpleData>(simpleService, simpleDataView.getModel().getSimpleData()));
 		} else {
 			simpleService.save(simpleDataView.getModel().getSimpleData());
 		}

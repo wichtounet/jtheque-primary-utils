@@ -16,14 +16,14 @@ package org.jtheque.primary.od.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.properties.IPropertiesManager;
-import org.jtheque.core.utils.db.Note;
+import org.jtheque.core.utils.PropertiesUtils;
+import org.jtheque.persistence.able.Note;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.od.impl.abstraction.AbstractPrimaryData;
 import org.jtheque.primary.od.impl.temp.PersonTemporaryContext;
-import org.jtheque.primary.utils.TempUtils;
+import org.jtheque.utils.bean.EqualsUtils;
+import org.jtheque.utils.bean.HashCodeUtils;
 
 /**
  * A borrower implementation.
@@ -129,7 +129,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
 
 	@Override
 	public int hashCode(){
-		return TempUtils.hashCodeDirect(this, getId(), name, note, theCountry, firstName, email, type);
+		return HashCodeUtils.hashCodeDirect(this, getId(), name, note, theCountry, firstName, email, type);
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
 
 		Person other = (Person) obj;
 
-		return TempUtils.areEqualsDirect(
+		return EqualsUtils.areEqualsDirect(
 				this, obj,
 				name, note, theCountry, firstName, email, type,
 				other.getName(), other.getNote(), other.getTheCountry(), other.getFirstName(), other.getEmail(), other.getType());
@@ -150,7 +150,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
 	public void saveToMemento(){
 		mementoState = true;
 
-		memento = Managers.getManager(IPropertiesManager.class).createMemento(this);
+		memento = PropertiesUtils.createMemento(this);
 
 		if (memento == null){
 			mementoState = false;
@@ -160,7 +160,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
 	@Override
 	public void restoreMemento(){
 		if (mementoState){
-			Managers.getManager(IPropertiesManager.class).restoreMemento(this, memento);
+			PropertiesUtils.restoreMemento(this, memento);
 		}
 	}
 }

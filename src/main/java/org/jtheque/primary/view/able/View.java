@@ -16,7 +16,7 @@ package org.jtheque.primary.view.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.IView;
+import org.jtheque.ui.able.IView;
 
 /**
  * Represents a view.

@@ -16,9 +16,8 @@ package org.jtheque.primary.view.impl.actions.simple;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.ISimpleController;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -28,7 +27,7 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class NewSimpleDataAction extends JThequeAction {
-	private final String controller;
+	private final ISimpleController controller;
 
 	/**
 	 * Construct a AcNewKind.
@@ -36,7 +35,7 @@ public final class NewSimpleDataAction extends JThequeAction {
 	 * @param key The text key of the action.
 	 * @param controller The controller to use.
 	 */
-	public NewSimpleDataAction(String key, String controller){
+	public NewSimpleDataAction(String key, ISimpleController controller){
 		super(key);
 
 		this.controller = controller;
@@ -44,9 +43,7 @@ public final class NewSimpleDataAction extends JThequeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		ISimpleController simpleController = CoreUtils.getBean(controller);
-
-		simpleController.create();
-		simpleController.displayView();
+		controller.create();
+		controller.displayView();
 	}
 }

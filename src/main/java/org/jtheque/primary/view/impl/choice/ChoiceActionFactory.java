@@ -17,6 +17,7 @@ package org.jtheque.primary.view.impl.choice;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -58,6 +59,10 @@ public final class ChoiceActionFactory {
 	 */
 	public static void addChoiceAction(ChoiceAction action){
 		ACTIONS.add(action);
+	}
+
+    public static void addChoiceActions(ChoiceAction[] actions){
+        ACTIONS.addAll(Arrays.asList(actions));
 	}
 
 	/**

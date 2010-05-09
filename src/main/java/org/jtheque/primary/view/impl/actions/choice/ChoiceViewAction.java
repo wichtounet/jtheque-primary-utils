@@ -1,8 +1,8 @@
 package org.jtheque.primary.view.impl.actions.choice;
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IChoiceController;
+import org.jtheque.primary.controller.impl.ChoiceController;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -30,25 +30,26 @@ import java.awt.event.ActionEvent;
 public final class ChoiceViewAction extends JThequeAction {
 	private final String action;
 	private final String dataType;
+    private final IChoiceController choiceController;
 
 	/**
 	 * Construct a new ChoiceViewAction.
 	 *
 	 * @param key The internationalization key.
-	 * @param action The choice action.
-	 * @param dataType The datatype of the data container.
-	 */
-	public ChoiceViewAction(String key, String action, String dataType){
+     * @param action The choice action.
+     * @param dataType The datatype of the data container.
+     * @param choiceController
+     */
+	public ChoiceViewAction(String key, String action, String dataType, IChoiceController choiceController){
 		super(key);
 
 		this.action = action;
 		this.dataType = dataType;
-	}
+        this.choiceController = choiceController;
+    }
 
 	@Override
 	public void actionPerformed(ActionEvent event){
-		IChoiceController choiceController = CoreUtils.getBean("choiceController");
-
 		choiceController.setAction(action);
 		choiceController.setContent(dataType);
 		choiceController.displayView();

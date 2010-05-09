@@ -2,7 +2,8 @@ package org.jtheque.primary.od.impl;
 
 import org.jtheque.primary.od.able.PrimarySimpleData;
 import org.jtheque.primary.od.able.SimpleData;
-import org.jtheque.primary.utils.TempUtils;
+import org.jtheque.utils.bean.EqualsUtils;
+import org.jtheque.utils.bean.HashCodeUtils;
 
 /*
  * This file is part of JTheque.
@@ -52,7 +53,7 @@ public final class PrimarySimpleDataImpl extends SimpleDataImpl implements Prima
 
 	@Override
 	public int hashCode(){
-		return TempUtils.hashCodeDirect(this, getName(), primaryImpl);
+		return HashCodeUtils.hashCodeDirect(this, getName(), primaryImpl);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public final class PrimarySimpleDataImpl extends SimpleDataImpl implements Prima
 
 		PrimarySimpleData other = (PrimarySimpleData) obj;
 
-		return TempUtils.areEqualsDirect(this, obj,
+		return EqualsUtils.areEqualsDirect(this, obj,
 				getName(), primaryImpl,
 				other.getName(), other.getPrimaryImpl());
 	}

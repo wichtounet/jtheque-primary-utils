@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.condition;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 
 /**
@@ -26,7 +26,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  */
 final class ContainFactory implements Factory<Condition> {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
 		return "contains".equals(element.getName());
 	}
 

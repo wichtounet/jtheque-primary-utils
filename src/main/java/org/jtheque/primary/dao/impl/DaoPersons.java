@@ -16,12 +16,13 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.CachedJDBCDao;
-import org.jtheque.core.managers.persistence.Query;
-import org.jtheque.core.managers.persistence.QueryMapper;
-import org.jtheque.core.managers.persistence.able.Entity;
-import org.jtheque.core.managers.persistence.context.IDaoPersistenceContext;
-import org.jtheque.core.utils.db.DaoNotes;
+import org.jtheque.persistence.CachedJDBCDao;
+import org.jtheque.persistence.Query;
+import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.able.IDaoNotes;
+import org.jtheque.persistence.able.QueryMapper;
+import org.jtheque.persistence.context.IDaoPersistenceContext;
+import org.jtheque.persistence.impl.DaoNotes;
 import org.jtheque.primary.dao.able.IDaoPersons;
 import org.jtheque.primary.dao.able.IDaoSimpleDatas;
 import org.jtheque.primary.od.able.Person;
@@ -54,7 +55,8 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
 	@Resource
 	private IDaoSimpleDatas daoCountries;
 
-	private final DaoNotes daoNotes = DaoNotes.getInstance();
+	@Resource
+	private IDaoNotes daoNotes;
 
 	/**
 	 * Construct a new DaoBorrowers.
@@ -64,11 +66,27 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
 	}
 
 	@Override
+	public Collection<Person> getPersons(){
+		return getAll();
+	}
+
+	@Override
 	public Collection<Person> getPersons(String type){
 		return getAll(type);
 	}
 
-	/**
+    @Override
+    public Person getPersonByTemporaryId(int id) {
+        for(Person person : getAll()){
+            if(person.getTemporaryContext().getId() == id){
+                return person;
+            }
+        }
+
+        return null;
+    }
+
+    /**
 	 * Return all the persons of the specified type.
 	 *
 	 * @param type The searched type.

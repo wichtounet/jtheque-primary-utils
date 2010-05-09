@@ -17,11 +17,11 @@ package org.jtheque.primary.view.impl.renderers;
  */
 
 import org.jdesktop.swingx.JXImagePanel;
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.resource.IResourceManager;
-import org.jtheque.core.utils.db.DaoNotes;
-import org.jtheque.core.utils.db.Note;
-import org.jtheque.core.utils.ui.Borders;
+import org.jtheque.persistence.able.IDaoNotes;
+import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.impl.DaoNotes;
+import org.jtheque.ui.utils.components.Borders;
+import org.jtheque.ui.utils.filthy.Filthy;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
@@ -33,12 +33,17 @@ import java.awt.Component;
  *
  * @author Baptiste Wicht
  */
-public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer {
+public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer, Filthy {
+	private final IDaoNotes daoNotes;
+
 	/**
 	 * Construct a new <code>NoteComboRenderer</code>.
+	 * @param daoNotes
 	 */
-	public NoteComboRenderer(){
+	public NoteComboRenderer(IDaoNotes daoNotes){
 		super();
+
+		this.daoNotes = daoNotes;
 
 		setOpaque(false);
 	}
@@ -46,11 +51,11 @@ public final class NoteComboRenderer extends JXImagePanel implements ListCellRen
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
 		if (value != null){
-			setImage(DaoNotes.getImage((Note) value));
+			setImage(daoNotes.getImage((Note) value));
 		}
 
 		if (isSelected){
-			setBorder(BorderFactory.createLineBorder(Managers.getManager(IResourceManager.class).getColor("filthyInputBorderColor"), 2));
+			setBorder(BorderFactory.createLineBorder(INPUT_BORDER_COLOR, 2));
 		} else {
 			setBorder(Borders.EMPTY_BORDER);
 		}

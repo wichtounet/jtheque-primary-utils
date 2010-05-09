@@ -16,16 +16,17 @@ package org.jtheque.primary.view.impl.frames;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.error.JThequeError;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingFilthyBuildedDialogView;
-import org.jtheque.core.utils.ui.builders.I18nPanelBuilder;
-import org.jtheque.core.utils.ui.ValidationUtils;
+import org.jtheque.errors.JThequeError;
+import org.jtheque.i18n.ILanguageService;
+import org.jtheque.primary.controller.able.IBorrowerController;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.view.able.IBorrowerView;
 import org.jtheque.primary.view.impl.actions.borrower.AcValidateBorrowerView;
 import org.jtheque.primary.view.impl.models.BorrowerModel;
 import org.jtheque.primary.view.impl.models.able.IBorrowerModel;
+import org.jtheque.ui.utils.ValidationUtils;
+import org.jtheque.ui.utils.builders.I18nPanelBuilder;
+import org.jtheque.ui.utils.windows.dialogs.SwingFilthyBuildedDialogView;
 import org.jtheque.utils.ui.GridBagUtils;
 import org.jtheque.utils.ui.SwingUtils;
 
@@ -62,7 +63,7 @@ public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerMo
 
 	@Override
 	protected void buildView(I18nPanelBuilder builder){
-		Action validateAction = new AcValidateBorrowerView();
+		Action validateAction = new AcValidateBorrowerView(getService(IBorrowerController.class));
 
 		builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));
 		fieldNom = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 0));
@@ -114,8 +115,8 @@ public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerMo
 	}
 
 	@Override
-	public void refreshText(){
-		super.refreshText();
+	public void refreshText(ILanguageService languageService){
+		super.refreshText(languageService);
 
 		if (getModel().getBorrower() != null){
 			setTitle(getMessage("borrower.view.title.edit") + getModel().getBorrower().getName());

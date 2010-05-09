@@ -65,7 +65,7 @@ public final class SortManager {
 	 * @return The model initiated
 	 */
 	public JThequeTreeModel createInitialModel(String type){
-		TreeElement root = new RootElement(DataTypeManager.getTextForDataType(type));
+		TreeElement root = new RootElement(DataTypeManager.getKeyForDataType(type));
 
 		JThequeTreeModel model = new JThequeTreeModel(root);
 

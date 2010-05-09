@@ -16,14 +16,12 @@ package org.jtheque.primary;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.schema.DefaultSchema;
-import org.jtheque.core.managers.schema.HSQLImporter;
-import org.jtheque.core.managers.schema.Insert;
 import org.jtheque.primary.dao.able.IDaoLendings;
 import org.jtheque.primary.dao.able.IDaoPersons;
 import org.jtheque.primary.od.able.SimpleData.DataType;
+import org.jtheque.schemas.DefaultSchema;
 import org.jtheque.utils.bean.Version;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -90,8 +88,8 @@ public final class PrimaryUtilsSchema extends DefaultSchema {
 	 * Create the constraints for referential integrity.
 	 */
 	private void createReferentialIntegrityConstraints(){
-		alterTable(IDaoPersons.TABLE, "ADD FOREIGN KEY (THE_COUNTRY_FK) REFERENCES ? (ID) ON UPDATE SET NULL", DataType.COUNTRY.getTable());
-		alterTable(IDaoLendings.TABLE, "ADD FOREIGN KEY (THE_PERSON_FK) REFERENCES ? (ID) ON UPDATE SET NULL", IDaoPersons.TABLE);
+		alterTable(IDaoPersons.TABLE, "ADD FOREIGN KEY (THE_COUNTRY_FK) REFERENCES " + DataType.COUNTRY.getTable() + " (ID) ON UPDATE SET NULL");
+		alterTable(IDaoLendings.TABLE, "ADD FOREIGN KEY (THE_PERSON_FK) REFERENCES " + IDaoPersons.TABLE + " (ID) ON UPDATE SET NULL");
 	}
 
 	/**
@@ -114,7 +112,7 @@ public final class PrimaryUtilsSchema extends DefaultSchema {
 	 *
 	 * @author Baptiste Wicht
 	 */
-	private static final class BorrowerRowMapper implements ParameterizedRowMapper<Object[]> {
+	private static final class BorrowerRowMapper implements RowMapper<Object[]> {
 		@Override
 		public Object[] mapRow(ResultSet rs, int i) throws SQLException{
 			Object[] borrower = new Object[4];
@@ -126,16 +124,5 @@ public final class PrimaryUtilsSchema extends DefaultSchema {
 
 			return borrower;
 		}
-	}
-
-	@Override
-	public void importDataFromHSQL(Iterable<Insert> inserts){
-		HSQLImporter importer = new HSQLImporter();
-
-		importer.match("OD_COUNTRY", "INSERT INTO " + DataType.COUNTRY.getTable() + " (ID, NAME) VALUES (?,?,?)", 0, 2);
-		importer.match("OD_LANGUAGE", "INSERT INTO " + DataType.LANGUAGE.getTable() + " (ID, NAME) VALUES(?, ?)", 0, 2);
-		importer.match("OD_BORROWER", "INSERT INTO " + IDaoPersons.TABLE + " (ID, NAME, FIRST_NAME, EMAIL, THE_COUNTRY_FK, TYPE) VALUES(?,?,?,?,?,?)", PrimaryConstants.BORROWER, 0, 3, 2, 4, 5);
-
-		importer.importInserts(inserts);
 	}
 }

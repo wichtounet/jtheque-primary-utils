@@ -16,10 +16,8 @@ package org.jtheque.primary.view.impl.actions.simple;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
-import org.jtheque.primary.controller.able.ISimpleController;
 import org.jtheque.primary.view.able.ISimpleDataView;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -29,19 +27,21 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class ValidateSimpleDataViewAction extends JThequeAction {
+	private final ISimpleDataView simpleDataView;
+
 	/**
 	 * Construct a AcValidateKindView.
 	 */
-	public ValidateSimpleDataViewAction(){
+	public ValidateSimpleDataViewAction(ISimpleDataView simpleDataView){
 		super("data.view.actions.ok");
+
+		this.simpleDataView = simpleDataView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-        ISimpleDataView simpleDataView = CoreUtils.getBean("simpleDataView");
-
 		if (simpleDataView.validateContent()){
-			CoreUtils.<ISimpleController>getBean(simpleDataView.getModel().getId()).save(simpleDataView.getDataName());
+			simpleDataView.getModel().getController().save(simpleDataView.getDataName());
 
 			simpleDataView.closeDown();
 		}

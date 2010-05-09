@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
@@ -33,7 +33,7 @@ final class TrimFactory implements Factory<IteratorOperation> {
 	}
 
 	@Override
-	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException{
+	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
 		return new TrimIteratorOperation();
 	}
 
@@ -47,6 +47,5 @@ final class TrimFactory implements Factory<IteratorOperation> {
 		public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator){
 			return line.trim();
 		}
-
 	}
 }

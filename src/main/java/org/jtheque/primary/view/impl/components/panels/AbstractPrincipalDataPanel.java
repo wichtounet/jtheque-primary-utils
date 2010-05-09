@@ -1,11 +1,11 @@
 package org.jtheque.primary.view.impl.components.panels;
 
 import org.jdesktop.swingx.JXTree;
-import org.jtheque.core.managers.view.able.components.IModel;
 import org.jtheque.primary.controller.able.FormBean;
 import org.jtheque.primary.view.able.ToolbarView;
 import org.jtheque.primary.view.impl.renderers.JThequeTreeCellRenderer;
 import org.jtheque.primary.view.impl.sort.SortManager;
+import org.jtheque.ui.able.IModel;
 
 /*
  * This file is part of JTheque.

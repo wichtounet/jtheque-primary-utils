@@ -16,10 +16,11 @@ package org.jtheque.primary.services.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.utils.db.DaoNotes;
-import org.jtheque.core.utils.db.DaoNotes.NoteType;
-import org.jtheque.core.utils.db.Note;
+import org.jtheque.persistence.able.IDaoNotes;
+import org.jtheque.persistence.able.Note;
 import org.jtheque.primary.services.able.INotesService;
+
+import javax.annotation.Resource;
 
 /**
  * A notes service implementation.
@@ -29,10 +30,13 @@ import org.jtheque.primary.services.able.INotesService;
 public final class NotesService implements INotesService {
 	private Note defaultNote;
 
+	@Resource
+	private IDaoNotes daoNotes;
+
 	@Override
 	public Note getDefaultNote(){
 		if (defaultNote == null){
-			defaultNote = DaoNotes.getInstance().getNote(NoteType.UNDEFINED);
+			defaultNote = daoNotes.getNote(IDaoNotes.NoteType.UNDEFINED);
 		}
 
 		return defaultNote;

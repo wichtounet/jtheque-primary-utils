@@ -18,7 +18,8 @@ package org.jtheque.primary.od.impl;
 
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.od.impl.abstraction.AbstractData;
-import org.jtheque.primary.utils.TempUtils;
+import org.jtheque.utils.bean.EqualsUtils;
+import org.jtheque.utils.bean.HashCodeUtils;
 
 /**
  * A simple data implementation
@@ -79,7 +80,7 @@ public class SimpleDataImpl extends AbstractData implements SimpleData {
 
 	@Override
 	public int hashCode(){
-		return TempUtils.hashCodeDirect(name);
+		return HashCodeUtils.hashCodeDirect(name);
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class SimpleDataImpl extends AbstractData implements SimpleData {
 
 		SimpleData other = (SimpleData) obj;
 
-		return TempUtils.areEqualsDirect(this, obj,
+		return EqualsUtils.areEqualsDirect(this, obj,
 				name,
 				other.getName());
 	}

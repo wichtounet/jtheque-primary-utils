@@ -16,7 +16,7 @@ package org.jtheque.primary.services.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.DataListener;
+import org.jtheque.persistence.able.DataListener;
 import org.jtheque.primary.dao.able.IDaoLendings;
 import org.jtheque.primary.od.able.Lending;
 import org.jtheque.primary.services.able.ILendingsService;

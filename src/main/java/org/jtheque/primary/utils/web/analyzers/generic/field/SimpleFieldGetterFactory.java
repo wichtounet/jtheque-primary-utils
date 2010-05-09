@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.field;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.Operation;
@@ -35,7 +35,7 @@ import java.util.Collection;
  */
 final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
 		return "getter".equals(element.getName());
 	}
 

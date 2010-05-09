@@ -1,11 +1,12 @@
 package org.jtheque.primary.view.impl.choice;
 
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.PrimaryConstants;
 import org.jtheque.primary.controller.able.IBorrowerController;
 import org.jtheque.primary.controller.able.ISimpleController;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.od.able.SimpleData;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /*
  * This file is part of JTheque.
@@ -28,14 +29,9 @@ import org.jtheque.primary.od.able.SimpleData;
  *
  * @author Baptiste Wicht
  */
-public final class ModifyChoiceActionUtils {
-	/**
-	 * Utility class, not instanciable.
-	 */
-	private ModifyChoiceActionUtils(){
-		super();
-	}
-
+public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction implements ApplicationContextAware {
+	private ApplicationContext applicationContext;
+	
 	/**
 	 * Execute the action for the datas of the primary utils.
 	 *
@@ -45,33 +41,38 @@ public final class ModifyChoiceActionUtils {
 	 * @return <code>true</code> if the primary choice action can execute this action on this
 	 * content else <code>false</code>. 
 	 */
-	public static boolean execute(Object item, String content) {
+	public boolean execute(Object item, String content) {
         if (SimpleData.DataType.KIND.getDataType().equals(content)){
-            CoreUtils.<ISimpleController>getBean("kindController").edit((SimpleData) item);
+            applicationContext.getBean("kindController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
         } else if (SimpleData.DataType.TYPE.getDataType().equals(content)) {
-            CoreUtils.<ISimpleController>getBean("typeController").edit((SimpleData) item);
+            applicationContext.getBean("typeController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
         } else if (SimpleData.DataType.LANGUAGE.getDataType().equals(content)) {
-            CoreUtils.<ISimpleController>getBean("languageController").edit((SimpleData) item);
+            applicationContext.getBean("languageController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
         } else if (SimpleData.DataType.COUNTRY.getDataType().equals(content)) {
-            CoreUtils.<ISimpleController>getBean("countryController").edit((SimpleData) item);
+            applicationContext.getBean("countryController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
         } else if (PrimaryConstants.BORROWERS.equals(content)) {
-            CoreUtils.<IBorrowerController>getBean("borrowerController").editBorrower((Person) item);
+            applicationContext.getBean("borrowerController", IBorrowerController.class).editBorrower((Person) item);
 
             return true;
         } else if (SimpleData.DataType.SAGA.getDataType().equals(content)) {
-            CoreUtils.<ISimpleController>getBean("sagaController").edit((SimpleData) item);
+            applicationContext.getBean("sagaController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
         }
 
         return false;
     }
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext){
+		this.applicationContext = applicationContext;
+	}
 }

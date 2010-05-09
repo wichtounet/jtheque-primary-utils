@@ -1,6 +1,5 @@
 package org.jtheque.primary.view.impl.choice;
 
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.PrimaryConstants;
 import org.jtheque.primary.controller.impl.undo.GenericDataDeletedEdit;
 import org.jtheque.primary.od.able.Lending;
@@ -9,6 +8,9 @@ import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.services.able.ILendingsService;
 import org.jtheque.primary.services.able.IPersonService;
 import org.jtheque.primary.services.able.ISimpleDataService;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /*
  * This file is part of JTheque.
@@ -31,7 +33,9 @@ import org.jtheque.primary.services.able.ISimpleDataService;
  *
  * @author Baptiste Wicht
  */
-public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteChoiceAction {
+public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteChoiceAction implements ApplicationContextAware {
+	private ApplicationContext applicationContext;
+
 	/**
 	 * Add the deleters for the datas of the primary utils. 	 * 
 	 */
@@ -40,12 +44,17 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 				new KindDeleter(), new TypeDeleter(), new LanguageDeleter(), new LendingDeleter());
 	}
 
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
+
 	/**
 	 * A Deleter for Kind object.
 	 *
 	 * @author Baptiste Wicht
 	 */
-	private static final class KindDeleter extends Deleter<SimpleData> {
+	private final class KindDeleter extends Deleter<SimpleData> {
 		/**
 		 * Construct a new KindDeleter.
 		 */
@@ -55,9 +64,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
 		@Override
 		public void delete(SimpleData o) {
-			addEditIfDeleted(
-					CoreUtils.<ISimpleDataService>getBean("kindsService").delete(o),
-					new GenericDataDeletedEdit<SimpleData>("kindsService", o));
+			ISimpleDataService kindService = applicationContext.getBean("kindsService", ISimpleDataService.class);
+
+			addEditIfDeleted(kindService.delete(o), new GenericDataDeletedEdit<SimpleData>(kindService, o));
 		}
 	}
 
@@ -66,7 +75,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 	 *
 	 * @author Baptiste Wicht
 	 */
-	private static final class TypeDeleter extends Deleter<SimpleData> {
+	private final class TypeDeleter extends Deleter<SimpleData> {
 		/**
 		 * Construct a new TypeDeleter.
 		 */
@@ -76,9 +85,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
 		@Override
 		public void delete(SimpleData o) {
-			addEditIfDeleted(
-					CoreUtils.<ISimpleDataService>getBean("typesService").delete(o),
-					new GenericDataDeletedEdit<SimpleData>("typesService", o));
+			ISimpleDataService typesService = applicationContext.getBean("typesService", ISimpleDataService.class);
+
+			addEditIfDeleted(typesService.delete(o), new GenericDataDeletedEdit<SimpleData>(typesService, o));
 		}
 	}
 
@@ -87,7 +96,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 	 *
 	 * @author Baptiste Wicht
 	 */
-	private static final class LanguageDeleter extends Deleter<SimpleData> {
+	private final class LanguageDeleter extends Deleter<SimpleData> {
 		/**
 		 * Construct a new LanguageDeleter.
 		 */
@@ -97,9 +106,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
 		@Override
 		public void delete(SimpleData o) {
-			addEditIfDeleted(
-					CoreUtils.<ISimpleDataService>getBean("languagesService").delete(o),
-					new GenericDataDeletedEdit<SimpleData>("languagesService", o));
+			ISimpleDataService languagesService = applicationContext.getBean("languagesService", ISimpleDataService.class);
+
+			addEditIfDeleted(languagesService.delete(o), new GenericDataDeletedEdit<SimpleData>(languagesService, o));
 		}
 	}
 
@@ -108,7 +117,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
      *
      * @author Baptiste Wicht
      */
-    private static final class CountryDeleter extends Deleter<SimpleData> {
+    private final class CountryDeleter extends Deleter<SimpleData> {
         /**
          * Construct a new CountryDeleter.
          */
@@ -118,9 +127,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(SimpleData o) {
-            addEditIfDeleted(
-					CoreUtils.<ISimpleDataService>getBean("countriesService").delete(o),
-					new GenericDataDeletedEdit<SimpleData>("countriesService", o));
+			ISimpleDataService countriesService = applicationContext.getBean("countriesService", ISimpleDataService.class);
+
+			addEditIfDeleted(countriesService.delete(o), new GenericDataDeletedEdit<SimpleData>(countriesService, o));
         }
     }
 
@@ -129,7 +138,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
      *
      * @author Baptiste Wicht
      */
-    private static final class BorrowerDeleter extends Deleter<Person> {
+    private final class BorrowerDeleter extends Deleter<Person> {
         /**
          * Construct a new BorrowerDeleter.
          */
@@ -139,9 +148,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(Person o) {
-            addEditIfDeleted(
-					CoreUtils.<IPersonService>getBean("borrowersService").delete(o),
-					new GenericDataDeletedEdit<Person>("borrowersService", o));
+			IPersonService borrowersService = applicationContext.getBean("borrowersService", IPersonService.class);
+
+			addEditIfDeleted(borrowersService.delete(o), new GenericDataDeletedEdit<Person>(borrowersService, o));
         }
     }
 
@@ -150,7 +159,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
      *
      * @author Baptiste Wicht
      */
-    private static final class SagaDeleter extends Deleter<SimpleData> {
+    private final class SagaDeleter extends Deleter<SimpleData> {
         /**
          * Construct a new SagaDeleter.
          */
@@ -160,9 +169,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(SimpleData o) {
-            addEditIfDeleted(
-					CoreUtils.<ISimpleDataService>getBean("sagasService").delete(o),
-					new GenericDataDeletedEdit<SimpleData>("sagasService", o));
+			ISimpleDataService sagasService = applicationContext.getBean("sagasService", ISimpleDataService.class);
+
+			addEditIfDeleted(sagasService.delete(o), new GenericDataDeletedEdit<SimpleData>(sagasService, o));
         }
     }
 
@@ -171,7 +180,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
      *
      * @author Baptiste Wicht
      */
-    private static final class LendingDeleter extends Deleter<Lending> {
+    private final class LendingDeleter extends Deleter<Lending> {
         /**
          * Construct a new <code>LendingDeleter</code>.
          */
@@ -181,9 +190,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(Lending o) {
-            addEditIfDeleted(
-					CoreUtils.<ILendingsService>getBean("lendingsService").delete(o),
-					new GenericDataDeletedEdit<Lending>("lendingsService", o));
+			ILendingsService lendingsService = applicationContext.getBean("lendingsService", ILendingsService.class);
+
+			addEditIfDeleted(lendingsService.delete(o), new GenericDataDeletedEdit<Lending>(lendingsService, o));
         }
     }
 }

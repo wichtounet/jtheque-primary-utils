@@ -16,7 +16,7 @@ package org.jtheque.primary.services.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.DataContainer;
+import org.jtheque.persistence.able.DataContainer;
 import org.jtheque.primary.od.able.Person;
 
 import java.util.Collection;

@@ -16,10 +16,9 @@ package org.jtheque.primary.view.impl.models;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.beans.IBeansManager;
-import org.jtheque.core.utils.db.DaoNotes;
-import org.jtheque.core.utils.db.Note;
+import org.jtheque.persistence.able.IDaoNotes;
+import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.impl.DaoNotes;
 
 import javax.swing.DefaultComboBoxModel;
 
@@ -29,15 +28,17 @@ import javax.swing.DefaultComboBoxModel;
  * @author Baptiste Wicht
  */
 public final class NotesComboBoxModel extends DefaultComboBoxModel {
-	private final DaoNotes daoNotes = DaoNotes.getInstance();
+	private final IDaoNotes daoNotes;
 
 	/**
 	 * Construct a new NotesComboBoxModel.
+	 *
+	 * @param daoNotes
 	 */
-	public NotesComboBoxModel(){
+	public NotesComboBoxModel(IDaoNotes daoNotes){
 		super();
 
-		Managers.getManager(IBeansManager.class).inject(this);
+		this.daoNotes = daoNotes;
 	}
 
 	@Override

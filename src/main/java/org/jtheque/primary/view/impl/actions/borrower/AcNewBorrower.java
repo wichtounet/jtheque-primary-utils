@@ -16,9 +16,8 @@ package org.jtheque.primary.view.impl.actions.borrower;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IBorrowerController;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -28,17 +27,20 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcNewBorrower extends JThequeAction {
+	private final IBorrowerController borrowerController;
+
 	/**
 	 * Construct a new AcNewBorrower.
+	 *
+	 * @param borrowerController
 	 */
-	public AcNewBorrower(){
+	public AcNewBorrower(IBorrowerController borrowerController) {
 		super("menu.others.borrower");
+		this.borrowerController = borrowerController;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event){
-        IBorrowerController borrowerController = CoreUtils.getBean("borrowerController");
-
+	public void actionPerformed(ActionEvent event) {
 		borrowerController.newBorrower();
 		borrowerController.displayView();
 	}

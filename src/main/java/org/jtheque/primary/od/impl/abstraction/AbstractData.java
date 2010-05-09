@@ -16,7 +16,7 @@ package org.jtheque.primary.od.impl.abstraction;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.AbstractEntity;
+import org.jtheque.persistence.AbstractEntity;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.view.impl.models.tree.TreeElement;
 

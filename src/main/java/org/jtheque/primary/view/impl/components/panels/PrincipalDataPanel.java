@@ -17,20 +17,20 @@ package org.jtheque.primary.view.impl.components.panels;
  */
 
 import org.jdesktop.swingx.JXTree;
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.error.JThequeError;
-import org.jtheque.core.managers.language.ILanguageManager;
-import org.jtheque.core.managers.view.able.IViewManager;
-import org.jtheque.core.managers.view.able.components.IModel;
+import org.jtheque.errors.JThequeError;
+import org.jtheque.i18n.ILanguageService;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.view.able.PrincipalDataView;
 import org.jtheque.primary.view.able.ToolbarView;
 import org.jtheque.primary.view.impl.listeners.DisplayListListener;
 import org.jtheque.primary.view.impl.models.tree.JThequeTreeModel;
 import org.jtheque.primary.view.impl.sort.SortManager;
+import org.jtheque.ui.able.IModel;
+import org.jtheque.utils.ui.SwingUtils;
+import org.jtheque.views.able.IViews;
 
+import javax.annotation.Resource;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -47,6 +47,12 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
 
 	/* Instances */
 	private static final SortManager SORTER = new SortManager();
+
+	@Resource
+	private IViews views;
+
+	@Resource
+	private ILanguageService languageService;
 
 	/**
 	 * Return the data tree.
@@ -141,12 +147,12 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
 
 	@Override
 	public final void display(){
-		((JTabbedPane) Managers.getManager(IViewManager.class).getMainComponent()).setSelectedComponent(this);
+		views.setSelectedMainComponent(this);
 	}
 
 	@Override
 	public final void refresh(){
-		Managers.getManager(IViewManager.class).refresh(this);
+		SwingUtils.refresh(this);
 	}
 
 	@Override
@@ -171,8 +177,8 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
 	 *
 	 * @return The message.
 	 */
-	protected static String getMessage(String key){
-		return Managers.getManager(ILanguageManager.class).getMessage(key);
+	protected String getMessage(String key){
+		return languageService.getMessage(key);
 	}
 
 	@Override

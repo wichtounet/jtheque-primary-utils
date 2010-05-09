@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.Dao;
+import org.jtheque.persistence.able.Dao;
 import org.jtheque.primary.od.able.Person;
 
 import java.util.Collection;
@@ -28,6 +28,8 @@ import java.util.Collection;
  */
 public interface IDaoPersons extends Dao<Person> {
 	String TABLE = "T_PERSONS";
+
+	Collection<Person> getPersons();
 
 	/**
 	 * Return all the persons.
@@ -75,4 +77,6 @@ public interface IDaoPersons extends Dao<Person> {
 	 * @param type The type of entities to delete.
 	 */
 	void clearAll(String type);
+
+    Person getPersonByTemporaryId(int id);
 }

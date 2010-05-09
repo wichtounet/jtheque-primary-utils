@@ -7,7 +7,7 @@ import org.jtheque.primary.od.impl.temp.PersonTemporaryContext;
  *
  * @author Baptiste Wicht
  */
-public interface Person extends Data, Notable {
+public interface Person extends PrimaryData, Notable {
 	/**
 	 * Sets the name of the person.
 	 *

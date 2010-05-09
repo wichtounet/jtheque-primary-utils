@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 
 /**
@@ -31,7 +31,7 @@ final class AbsolutePositionFactory implements Factory<Position> {
 	}
 
 	@Override
-	public Position factor(Element n, XMLReader reader) throws XMLException{
+	public Position factor(Element n, XMLReader reader) throws XMLException {
 		return new AbsolutePosition(Integer.parseInt(n.getText()));
 	}
 

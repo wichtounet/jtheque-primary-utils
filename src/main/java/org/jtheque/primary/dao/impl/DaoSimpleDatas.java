@@ -16,12 +16,12 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.CachedJDBCDao;
-import org.jtheque.core.managers.persistence.Query;
-import org.jtheque.core.managers.persistence.QueryMapper;
-import org.jtheque.core.managers.persistence.able.Entity;
-import org.jtheque.core.managers.persistence.context.IDaoPersistenceContext;
-import org.jtheque.primary.PrimaryUtils;
+import org.jtheque.persistence.CachedJDBCDao;
+import org.jtheque.persistence.Query;
+import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.able.QueryMapper;
+import org.jtheque.persistence.context.IDaoPersistenceContext;
+import org.jtheque.primary.IPrimaryUtils;
 import org.jtheque.primary.dao.able.IDaoSimpleDatas;
 import org.jtheque.primary.od.able.PrimaryData;
 import org.jtheque.primary.od.able.PrimarySimpleData;
@@ -30,6 +30,7 @@ import org.jtheque.primary.od.able.SimpleData.DataType;
 import org.jtheque.primary.od.impl.PrimarySimpleDataImpl;
 import org.jtheque.primary.od.impl.SimpleDataImpl;
 import org.jtheque.utils.StringUtils;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
@@ -46,7 +47,7 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements IDaoSimpleDatas {
-	private final ParameterizedRowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
+	private final RowMapper<SimpleData> rowMapper = new SimpleDataRowMapper();
 
 	private final QueryMapper queryMapper;
 
@@ -55,6 +56,9 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 
 	@Resource
 	private SimpleJdbcTemplate jdbcTemplate;
+
+	@Resource
+	private IPrimaryUtils primaryUtils;
 
 	private final DataType dataType;
 
@@ -74,13 +78,24 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 	@Override
 	public Collection<SimpleData> getSimpleDatas(){
 		if (dataType.isPrimary()){
-			return getAll(PrimaryUtils.getPrimaryImpl());
+			return getAll(primaryUtils.getPrimaryImpl());
 		}
 
 		return getAll();
 	}
 
-	/**
+    @Override
+    public SimpleData getSimpleDataByTemporaryId(int id) {
+        for(SimpleData simpleData : getAll()){
+            if(simpleData.getTemporaryContext().getId() == id){
+                return simpleData;
+            }
+        }
+
+        return null;
+    }
+
+    /**
 	 * Return all the simple datas of the primary impl.
 	 *
 	 * @param impl The primary implementation.
@@ -143,7 +158,7 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 	 */
 	private SimpleData getSimplePrimaryData(String name){
 		List<SimpleData> types = jdbcTemplate.query("SELECT * FROM " + dataType.getTable() + " WHERE NAME = ? AND IMPL = ?",
-				rowMapper, name, PrimaryUtils.getPrimaryImpl());
+				rowMapper, name, primaryUtils.getPrimaryImpl());
 
 		if (types.isEmpty()){
 			return null;
@@ -166,7 +181,7 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 	@Override
 	public SimpleData create(){
 		return dataType.isPrimary() ?
-                new PrimarySimpleDataImpl(dataType, PrimaryUtils.getPrimaryImpl()) :
+                new PrimarySimpleDataImpl(dataType, primaryUtils.getPrimaryImpl()) :
 				new SimpleDataImpl(dataType);
 	}
 
@@ -189,13 +204,18 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 	}
 
 	@Override
-	protected ParameterizedRowMapper<SimpleData> getRowMapper(){
+	protected RowMapper<SimpleData> getRowMapper(){
 		return rowMapper;
 	}
 
 	@Override
 	protected QueryMapper getQueryMapper(){
 		return queryMapper;
+	}
+
+	@Override
+	public boolean isPrimary() {
+		return dataType.isPrimary();
 	}
 
 	/**

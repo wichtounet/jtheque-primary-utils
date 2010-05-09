@@ -16,7 +16,7 @@ package org.jtheque.primary.od.impl.temp;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.context.TemporaryContext;
+import org.jtheque.persistence.context.TemporaryContext;
 
 /**
  * Temporary context of lending.

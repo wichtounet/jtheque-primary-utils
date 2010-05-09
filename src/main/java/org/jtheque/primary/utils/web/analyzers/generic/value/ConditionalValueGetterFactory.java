@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
@@ -31,7 +31,7 @@ import java.util.Collection;
  */
 final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
 		return !reader.getNodes("conditional", element).isEmpty();
 	}
 

@@ -1,6 +1,6 @@
 package org.jtheque.primary.od.able;
 
-import org.jtheque.core.managers.persistence.able.Entity;
+import org.jtheque.persistence.able.Entity;
 import org.jtheque.primary.view.impl.models.tree.TreeElement;
 
 /*

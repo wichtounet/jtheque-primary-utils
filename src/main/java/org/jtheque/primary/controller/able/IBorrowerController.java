@@ -16,8 +16,8 @@ package org.jtheque.primary.controller.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.controller.Controller;
 import org.jtheque.primary.od.able.Person;
+import org.jtheque.views.able.Controller;
 
 /**
  * A borrower controller specification.

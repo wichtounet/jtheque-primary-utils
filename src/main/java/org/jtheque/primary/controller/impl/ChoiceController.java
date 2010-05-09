@@ -16,12 +16,12 @@ package org.jtheque.primary.controller.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.IView;
-import org.jtheque.core.managers.view.able.controller.AbstractController;
 import org.jtheque.primary.controller.able.IChoiceController;
 import org.jtheque.primary.view.able.IChoiceView;
 import org.jtheque.primary.view.impl.choice.ChoiceAction;
 import org.jtheque.primary.view.impl.choice.ChoiceActionFactory;
+import org.jtheque.ui.able.IView;
+import org.jtheque.views.impl.AbstractController;
 
 import javax.annotation.Resource;
 

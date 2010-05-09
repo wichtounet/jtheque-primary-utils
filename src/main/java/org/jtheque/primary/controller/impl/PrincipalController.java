@@ -16,15 +16,15 @@ package org.jtheque.primary.controller.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.view.able.IViewManager;
-import org.jtheque.core.managers.view.able.components.TabComponent;
-import org.jtheque.core.managers.view.able.controller.AbstractController;
 import org.jtheque.primary.controller.able.ControllerState;
 import org.jtheque.primary.controller.able.FormBean;
 import org.jtheque.primary.controller.able.IPrincipalController;
 import org.jtheque.primary.od.able.Data;
+import org.jtheque.views.able.IViews;
+import org.jtheque.views.able.components.MainComponent;
+import org.jtheque.views.impl.AbstractController;
 
+import javax.annotation.Resource;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.TreePath;
@@ -41,6 +41,9 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
 	private final ControllerState modifyState;
 	private final ControllerState newObjectState;
 	private final ControllerState autoAddState;
+
+    @Resource
+    private IViews views;
 
 	/**
 	 * Construct a new PrincipalController.
@@ -64,7 +67,7 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
 
 	@Override
 	public final void displayView(){
-		Managers.getManager(IViewManager.class).getViews().setSelectedView((TabComponent) getView());
+		views.setSelectedView((MainComponent) getView());
 
 		super.displayView();
 	}

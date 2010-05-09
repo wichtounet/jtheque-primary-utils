@@ -16,9 +16,9 @@ package org.jtheque.primary.controller.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.controller.Controller;
 import org.jtheque.primary.od.able.Data;
 import org.jtheque.primary.view.impl.models.able.IPrincipalDataModel;
+import org.jtheque.views.able.Controller;
 
 import javax.swing.event.TreeSelectionListener;
 import java.util.Collection;

@@ -16,10 +16,9 @@ package org.jtheque.primary.view.impl.actions.principal;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.impl.actions.JThequeAction;
-import org.jtheque.core.utils.CoreUtils;
 import org.jtheque.primary.controller.able.IPrincipalController;
 import org.jtheque.primary.od.able.Data;
+import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;
 
@@ -29,7 +28,7 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class CreateNewPrincipalAction extends JThequeAction {
-	private final String controller;
+	private final IPrincipalController<? extends Data> controller;
 
 	/**
 	 * Construct a new CreateNewPrincipalAction.
@@ -37,7 +36,7 @@ public final class CreateNewPrincipalAction extends JThequeAction {
 	 * @param key The i18n key of the action.
 	 * @param controller The controller to use.
 	 */
-	public CreateNewPrincipalAction(String key, String controller){
+	public CreateNewPrincipalAction(String key, IPrincipalController<? extends Data> controller){
 		super(key);
 
 		this.controller = controller;
@@ -45,6 +44,6 @@ public final class CreateNewPrincipalAction extends JThequeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		CoreUtils.<IPrincipalController<? extends Data>>getBean(controller).create();
+		controller.create();
 	}
 }

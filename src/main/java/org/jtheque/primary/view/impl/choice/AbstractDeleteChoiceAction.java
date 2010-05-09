@@ -1,11 +1,12 @@
 package org.jtheque.primary.view.impl.choice;
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.persistence.able.Entity;
-import org.jtheque.core.managers.undo.IUndoRedoManager;
-import org.jtheque.core.managers.view.able.IViewManager;
-import org.jtheque.core.utils.CoreUtils;
+import org.jtheque.i18n.ILanguageService;
+import org.jtheque.persistence.able.Entity;
+import org.jtheque.ui.able.IUIUtils;
+import org.jtheque.undo.IUndoRedoService;
+import org.jtheque.utils.ui.SwingUtils;
 
+import javax.annotation.Resource;
 import javax.swing.undo.UndoableEdit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,15 @@ import java.util.Collection;
 public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
 	private final Collection<Deleter<? extends Entity>> deleters = new ArrayList<Deleter<? extends Entity>>(10);
 
+	@Resource
+	private ILanguageService languageService;
+
+	@Resource
+	private IUndoRedoService undoRedoService;
+	
+	@Resource
+	private IUIUtils uiUtils;
+
 	/**
 	 * Set the deleters to use to execute the action.
 	 *
@@ -51,9 +61,9 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
 
     @Override
     public void execute() {
-        final boolean yes = Managers.getManager(IViewManager.class).askUserForConfirmation(
-                CoreUtils.getMessage("choice.dialogs.delete") + ' ' + getSelectedItem().toString(),
-                CoreUtils.getMessage("choice.dialogs.delete.title"));
+        final boolean yes = uiUtils.getDelegate().askUserForConfirmation(
+                languageService.getMessage("choice.dialogs.delete") + ' ' + getSelectedItem().toString(),
+                languageService.getMessage("choice.dialogs.delete.title"));
 
         if (yes) {
 			for (Deleter<? extends Entity> deleter : deleters){
@@ -72,9 +82,9 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
 	 * @param deleted The boolean tag of the delete operation.
 	 * @param edit The undoable edit.
 	 */
-	protected static void addEditIfDeleted(boolean deleted, UndoableEdit edit){
+	protected void addEditIfDeleted(boolean deleted, UndoableEdit edit){
 		if (deleted){
-			Managers.getManager(IUndoRedoManager.class).addEdit(edit);
+			undoRedoService.addEdit(edit);
 		}
 	}
 }

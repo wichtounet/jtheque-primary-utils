@@ -16,15 +16,19 @@ package org.jtheque.primary;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.feature.Feature;
-import org.jtheque.core.managers.feature.IFeatureManager;
-import org.jtheque.core.managers.feature.Menu;
-import org.jtheque.core.managers.language.ILanguageManager;
-import org.jtheque.core.managers.schema.ISchemaManager;
-import org.jtheque.core.managers.schema.Schema;
-import org.jtheque.primary.od.able.SimpleData;
+import org.jtheque.features.Feature;
+import org.jtheque.features.IFeatureService;
+import org.jtheque.file.IFileService;
+import org.jtheque.file.able.ModuleBackuper;
+import org.jtheque.i18n.I18nResource;
+import org.jtheque.i18n.ILanguageService;
+import org.jtheque.primary.od.able.SimpleData.DataType;
 import org.jtheque.primary.utils.DataTypeManager;
+import org.jtheque.schemas.ISchemaService;
+import org.jtheque.schemas.Schema;
+import org.jtheque.utils.bean.Version;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import java.util.List;
 
@@ -33,92 +37,76 @@ import java.util.List;
  *
  * @author Baptiste Wicht
  */
-public final class PrimaryUtils {
-	private static final String BASE_NAME = "classpath:/org/jtheque/primary/i18n/utils";
+public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAware {
+    private String primaryImpl;
 
-	private static Schema schema;
+    private final ISchemaService schemaService;
+    private final ILanguageService languageService;
+    private final IFileService fileService;
+    private final IFeatureService featureService;
+	private ApplicationContext applicationContext;
 
-	private static Menu menu;
-
-	private static String primaryImpl;
-
-	/**
-	 * Construct a new PrimaryUtils.
-	 */
-	private PrimaryUtils(){
+	public PrimaryUtils(ISchemaService schemaService, ILanguageService languageService, IFeatureService featureService, IFileService fileService){
 		super();
+
+        this.schemaService = schemaService;
+        this.languageService = languageService;
+        this.featureService = featureService;
+        this.fileService = fileService;
+    }
+
+	@Override
+    public void prePlug(){
+        Schema schema = new PrimaryUtilsSchema();
+
+		schemaService.registerSchema("jtheque-primary-module", schema);
+
+        languageService.registerResource("jtheque-primary-utils", new Version("1.0"),
+                I18nResource.fromResource(getClass(), "org/jtheque/primary/i18n/utils_en.properties"),
+                I18nResource.fromResource(getClass(), "org/jtheque/primary/i18n/utils_fr.properties"));
 	}
 
-	/**
-	 * Preplug the elements of the utils.
-	 */
-	public static void prePlug(){
-		schema = new PrimaryUtilsSchema();
-
-		Managers.getManager(ISchemaManager.class).registerSchema(schema);
-
-		Managers.getManager(ILanguageManager.class).addBaseName(BASE_NAME);
-	}
-
-	/**
-	 * Plug the elements of the utils.
-	 */
-	public static void plug(){
+	@Override
+    public void plug(){
 		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.COUNTRY.getDataType(), "data.titles.country");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.LANGUAGE.getDataType(), "data.titles.language");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.TYPE.getDataType(), "data.titles.type");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.KIND.getDataType(), "data.titles.kind");
-		DataTypeManager.bindDataTypeToKey(SimpleData.DataType.SAGA.getDataType(), "data.titles.saga");
+		DataTypeManager.bindDataTypeToKey(DataType.COUNTRY.getDataType(), "data.titles.country");
+		DataTypeManager.bindDataTypeToKey(DataType.LANGUAGE.getDataType(), "data.titles.language");
+		DataTypeManager.bindDataTypeToKey(DataType.TYPE.getDataType(), "data.titles.type");
+		DataTypeManager.bindDataTypeToKey(DataType.KIND.getDataType(), "data.titles.kind");
+		DataTypeManager.bindDataTypeToKey(DataType.SAGA.getDataType(), "data.titles.saga");
+
+        ModuleBackuper backuper = new PrimaryBackuper();
+
+        fileService.registerBackuper("jtheque-primary-module", backuper);
 	}
 
-	/**
-	 * Unplug the elements of the utils.
-	 */
-	public static void unplug(){
+	@Override
+    public void unplug(){
 		DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
-		DataTypeManager.unbindDataType(SimpleData.DataType.COUNTRY.getDataType());
-		DataTypeManager.unbindDataType(SimpleData.DataType.LANGUAGE.getDataType());
-		DataTypeManager.unbindDataType(SimpleData.DataType.TYPE.getDataType());
-		DataTypeManager.unbindDataType(SimpleData.DataType.KIND.getDataType());
-		DataTypeManager.unbindDataType(SimpleData.DataType.SAGA.getDataType());
-
-		Managers.getManager(ISchemaManager.class).unregisterSchema(schema);
-
-		Managers.getManager(ILanguageManager.class).removeBaseName(BASE_NAME);
-
-		if (menu != null){
-			Managers.getManager(IFeatureManager.class).removeMenu(menu);
-		}
+		DataTypeManager.unbindDataType(DataType.COUNTRY.getDataType());
+		DataTypeManager.unbindDataType(DataType.LANGUAGE.getDataType());
+		DataTypeManager.unbindDataType(DataType.TYPE.getDataType());
+		DataTypeManager.unbindDataType(DataType.KIND.getDataType());
+		DataTypeManager.unbindDataType(DataType.SAGA.getDataType());
 	}
 
-	/**
-	 * Return the current primary implementation.
-	 *
-	 * @return The current primary implementation.
-	 */
-	public static String getPrimaryImpl(){
+	@Override
+    public String getPrimaryImpl(){
 		return primaryImpl;
 	}
 
-	/**
-	 * Set the current primary implementation.
-	 *
-	 * @param primaryImpl The current primary implementation.
-	 */
-	public static void setPrimaryImpl(String primaryImpl){
-		PrimaryUtils.primaryImpl = primaryImpl;
+	@Override
+    public void setPrimaryImpl(String primaryImpl){
+		this.primaryImpl = primaryImpl;
 	}
 
-	/**
-	 * Enable the menu of the primary utils module.
-	 *
-	 * @param addFeatures The sub features of the add menu.
-	 * @param removeFeatures The sub features of the remove menu.
-	 * @param editFeatures The sub features of the edit menu.
-	 */
-	public static void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
-		menu = new PrimaryMenu(addFeatures, removeFeatures, editFeatures);
-        Managers.getManager(IFeatureManager.class).addMenu(menu);
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
+
+	@Override
+    public void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures){
+        featureService.addMenu("jtheque-primary-module", new PrimaryMenu(addFeatures, removeFeatures, editFeatures, applicationContext));
 	}
 }

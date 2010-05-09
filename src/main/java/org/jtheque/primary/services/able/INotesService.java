@@ -16,7 +16,7 @@ package org.jtheque.primary.services.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.utils.db.Note;
+import org.jtheque.persistence.able.Note;
 
 /**
  * A notes service specification.

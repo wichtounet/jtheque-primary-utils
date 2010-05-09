@@ -28,14 +28,15 @@ public interface SimpleData extends Data {
 	 * @author Baptiste Wicht
 	 */
 	enum DataType {
-		LANGUAGE("T_LANGUAGES", "Languages", false),
-		COUNTRY("T_COUNTRIES", "Countries", false),
-		KIND("T_KINDS", "Kinds", true),
-		SAGA("T_SAGAS", "Sagas", true),
-		TYPE("T_TYPES", "Types", true);
+		LANGUAGE("T_LANGUAGES", "Languages", "daoLanguages", false),
+		COUNTRY("T_COUNTRIES", "Countries", "daoCountries", false),
+		KIND("T_KINDS", "Kinds", "daoKinds", true),
+		SAGA("T_SAGAS", "Sagas", "daoSagas", true),
+		TYPE("T_TYPES", "Types", "daoTypes", true);
 
 		private final String table;
 		private final String dataType;
+		private final String dao;
 		private final boolean primary;
 
 		/**
@@ -43,11 +44,13 @@ public interface SimpleData extends Data {
 		 *
 		 * @param table The table in the database.
 		 * @param dataType The data type.
-		 * @param primary Indicate if the simple data is a primary data or not.
+		 * @param dao The name of the bean of the dao. 
+         * @param primary Indicate if the simple data is a primary data or not.
 		 */
-		DataType(String table, String dataType, boolean primary){
+		DataType(String table, String dataType, String dao, boolean primary){
 			this.table = table;
 			this.dataType = dataType;
+            this.dao = dao;
 			this.primary = primary;
 		}
 
@@ -77,6 +80,10 @@ public interface SimpleData extends Data {
 		public String getDataType(){
 			return dataType;
 		}
+
+        public String getDaoBeanName(){
+            return dao;
+        }
 	}
 
 	/**

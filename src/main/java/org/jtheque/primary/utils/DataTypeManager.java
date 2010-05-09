@@ -16,9 +16,6 @@ package org.jtheque.primary.utils;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.language.ILanguageManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,18 +60,7 @@ public final class DataTypeManager {
 	 *
 	 * @return The internationalization for the data type.
 	 */
-	private static String getKeyForDataType(String dataType){
+	public static String getKeyForDataType(String dataType){
 		return DATA_TYPES.get(dataType);
-	}
-
-	/**
-	 * Return the text for a data type.
-	 *
-	 * @param dataType The data type.
-	 *
-	 * @return The internationalized text for the data type.
-	 */
-	public static String getTextForDataType(String dataType){
-		return Managers.getManager(ILanguageManager.class).getMessage(getKeyForDataType(dataType));
 	}
 }

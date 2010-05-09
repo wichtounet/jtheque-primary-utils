@@ -17,10 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.log.ILoggingManager;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.field.FieldGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.field.FieldGetterFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
@@ -28,6 +26,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.io.FileUtils;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,7 +70,7 @@ public final class GenericGenerator {
 
 			init();
 		} catch (XMLException e){
-			Managers.getManager(ILoggingManager.class).getLogger(getClass()).error(e);
+			LoggerFactory.getLogger(getClass()).error(e.getMessage(), e);
 		} finally {
 			FileUtils.close(reader);
 		}
@@ -89,7 +88,7 @@ public final class GenericGenerator {
 
 			init();
 		} catch (XMLException e){
-			Managers.getManager(ILoggingManager.class).getLogger(getClass()).error(e);
+			LoggerFactory.getLogger(getClass()).error(e.getMessage(), e);
 		} finally {
 			FileUtils.close(reader);
 		}

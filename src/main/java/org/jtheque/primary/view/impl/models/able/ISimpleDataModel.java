@@ -16,8 +16,9 @@ package org.jtheque.primary.view.impl.models.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.components.IModel;
+import org.jtheque.primary.controller.impl.SimpleController;
 import org.jtheque.primary.od.able.SimpleData;
+import org.jtheque.ui.able.IModel;
 
 /**
  * A model for simple data.
@@ -44,12 +45,12 @@ public interface ISimpleDataModel extends IModel {
 	 *
 	 * @param id The bean ide of the controller.
 	 */
-    void setCurrentController(String id);
+    void setCurrentController(SimpleController id);
 
 	/**
 	 * Return the id of the controller.
 	 *
 	 * @return The bean id of the current controller.
 	 */
-    String getId();
+    SimpleController getController();
 }

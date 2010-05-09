@@ -90,15 +90,17 @@
         <constructor-arg value="sagaController" />
     </bean>
 
-    <!-- Proxy views -->
+    <!-- Views -->
 
-    <jtheque:proxy id="borrowerView" type="org.jtheque.primary.view.impl.frames.BorrowerView"/>
-    <jtheque:proxy id="choiceView" type="org.jtheque.primary.view.impl.frames.ChoiceView"/>
-    <jtheque:proxy id="simpleDataView" type="org.jtheque.primary.view.impl.frames.SimpleDataView"/>
+    <jtheque:proxy id="borrowerView" type="org.jtheque.primary.view.impl.frames.BorrowerView">
+        <bean class="org.jtheque.primary.view.impl.frames.BorrowerView"/>
+    </jtheque:proxy>
+    
+    <jtheque:proxy id="choiceView" type="org.jtheque.primary.view.impl.frames.ChoiceView">
+        <bean class="org.jtheque.primary.view.impl.frames.ChoiceView"/>
+    </jtheque:proxy>
 
-    <!-- Real Views -->
-
-    <bean id="_borrowerView" class="org.jtheque.primary.view.impl.frames.BorrowerView"/>
-    <bean id="_choiceView" class="org.jtheque.primary.view.impl.frames.ChoiceView"/>
-    <bean id="_simpleDataView" class="org.jtheque.primary.view.impl.frames.SimpleDataView"/>
+    <jtheque:proxy id="simpleDataView" type="org.jtheque.primary.view.impl.frames.SimpleDataView">
+        <bean class="org.jtheque.primary.view.impl.frames.SimpleDataView"/>
+    </jtheque:proxy>
 </beans>

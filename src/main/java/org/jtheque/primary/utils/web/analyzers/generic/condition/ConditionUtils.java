@@ -1,8 +1,8 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 
 /*
  * This file is part of JTheque.
@@ -44,7 +44,7 @@ public final class ConditionUtils {
 	 *
 	 * @throws XMLException If an errors occurs during the parse of the XML Elements.
 	 */
-	public static Condition getCondition(Object currentNode, String location, XMLReader reader) throws XMLException{
+	public static Condition getCondition(Object currentNode, String location, XMLReader reader) throws XMLException {
 		Object conditionNode = reader.getNode(location, currentNode);
 
 		if (conditionNode != null){

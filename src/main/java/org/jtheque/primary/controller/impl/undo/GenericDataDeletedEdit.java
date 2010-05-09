@@ -16,8 +16,7 @@ package org.jtheque.primary.controller.impl.undo;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.Entity;
-import org.jtheque.core.utils.CoreUtils;
+import org.jtheque.persistence.able.Entity;
 import org.jtheque.primary.services.able.DataService;
 
 import javax.swing.undo.AbstractUndoableEdit;
@@ -28,38 +27,38 @@ import javax.swing.undo.AbstractUndoableEdit;
  * @author Baptiste Wicht
  */
 public final class GenericDataDeletedEdit<T extends Entity> extends AbstractUndoableEdit {
-	private final T movie;
-	private final String dataService;
+	private final T entity;
+	private final DataService<T> dataService;
 
-	/**
+    /**
 	 * Construct a new DeletedFilmEdit.
 	 *
 	 * @param dataService The data service to use.
-	 * @param movie The deleted movie.
+	 * @param entity The deleted entity.
 	 */
-	public GenericDataDeletedEdit(String dataService, T movie){
+	public GenericDataDeletedEdit(DataService<T> dataService, T entity){
 		super();
 
 		this.dataService = dataService;
-		this.movie = movie;
+		this.entity = entity;
 	}
 
 	@Override
 	public void undo(){
 		super.undo();
 
-		CoreUtils.<DataService<T>>getBean(dataService).create(movie);
+		dataService.create(entity);
 	}
 
 	@Override
 	public void redo(){
 		super.redo();
 
-		CoreUtils.<DataService<T>>getBean(dataService).delete(movie);
+		dataService.delete(entity);
 	}
 
 	@Override
 	public String getPresentationName(){
-		return CoreUtils.getMessage("undo.edits.delete");
+		return "undo.edits.delete";
 	}
 }

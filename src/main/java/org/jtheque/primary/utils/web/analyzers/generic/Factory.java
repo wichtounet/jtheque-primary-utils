@@ -1,8 +1,8 @@
 package org.jtheque.primary.utils.web.analyzers.generic;
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 
 /*
  * This file is part of JTheque.

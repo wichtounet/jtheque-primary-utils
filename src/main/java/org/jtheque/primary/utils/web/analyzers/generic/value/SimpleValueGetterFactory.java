@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.position.Position;
 import org.jtheque.primary.utils.web.analyzers.generic.position.PositionFactory;
@@ -28,7 +28,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.position.PositionFactory;
  */
 final class SimpleValueGetterFactory implements Factory<ValueGetter> {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException{
+	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
 		return !reader.getNodes("value", element).isEmpty();
 	}
 

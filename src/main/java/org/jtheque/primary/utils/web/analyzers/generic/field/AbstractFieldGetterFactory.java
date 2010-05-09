@@ -1,8 +1,8 @@
 package org.jtheque.primary.utils.web.analyzers.generic.field;
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.field.SimpleFieldGetterFactory.SimpleFieldGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.Operation;
@@ -39,7 +39,7 @@ public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter>
 	 *
 	 * @throws XMLException If an errors occurs during the parse of the XML Elements.
 	 */
-	static void initOperations(SimpleFieldGetter getter, Object node, XMLReader reader) throws XMLException{
+	static void initOperations(SimpleFieldGetter getter, Object node, XMLReader reader) throws XMLException {
 		for (Element n : reader.getNodes("operations/*", node)){
 			Operation operation = OperationFactory.getValueGetter(n, reader);
 

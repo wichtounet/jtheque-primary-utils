@@ -16,11 +16,12 @@ package org.jtheque.primary.dao.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.CachedJDBCDao;
-import org.jtheque.core.managers.persistence.Query;
-import org.jtheque.core.managers.persistence.QueryMapper;
-import org.jtheque.core.managers.persistence.able.Entity;
-import org.jtheque.core.managers.persistence.context.IDaoPersistenceContext;
+import org.jtheque.persistence.CachedJDBCDao;
+import org.jtheque.persistence.Query;
+import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.able.QueryMapper;
+import org.jtheque.persistence.context.IDaoPersistenceContext;
+import org.jtheque.primary.IPrimaryUtils;
 import org.jtheque.primary.PrimaryUtils;
 import org.jtheque.primary.dao.able.IDaoLendings;
 import org.jtheque.primary.dao.able.IDaoPersons;
@@ -51,6 +52,10 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
 	@Resource
 	private IDaoPersons daoPersons;
 
+	@Resource
+	private IPrimaryUtils primaryUtils;
+
+
 	/**
 	 * Construct a new DaoLendings.
 	 */
@@ -60,7 +65,7 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
 
 	@Override
 	public void create(Lending entity){
-		entity.setPrimaryImpl(PrimaryUtils.getPrimaryImpl());
+		entity.setPrimaryImpl(primaryUtils.getPrimaryImpl());
 
 		super.create(entity);
 	}
@@ -93,7 +98,12 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
 
 	@Override
 	public Collection<Lending> getLendings(){
-		return getLendings(PrimaryUtils.getPrimaryImpl());
+		return getLendings(primaryUtils.getPrimaryImpl());
+	}
+
+	@Override
+	public Collection<Lending> getAllLendings(){
+		return getAll();
 	}
 
 	/**

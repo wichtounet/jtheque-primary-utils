@@ -1,8 +1,6 @@
 package org.jtheque.primary.services.able;
 
-import org.jtheque.core.managers.persistence.able.Entity;
-
-/*
+import org.jtheque.persistence.able.Entity;/*
  * This file is part of JTheque.
  *
  * JTheque is free software: you can redistribute it and/or modify

@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jdom.Element;
-import org.jtheque.core.utils.file.XMLException;
-import org.jtheque.core.utils.file.XMLReader;
+import org.jtheque.io.XMLException;
+import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
@@ -34,7 +34,7 @@ final class SplitterFactory implements Factory<Transformer> {
 	}
 
 	@Override
-	public Transformer factor(Element n, XMLReader reader) throws XMLException{
+	public Transformer factor(Element n, XMLReader reader) throws XMLException {
 		Splitter splitter = new Splitter();
 
 		splitter.setSplitter(reader.readString("split", n));

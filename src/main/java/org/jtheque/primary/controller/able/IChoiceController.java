@@ -16,7 +16,7 @@ package org.jtheque.primary.controller.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.view.able.controller.Controller;
+import org.jtheque.views.able.Controller;
 
 /**
  * A choice controller specification.

@@ -16,15 +16,14 @@ package org.jtheque.primary.controller.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.undo.IUndoRedoManager;
-import org.jtheque.core.managers.view.able.controller.AbstractController;
 import org.jtheque.primary.controller.able.IBorrowerController;
 import org.jtheque.primary.controller.impl.undo.GenericDataCreatedEdit;
 import org.jtheque.primary.od.able.Person;
 import org.jtheque.primary.services.able.IPersonService;
 import org.jtheque.primary.view.able.IBorrowerView;
 import org.jtheque.primary.view.able.ViewMode;
+import org.jtheque.undo.IUndoRedoService;
+import org.jtheque.views.impl.AbstractController;
 
 import javax.annotation.Resource;
 
@@ -38,6 +37,9 @@ public final class BorrowerController extends AbstractController implements IBor
 
 	@Resource
 	private IPersonService borrowersService;
+
+	@Resource
+	private IUndoRedoService undoRedoService;
 
 	@Resource
 	private IBorrowerView borrowerView;
@@ -73,7 +75,7 @@ public final class BorrowerController extends AbstractController implements IBor
 		if (state == ViewMode.NEW){
 			borrowersService.create(borrower);
 
-			Managers.getManager(IUndoRedoManager.class).addEdit(new GenericDataCreatedEdit<Person>("personsService", borrower));
+			undoRedoService.addEdit(new GenericDataCreatedEdit<Person>(borrowersService, borrower));
 		} else {
 			borrowersService.save(borrower);
 		}

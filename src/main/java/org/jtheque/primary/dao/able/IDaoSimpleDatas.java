@@ -16,7 +16,7 @@ package org.jtheque.primary.dao.able;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.persistence.able.Dao;
+import org.jtheque.persistence.able.Dao;
 import org.jtheque.primary.od.able.SimpleData;
 
 import java.util.Collection;
@@ -51,4 +51,8 @@ public interface IDaoSimpleDatas extends Dao<SimpleData> {
 	 * @return The simple data with the specified title.
 	 */
 	SimpleData getSimpleData(String title);
+
+    SimpleData getSimpleDataByTemporaryId(int id);
+
+	boolean isPrimary();
 }

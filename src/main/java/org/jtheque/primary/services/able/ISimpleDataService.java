@@ -1,6 +1,6 @@
 package org.jtheque.primary.services.able;
 
-import org.jtheque.core.managers.persistence.able.DataContainer;
+import org.jtheque.persistence.able.DataContainer;
 import org.jtheque.primary.od.able.SimpleData;
 
 /*

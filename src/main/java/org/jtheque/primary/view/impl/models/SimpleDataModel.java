@@ -16,6 +16,7 @@ package org.jtheque.primary.view.impl.models;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.jtheque.primary.controller.impl.SimpleController;
 import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
 
@@ -26,7 +27,7 @@ import org.jtheque.primary.view.impl.models.able.ISimpleDataModel;
  */
 public final class SimpleDataModel implements ISimpleDataModel {
 	private SimpleData data;
-    private String id;
+    private SimpleController id;
 
 	@Override
 	public SimpleData getSimpleData(){
@@ -39,12 +40,12 @@ public final class SimpleDataModel implements ISimpleDataModel {
 	}
 
     @Override
-    public void setCurrentController(String id) {
+    public void setCurrentController(SimpleController id) {
         this.id = id;
     }
 
     @Override
-    public String getId() {
+    public SimpleController getController() {
         return id;
     }
 }
