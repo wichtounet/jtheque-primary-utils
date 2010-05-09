@@ -33,7 +33,7 @@ final class AppendLineFactory implements Factory<IteratorOperation> {
 	}
 
 	@Override
-	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
+	public IteratorOperation factor(Element n, XMLReader reader) {
 		return new AppendLineIteratorOperation();
 	}
 

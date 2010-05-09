@@ -4,7 +4,6 @@ import org.jtheque.i18n.ILanguageService;
 import org.jtheque.persistence.able.Entity;
 import org.jtheque.ui.able.IUIUtils;
 import org.jtheque.undo.IUndoRedoService;
-import org.jtheque.utils.ui.SwingUtils;
 
 import javax.annotation.Resource;
 import javax.swing.undo.UndoableEdit;
@@ -82,7 +81,7 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
 	 * @param deleted The boolean tag of the delete operation.
 	 * @param edit The undoable edit.
 	 */
-	protected void addEditIfDeleted(boolean deleted, UndoableEdit edit){
+	protected final void addEditIfDeleted(boolean deleted, UndoableEdit edit){
 		if (deleted){
 			undoRedoService.addEdit(edit);
 		}

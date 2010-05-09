@@ -26,7 +26,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  */
 final class DeleterFactory implements Factory<Operation> {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+	public boolean canFactor(Element element, XMLReader reader) {
 		return "delete".equals(element.getName());
 	}
 

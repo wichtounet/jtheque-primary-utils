@@ -18,7 +18,6 @@ package org.jtheque.primary.view.impl.models;
 
 import org.jtheque.persistence.able.IDaoNotes;
 import org.jtheque.persistence.able.Note;
-import org.jtheque.persistence.impl.DaoNotes;
 
 import javax.swing.DefaultComboBoxModel;
 

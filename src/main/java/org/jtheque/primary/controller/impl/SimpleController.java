@@ -36,7 +36,6 @@ public final class SimpleController extends AbstractController implements ISimpl
 	private ViewMode state = ViewMode.NEW;
 
 	private final ISimpleDataService simpleService;
-    private final String id;
 
 	@Resource
 	private ISimpleDataView simpleDataView;
@@ -48,13 +47,11 @@ public final class SimpleController extends AbstractController implements ISimpl
 	 * Construct a new SimpleController.
 	 *
 	 * @param simpleService The simple service to use
-	 * @param id The bean identifier of this controller. 
 	 */
-	public SimpleController(ISimpleDataService simpleService, String id){
+	public SimpleController(ISimpleDataService simpleService){
 		super();
 
 		this.simpleService = simpleService;
-        this.id = id;
     }
 
 	@Override

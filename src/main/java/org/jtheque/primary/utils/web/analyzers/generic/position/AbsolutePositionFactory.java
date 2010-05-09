@@ -31,7 +31,7 @@ final class AbsolutePositionFactory implements Factory<Position> {
 	}
 
 	@Override
-	public Position factor(Element n, XMLReader reader) throws XMLException {
+	public Position factor(Element n, XMLReader reader) {
 		return new AbsolutePosition(Integer.parseInt(n.getText()));
 	}
 

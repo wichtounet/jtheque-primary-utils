@@ -33,7 +33,7 @@ final class NextLineFactory implements Factory<IteratorOperation> {
 	}
 
 	@Override
-	public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
+	public IteratorOperation factor(Element n, XMLReader reader) {
 		return new NextLineIteratorOperation();
 	}
 

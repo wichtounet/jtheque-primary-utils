@@ -26,7 +26,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
  */
 final class StartsFactory implements Factory<Condition> {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+	public boolean canFactor(Element element, XMLReader reader) {
 		return "starts".equals(element.getName());
 	}
 

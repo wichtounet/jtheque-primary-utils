@@ -35,7 +35,7 @@ public final class PrimarySimpleDataImpl extends SimpleDataImpl implements Prima
 	 * @param type The simple data type.
 	 * @param primaryImpl The primary implementation.
 	 */
-	public PrimarySimpleDataImpl(SimpleData.DataType type, String primaryImpl){
+	public PrimarySimpleDataImpl(DataType type, String primaryImpl){
 		super(type);
 
 		this.primaryImpl = primaryImpl;

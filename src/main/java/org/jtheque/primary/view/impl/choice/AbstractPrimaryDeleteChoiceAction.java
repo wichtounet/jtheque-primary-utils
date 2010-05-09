@@ -8,7 +8,6 @@ import org.jtheque.primary.od.able.SimpleData;
 import org.jtheque.primary.services.able.ILendingsService;
 import org.jtheque.primary.services.able.IPersonService;
 import org.jtheque.primary.services.able.ISimpleDataService;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -45,7 +44,7 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+	public void setApplicationContext(ApplicationContext applicationContext){
 		this.applicationContext = applicationContext;
 	}
 

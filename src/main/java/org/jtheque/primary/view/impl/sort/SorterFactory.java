@@ -25,9 +25,9 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class SorterFactory {
-	private final Collection<Sorter> sorters;
-
 	private static final SorterFactory INSTANCE = new SorterFactory();
+
+	private final Collection<Sorter> sorters;
 
 	/**
 	 * Utility class, cannot be instanciated.

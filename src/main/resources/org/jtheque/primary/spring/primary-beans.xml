@@ -71,23 +71,18 @@
 
     <bean id="countryController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="countriesService"/>
-        <constructor-arg value="countryController" />
     </bean>
     <bean id="languageController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="languagesService"/>
-        <constructor-arg value="languageController" />
     </bean>
     <bean id="typeController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="typesService"/>
-        <constructor-arg value="typeController" />
     </bean>
     <bean id="kindController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="kindsService"/>
-        <constructor-arg value="kindController" />
     </bean>
     <bean id="sagaController" class="org.jtheque.primary.controller.impl.SimpleController">
         <constructor-arg ref="sagasService"/>
-        <constructor-arg value="sagaController" />
     </bean>
 
     <!-- Views -->

@@ -1,7 +1,6 @@
 package org.jtheque.primary.view.impl.actions.choice;
 
 import org.jtheque.primary.controller.able.IChoiceController;
-import org.jtheque.primary.controller.impl.ChoiceController;
 import org.jtheque.ui.utils.actions.JThequeAction;
 
 import java.awt.event.ActionEvent;

@@ -19,7 +19,6 @@ package org.jtheque.primary.view.impl.renderers;
 import org.jdesktop.swingx.JXImagePanel;
 import org.jtheque.persistence.able.IDaoNotes;
 import org.jtheque.persistence.able.Note;
-import org.jtheque.persistence.impl.DaoNotes;
 import org.jtheque.ui.utils.components.Borders;
 import org.jtheque.ui.utils.filthy.Filthy;
 

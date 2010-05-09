@@ -40,13 +40,11 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implements PrincipalDataView, DisplayListListener {
+	private static final SortManager SORTER = new SortManager();
+
 	private JThequeTreeModel treeModel;
 	private String sortMode = "None";
-
 	private M model;
-
-	/* Instances */
-	private static final SortManager SORTER = new SortManager();
 
 	@Resource
 	private IViews views;

@@ -35,7 +35,7 @@ import java.util.Collection;
  */
 final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
 	@Override
-	public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+	public boolean canFactor(Element element, XMLReader reader) {
 		return "getter".equals(element.getName());
 	}
 

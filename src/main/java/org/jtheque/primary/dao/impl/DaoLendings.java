@@ -22,7 +22,6 @@ import org.jtheque.persistence.able.Entity;
 import org.jtheque.persistence.able.QueryMapper;
 import org.jtheque.persistence.context.IDaoPersistenceContext;
 import org.jtheque.primary.IPrimaryUtils;
-import org.jtheque.primary.PrimaryUtils;
 import org.jtheque.primary.dao.able.IDaoLendings;
 import org.jtheque.primary.dao.able.IDaoPersons;
 import org.jtheque.primary.od.able.Lending;

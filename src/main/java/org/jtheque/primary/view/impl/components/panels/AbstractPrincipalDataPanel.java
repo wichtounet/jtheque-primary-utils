@@ -30,12 +30,12 @@ import org.jtheque.ui.able.IModel;
  * @param <M> The type of model.
  */
 public abstract class AbstractPrincipalDataPanel<M extends IModel> extends PrincipalDataPanel<M> {
-	private ToolbarView toolBar;
-	private JXTree tree;
+	private static final SortManager SORTER = new SortManager();
 
 	private final String dataType;
 
-	private static final SortManager SORTER = new SortManager();
+	private ToolbarView toolBar;
+	private JXTree tree;
 
 	/**
 	 * Construct a new AbstractPrincipalDataPanel for a specific data type.

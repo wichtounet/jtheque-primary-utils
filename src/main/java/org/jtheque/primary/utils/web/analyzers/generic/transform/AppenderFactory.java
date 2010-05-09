@@ -31,7 +31,7 @@ final class AppenderFactory implements Factory<Transformer> {
 	}
 
 	@Override
-	public Transformer factor(Element n, XMLReader reader) throws XMLException {
+	public Transformer factor(Element n, XMLReader reader) {
 		return new Appender(n.getText());
 	}
 

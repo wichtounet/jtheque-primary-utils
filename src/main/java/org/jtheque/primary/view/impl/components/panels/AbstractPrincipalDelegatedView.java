@@ -7,7 +7,6 @@ import org.jtheque.primary.view.impl.listeners.CurrentObjectListener;
 import org.jtheque.primary.view.impl.listeners.ObjectChangedEvent;
 import org.jtheque.ui.able.IModel;
 import org.jtheque.ui.able.IView;
-import org.jtheque.views.able.components.MainComponent;
 import org.jtheque.views.impl.components.panel.AbstractDelegatedView;
 
 import javax.swing.JComponent;
@@ -35,7 +34,7 @@ import javax.swing.JComponent;
  * @param <T> The type of view.
  */
 public abstract class AbstractPrincipalDelegatedView<T extends IView> extends AbstractDelegatedView<T>
-		implements PrincipalDataView, CurrentObjectListener, MainComponent {
+		implements PrincipalDataView, CurrentObjectListener {
 	private AbstractPrincipalDataPanel<? extends IModel> view;
 
 	private final int position;

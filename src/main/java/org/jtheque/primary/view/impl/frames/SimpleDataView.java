@@ -39,12 +39,12 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDataModel> implements ISimpleDataView {
-	private JTextField fieldName;
-
 	private static final int NAME_LENGTH_LIMIT = 100;
 	private static final int FIELD_COLUMNS = 15;
 
     private final ILanguageService languageService;
+
+	private JTextField fieldName;
 
     /**
 	 * Construct a new SimpleDataView.

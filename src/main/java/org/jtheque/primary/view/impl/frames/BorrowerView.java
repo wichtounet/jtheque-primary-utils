@@ -40,12 +40,12 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerModel> implements IBorrowerView {
+	private static final int DEFAULT_COLUMNS = 15;
+	private static final int DEFAULT_FIELD_LENGTH = 50;
+
 	private JTextField fieldNom;
 	private JTextField fieldFirstName;
 	private JTextField fieldEmail;
-
-	private static final int DEFAULT_COLUMNS = 15;
-	private static final int DEFAULT_FIELD_LENGTH = 50;
 
 	/**
 	 * Construct a new BorrowerView.
