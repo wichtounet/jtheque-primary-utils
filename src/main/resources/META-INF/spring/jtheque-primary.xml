@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:utils="http://www.springframework.org/schema/utils"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/osgi
+            http://www.springframework.org/schema/osgi/spring-osgi.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/utils
+            http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <osgi:reference id="languageService" interface="org.jtheque.i18n.able.ILanguageService"/>
+    <osgi:reference id="schemaService" interface="org.jtheque.schemas.able.ISchemaService"/>
+    <osgi:reference id="featureService" interface="org.jtheque.features.able.IFeatureService"/>
+    <osgi:reference id="fileService" interface="org.jtheque.file.able.IFileService"/>
+    <osgi:reference id="daoNotes" interface="org.jtheque.persistence.able.IDaoNotes"/>
+    <osgi:reference id="undoRedoService" interface="org.jtheque.undo.able.IUndoRedoService"/>
+    <osgi:reference id="uiUtils" interface="org.jtheque.ui.able.IUIUtils"/>
+    <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.IDaoPersistenceContext"/>
+    <osgi:reference id="simpleJdbcTemplate" interface="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"/>
+    <osgi:reference id="views" interface="org.jtheque.views.able.IViews"/>
+
+    <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils" lazy-init="false"/>
+
+    <!-- Services -->
+
+    <bean id="borrowersService" class="org.jtheque.primary.impl.services.PersonService" lazy-init="false">
+        <constructor-arg value="Borrower"/>
+        <constructor-arg value="Borrowers"/>
+    </bean>
+
+    <bean id="lendingsService" class="org.jtheque.primary.impl.services.LendingsService" lazy-init="false"/>
+
+    <bean id="countriesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+        <constructor-arg ref="daoCountries"/>
+        <constructor-arg value="COUNTRY"/>
+    </bean>
+    <bean id="languagesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+        <constructor-arg ref="daoLanguages"/>
+        <constructor-arg value="LANGUAGE"/>
+    </bean>
+    <bean id="typesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+        <constructor-arg ref="daoTypes"/>
+        <constructor-arg value="TYPE"/>
+    </bean>
+    <bean id="kindsService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+        <constructor-arg ref="daoKinds"/>
+        <constructor-arg value="KIND"/>
+    </bean>
+    <bean id="sagasService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+        <constructor-arg ref="daoSagas"/>
+        <constructor-arg value="SAGA"/>
+    </bean>
+    <bean id="notesService" class="org.jtheque.primary.impl.services.NotesService"/>
+
+    <!-- DAOs -->
+
+    <bean id="daoPersons" class="org.jtheque.primary.impl.dao.DaoPersons"/>
+    <bean id="daoLendings" class="org.jtheque.primary.impl.dao.DaoLendings"/>
+
+    <bean id="daoCountries" class="org.jtheque.primary.impl.dao.DaoSimpleDatas">
+        <constructor-arg value="COUNTRY"/>
+    </bean>
+    <bean id="daoLanguages" class="org.jtheque.primary.impl.dao.DaoSimpleDatas">
+        <constructor-arg value="LANGUAGE"/>
+    </bean>
+    <bean id="daoTypes" class="org.jtheque.primary.impl.dao.DaoSimpleDatas">
+        <constructor-arg value="TYPE"/>
+    </bean>
+    <bean id="daoKinds" class="org.jtheque.primary.impl.dao.DaoSimpleDatas">
+        <constructor-arg value="KIND"/>
+    </bean>
+    <bean id="daoSagas" class="org.jtheque.primary.impl.dao.DaoSimpleDatas">
+        <constructor-arg value="SAGA"/>
+    </bean>
+
+    <!-- Controllers -->
+
+    <bean id="borrowerController" class="org.jtheque.primary.impl.controller.BorrowerController"/>
+    <bean id="choiceController" class="org.jtheque.primary.impl.controller.ChoiceController"/>
+
+    <bean id="countryController" class="org.jtheque.primary.impl.controller.SimpleController">
+        <constructor-arg ref="countriesService"/>
+    </bean>
+    <bean id="languageController" class="org.jtheque.primary.impl.controller.SimpleController">
+        <constructor-arg ref="languagesService"/>
+    </bean>
+    <bean id="typeController" class="org.jtheque.primary.impl.controller.SimpleController">
+        <constructor-arg ref="typesService"/>
+    </bean>
+    <bean id="kindController" class="org.jtheque.primary.impl.controller.SimpleController">
+        <constructor-arg ref="kindsService"/>
+    </bean>
+    <bean id="sagaController" class="org.jtheque.primary.impl.controller.SimpleController">
+        <constructor-arg ref="sagasService"/>
+    </bean>
+
+    <!-- Views -->
+
+    <bean class="org.jtheque.primary.impl.views.BorrowerView"/>
+    <bean class="org.jtheque.primary.impl.views.ChoiceView"/>
+    <bean class="org.jtheque.primary.impl.views.SimpleDataView"/>
+
+    <!-- OSGI Services Registrations -->
+
+    <osgi:service interface="org.jtheque.primary.able.IPrimaryUtils" ref="primaryUtils"/>
+</beans>

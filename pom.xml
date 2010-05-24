@@ -64,7 +64,8 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-                        <Export-Package>org.jtheque.primary, org.jtheque.primary.*</Export-Package>
+                        <Export-Package>org.jtheque.primary.able, org.jtheque.primary.able.*,
+                            org.jtheque.primary.utils, org.jtheque.primary.utils.*</Export-Package>
                         <Bundle-Vendor>Baptiste Wicht</Bundle-Vendor>
                         <Spring-Context>*;create-asynchronously:=false;publish-context:=false</Spring-Context>
                         <Module-Core>2.1.0</Module-Core>
