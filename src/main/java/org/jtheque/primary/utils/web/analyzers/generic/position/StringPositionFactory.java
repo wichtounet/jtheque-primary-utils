@@ -17,9 +17,9 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 /**
  * @author Baptiste Wicht
@@ -31,7 +31,7 @@ final class StringPositionFactory implements Factory<Position> {
 	}
 
 	@Override
-	public Position factor(Element node, XMLReader reader) throws XMLException{
+	public Position factor(Element node, XMLReader reader) throws XMLException {
 		StringPosition p = new StringPosition(reader.readString("text", node));
 
 		if ("true".equals(reader.readString("@first", node))){

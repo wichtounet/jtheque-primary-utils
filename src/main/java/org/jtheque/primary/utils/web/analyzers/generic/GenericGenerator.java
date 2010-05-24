@@ -17,8 +17,6 @@ package org.jtheque.primary.utils.web.analyzers.generic;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.field.FieldGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.field.FieldGetterFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
@@ -26,6 +24,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.io.FileUtils;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;

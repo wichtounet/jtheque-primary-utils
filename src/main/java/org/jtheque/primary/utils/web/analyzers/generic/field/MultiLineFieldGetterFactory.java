@@ -17,14 +17,14 @@ package org.jtheque.primary.utils.web.analyzers.generic.field;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.field.SimpleFieldGetterFactory.SimpleFieldGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 /**
  * @author Baptiste Wicht

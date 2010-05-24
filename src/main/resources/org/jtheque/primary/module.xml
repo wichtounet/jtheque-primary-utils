@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <i18n>
+        <i18nResource name="jtheque-primary" version="1.0">
+            <classpath>org/jtheque/primary/i18n/utils_en.properties</classpath>
+            <classpath>org/jtheque/primary/i18n/utils_fr.properties</classpath>
+        </i18nResource>
+    </i18n>
+</config>

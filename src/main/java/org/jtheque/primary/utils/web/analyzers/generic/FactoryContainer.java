@@ -1,8 +1,8 @@
 package org.jtheque.primary.utils.web.analyzers.generic;
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 import java.util.ArrayList;
 import java.util.Collection;

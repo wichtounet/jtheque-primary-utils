@@ -17,9 +17,9 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 /**
  * A factory for replacer objects.

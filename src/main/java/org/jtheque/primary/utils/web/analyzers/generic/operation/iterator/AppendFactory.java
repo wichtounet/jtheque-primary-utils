@@ -17,13 +17,13 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 /**
  * A factory for append iterator operation.

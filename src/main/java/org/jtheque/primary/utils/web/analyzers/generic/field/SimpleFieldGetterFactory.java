@@ -17,8 +17,6 @@ package org.jtheque.primary.utils.web.analyzers.generic.field;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.Operation;
@@ -26,6 +24,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossesso
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
 	}
 
 	@Override
-	public FieldGetter factor(Element element, XMLReader reader) throws XMLException{
+	public FieldGetter factor(Element element, XMLReader reader) throws XMLException {
 		SimpleFieldGetter getter = new SimpleFieldGetter();
 
 		getter.setFieldName(reader.readString("@field", element));

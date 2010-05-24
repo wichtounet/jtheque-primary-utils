@@ -1,10 +1,10 @@
 package org.jtheque.primary.utils.web.analyzers.generic.value;
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 /*
  * This file is part of JTheque.

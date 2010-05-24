@@ -17,12 +17,12 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
  */
 
 import org.jdom.Element;
-import org.jtheque.io.XMLException;
-import org.jtheque.io.XMLReader;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperation;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperationFactory;
+import org.jtheque.xml.utils.XMLException;
+import org.jtheque.xml.utils.XMLReader;
 
 import java.util.ArrayList;
 import java.util.Collection;
