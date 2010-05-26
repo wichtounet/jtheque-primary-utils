@@ -1,4 +1,4 @@
-package org.jtheque.primary.impl.views.model;
+package org.jtheque.primary.utils.views;
 
 /*
  * This file is part of JTheque.

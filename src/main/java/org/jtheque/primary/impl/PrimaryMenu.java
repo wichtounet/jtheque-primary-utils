@@ -22,7 +22,7 @@ import org.jtheque.primary.able.controller.IBorrowerController;
 import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.controller.ISimpleController;
 import org.jtheque.primary.impl.views.actions.borrower.AcNewBorrower;
-import org.jtheque.primary.impl.views.actions.choice.ChoiceViewAction;
+import org.jtheque.primary.utils.choice.ChoiceViewAction;
 import org.jtheque.primary.impl.views.actions.simple.NewSimpleDataAction;
 import org.jtheque.views.utils.AbstractMenu;
 import org.jtheque.utils.collections.CollectionUtils;

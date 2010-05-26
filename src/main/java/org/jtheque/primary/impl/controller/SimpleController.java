@@ -22,6 +22,7 @@ import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.services.ISimpleDataService;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.able.views.ViewMode;
+import org.jtheque.spring.utils.SwingSpringProxy;
 import org.jtheque.undo.able.IUndoRedoService;
 import org.jtheque.views.utils.AbstractController;
 
@@ -38,57 +39,58 @@ public final class SimpleController extends AbstractController implements ISimpl
 	private final ISimpleDataService simpleService;
 
 	@Resource
-	private ISimpleDataView simpleDataView;
-
-	@Resource
 	private IUndoRedoService undoRedoService;
+
+	private final SwingSpringProxy<ISimpleDataView> simpleDataView;
 
 	/**
 	 * Construct a new SimpleController.
 	 *
 	 * @param simpleService The simple service to use
+	 * @param simpleDataView
 	 */
-	public SimpleController(ISimpleDataService simpleService){
+	public SimpleController(ISimpleDataService simpleService, SwingSpringProxy<ISimpleDataView> simpleDataView){
 		super();
 
 		this.simpleService = simpleService;
-    }
+		this.simpleDataView = simpleDataView;
+	}
 
 	@Override
 	public void create(){
 		state = ViewMode.NEW;
 
-        simpleDataView.getModel().setCurrentController(this);
-        simpleDataView.getModel().setSimpleData(simpleService.getEmptySimpleData());
-		simpleDataView.reload();
+        simpleDataView.get().getModel().setCurrentController(this);
+        simpleDataView.get().getModel().setSimpleData(simpleService.getEmptySimpleData());
+		simpleDataView.get().reload();
 	}
 
 	@Override
 	public void edit(SimpleData data){
 		state = ViewMode.EDIT;
 
-        simpleDataView.getModel().setCurrentController(this);
-        simpleDataView.getModel().setSimpleData(data);
-		simpleDataView.reload();
+        simpleDataView.get().getModel().setCurrentController(this);
+        simpleDataView.get().getModel().setSimpleData(data);
+		simpleDataView.get().reload();
 
 		displayView();
 	}
 
 	@Override
 	public void save(String name){
-		simpleDataView.getModel().getSimpleData().setName(name);
+		simpleDataView.get().getModel().getSimpleData().setName(name);
 
 		if (state == ViewMode.NEW){
-			simpleService.create(simpleDataView.getModel().getSimpleData());
+			simpleService.create(simpleDataView.get().getModel().getSimpleData());
 
-			undoRedoService.addEdit(new GenericDataCreatedEdit<SimpleData>(simpleService, simpleDataView.getModel().getSimpleData()));
+			undoRedoService.addEdit(new GenericDataCreatedEdit<SimpleData>(simpleService, simpleDataView.get().getModel().getSimpleData()));
 		} else {
-			simpleService.save(simpleDataView.getModel().getSimpleData());
+			simpleService.save(simpleDataView.get().getModel().getSimpleData());
 		}
 	}
 
 	@Override
 	public ISimpleDataView getView(){
-		return simpleDataView;
+		return simpleDataView.get();
 	}
 }

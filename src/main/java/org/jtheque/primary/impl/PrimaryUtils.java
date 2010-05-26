@@ -24,7 +24,6 @@ import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.schemas.able.ISchemaService;
-import org.jtheque.schemas.able.Schema;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -52,9 +51,7 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
 
 	@Override
     public void prePlug(){
-        Schema schema = new PrimaryUtilsSchema();
 
-		schemaService.registerSchema("jtheque-primary-module", schema);
 	}
 
 	@Override

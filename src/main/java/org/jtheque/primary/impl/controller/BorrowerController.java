@@ -22,6 +22,7 @@ import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
 import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ViewMode;
+import org.jtheque.spring.utils.SwingSpringProxy;
 import org.jtheque.undo.able.IUndoRedoService;
 import org.jtheque.views.utils.AbstractController;
 
@@ -41,15 +42,20 @@ public final class BorrowerController extends AbstractController implements IBor
 	@Resource
 	private IUndoRedoService undoRedoService;
 
-	@Resource
-	private IBorrowerView borrowerView;
+	private final SwingSpringProxy<IBorrowerView> borrowerView;
+
+	public BorrowerController(SwingSpringProxy<IBorrowerView> borrowerView) {
+		super();
+
+		this.borrowerView = borrowerView;
+	}
 
 	@Override
 	public void newBorrower(){
 		state = ViewMode.NEW;
 
-        borrowerView.getModel().setBorrower(borrowersService.getEmptyPerson());
-		borrowerView.reload();
+        borrowerView.get().getModel().setBorrower(borrowersService.getEmptyPerson());
+		borrowerView.get().reload();
 	}
 
 	@Override
@@ -58,15 +64,15 @@ public final class BorrowerController extends AbstractController implements IBor
 
 		state = ViewMode.EDIT;
 
-		borrowerView.getModel().setBorrower(borrower);
-		borrowerView.reload();
+		borrowerView.get().getModel().setBorrower(borrower);
+		borrowerView.get().reload();
 
 		displayView();
 	}
 
 	@Override
 	public void save(String firstName, String name, String email){
-        Person borrower = borrowerView.getModel().getBorrower();
+        Person borrower = borrowerView.get().getModel().getBorrower();
 
 		borrower.setFirstName(firstName);
 		borrower.setEmail(email);
@@ -83,6 +89,6 @@ public final class BorrowerController extends AbstractController implements IBor
 
 	@Override
 	public IBorrowerView getView(){
-		return borrowerView;
+		return borrowerView.get();
 	}
 }

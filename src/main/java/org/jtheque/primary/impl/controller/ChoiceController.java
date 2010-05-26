@@ -20,10 +20,9 @@ import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.choice.ChoiceAction;
 import org.jtheque.primary.utils.choice.ChoiceActionFactory;
+import org.jtheque.spring.utils.SwingSpringProxy;
 import org.jtheque.ui.able.IView;
 import org.jtheque.views.utils.AbstractController;
-
-import javax.annotation.Resource;
 
 /**
  * A Choice Controller.
@@ -34,8 +33,13 @@ public final class ChoiceController extends AbstractController implements IChoic
 	private String action;
 	private String content;
 
-	@Resource
-	private IChoiceView choiceView;
+	private final SwingSpringProxy<IChoiceView> choiceView;
+
+	public ChoiceController(SwingSpringProxy<IChoiceView> choiceView) {
+		super();
+
+		this.choiceView = choiceView;
+	}
 
 	@Override
 	public void doAction(Object selectedItem){
@@ -59,11 +63,11 @@ public final class ChoiceController extends AbstractController implements IChoic
 
 	@Override
 	public void displayView(){
-		choiceView.display(content);
+		choiceView.get().display(content);
 	}
 
 	@Override
 	public IView getView(){
-		return choiceView;
+		return choiceView.get();
 	}
 }

@@ -45,15 +45,6 @@ public final class ChoiceView extends SwingDialogView<IModel> implements IChoice
 
 	private String content;
 
-	/**
-	 * Construct a new ChoiceView. 
-	 */
-	public ChoiceView(){
-		super();
-
-		build();
-	}
-
 	@Override
 	protected void init() {
 		//Nothing to init here

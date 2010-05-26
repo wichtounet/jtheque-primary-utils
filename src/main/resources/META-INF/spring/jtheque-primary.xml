@@ -13,7 +13,7 @@
             http://www.springframework.org/schema/context/spring-context-3.0.xsd
             http://www.springframework.org/schema/utils
             http://www.springframework.org/schema/util/spring-util-3.0.xsd"
-       default-lazy-init="true">
+       default-lazy-init="false">
 
     <context:annotation-config/>
 
@@ -25,37 +25,36 @@
     <osgi:reference id="undoRedoService" interface="org.jtheque.undo.able.IUndoRedoService"/>
     <osgi:reference id="uiUtils" interface="org.jtheque.ui.able.IUIUtils"/>
     <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.IDaoPersistenceContext"/>
-    <osgi:reference id="simpleJdbcTemplate" interface="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"/>
     <osgi:reference id="views" interface="org.jtheque.views.able.IViews"/>
 
-    <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils" lazy-init="false"/>
+    <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils"/>
 
     <!-- Services -->
 
-    <bean id="borrowersService" class="org.jtheque.primary.impl.services.PersonService" lazy-init="false">
+    <bean id="borrowersService" class="org.jtheque.primary.impl.services.PersonService">
         <constructor-arg value="Borrower"/>
         <constructor-arg value="Borrowers"/>
     </bean>
 
-    <bean id="lendingsService" class="org.jtheque.primary.impl.services.LendingsService" lazy-init="false"/>
+    <bean id="lendingsService" class="org.jtheque.primary.impl.services.LendingsService"/>
 
-    <bean id="countriesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+    <bean id="countriesService" class="org.jtheque.primary.impl.services.SimpleDatasService">
         <constructor-arg ref="daoCountries"/>
         <constructor-arg value="COUNTRY"/>
     </bean>
-    <bean id="languagesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+    <bean id="languagesService" class="org.jtheque.primary.impl.services.SimpleDatasService">
         <constructor-arg ref="daoLanguages"/>
         <constructor-arg value="LANGUAGE"/>
     </bean>
-    <bean id="typesService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+    <bean id="typesService" class="org.jtheque.primary.impl.services.SimpleDatasService">
         <constructor-arg ref="daoTypes"/>
         <constructor-arg value="TYPE"/>
     </bean>
-    <bean id="kindsService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+    <bean id="kindsService" class="org.jtheque.primary.impl.services.SimpleDatasService">
         <constructor-arg ref="daoKinds"/>
         <constructor-arg value="KIND"/>
     </bean>
-    <bean id="sagasService" class="org.jtheque.primary.impl.services.SimpleDatasService" lazy-init="false">
+    <bean id="sagasService" class="org.jtheque.primary.impl.services.SimpleDatasService">
         <constructor-arg ref="daoSagas"/>
         <constructor-arg value="SAGA"/>
     </bean>
@@ -84,32 +83,65 @@
 
     <!-- Controllers -->
 
-    <bean id="borrowerController" class="org.jtheque.primary.impl.controller.BorrowerController"/>
-    <bean id="choiceController" class="org.jtheque.primary.impl.controller.ChoiceController"/>
+    <bean id="borrowerController" class="org.jtheque.primary.impl.controller.BorrowerController">
+        <constructor-arg>
+            <bean class="org.jtheque.spring.utils.SwingSpringProxy">
+                <constructor-arg value="org.jtheque.primary.able.views.IBorrowerView"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="choiceController" class="org.jtheque.primary.impl.controller.ChoiceController">
+        <constructor-arg>
+            <bean class="org.jtheque.spring.utils.SwingSpringProxy">
+                <constructor-arg value="org.jtheque.primary.able.views.IChoiceView" />
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <bean id="countryController" class="org.jtheque.primary.impl.controller.SimpleController">
         <constructor-arg ref="countriesService"/>
+        <constructor-arg ref="simpleDataView"/>
     </bean>
     <bean id="languageController" class="org.jtheque.primary.impl.controller.SimpleController">
         <constructor-arg ref="languagesService"/>
+        <constructor-arg ref="simpleDataView"/>
     </bean>
     <bean id="typeController" class="org.jtheque.primary.impl.controller.SimpleController">
         <constructor-arg ref="typesService"/>
+        <constructor-arg ref="simpleDataView"/>
     </bean>
     <bean id="kindController" class="org.jtheque.primary.impl.controller.SimpleController">
         <constructor-arg ref="kindsService"/>
+        <constructor-arg ref="simpleDataView"/>
     </bean>
     <bean id="sagaController" class="org.jtheque.primary.impl.controller.SimpleController">
         <constructor-arg ref="sagasService"/>
+        <constructor-arg ref="simpleDataView"/>
     </bean>
 
     <!-- Views -->
 
-    <bean class="org.jtheque.primary.impl.views.BorrowerView"/>
-    <bean class="org.jtheque.primary.impl.views.ChoiceView"/>
-    <bean class="org.jtheque.primary.impl.views.SimpleDataView"/>
+    <bean id="simpleDataView" class="org.jtheque.spring.utils.SwingSpringProxy">
+        <constructor-arg value="org.jtheque.primary.able.views.ISimpleDataView"/>
+    </bean>
+
+    <bean class="org.jtheque.primary.impl.views.BorrowerView" lazy-init="true"/>
+    <bean class="org.jtheque.primary.impl.views.ChoiceView" lazy-init="true"/>
+    <bean class="org.jtheque.primary.impl.views.SimpleDataView" lazy-init="true"/>
 
     <!-- OSGI Services Registrations -->
 
-    <osgi:service interface="org.jtheque.primary.able.IPrimaryUtils" ref="primaryUtils"/>
+    <osgi:service ref="primaryUtils" interface="org.jtheque.primary.able.IPrimaryUtils"/>
+
+    <!-- Auto registration -->
+
+    <bean class="org.jtheque.views.utils.AutoRegistrationPostProcessor">
+        <constructor-arg value="org.jtheque.primary"/>
+        <property name="fileService" ref="fileService"/>
+        <property name="schemaService" ref="schemaService"/>
+    </bean>
+
+    <bean class="org.jtheque.primary.impl.PrimaryUtilsSchema" />
+    <bean class="org.jtheque.primary.impl.PrimaryBackuper" />
 </beans>

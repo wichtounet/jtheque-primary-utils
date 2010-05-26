@@ -1,4 +1,4 @@
-package org.jtheque.primary.impl.views.actions.choice;
+package org.jtheque.primary.utils.choice;
 
 import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.ui.utils.actions.JThequeAction;
@@ -37,7 +37,7 @@ public final class ChoiceViewAction extends JThequeAction {
 	 * @param key The internationalization key.
      * @param action The choice action.
      * @param dataType The datatype of the data container.
-     * @param choiceController
+     * @param choiceController The choice controller. 
      */
 	public ChoiceViewAction(String key, String action, String dataType, IChoiceController choiceController){
 		super(key);
