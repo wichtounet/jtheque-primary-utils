@@ -27,6 +27,7 @@ import org.jtheque.schemas.able.ISchemaService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -50,11 +51,6 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
 	private ApplicationContext applicationContext;
 
 	@Override
-    public void prePlug(){
-
-	}
-
-	@Override
     public void plug(){
 		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
 		DataTypeManager.bindDataTypeToKey(DataType.COUNTRY.getDataType(), "data.titles.country");
@@ -68,7 +64,7 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
         fileService.registerBackuper("jtheque-primary-module", backuper);
 	}
 
-	@Override
+	@PreDestroy
     public void unplug(){
 		DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
 		DataTypeManager.unbindDataType(DataType.COUNTRY.getDataType());

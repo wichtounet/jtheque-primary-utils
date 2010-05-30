@@ -6,19 +6,9 @@ import java.util.List;
 
 public interface IPrimaryUtils {
     /**
-     * Preplug the elements of the utils.
-     */
-    void prePlug();
-
-    /**
      * Plug the elements of the utils.
      */
     void plug();
-
-    /**
-     * Unplug the elements of the utils.
-     */
-    void unplug();
 
     /**
      * Return the current primary implementation.
