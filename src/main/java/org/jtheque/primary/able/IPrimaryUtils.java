@@ -6,11 +6,6 @@ import java.util.List;
 
 public interface IPrimaryUtils {
     /**
-     * Plug the elements of the utils.
-     */
-    void plug();
-
-    /**
      * Return the current primary implementation.
      *
      * @return The current primary implementation.

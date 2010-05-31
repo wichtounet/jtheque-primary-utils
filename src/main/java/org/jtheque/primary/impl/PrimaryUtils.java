@@ -27,6 +27,7 @@ import org.jtheque.schemas.able.ISchemaService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.List;
@@ -50,7 +51,7 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
 
 	private ApplicationContext applicationContext;
 
-	@Override
+	@PostConstruct
     public void plug(){
 		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
 		DataTypeManager.bindDataTypeToKey(DataType.COUNTRY.getDataType(), "data.titles.country");
