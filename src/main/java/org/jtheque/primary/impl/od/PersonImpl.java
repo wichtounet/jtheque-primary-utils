@@ -30,136 +30,136 @@ import org.jtheque.utils.bean.HashCodeUtils;
  * @author Baptiste Wicht
  */
 public final class PersonImpl extends AbstractPrimaryData implements Person {
-	private String name;
-	private String firstName;
-	private SimpleData theCountry;
-	private Note note;
-	private String type;
-	private String email;
+    private String name;
+    private String firstName;
+    private SimpleData theCountry;
+    private Note note;
+    private String type;
+    private String email;
 
-	private Person memento;
-	private boolean mementoState;
+    private Person memento;
+    private boolean mementoState;
 
-	private final PersonTemporaryContext temporaryContext = new PersonTemporaryContext();
+    private final PersonTemporaryContext temporaryContext = new PersonTemporaryContext();
 
-	//Data methods
+    //Data methods
 
-	@Override
-	public void setName(String name){
-		this.name = name;
-	}
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Override
-	public void setFirstName(String firstName){
-		this.firstName = firstName;
-	}
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	@Override
-	public void setTheCountry(SimpleData country){
-		theCountry = country;
-	}
+    @Override
+    public void setTheCountry(SimpleData country) {
+        theCountry = country;
+    }
 
-	@Override
-	public SimpleData getTheCountry(){
-		return theCountry;
-	}
+    @Override
+    public SimpleData getTheCountry() {
+        return theCountry;
+    }
 
-	@Override
-	public String getName(){
-		return name;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String getFirstName(){
-		return firstName;
-	}
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
 
-	@Override
-	public void setNote(Note note){
-		this.note = note;
-	}
+    @Override
+    public void setNote(Note note) {
+        this.note = note;
+    }
 
-	@Override
-	public Note getNote(){
-		return note;
-	}
+    @Override
+    public Note getNote() {
+        return note;
+    }
 
-	@Override
-	public String getType(){
-		return type;
-	}
+    @Override
+    public String getType() {
+        return type;
+    }
 
-	@Override
-	public void setType(String type){
-		this.type = type;
-	}
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	@Override
-	public void setEmail(String email){
-		this.email = email;
-	}
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	@Override
-	public String getEmail(){
-		return email;
-	}
+    @Override
+    public String getEmail() {
+        return email;
+    }
 
-	//Utility methods
+    //Utility methods
 
-	@Override
-	public PersonTemporaryContext getTemporaryContext(){
-		return temporaryContext;
-	}
+    @Override
+    public PersonTemporaryContext getTemporaryContext() {
+        return temporaryContext;
+    }
 
-	@Override
-	public boolean hasCountry(){
-		return theCountry != null;
-	}
+    @Override
+    public boolean hasCountry() {
+        return theCountry != null;
+    }
 
-	@Override
-	public String getDisplayableText(){
-		return firstName + ' ' + name;
-	}
+    @Override
+    public String getDisplayableText() {
+        return firstName + ' ' + name;
+    }
 
-	@Override
-	public String toString(){
-		return getDisplayableText();
-	}
+    @Override
+    public String toString() {
+        return getDisplayableText();
+    }
 
-	@Override
-	public int hashCode(){
-		return HashCodeUtils.hashCodeDirect(this, getId(), name, note, theCountry, firstName, email, type);
-	}
+    @Override
+    public int hashCode() {
+        return HashCodeUtils.hashCodeDirect(this, getId(), name, note, theCountry, firstName, email, type);
+    }
 
-	@Override
-	public boolean equals(Object obj){
-        if(obj == null){
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
 
-		Person other = (Person) obj;
+        Person other = (Person) obj;
 
-		return EqualsUtils.areEqualsDirect(
-				this, obj,
-				name, note, theCountry, firstName, email, type,
-				other.getName(), other.getNote(), other.getTheCountry(), other.getFirstName(), other.getEmail(), other.getType());
-	}
+        return EqualsUtils.areEqualsDirect(
+                this, obj,
+                name, note, theCountry, firstName, email, type,
+                other.getName(), other.getNote(), other.getTheCountry(), other.getFirstName(), other.getEmail(), other.getType());
+    }
 
-	@Override
-	public void saveToMemento(){
-		mementoState = true;
+    @Override
+    public void saveToMemento() {
+        mementoState = true;
 
-		memento = PropertiesUtils.createMemento(this);
+        memento = PropertiesUtils.createMemento(this);
 
-		if (memento == null){
-			mementoState = false;
-		}
-	}
+        if (memento == null) {
+            mementoState = false;
+        }
+    }
 
-	@Override
-	public void restoreMemento(){
-		if (mementoState){
-			PropertiesUtils.restoreMemento(this, memento);
-		}
-	}
+    @Override
+    public void restoreMemento() {
+        if (mementoState) {
+            PropertiesUtils.restoreMemento(this, memento);
+        }
+    }
 }

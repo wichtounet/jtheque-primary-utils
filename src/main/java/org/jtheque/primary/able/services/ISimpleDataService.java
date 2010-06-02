@@ -25,60 +25,57 @@ import org.jtheque.primary.able.od.SimpleData;
  * @author Baptiste Wicht
  */
 public interface ISimpleDataService extends DataContainer<SimpleData>, DataService<SimpleData> {
-	String DATA_TYPE = "SimpleDatas";
+    String DATA_TYPE = "SimpleDatas";
 
-	/**
-	 * Return the simple data of the specified name.
-	 *
-	 * @param name The name to search.
-	 *
-	 * @return The simple data of the specified name if there is one else null.
-	 */
-	SimpleData getSimpleData(String name);
+    /**
+     * Return the simple data of the specified name.
+     *
+     * @param name The name to search.
+     * @return The simple data of the specified name if there is one else null.
+     */
+    SimpleData getSimpleData(String name);
 
-	/**
-	 * Create all the simple datas.
-	 *
-	 * @param datas The simple datas to create.
-	 */
-	void createAll(Iterable<SimpleData> datas);
+    /**
+     * Create all the simple datas.
+     *
+     * @param datas The simple datas to create.
+     */
+    void createAll(Iterable<SimpleData> datas);
 
-	/**
-	 * Indicate if the specified simple data exists.
-	 *
-	 * @param data The simple data to test.
-	 *
-	 * @return <code>true</code> if the data exists else <code>false</code>.
-	 */
-	boolean exist(SimpleData data);
+    /**
+     * Indicate if the specified simple data exists.
+     *
+     * @param data The simple data to test.
+     * @return <code>true</code> if the data exists else <code>false</code>.
+     */
+    boolean exist(SimpleData data);
 
-	/**
-	 * Return an empty simple data.
-	 *
-	 * @return An empty simple data.
-	 */
-	SimpleData getEmptySimpleData();
+    /**
+     * Return an empty simple data.
+     *
+     * @return An empty simple data.
+     */
+    SimpleData getEmptySimpleData();
 
-	/**
-	 * Return the default simple data.
-	 *
-	 * @return The default simple data.
-	 */
-	SimpleData getDefaultSimpleData();
+    /**
+     * Return the default simple data.
+     *
+     * @return The default simple data.
+     */
+    SimpleData getDefaultSimpleData();
 
-	/**
-	 * Test if a simple data exists with the specified name or not.
-	 *
-	 * @param name The name to search for.
-	 *
-	 * @return <code>true</code> if a data exists else <code>false</code>.
-	 */
-	boolean exist(String name);
+    /**
+     * Test if a simple data exists with the specified name or not.
+     *
+     * @param name The name to search for.
+     * @return <code>true</code> if a data exists else <code>false</code>.
+     */
+    boolean exist(String name);
 
-	/**
-	 * Indicate if there is no datas.
-	 *
-	 * @return <code>true</code> if there is no datas else <code>false</code>.
+    /**
+     * Indicate if there is no datas.
+     *
+     * @return <code>true</code> if there is no datas else <code>false</code>.
 	 */
 	boolean hasNoDatas();
 }

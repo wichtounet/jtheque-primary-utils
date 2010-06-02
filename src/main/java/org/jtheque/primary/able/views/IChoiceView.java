@@ -25,18 +25,18 @@ import org.jtheque.ui.able.IView;
  * @author Baptiste Wicht
  */
 public interface IChoiceView extends IView {
-	/**
-	 * Display the choice view for a specific content.
-	 *
-	 * @param content The content
-	 */
-	void display(String content);
+    /**
+     * Display the choice view for a specific content.
+     *
+     * @param content The content
+     */
+    void display(String content);
 
-	/**
-	 * Return the selected item in the interface.
-	 *
-	 * @return The selected item.
-	 */
-	Data getSelectedItem();
+    /**
+     * Return the selected item in the interface.
+     *
+     * @return The selected item.
+     */
+    Data getSelectedItem();
 
 }

@@ -30,31 +30,31 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IPrincipalDataModel<T extends Data> extends IModel, DataListener {
-	/**
-	 * Add a current object listener.
-	 *
-	 * @param listener The listener to add.
-	 */
-	void addCurrentObjectListener(CurrentObjectListener listener);
+    /**
+     * Add a current object listener.
+     *
+     * @param listener The listener to add.
+     */
+    void addCurrentObjectListener(CurrentObjectListener listener);
 
-	/**
-	 * Add a display list listener.
-	 *
-	 * @param listener The listener.
-	 */
-	void addDisplayListListener(DisplayListListener listener);
+    /**
+     * Add a display list listener.
+     *
+     * @param listener The listener.
+     */
+    void addDisplayListListener(DisplayListListener listener);
 
-	/**
-	 * Update the display list and replace his datas with a new list.
-	 *
-	 * @param datas The new display list.
-	 */
-	void updateDisplayList(Collection<T> datas);
+    /**
+     * Update the display list and replace his datas with a new list.
+     *
+     * @param datas The new display list.
+     */
+    void updateDisplayList(Collection<T> datas);
 
-	/**
-	 * Return the display list.
-	 *
-	 * @return The display list
-	 */
-	Collection<T> getDisplayList();
+    /**
+     * Return the display list.
+     *
+     * @return The display list
+     */
+    Collection<T> getDisplayList();
 }

@@ -1,9 +1,10 @@
 package org.jtheque.primary.utils.web.analyzers.generic.field;
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -27,32 +28,30 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public final class FieldGetterFactory {
-	private static final FactoryContainer<FieldGetter> FACTORY = new FactoryContainer<FieldGetter>();
+    private static final FactoryContainer<FieldGetter> FACTORY = new FactoryContainer<FieldGetter>();
 
-	/**
-	 * This an utility class, not instanciable.
-	 */
-	private FieldGetterFactory(){
-		super();
-	}
+    /**
+     * This an utility class, not instanciable.
+     */
+    private FieldGetterFactory() {
+        super();
+    }
 
-	static{
-		FACTORY.add(new DisabledFieldGetterFactory());
-		FACTORY.add(new MultiLineFieldGetterFactory());
-		FACTORY.add(new SimpleFieldGetterFactory());
-	}
+    static {
+        FACTORY.add(new DisabledFieldGetterFactory());
+        FACTORY.add(new MultiLineFieldGetterFactory());
+        FACTORY.add(new SimpleFieldGetterFactory());
+    }
 
-	/**
-	 * Return the field getter on the element.
-	 *
-	 * @param element The element to get the value getter for.
-	 * @param reader The reader to use.
-	 *
-	 * @return The factored FieldGetter to use.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	public static FieldGetter getFieldGetter(Element element, XMLReader reader) throws XMLException {
-		return FACTORY.getFactoredObject(element, reader);
+    /**
+     * Return the field getter on the element.
+     *
+     * @param element The element to get the value getter for.
+     * @param reader  The reader to use.
+     * @return The factored FieldGetter to use.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    public static FieldGetter getFieldGetter(Element element, XMLReader reader) throws XMLException {
+        return FACTORY.getFactoredObject(element, reader);
 	}
 }

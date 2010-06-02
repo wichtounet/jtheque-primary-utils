@@ -18,10 +18,10 @@ package org.jtheque.primary.impl.controller;
 
 import org.jtheque.primary.able.controller.IBorrowerController;
 import org.jtheque.primary.able.od.Person;
-import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
 import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ViewMode;
+import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
 import org.jtheque.spring.utils.SwingSpringProxy;
 import org.jtheque.undo.able.IUndoRedoService;
 import org.jtheque.views.utils.AbstractController;
@@ -34,61 +34,61 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class BorrowerController extends AbstractController implements IBorrowerController {
-	private ViewMode state = ViewMode.NEW;
+    private ViewMode state = ViewMode.NEW;
 
-	@Resource
-	private IPersonService borrowersService;
+    @Resource
+    private IPersonService borrowersService;
 
-	@Resource
-	private IUndoRedoService undoRedoService;
+    @Resource
+    private IUndoRedoService undoRedoService;
 
-	private final SwingSpringProxy<IBorrowerView> borrowerView;
+    private final SwingSpringProxy<IBorrowerView> borrowerView;
 
-	public BorrowerController(SwingSpringProxy<IBorrowerView> borrowerView) {
-		super();
+    public BorrowerController(SwingSpringProxy<IBorrowerView> borrowerView) {
+        super();
 
-		this.borrowerView = borrowerView;
-	}
+        this.borrowerView = borrowerView;
+    }
 
-	@Override
-	public void newBorrower(){
-		state = ViewMode.NEW;
+    @Override
+    public void newBorrower() {
+        state = ViewMode.NEW;
 
         borrowerView.get().getModel().setBorrower(borrowersService.getEmptyPerson());
-		borrowerView.get().reload();
-	}
+        borrowerView.get().reload();
+    }
 
-	@Override
-	public void editBorrower(Person borrower){
-		assert borrower.getType().equals(borrowersService.getPersonType()) : "The person must be a borrower";
+    @Override
+    public void editBorrower(Person borrower) {
+        assert borrower.getType().equals(borrowersService.getPersonType()) : "The person must be a borrower";
 
-		state = ViewMode.EDIT;
+        state = ViewMode.EDIT;
 
-		borrowerView.get().getModel().setBorrower(borrower);
-		borrowerView.get().reload();
+        borrowerView.get().getModel().setBorrower(borrower);
+        borrowerView.get().reload();
 
-		displayView();
-	}
+        displayView();
+    }
 
-	@Override
-	public void save(String firstName, String name, String email){
+    @Override
+    public void save(String firstName, String name, String email) {
         Person borrower = borrowerView.get().getModel().getBorrower();
 
-		borrower.setFirstName(firstName);
-		borrower.setEmail(email);
-		borrower.setName(name);
+        borrower.setFirstName(firstName);
+        borrower.setEmail(email);
+        borrower.setName(name);
 
-		if (state == ViewMode.NEW){
-			borrowersService.create(borrower);
+        if (state == ViewMode.NEW) {
+            borrowersService.create(borrower);
 
-			undoRedoService.addEdit(new GenericDataCreatedEdit<Person>(borrowersService, borrower));
-		} else {
-			borrowersService.save(borrower);
-		}
-	}
+            undoRedoService.addEdit(new GenericDataCreatedEdit<Person>(borrowersService, borrower));
+        } else {
+            borrowersService.save(borrower);
+        }
+    }
 
-	@Override
-	public IBorrowerView getView(){
-		return borrowerView.get();
-	}
+    @Override
+    public IBorrowerView getView() {
+        return borrowerView.get();
+    }
 }

@@ -22,12 +22,11 @@ package org.jtheque.primary.utils.web.analyzers.generic.condition;
  * @author Baptiste Wicht
  */
 public interface Condition {
-	/**
-	 * Test if the line match the condition.
-	 *
-	 * @param line The line to test.
-	 *
-	 * @return true if the line match the condition else false.
-	 */
-	boolean match(String line);
+    /**
+     * Test if the line match the condition.
+     *
+     * @param line The line to test.
+     * @return true if the line match the condition else false.
+     */
+    boolean match(String line);
 }

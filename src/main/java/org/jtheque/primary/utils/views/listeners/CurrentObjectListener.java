@@ -24,10 +24,10 @@ import java.util.EventListener;
  * @author Baptiste Wicht
  */
 public interface CurrentObjectListener extends EventListener {
-	/**
-	 * The current object has changed.
-	 *
-	 * @param event The event of the current object change.
-	 */
-	void objectChanged(ObjectChangedEvent event);
+    /**
+     * The current object has changed.
+     *
+     * @param event The event of the current object change.
+     */
+    void objectChanged(ObjectChangedEvent event);
 }

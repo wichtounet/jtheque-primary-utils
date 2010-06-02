@@ -22,6 +22,7 @@ import org.jtheque.persistence.able.Entity;
 import org.jtheque.primary.able.od.Data;
 
 import javax.swing.DefaultComboBoxModel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,66 +34,66 @@ import java.util.List;
  * @param <T> The entity class on the model.
  */
 public final class DataContainerCachedComboBoxModel<T extends Data> extends DefaultComboBoxModel implements DataListener {
-	private final DataContainer<T> container;
+    private final DataContainer<T> container;
 
-	private List<T> datas;
+    private List<T> datas;
 
-	/**
-	 * Construct a new DataContainerCachedComboBoxModel with a specific container.
-	 *
-	 * @param container The data container.
-	 */
-	public DataContainerCachedComboBoxModel(DataContainer<T> container){
-		super();
+    /**
+     * Construct a new DataContainerCachedComboBoxModel with a specific container.
+     *
+     * @param container The data container.
+     */
+    public DataContainerCachedComboBoxModel(DataContainer<T> container) {
+        super();
 
-		this.container = container;
-		datas = new ArrayList<T>(container.getDatas());
+        this.container = container;
+        datas = new ArrayList<T>(container.getDatas());
 
-		container.addDataListener(this);
-	}
+        container.addDataListener(this);
+    }
 
-	@Override
-	public Object getElementAt(int index){
-		return datas.get(index);
-	}
+    @Override
+    public Object getElementAt(int index) {
+        return datas.get(index);
+    }
 
-	@Override
-	public int getSize(){
-		return getDatas().size();
-	}
+    @Override
+    public int getSize() {
+        return getDatas().size();
+    }
 
-	/**
-	 * Return the selected data in the model.
-	 *
-	 * @return The data who's selected.
-	 */
-	@SuppressWarnings("unchecked")
-	public T getSelectedData(){
-		return (T) getSelectedItem();
-	}
+    /**
+     * Return the selected data in the model.
+     *
+     * @return The data who's selected.
+     */
+    @SuppressWarnings("unchecked")
+    public T getSelectedData() {
+        return (T) getSelectedItem();
+    }
 
-	@Override
-	public void dataChanged(){
-		datas = new ArrayList<T>(container.getDatas());
+    @Override
+    public void dataChanged() {
+        datas = new ArrayList<T>(container.getDatas());
 
-		fireContentsChanged(this, 0, getSize());
-	}
+        fireContentsChanged(this, 0, getSize());
+    }
 
-	/**
-	 * Return the datas.
-	 *
-	 * @return The datas.
-	 */
-	private Collection<? extends Entity> getDatas(){
-		return datas;
-	}
+    /**
+     * Return the datas.
+     *
+     * @return The datas.
+     */
+    private Collection<? extends Entity> getDatas() {
+        return datas;
+    }
 
-	/**
-	 * Select the first element. If there is no element, nothing will be done.
-	 */
-	public void selectFirst(){
-		if (!datas.isEmpty()){
-			setSelectedItem(datas.get(0));
-		}
-	}
+    /**
+     * Select the first element. If there is no element, nothing will be done.
+     */
+    public void selectFirst() {
+        if (!datas.isEmpty()) {
+            setSelectedItem(datas.get(0));
+        }
+    }
 }

@@ -24,12 +24,12 @@ import org.jtheque.persistence.able.Note;
  * @author Baptiste Wicht
  */
 public interface INotesService {
-	String DATA_TYPE = "Notes";
+    String DATA_TYPE = "Notes";
 
-	/**
-	 * Return the default note.
-	 *
-	 * @return The default note.
-	 */
-	Note getDefaultNote();
+    /**
+     * Return the default note.
+     *
+     * @return The default note.
+     */
+    Note getDefaultNote();
 }

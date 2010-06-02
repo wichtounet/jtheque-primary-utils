@@ -25,25 +25,25 @@ import org.jtheque.views.able.Controller;
  * @author Baptiste Wicht
  */
 public interface IBorrowerController extends Controller {
-	/**
-	 * Display the view to create a new Borrower.
-	 */
-	void newBorrower();
+    /**
+     * Display the view to create a new Borrower.
+     */
+    void newBorrower();
 
-	/**
-	 * Display the view to edit a Borrower.
-	 *
-	 * @param borrower The borrower to edit.
-	 */
-	void editBorrower(Person borrower);
+    /**
+     * Display the view to edit a Borrower.
+     *
+     * @param borrower The borrower to edit.
+     */
+    void editBorrower(Person borrower);
 
-	/**
-	 * Save modifications done to the borrower.
-	 *
-	 * @param firstName The first name of the borrower.
-	 * @param name The name of the borrower.
-	 * @param email The email of the borrower.
-	 */
-	void save(String firstName, String name, String email);
+    /**
+     * Save modifications done to the borrower.
+     *
+     * @param firstName The first name of the borrower.
+     * @param name      The name of the borrower.
+     * @param email     The email of the borrower.
+     */
+    void save(String firstName, String name, String email);
 
 }

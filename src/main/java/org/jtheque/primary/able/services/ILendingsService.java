@@ -27,45 +27,43 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface ILendingsService extends DataContainer<Lending>, DataService<Lending> {
-	String DATA_TYPE = "Lendings";
+    String DATA_TYPE = "Lendings";
 
-	/**
-	 * Return the lending with this id.
-	 *
-	 * @param id The id to search the kind with.
-	 *
-	 * @return The lending.
-	 */
-	Lending getLending(int id);
+    /**
+     * Return the lending with this id.
+     *
+     * @param id The id to search the kind with.
+     * @return The lending.
+     */
+    Lending getLending(int id);
 
-	/**
-	 * Indicate if there is no lendings.
-	 *
-	 * @return true if there is no lendings else false.
-	 */
-	boolean hasNoLendings();
+    /**
+     * Indicate if there is no lendings.
+     *
+     * @return true if there is no lendings else false.
+     */
+    boolean hasNoLendings();
 
-	/**
-	 * Return all the lendings.
-	 *
-	 * @return A List containing all the lendings.
-	 */
-	Collection<Lending> getLendings();
+    /**
+     * Return all the lendings.
+     *
+     * @return A List containing all the lendings.
+     */
+    Collection<Lending> getLendings();
 
-	/**
-	 * Test if the lending is late or not.
-	 *
-	 * @param lending The lendings to test.
-	 * @param days The days limit for lendings.
-	 *
-	 * @return <code>true</code> if the lending is late else <code>false</code>.
-	 */
-	boolean isLate(Lending lending, int days);
+    /**
+     * Test if the lending is late or not.
+     *
+     * @param lending The lendings to test.
+     * @param days    The days limit for lendings.
+     * @return <code>true</code> if the lending is late else <code>false</code>.
+     */
+    boolean isLate(Lending lending, int days);
 
-	/**
-	 * Return an empty lending.
-	 *
-	 * @return An empty lending.
-	 */
+    /**
+     * Return an empty lending.
+     *
+     * @return An empty lending.
+     */
 	Lending getEmptyLending();
 }

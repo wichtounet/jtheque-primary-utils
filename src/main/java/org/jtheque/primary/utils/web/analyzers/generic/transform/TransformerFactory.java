@@ -1,9 +1,10 @@
 package org.jtheque.primary.utils.web.analyzers.generic.transform;
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -27,37 +28,35 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public final class TransformerFactory {
-	private static final FactoryContainer<Transformer> FACTORY = new FactoryContainer<Transformer>();
+    private static final FactoryContainer<Transformer> FACTORY = new FactoryContainer<Transformer>();
 
-	/**
-	 * This an utility class, not instanciable.
-	 */
-	private TransformerFactory(){
-		super();
-	}
+    /**
+     * This an utility class, not instanciable.
+     */
+    private TransformerFactory() {
+        super();
+    }
 
-	static{
-		FACTORY.add(new CutFactory());
-		FACTORY.add(new LastFactory());
-		FACTORY.add(new DeleterFactory());
-		FACTORY.add(new ReplacerFactory());
-		FACTORY.add(new PrependerFactory());
-		FACTORY.add(new AppenderFactory());
-		FACTORY.add(new DeleteFirstCharFactory());
-		FACTORY.add(new SplitterFactory());
-	}
+    static {
+        FACTORY.add(new CutFactory());
+        FACTORY.add(new LastFactory());
+        FACTORY.add(new DeleterFactory());
+        FACTORY.add(new ReplacerFactory());
+        FACTORY.add(new PrependerFactory());
+        FACTORY.add(new AppenderFactory());
+        FACTORY.add(new DeleteFirstCharFactory());
+        FACTORY.add(new SplitterFactory());
+    }
 
-	/**
-	 * Return the transformer on the element.
-	 *
-	 * @param element The element to get the value getter for.
-	 * @param reader The reader to use.
-	 *
-	 * @return The factored Transformer to use.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	public static Transformer getTransformer(Element element, XMLReader reader) throws XMLException {
-		return FACTORY.getFactoredObject(element, reader);
+    /**
+     * Return the transformer on the element.
+     *
+     * @param element The element to get the value getter for.
+     * @param reader  The reader to use.
+     * @return The factored Transformer to use.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    public static Transformer getTransformer(Element element, XMLReader reader) throws XMLException {
+        return FACTORY.getFactoredObject(element, reader);
 	}
 }

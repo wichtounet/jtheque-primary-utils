@@ -27,42 +27,42 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class Page {
-	private String url;
-	private Collection<Transformer> transformers;
+    private String url;
+    private Collection<Transformer> transformers;
 
-	/**
-	 * Return the URL of the page.
-	 *
-	 * @return The page's url.
-	 */
-	public String getUrl(){
-		return url;
-	}
+    /**
+     * Return the URL of the page.
+     *
+     * @return The page's url.
+     */
+    public String getUrl() {
+        return url;
+    }
 
-	/**
-	 * Set the URL of the page.
-	 *
-	 * @param url The URL of the page.
-	 */
-	public void setUrl(String url){
-		this.url = url;
-	}
+    /**
+     * Set the URL of the page.
+     *
+     * @param url The URL of the page.
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	/**
-	 * Return all the transformers of the page's url.
-	 *
-	 * @return The transformers of the page url.
-	 */
-	public Collection<Transformer> getTransformers(){
-		return transformers;
-	}
+    /**
+     * Return all the transformers of the page's url.
+     *
+     * @return The transformers of the page url.
+     */
+    public Collection<Transformer> getTransformers() {
+        return transformers;
+    }
 
-	/**
-	 * Set the transformers of the page url.
-	 *
-	 * @param transformers The transformers.
-	 */
-	public void setTransformers(Collection<Transformer> transformers){
-		this.transformers = new ArrayList<Transformer>(transformers);
-	}
+    /**
+     * Set the transformers of the page url.
+     *
+     * @param transformers The transformers.
+     */
+    public void setTransformers(Collection<Transformer> transformers) {
+        this.transformers = new ArrayList<Transformer>(transformers);
+    }
 }

@@ -17,8 +17,8 @@ package org.jtheque.primary.impl.views.fb;
  */
 
 import org.jtheque.persistence.able.Note;
-import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.od.Person;
+import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.IPersonFormBean;
 
 /**
@@ -27,36 +27,36 @@ import org.jtheque.primary.able.views.IPersonFormBean;
  * @author Baptiste Wicht
  */
 public final class PersonFormBean implements IPersonFormBean {
-	private String name;
-	private String firstName;
-	private SimpleData country;
-	private Note note;
+    private String name;
+    private String firstName;
+    private SimpleData country;
+    private Note note;
 
-	@Override
-	public void setName(String name){
-		this.name = name;
-	}
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Override
-	public void setFirstName(String firstName){
-		this.firstName = firstName;
-	}
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	@Override
-	public void setNote(Note note){
-		this.note = note;
-	}
+    @Override
+    public void setNote(Note note) {
+        this.note = note;
+    }
 
-	@Override
-	public void setCountry(SimpleData country){
-		this.country = country;
-	}
+    @Override
+    public void setCountry(SimpleData country) {
+        this.country = country;
+    }
 
-	@Override
-	public void fillPerson(Person person){
-		person.setName(name);
-		person.setFirstName(firstName);
-		person.setNote(note);
-		person.setTheCountry(country);
-	}
+    @Override
+    public void fillPerson(Person person) {
+        person.setName(name);
+        person.setFirstName(firstName);
+        person.setNote(note);
+        person.setTheCountry(country);
+    }
 }

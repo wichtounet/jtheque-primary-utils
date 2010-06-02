@@ -16,33 +16,34 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class LineEndPositionFactory implements Factory<Position> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "lineEnd".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "lineEnd".equals(element.getName());
+    }
 
-	@Override
-	public Position factor(Element n, XMLReader reader) {
-		return new LineEndPosition();
-	}
+    @Override
+    public Position factor(Element n, XMLReader reader) {
+        return new LineEndPosition();
+    }
 
-	/**
-	 * A position who indicate the end of the line.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class LineEndPosition implements Position {
-		@Override
-		public int intValue(String line){
-			return line.length();
-		}
-	}
+    /**
+     * A position who indicate the end of the line.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class LineEndPosition implements Position {
+        @Override
+        public int intValue(String line) {
+            return line.length();
+        }
+    }
 }

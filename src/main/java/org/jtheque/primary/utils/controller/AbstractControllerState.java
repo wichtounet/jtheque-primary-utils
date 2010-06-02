@@ -27,50 +27,50 @@ import org.jtheque.primary.able.od.Data;
  * @author Baptiste Wicht
  */
 public class AbstractControllerState implements ControllerState {
-	@Override
-	public void apply(){
-		//No action
-	}
+    @Override
+    public void apply() {
+        //No action
+    }
 
-	@Override
-	public ControllerState save(FormBean infos){
-		//No action
+    @Override
+    public ControllerState save(FormBean infos) {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public ControllerState cancel(){
-		//No action
+    @Override
+    public ControllerState cancel() {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public ControllerState create(){
-		//No action
+    @Override
+    public ControllerState create() {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public ControllerState delete(){
-		//No action
+    @Override
+    public ControllerState delete() {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public ControllerState manualEdit(){
-		//No action
+    @Override
+    public ControllerState manualEdit() {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public ControllerState view(Data data){
-		//No action
+    @Override
+    public ControllerState view(Data data) {
+        //No action
 
-		return null;
-	}
+        return null;
+    }
 }

@@ -22,88 +22,88 @@ package org.jtheque.primary.able.od;
  * @author Baptiste Wicht
  */
 public interface SimpleData extends Data {
-	/**
-	 * The data type of the simple datas.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	enum DataType {
-		LANGUAGE("T_LANGUAGES", "Languages", "daoLanguages", false),
-		COUNTRY("T_COUNTRIES", "Countries", "daoCountries", false),
-		KIND("T_KINDS", "Kinds", "daoKinds", true),
-		SAGA("T_SAGAS", "Sagas", "daoSagas", true),
-		TYPE("T_TYPES", "Types", "daoTypes", true);
+    /**
+     * The data type of the simple datas.
+     *
+     * @author Baptiste Wicht
+     */
+    enum DataType {
+        LANGUAGE("T_LANGUAGES", "Languages", "daoLanguages", false),
+        COUNTRY("T_COUNTRIES", "Countries", "daoCountries", false),
+        KIND("T_KINDS", "Kinds", "daoKinds", true),
+        SAGA("T_SAGAS", "Sagas", "daoSagas", true),
+        TYPE("T_TYPES", "Types", "daoTypes", true);
 
-		private final String table;
-		private final String dataType;
-		private final String dao;
-		private final boolean primary;
+        private final String table;
+        private final String dataType;
+        private final String dao;
+        private final boolean primary;
 
-		/**
-		 * Construct a new DataType.
-		 *
-		 * @param table The table in the database.
-		 * @param dataType The data type.
-		 * @param dao The name of the bean of the dao. 
-         * @param primary Indicate if the simple data is a primary data or not.
-		 */
-		DataType(String table, String dataType, String dao, boolean primary){
-			this.table = table;
-			this.dataType = dataType;
+        /**
+         * Construct a new DataType.
+         *
+         * @param table    The table in the database.
+         * @param dataType The data type.
+         * @param dao      The name of the bean of the dao.
+         * @param primary  Indicate if the simple data is a primary data or not.
+         */
+        DataType(String table, String dataType, String dao, boolean primary) {
+            this.table = table;
+            this.dataType = dataType;
             this.dao = dao;
-			this.primary = primary;
-		}
+            this.primary = primary;
+        }
 
-		/**
-		 * Return the table in the database of this data type.
-		 *
-		 * @return The table
-		 */
-		public String getTable(){
-			return table;
-		}
+        /**
+         * Return the table in the database of this data type.
+         *
+         * @return The table
+         */
+        public String getTable() {
+            return table;
+        }
 
-		/**
-		 * Indicate if this data type refer to a primary data or not.
-		 *
-		 * @return true if this data type refers to a primary data else false.
-		 */
-		public boolean isPrimary(){
-			return primary;
-		}
+        /**
+         * Indicate if this data type refer to a primary data or not.
+         *
+         * @return true if this data type refers to a primary data else false.
+         */
+        public boolean isPrimary() {
+            return primary;
+        }
 
-		/**
-		 * Return the data type of this data type.
-		 *
-		 * @return The data type of this data type.
-		 */
-		public String getDataType(){
-			return dataType;
-		}
+        /**
+         * Return the data type of this data type.
+         *
+         * @return The data type of this data type.
+         */
+        public String getDataType() {
+            return dataType;
+        }
 
-        public String getDaoBeanName(){
+        public String getDaoBeanName() {
             return dao;
         }
-	}
+    }
 
-	/**
-	 * Return the name of the type.
-	 *
-	 * @return The name of the type.
-	 */
-	String getName();
+    /**
+     * Return the name of the type.
+     *
+     * @return The name of the type.
+     */
+    String getName();
 
-	/**
-	 * Set the name of the type.
-	 *
-	 * @param name The name of the type.
-	 */
-	void setName(String name);
+    /**
+     * Set the name of the type.
+     *
+     * @param name The name of the type.
+     */
+    void setName(String name);
 
-	/**
-	 * Return the data type of the simple data.
-	 *
-	 * @return The data type of this simple data.
+    /**
+     * Return the data type of the simple data.
+     *
+     * @return The data type of this simple data.
 	 */
 	DataType getType();
 }

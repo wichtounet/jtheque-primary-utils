@@ -27,72 +27,72 @@ import org.jtheque.utils.bean.HashCodeUtils;
  * @author Baptiste Wicht
  */
 public class SimpleDataImpl extends AbstractData implements SimpleData {
-	private String name;
-	private final DataType type;
+    private String name;
+    private final DataType type;
 
-	/**
-	 * Construct a new SimpleDataImpl .
-	 *
-	 * @param type The data type.
-	 */
-	public SimpleDataImpl(DataType type){
-		super();
+    /**
+     * Construct a new SimpleDataImpl .
+     *
+     * @param type The data type.
+     */
+    public SimpleDataImpl(DataType type) {
+        super();
 
-		this.type = type;
-	}
+        this.type = type;
+    }
 
-	/**
-	 * Construct a new SimpleDataImpl.
-	 *
-	 * @param name The name.
-	 * @param type The data type.
-	 */
-	public SimpleDataImpl(String name, DataType type){
-		this(type);
+    /**
+     * Construct a new SimpleDataImpl.
+     *
+     * @param name The name.
+     * @param type The data type.
+     */
+    public SimpleDataImpl(String name, DataType type) {
+        this(type);
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	@Override
-	public final String getName(){
-		return name;
-	}
+    @Override
+    public final String getName() {
+        return name;
+    }
 
-	@Override
-	public final void setName(String name){
-		this.name = name;
-	}
+    @Override
+    public final void setName(String name) {
+        this.name = name;
+    }
 
-	@Override
-	public final DataType getType(){
-		return type;
-	}
+    @Override
+    public final DataType getType() {
+        return type;
+    }
 
-	@Override
-	public final String getDisplayableText(){
-		return name;
-	}
+    @Override
+    public final String getDisplayableText() {
+        return name;
+    }
 
-	@Override
-	public final String toString(){
-		return name;
-	}
+    @Override
+    public final String toString() {
+        return name;
+    }
 
-	@Override
-	public int hashCode(){
-		return HashCodeUtils.hashCodeDirect(name);
-	}
+    @Override
+    public int hashCode() {
+        return HashCodeUtils.hashCodeDirect(name);
+    }
 
-	@Override
-	public boolean equals(Object obj){
-        if(obj == null){
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
 
-		SimpleData other = (SimpleData) obj;
+        SimpleData other = (SimpleData) obj;
 
-		return EqualsUtils.areEqualsDirect(this, obj,
-				name,
-				other.getName());
-	}
+        return EqualsUtils.areEqualsDirect(this, obj,
+                name,
+                other.getName());
+    }
 }

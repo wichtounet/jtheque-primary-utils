@@ -22,9 +22,9 @@ public interface IPrimaryUtils {
     /**
      * Enable the menu of the primary utils module.
      *
-     * @param addFeatures The sub features of the add menu.
+     * @param addFeatures    The sub features of the add menu.
      * @param removeFeatures The sub features of the remove menu.
-     * @param editFeatures The sub features of the edit menu.
+     * @param editFeatures   The sub features of the edit menu.
      */
     void enableMenu(List<IFeature> addFeatures, List<IFeature> removeFeatures, List<IFeature> editFeatures);
 }

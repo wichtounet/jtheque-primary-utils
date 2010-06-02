@@ -20,10 +20,10 @@ import org.jtheque.i18n.able.ILanguageService;
 import org.jtheque.persistence.utils.DataContainerProvider;
 import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.able.views.IChoiceView;
-import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
 import org.jtheque.primary.impl.views.actions.choice.AcValidateChoiceView;
+import org.jtheque.primary.utils.DataTypeManager;
+import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
 import org.jtheque.ui.able.IModel;
 import org.jtheque.ui.utils.builders.FilthyPanelBuilder;
 import org.jtheque.ui.utils.builders.PanelBuilder;
@@ -33,6 +33,7 @@ import org.jtheque.utils.ui.SwingUtils;
 
 import javax.swing.Action;
 import javax.swing.JComponent;
+
 import java.awt.Container;
 
 /**
@@ -41,66 +42,66 @@ import java.awt.Container;
  * @author Baptiste Wicht
  */
 public final class ChoiceView extends SwingDialogView<IModel> implements IChoiceView {
-	private DataContainerCachedComboBoxModel<?> model;
+    private DataContainerCachedComboBoxModel<?> model;
 
-	private String content;
+    private String content;
 
-	@Override
-	protected void init() {
-		//Nothing to init here
-	}
+    @Override
+    protected void init() {
+        //Nothing to init here
+    }
 
-	/**
-	 * Reload the content of the view.
-	 *
-	 * @param content The content.
-	 */
-	private void reload(String content){
-		this.content = content;
+    /**
+     * Reload the content of the view.
+     *
+     * @param content The content.
+     */
+    private void reload(String content) {
+        this.content = content;
 
-		setTitleKey(DataTypeManager.getKeyForDataType(content));
-		setContentPane(buildContentPane());
-		pack();
-	}
+        setTitleKey(DataTypeManager.getKeyForDataType(content));
+        setContentPane(buildContentPane());
+        pack();
+    }
 
-	/**
-	 * Build and return the content pane.
-	 *
-	 * @return Le content pane
-	 */
-	private Container buildContentPane(){
-		PanelBuilder builder = new FilthyPanelBuilder();
+    /**
+     * Build and return the content pane.
+     *
+     * @return Le content pane
+     */
+    private Container buildContentPane() {
+        PanelBuilder builder = new FilthyPanelBuilder();
 
-		model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
+        model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
 
-		addConstraint(model, new AtLeastOneConstraint("choice.view.title"));
+        addConstraint(model, new AtLeastOneConstraint("choice.view.title"));
 
-		Action validateAction = new AcValidateChoiceView(getService(IChoiceController.class));
+        Action validateAction = new AcValidateChoiceView(getService(IChoiceController.class));
 
-		JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
-		SwingUtils.addFieldValidateAction(comboElements, validateAction);
+        JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
+        SwingUtils.addFieldValidateAction(comboElements, validateAction);
 
-		builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getCloseAction("choice.actions.cancel"));
+        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getCloseAction("choice.actions.cancel"));
 
-		return builder.getPanel();
-	}
+        return builder.getPanel();
+    }
 
-	@Override
-	public Data getSelectedItem(){
-		return model.getSelectedData();
-	}
+    @Override
+    public Data getSelectedItem() {
+        return model.getSelectedData();
+    }
 
-	@Override
-	public void display(String content){
-		reload(content);
+    @Override
+    public void display(String content) {
+        reload(content);
 
-		display();
-	}
+        display();
+    }
 
-	@Override
-	public void refreshText(ILanguageService languageService){
-		if (content != null){
-			setTitle(languageService.getMessage(DataTypeManager.getKeyForDataType(content)));
-		}
-	}
+    @Override
+    public void refreshText(ILanguageService languageService) {
+        if (content != null) {
+            setTitle(languageService.getMessage(DataTypeManager.getKeyForDataType(content)));
+        }
+    }
 }

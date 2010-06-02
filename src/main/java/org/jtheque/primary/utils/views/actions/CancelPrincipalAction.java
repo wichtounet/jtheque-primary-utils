@@ -28,22 +28,22 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class CancelPrincipalAction extends JThequeAction {
-	private final IPrincipalController<? extends Data> controller;
+    private final IPrincipalController<? extends Data> controller;
 
-	/**
-	 * Construct a new CancelPrincipalAction.
-	 *
-	 * @param key The i18n key of the action.
-	 * @param controller The controller of the action.
-	 */
-	public CancelPrincipalAction(String key, IPrincipalController<? extends Data> controller){
-		super(key);
+    /**
+     * Construct a new CancelPrincipalAction.
+     *
+     * @param key        The i18n key of the action.
+     * @param controller The controller of the action.
+     */
+    public CancelPrincipalAction(String key, IPrincipalController<? extends Data> controller) {
+        super(key);
 
-		this.controller = controller;
-	}
+        this.controller = controller;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e){
-		controller.cancel();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        controller.cancel();
 	}
 }

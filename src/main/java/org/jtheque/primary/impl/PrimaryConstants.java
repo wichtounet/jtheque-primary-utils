@@ -22,16 +22,16 @@ package org.jtheque.primary.impl;
  * @author Baptiste Wicht
  */
 public interface PrimaryConstants {
-	String BORROWER = "Borrower";
-	String BORROWERS = "Borrowers";
+    String BORROWER = "Borrower";
+    String BORROWERS = "Borrowers";
 
-	/**
-	 * The choice actions of the module.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	interface ChoiceActions {
-		String EDIT = "edit";
-		String DELETE = "delete";
-	}
+    /**
+     * The choice actions of the module.
+     *
+     * @author Baptiste Wicht
+     */
+    interface ChoiceActions {
+        String EDIT = "edit";
+        String DELETE = "delete";
+    }
 }

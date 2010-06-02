@@ -1,8 +1,9 @@
 package org.jtheque.primary.utils.web.analyzers.generic;
 
-import org.jdom.Element;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -26,27 +27,23 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public interface Factory<T> {
-	/**
-	 * Indicate if the factory can factor with the specified elements.
-	 *
-	 * @param element The current Element.
-	 * @param reader The XML reader.
-	 *
-	 * @return true if the factory can factor else false.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	boolean canFactor(Element element, XMLReader reader) throws XMLException;
+    /**
+     * Indicate if the factory can factor with the specified elements.
+     *
+     * @param element The current Element.
+     * @param reader  The XML reader.
+     * @return true if the factory can factor else false.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    boolean canFactor(Element element, XMLReader reader) throws XMLException;
 
-	/**
-	 * Create and return the factored element.
-	 *
-	 * @param element The current element.
-	 * @param reader The XML reader to use.
-	 *
-	 * @return The factored element.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	T factor(Element element, XMLReader reader) throws XMLException;
+    /**
+     * Create and return the factored element.
+     *
+     * @param element The current element.
+     * @param reader  The XML reader to use.
+     * @return The factored element.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    T factor(Element element, XMLReader reader) throws XMLException;
 }

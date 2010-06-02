@@ -24,12 +24,14 @@ import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.schemas.able.ISchemaService;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -40,58 +42,58 @@ import java.util.List;
 public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAware {
     private String primaryImpl;
 
-	@Resource
+    @Resource
     private ISchemaService schemaService;
 
-	@Resource
+    @Resource
     private IFileService fileService;
 
-	@Resource
+    @Resource
     private IFeatureService featureService;
 
-	private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-	@PostConstruct
-    public void plug(){
-		DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
-		DataTypeManager.bindDataTypeToKey(DataType.COUNTRY.getDataType(), "data.titles.country");
-		DataTypeManager.bindDataTypeToKey(DataType.LANGUAGE.getDataType(), "data.titles.language");
-		DataTypeManager.bindDataTypeToKey(DataType.TYPE.getDataType(), "data.titles.type");
-		DataTypeManager.bindDataTypeToKey(DataType.KIND.getDataType(), "data.titles.kind");
-		DataTypeManager.bindDataTypeToKey(DataType.SAGA.getDataType(), "data.titles.saga");
+    @PostConstruct
+    public void plug() {
+        DataTypeManager.bindDataTypeToKey(PrimaryConstants.BORROWERS, "data.titles.borrower");
+        DataTypeManager.bindDataTypeToKey(DataType.COUNTRY.getDataType(), "data.titles.country");
+        DataTypeManager.bindDataTypeToKey(DataType.LANGUAGE.getDataType(), "data.titles.language");
+        DataTypeManager.bindDataTypeToKey(DataType.TYPE.getDataType(), "data.titles.type");
+        DataTypeManager.bindDataTypeToKey(DataType.KIND.getDataType(), "data.titles.kind");
+        DataTypeManager.bindDataTypeToKey(DataType.SAGA.getDataType(), "data.titles.saga");
 
         ModuleBackuper backuper = new PrimaryBackuper();
 
         fileService.registerBackuper("jtheque-primary-module", backuper);
-	}
+    }
 
-	@PreDestroy
-    public void unplug(){
-		DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
-		DataTypeManager.unbindDataType(DataType.COUNTRY.getDataType());
-		DataTypeManager.unbindDataType(DataType.LANGUAGE.getDataType());
-		DataTypeManager.unbindDataType(DataType.TYPE.getDataType());
-		DataTypeManager.unbindDataType(DataType.KIND.getDataType());
-		DataTypeManager.unbindDataType(DataType.SAGA.getDataType());
-	}
+    @PreDestroy
+    public void unplug() {
+        DataTypeManager.unbindDataType(PrimaryConstants.BORROWERS);
+        DataTypeManager.unbindDataType(DataType.COUNTRY.getDataType());
+        DataTypeManager.unbindDataType(DataType.LANGUAGE.getDataType());
+        DataTypeManager.unbindDataType(DataType.TYPE.getDataType());
+        DataTypeManager.unbindDataType(DataType.KIND.getDataType());
+        DataTypeManager.unbindDataType(DataType.SAGA.getDataType());
+    }
 
-	@Override
-    public String getPrimaryImpl(){
-		return primaryImpl;
-	}
+    @Override
+    public String getPrimaryImpl() {
+        return primaryImpl;
+    }
 
-	@Override
-    public void setPrimaryImpl(String primaryImpl){
-		this.primaryImpl = primaryImpl;
-	}
+    @Override
+    public void setPrimaryImpl(String primaryImpl) {
+        this.primaryImpl = primaryImpl;
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
-	@Override
-    public void enableMenu(List<IFeature> addFeatures, List<IFeature> removeFeatures, List<IFeature> editFeatures){
+    @Override
+    public void enableMenu(List<IFeature> addFeatures, List<IFeature> removeFeatures, List<IFeature> editFeatures) {
         featureService.addMenu("jtheque-primary-module", new PrimaryMenu(addFeatures, removeFeatures, editFeatures, applicationContext));
-	}
+    }
 }

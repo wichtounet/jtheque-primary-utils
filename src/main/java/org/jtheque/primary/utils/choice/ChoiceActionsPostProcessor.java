@@ -1,9 +1,9 @@
 package org.jtheque.primary.utils.choice;
 
-import org.osgi.framework.ServiceReference;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import javax.annotation.PreDestroy;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -29,22 +29,22 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public class ChoiceActionsPostProcessor implements BeanPostProcessor {
-	private final Collection<ChoiceAction> choiceActions = new ArrayList<ChoiceAction>(10);
+public final class ChoiceActionsPostProcessor implements BeanPostProcessor {
+    private final Collection<ChoiceAction> choiceActions = new ArrayList<ChoiceAction>(10);
 
-	@Override
+    @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
         return bean;
     }
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
-        if(bean instanceof ChoiceAction){
-	        ChoiceAction choiceAction = (ChoiceAction) bean;
+        if (bean instanceof ChoiceAction) {
+            ChoiceAction choiceAction = (ChoiceAction) bean;
 
-	        choiceActions.add(choiceAction);
+            choiceActions.add(choiceAction);
 
-	        ChoiceActionFactory.addChoiceAction(choiceAction);
+            ChoiceActionFactory.addChoiceAction(choiceAction);
         }
 
         return bean;
@@ -53,10 +53,10 @@ public class ChoiceActionsPostProcessor implements BeanPostProcessor {
     /**
      * Remove the choice actions.
      */
-	@PreDestroy
-	public void removeChoiceActions(){
-		for(ChoiceAction choiceAction : choiceActions){
-			ChoiceActionFactory.removeChoiceAction(choiceAction);
-		}
+    @PreDestroy
+    public void removeChoiceActions() {
+        for (ChoiceAction choiceAction : choiceActions) {
+            ChoiceActionFactory.removeChoiceAction(choiceAction);
+        }
 	}
 }

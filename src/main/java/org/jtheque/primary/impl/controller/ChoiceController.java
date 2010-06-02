@@ -30,44 +30,44 @@ import org.jtheque.views.utils.AbstractController;
  * @author Baptiste Wicht
  */
 public final class ChoiceController extends AbstractController implements IChoiceController {
-	private String action;
-	private String content;
+    private String action;
+    private String content;
 
-	private final SwingSpringProxy<IChoiceView> choiceView;
+    private final SwingSpringProxy<IChoiceView> choiceView;
 
-	public ChoiceController(SwingSpringProxy<IChoiceView> choiceView) {
-		super();
+    public ChoiceController(SwingSpringProxy<IChoiceView> choiceView) {
+        super();
 
-		this.choiceView = choiceView;
-	}
+        this.choiceView = choiceView;
+    }
 
-	@Override
-	public void doAction(Object selectedItem){
-		ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
-		choiceAction.setSelectedItem(selectedItem);
-		choiceAction.setContent(content);
-		choiceAction.execute();
+    @Override
+    public void doAction(Object selectedItem) {
+        ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
+        choiceAction.setSelectedItem(selectedItem);
+        choiceAction.setContent(content);
+        choiceAction.execute();
 
-		closeView();
-	}
+        closeView();
+    }
 
-	@Override
-	public void setAction(String action){
-		this.action = action;
-	}
+    @Override
+    public void setAction(String action) {
+        this.action = action;
+    }
 
-	@Override
-	public void setContent(String content){
-		this.content = content;
-	}
+    @Override
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	@Override
-	public void displayView(){
-		choiceView.get().display(content);
-	}
+    @Override
+    public void displayView() {
+        choiceView.get().display(content);
+    }
 
-	@Override
-	public IView getView(){
-		return choiceView.get();
-	}
+    @Override
+    public IView getView() {
+        return choiceView.get();
+    }
 }

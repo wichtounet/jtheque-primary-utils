@@ -22,9 +22,11 @@ import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.services.INotesService;
 import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.services.ISimpleDataService;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
 import java.util.Collection;
 
 /**
@@ -33,133 +35,133 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public class PersonService implements IPersonService {
-	private Person emptyActor;
+    private Person emptyActor;
 
-	private final String personType;
-	private final String dataType;
+    private final String personType;
+    private final String dataType;
 
-	@Resource
-	private INotesService notesService;
+    @Resource
+    private INotesService notesService;
 
-	@Resource
-	private ISimpleDataService countriesService;
+    @Resource
+    private ISimpleDataService countriesService;
 
-	@Resource
-	private IDaoPersons daoPersons;
+    @Resource
+    private IDaoPersons daoPersons;
 
-	/**
-	 * Construct a new PersonService.
-	 *
-	 * @param personType The type of persons.
-	 * @param dataType The type of datas.
-	 */
-	public PersonService(String personType, String dataType){
-		super();
+    /**
+     * Construct a new PersonService.
+     *
+     * @param personType The type of persons.
+     * @param dataType   The type of datas.
+     */
+    public PersonService(String personType, String dataType) {
+        super();
 
-		this.personType = personType;
-		this.dataType = dataType;
-	}
+        this.personType = personType;
+        this.dataType = dataType;
+    }
 
-	@Override
-	@Transactional
-	public final void create(Person person){
-		person.setType(personType);
+    @Override
+    @Transactional
+    public final void create(Person person) {
+        person.setType(personType);
 
-		daoPersons.create(person);
-	}
+        daoPersons.create(person);
+    }
 
-	@Override
-	@Transactional
-	public void save(Person person){
-		person.setType(personType);
+    @Override
+    @Transactional
+    public void save(Person person) {
+        person.setType(personType);
 
-		daoPersons.save(person);
-	}
+        daoPersons.save(person);
+    }
 
-	@Override
-	@Transactional
-	public boolean delete(Person actor){
-		return daoPersons.delete(actor);
-	}
+    @Override
+    @Transactional
+    public boolean delete(Person actor) {
+        return daoPersons.delete(actor);
+    }
 
-	@Override
-	public final boolean hasNoPerson(){
-		return getPersons().isEmpty();
-	}
+    @Override
+    public final boolean hasNoPerson() {
+        return getPersons().isEmpty();
+    }
 
-	@Override
-	public final Collection<Person> getPersons(){
-		return daoPersons.getPersons(personType);
-	}
+    @Override
+    public final Collection<Person> getPersons() {
+        return daoPersons.getPersons(personType);
+    }
 
-	@Override
-	public final boolean exist(Person actor){
-		return daoPersons.exists(actor);
-	}
+    @Override
+    public final boolean exist(Person actor) {
+        return daoPersons.exists(actor);
+    }
 
-	@Override
-	public final Person getPerson(String firstName, String name){
-		return daoPersons.getPerson(firstName, name, personType);
-	}
+    @Override
+    public final Person getPerson(String firstName, String name) {
+        return daoPersons.getPerson(firstName, name, personType);
+    }
 
-	@Override
-	public final boolean exist(String firstName, String name){
-		return daoPersons.exists(firstName, name, personType);
-	}
+    @Override
+    public final boolean exist(String firstName, String name) {
+        return daoPersons.exists(firstName, name, personType);
+    }
 
-	@Override
-	public final Collection<Person> getDatas(){
-		return getPersons();
-	}
+    @Override
+    public final Collection<Person> getDatas() {
+        return getPersons();
+    }
 
-	@Override
-	public final void addDataListener(DataListener listener){
-		daoPersons.addDataListener(listener);
-	}
+    @Override
+    public final void addDataListener(DataListener listener) {
+        daoPersons.addDataListener(listener);
+    }
 
-	@Override
-	public Person getDefaultPerson(){
-		if (emptyActor == null){
-			emptyActor = getEmptyPerson();
+    @Override
+    public Person getDefaultPerson() {
+        if (emptyActor == null) {
+            emptyActor = getEmptyPerson();
 
-			emptyActor.setName("");
-			emptyActor.setFirstName("");
-			emptyActor.setNote(notesService.getDefaultNote());
-			emptyActor.setTheCountry(countriesService.getDefaultSimpleData());
-		}
+            emptyActor.setName("");
+            emptyActor.setFirstName("");
+            emptyActor.setNote(notesService.getDefaultNote());
+            emptyActor.setTheCountry(countriesService.getDefaultSimpleData());
+        }
 
-		return emptyActor;
-	}
+        return emptyActor;
+    }
 
-	@Override
-	public Person getEmptyPerson(){
-		Person person = daoPersons.create();
+    @Override
+    public Person getEmptyPerson() {
+        Person person = daoPersons.create();
 
-		person.setType(personType);
+        person.setType(personType);
 
-		return person;
-	}
+        return person;
+    }
 
-	@Override
-	@Transactional
-	public final void clearAll(){
-		daoPersons.clearAll();
-	}
+    @Override
+    @Transactional
+    public final void clearAll() {
+        daoPersons.clearAll();
+    }
 
-	@Override
-	public final String getDataType(){
-		return dataType;
-	}
+    @Override
+    public final String getDataType() {
+        return dataType;
+    }
 
-	@Override
-	public void createAll(Iterable<Person> persons){
-		for (Person person : persons){
-			create(person);
-		}
-	}
+    @Override
+    public void createAll(Iterable<Person> persons) {
+        for (Person person : persons) {
+            create(person);
+        }
+    }
 
-	@Override
-	public String getPersonType(){
-		return personType;
+    @Override
+    public String getPersonType() {
+        return personType;
 	}
 }

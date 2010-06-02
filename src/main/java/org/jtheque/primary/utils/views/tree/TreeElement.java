@@ -26,81 +26,80 @@ import javax.swing.Icon;
  * @author Baptiste Wicht
  */
 public interface TreeElement {
-	/**
-	 * Return the name of the element.
-	 *
-	 * @return The name
-	 */
-	String getElementName();
+    /**
+     * Return the name of the element.
+     *
+     * @return The name
+     */
+    String getElementName();
 
-	/**
-	 * Return the icon of the element.
-	 *
-	 * @return The icon
-	 */
-	Icon getIcon(IResourceService resourceService);
+    /**
+     * Return the icon of the element.
+     *
+     * @param resourceService The resource service to use.
+     * @return The icon
+     */
+    Icon getIcon(IResourceService resourceService);
 
-	/**
-	 * Indicate if the element is root or not.
-	 *
-	 * @return <code>true</code> if the element is the root else false.
-	 */
-	boolean isRoot();
+    /**
+     * Indicate if the element is root or not.
+     *
+     * @return <code>true</code> if the element is the root else false.
+     */
+    boolean isRoot();
 
-	/**
-	 * Indicate if the element is a category or not.
-	 *
-	 * @return <code>true</code> if the element is a category else <code>false</code>.
-	 */
-	boolean isCategory();
+    /**
+     * Indicate if the element is a category or not.
+     *
+     * @return <code>true</code> if the element is a category else <code>false</code>.
+     */
+    boolean isCategory();
 
-	/**
-	 * Indicate if the element is a leaf or not.
-	 *
-	 * @return <code>true</code> if the element is a leaf else <code>false</code>.
-	 */
-	boolean isLeaf();
+    /**
+     * Indicate if the element is a leaf or not.
+     *
+     * @return <code>true</code> if the element is a leaf else <code>false</code>.
+     */
+    boolean isLeaf();
 
-	/**
-	 * Return the child a the specified index.
-	 *
-	 * @param index The index.
-	 *
-	 * @return The element at the index else <code>null</code>.
-	 */
-	TreeElement getChild(int index);
+    /**
+     * Return the child a the specified index.
+     *
+     * @param index The index.
+     * @return The element at the index else <code>null</code>.
+     */
+    TreeElement getChild(int index);
 
-	/**
-	 * Return the number of childs.
-	 *
-	 * @return The number of childs.
-	 */
-	int getChildCount();
+    /**
+     * Return the number of childs.
+     *
+     * @return The number of childs.
+     */
+    int getChildCount();
 
-	/**
-	 * Return the index of the specified element.
-	 *
-	 * @param treeElement The element to search.
-	 *
-	 * @return the index of the element if found else <code>-1</code>.
-	 */
-	int indexOf(TreeElement treeElement);
+    /**
+     * Return the index of the specified element.
+     *
+     * @param treeElement The element to search.
+     * @return the index of the element if found else <code>-1</code>.
+     */
+    int indexOf(TreeElement treeElement);
 
-	/**
-	 * Add a tree element to the element.
-	 *
-	 * @param element The element to add.
-	 */
-	void add(TreeElement element);
+    /**
+     * Add a tree element to the element.
+     *
+     * @param element The element to add.
+     */
+    void add(TreeElement element);
 
-	/**
-	 * Add all the elements to the element.
-	 *
-	 * @param elements The elements to add.
-	 */
-	void addAll(Iterable<? extends TreeElement> elements);
+    /**
+     * Add all the elements to the element.
+     *
+     * @param elements The elements to add.
+     */
+    void addAll(Iterable<? extends TreeElement> elements);
 
-	/**
+    /**
 	 * Clear the element.
 	 */
 	void clear();

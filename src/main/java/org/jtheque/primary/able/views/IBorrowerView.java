@@ -27,26 +27,26 @@ import javax.swing.JTextField;
  * @author Baptiste Wicht
  */
 public interface IBorrowerView extends DataView, IView {
-	/**
-	 * Return the text field containing the name of the borrower.
-	 *
-	 * @return The text field who contains the name.
-	 */
-	JTextField getFieldNom();
+    /**
+     * Return the text field containing the name of the borrower.
+     *
+     * @return The text field who contains the name.
+     */
+    JTextField getFieldNom();
 
-	/**
-	 * Return the text field containing the first name of the borrower.
-	 *
-	 * @return The text field who contains the first name.
-	 */
-	JTextField getFieldFirstName();
+    /**
+     * Return the text field containing the first name of the borrower.
+     *
+     * @return The text field who contains the first name.
+     */
+    JTextField getFieldFirstName();
 
-	/**
-	 * Return the text field containing the email of the borrower.
-	 *
-	 * @return The text field who contains the email.
-	 */
-	JTextField getFieldEmail();
+    /**
+     * Return the text field containing the email of the borrower.
+     *
+     * @return The text field who contains the email.
+     */
+    JTextField getFieldEmail();
 
     @Override
     IBorrowerModel getModel();

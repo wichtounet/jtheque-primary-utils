@@ -24,11 +24,11 @@ import org.jtheque.ui.able.IView;
  * @author Baptiste Wicht
  */
 public interface View extends IView {
-	/**
-	 * Return the toolbar view of this view. Warning, on certain view this method can throw an
-	 * UnsupportedOperationException.
-	 *
-	 * @return The toolbarView
-	 */
-	ToolbarView getToolbarView();
+    /**
+     * Return the toolbar view of this view. Warning, on certain view this method can throw an
+     * UnsupportedOperationException.
+     *
+     * @return The toolbarView
+     */
+    ToolbarView getToolbarView();
 }

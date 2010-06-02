@@ -26,17 +26,17 @@ import org.jtheque.primary.impl.PrimaryConstants;
  * @author Baptiste Wicht
  */
 public final class BorrowerModel implements IBorrowerModel {
-	private Person borrower;
+    private Person borrower;
 
-	@Override
-	public void setBorrower(Person borrower){
-		assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
+    @Override
+    public void setBorrower(Person borrower) {
+        assert borrower.getType().equals(PrimaryConstants.BORROWER) : "The person must be a borrower";
 
-		this.borrower = borrower;
-	}
+        this.borrower = borrower;
+    }
 
-	@Override
-	public Person getBorrower(){
-		return borrower;
-	}
+    @Override
+    public Person getBorrower() {
+        return borrower;
+    }
 }

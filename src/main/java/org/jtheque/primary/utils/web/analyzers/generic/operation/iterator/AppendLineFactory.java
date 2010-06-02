@@ -16,37 +16,38 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
 import org.jtheque.xml.utils.XMLReader;
 
+import org.jdom.Element;
+
 /**
  * @author Baptiste Wicht
  */
 final class AppendLineFactory implements Factory<IteratorOperation> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "appendLine".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "appendLine".equals(element.getName());
+    }
 
-	@Override
-	public IteratorOperation factor(Element n, XMLReader reader) {
-		return new AppendLineIteratorOperation();
-	}
+    @Override
+    public IteratorOperation factor(Element n, XMLReader reader) {
+        return new AppendLineIteratorOperation();
+    }
 
-	/**
-	 * An operation which append the line to the builder.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class AppendLineIteratorOperation implements IteratorOperation {
-		@Override
-		public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator){
-			iterator.getBuilder().append(line);
+    /**
+     * An operation which append the line to the builder.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class AppendLineIteratorOperation implements IteratorOperation {
+        @Override
+        public String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator) {
+            iterator.getBuilder().append(line);
 
-			return line;
-		}
-	}
+            return line;
+        }
+    }
 }

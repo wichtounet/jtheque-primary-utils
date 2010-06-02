@@ -1,10 +1,11 @@
 package org.jtheque.primary.utils.web.analyzers.generic.value;
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -28,53 +29,51 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public final class ValueGetterFactory {
-	private static final FactoryContainer<ValueGetter> FACTORY = new FactoryContainer<ValueGetter>();
+    private static final FactoryContainer<ValueGetter> FACTORY = new FactoryContainer<ValueGetter>();
 
-	private static ScannerPossessor scannerPossessor;
+    private static ScannerPossessor scannerPossessor;
 
-	/**
-	 * This an utility class, not instanciable.
-	 */
-	private ValueGetterFactory(){
-		super();
-	}
+    /**
+     * This an utility class, not instanciable.
+     */
+    private ValueGetterFactory() {
+        super();
+    }
 
-	static{
-		FACTORY.add(new SimpleValueGetterFactory());
-		FACTORY.add(new ConditionalValueGetterFactory());
-		FACTORY.add(new IteratorValueGetterFactory());
-		FACTORY.add(new EmptyValueFactory());
-	}
+    static {
+        FACTORY.add(new SimpleValueGetterFactory());
+        FACTORY.add(new ConditionalValueGetterFactory());
+        FACTORY.add(new IteratorValueGetterFactory());
+        FACTORY.add(new EmptyValueFactory());
+    }
 
-	/**
-	 * Set the scanner possessor.
-	 *
-	 * @param scannerPossessor The scanner possessor.
-	 */
-	public static void setScannerPossessor(ScannerPossessor scannerPossessor){
-		ValueGetterFactory.scannerPossessor = scannerPossessor;
-	}
+    /**
+     * Set the scanner possessor.
+     *
+     * @param scannerPossessor The scanner possessor.
+     */
+    public static void setScannerPossessor(ScannerPossessor scannerPossessor) {
+        ValueGetterFactory.scannerPossessor = scannerPossessor;
+    }
 
-	/**
-	 * Return the scanner possessor.
-	 *
-	 * @return The scanner possessor.
-	 */
-	static ScannerPossessor getScannerPossessor(){
-		return scannerPossessor;
-	}
+    /**
+     * Return the scanner possessor.
+     *
+     * @return The scanner possessor.
+     */
+    static ScannerPossessor getScannerPossessor() {
+        return scannerPossessor;
+    }
 
-	/**
-	 * Return the value getter on the element.
-	 *
-	 * @param element The element to get the value getter for.
-	 * @param reader The reader to use.
-	 *
-	 * @return The factored ValueGetter to use.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	public static ValueGetter getValueGetter(Element element, XMLReader reader) throws XMLException {
-		return FACTORY.getFactoredObject(element, reader);
+    /**
+     * Return the value getter on the element.
+     *
+     * @param element The element to get the value getter for.
+     * @param reader  The reader to use.
+     * @return The factored ValueGetter to use.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    public static ValueGetter getValueGetter(Element element, XMLReader reader) throws XMLException {
+        return FACTORY.getFactoredObject(element, reader);
 	}
 }

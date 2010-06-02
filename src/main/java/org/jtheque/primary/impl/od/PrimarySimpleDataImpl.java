@@ -26,45 +26,45 @@ import org.jtheque.utils.bean.HashCodeUtils;
  * @author Baptiste Wicht
  */
 public final class PrimarySimpleDataImpl extends SimpleDataImpl implements PrimarySimpleData {
-	private String primaryImpl;
+    private String primaryImpl;
 
-	/**
-	 * Construct a new PrimarySimpleDataImpl.
-	 *
-	 * @param type The simple data type.
-	 * @param primaryImpl The primary implementation.
-	 */
-	public PrimarySimpleDataImpl(DataType type, String primaryImpl){
-		super(type);
+    /**
+     * Construct a new PrimarySimpleDataImpl.
+     *
+     * @param type        The simple data type.
+     * @param primaryImpl The primary implementation.
+     */
+    public PrimarySimpleDataImpl(DataType type, String primaryImpl) {
+        super(type);
 
-		this.primaryImpl = primaryImpl;
-	}
+        this.primaryImpl = primaryImpl;
+    }
 
-	@Override
-	public String getPrimaryImpl(){
-		return primaryImpl;
-	}
+    @Override
+    public String getPrimaryImpl() {
+        return primaryImpl;
+    }
 
-	@Override
-	public void setPrimaryImpl(String impl){
-		primaryImpl = impl;
-	}
+    @Override
+    public void setPrimaryImpl(String impl) {
+        primaryImpl = impl;
+    }
 
-	@Override
-	public int hashCode(){
-		return HashCodeUtils.hashCodeDirect(this, getName(), primaryImpl);
-	}
+    @Override
+    public int hashCode() {
+        return HashCodeUtils.hashCodeDirect(this, getName(), primaryImpl);
+    }
 
-	@Override
-	public boolean equals(Object obj){
-		if(obj == null){
-			return false;
-		}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
 
-		PrimarySimpleData other = (PrimarySimpleData) obj;
+        PrimarySimpleData other = (PrimarySimpleData) obj;
 
-		return EqualsUtils.areEqualsDirect(this, obj,
-				getName(), primaryImpl,
-				other.getName(), other.getPrimaryImpl());
+        return EqualsUtils.areEqualsDirect(this, obj,
+                getName(), primaryImpl,
+                other.getName(), other.getPrimaryImpl());
 	}
 }

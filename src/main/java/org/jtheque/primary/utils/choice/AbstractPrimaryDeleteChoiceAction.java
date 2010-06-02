@@ -3,11 +3,12 @@ package org.jtheque.primary.utils.choice;
 import org.jtheque.primary.able.od.Lending;
 import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.od.SimpleData;
-import org.jtheque.primary.impl.PrimaryConstants;
-import org.jtheque.primary.utils.edits.GenericDataDeletedEdit;
 import org.jtheque.primary.able.services.ILendingsService;
 import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.services.ISimpleDataService;
+import org.jtheque.primary.impl.PrimaryConstants;
+import org.jtheque.primary.utils.edits.GenericDataDeletedEdit;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -33,83 +34,83 @@ import org.springframework.context.ApplicationContextAware;
  * @author Baptiste Wicht
  */
 public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteChoiceAction implements ApplicationContextAware {
-	private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-	/**
-	 * Add the deleters for the datas of the primary utils. 	 * 
-	 */
-	protected final void addPrimaryDeleters(){
-		addDeleters(new CountryDeleter(), new BorrowerDeleter(), new SagaDeleter(),
-				new KindDeleter(), new TypeDeleter(), new LanguageDeleter(), new LendingDeleter());
-	}
+    /**
+     * Add the deleters for the datas of the primary utils. 	 *
+     */
+    protected final void addPrimaryDeleters() {
+        addDeleters(new CountryDeleter(), new BorrowerDeleter(), new SagaDeleter(),
+                new KindDeleter(), new TypeDeleter(), new LanguageDeleter(), new LendingDeleter());
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext){
-		this.applicationContext = applicationContext;
-	}
+    @Override
+    public final void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
-	/**
-	 * A Deleter for Kind object.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private final class KindDeleter extends Deleter<SimpleData> {
-		/**
-		 * Construct a new KindDeleter.
-		 */
-		private KindDeleter() {
-			super(SimpleData.DataType.KIND.getDataType());
-		}
+    /**
+     * A Deleter for Kind object.
+     *
+     * @author Baptiste Wicht
+     */
+    private final class KindDeleter extends Deleter<SimpleData> {
+        /**
+         * Construct a new KindDeleter.
+         */
+        private KindDeleter() {
+            super(SimpleData.DataType.KIND.getDataType());
+        }
 
-		@Override
-		public void delete(SimpleData o) {
-			ISimpleDataService kindService = applicationContext.getBean("kindsService", ISimpleDataService.class);
+        @Override
+        public void delete(SimpleData o) {
+            ISimpleDataService kindService = applicationContext.getBean("kindsService", ISimpleDataService.class);
 
-			addEditIfDeleted(kindService.delete(o), new GenericDataDeletedEdit<SimpleData>(kindService, o));
-		}
-	}
+            addEditIfDeleted(kindService.delete(o), new GenericDataDeletedEdit<SimpleData>(kindService, o));
+        }
+    }
 
-	/**
-	 * A Deleter for Type object.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private final class TypeDeleter extends Deleter<SimpleData> {
-		/**
-		 * Construct a new TypeDeleter.
-		 */
-		private TypeDeleter() {
-			super(SimpleData.DataType.TYPE.getDataType());
-		}
+    /**
+     * A Deleter for Type object.
+     *
+     * @author Baptiste Wicht
+     */
+    private final class TypeDeleter extends Deleter<SimpleData> {
+        /**
+         * Construct a new TypeDeleter.
+         */
+        private TypeDeleter() {
+            super(SimpleData.DataType.TYPE.getDataType());
+        }
 
-		@Override
-		public void delete(SimpleData o) {
-			ISimpleDataService typesService = applicationContext.getBean("typesService", ISimpleDataService.class);
+        @Override
+        public void delete(SimpleData o) {
+            ISimpleDataService typesService = applicationContext.getBean("typesService", ISimpleDataService.class);
 
-			addEditIfDeleted(typesService.delete(o), new GenericDataDeletedEdit<SimpleData>(typesService, o));
-		}
-	}
+            addEditIfDeleted(typesService.delete(o), new GenericDataDeletedEdit<SimpleData>(typesService, o));
+        }
+    }
 
-	/**
-	 * A Deleter for Language object.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private final class LanguageDeleter extends Deleter<SimpleData> {
-		/**
-		 * Construct a new LanguageDeleter.
-		 */
-		private LanguageDeleter() {
-			super(SimpleData.DataType.LANGUAGE.getDataType());
-		}
+    /**
+     * A Deleter for Language object.
+     *
+     * @author Baptiste Wicht
+     */
+    private final class LanguageDeleter extends Deleter<SimpleData> {
+        /**
+         * Construct a new LanguageDeleter.
+         */
+        private LanguageDeleter() {
+            super(SimpleData.DataType.LANGUAGE.getDataType());
+        }
 
-		@Override
-		public void delete(SimpleData o) {
-			ISimpleDataService languagesService = applicationContext.getBean("languagesService", ISimpleDataService.class);
+        @Override
+        public void delete(SimpleData o) {
+            ISimpleDataService languagesService = applicationContext.getBean("languagesService", ISimpleDataService.class);
 
-			addEditIfDeleted(languagesService.delete(o), new GenericDataDeletedEdit<SimpleData>(languagesService, o));
-		}
-	}
+            addEditIfDeleted(languagesService.delete(o), new GenericDataDeletedEdit<SimpleData>(languagesService, o));
+        }
+    }
 
     /**
      * A Deleter for Country object.
@@ -126,9 +127,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(SimpleData o) {
-			ISimpleDataService countriesService = applicationContext.getBean("countriesService", ISimpleDataService.class);
+            ISimpleDataService countriesService = applicationContext.getBean("countriesService", ISimpleDataService.class);
 
-			addEditIfDeleted(countriesService.delete(o), new GenericDataDeletedEdit<SimpleData>(countriesService, o));
+            addEditIfDeleted(countriesService.delete(o), new GenericDataDeletedEdit<SimpleData>(countriesService, o));
         }
     }
 
@@ -147,9 +148,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(Person o) {
-			IPersonService borrowersService = applicationContext.getBean("borrowersService", IPersonService.class);
+            IPersonService borrowersService = applicationContext.getBean("borrowersService", IPersonService.class);
 
-			addEditIfDeleted(borrowersService.delete(o), new GenericDataDeletedEdit<Person>(borrowersService, o));
+            addEditIfDeleted(borrowersService.delete(o), new GenericDataDeletedEdit<Person>(borrowersService, o));
         }
     }
 
@@ -168,9 +169,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(SimpleData o) {
-			ISimpleDataService sagasService = applicationContext.getBean("sagasService", ISimpleDataService.class);
+            ISimpleDataService sagasService = applicationContext.getBean("sagasService", ISimpleDataService.class);
 
-			addEditIfDeleted(sagasService.delete(o), new GenericDataDeletedEdit<SimpleData>(sagasService, o));
+            addEditIfDeleted(sagasService.delete(o), new GenericDataDeletedEdit<SimpleData>(sagasService, o));
         }
     }
 
@@ -189,9 +190,9 @@ public abstract class AbstractPrimaryDeleteChoiceAction extends AbstractDeleteCh
 
         @Override
         public void delete(Lending o) {
-			ILendingsService lendingsService = applicationContext.getBean("lendingsService", ILendingsService.class);
+            ILendingsService lendingsService = applicationContext.getBean("lendingsService", ILendingsService.class);
 
-			addEditIfDeleted(lendingsService.delete(o), new GenericDataDeletedEdit<Lending>(lendingsService, o));
+            addEditIfDeleted(lendingsService.delete(o), new GenericDataDeletedEdit<Lending>(lendingsService, o));
         }
     }
 }

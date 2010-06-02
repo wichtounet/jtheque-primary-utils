@@ -16,53 +16,54 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class LastFactory implements Factory<Transformer> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "last".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "last".equals(element.getName());
+    }
 
-	@Override
-	public Transformer factor(Element element, XMLReader reader){
-		return new Last(Integer.parseInt(element.getText()));
-	}
+    @Override
+    public Transformer factor(Element element, XMLReader reader) {
+        return new Last(Integer.parseInt(element.getText()));
+    }
 
-	/**
-	 * A Transformer who takes only the X last chars or the value.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class Last implements Transformer {
-		private final int last;
+    /**
+     * A Transformer who takes only the X last chars or the value.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class Last implements Transformer {
+        private final int last;
 
-		/**
-		 * Construct a new Last object.
-		 *
-		 * @param cut The number of chars to get.
-		 */
-		private Last(int cut){
-			super();
+        /**
+         * Construct a new Last object.
+         *
+         * @param cut The number of chars to get.
+         */
+        private Last(int cut) {
+            super();
 
-			last = cut;
-		}
+            last = cut;
+        }
 
-		@Override
-		public String transform(String value){
-			return value.substring(value.length() - last);
-		}
+        @Override
+        public String transform(String value) {
+            return value.substring(value.length() - last);
+        }
 
-		@Override
-		public String toString(){
-			return "Last{" +
-					"last=" + last +
-					'}';
-		}
-	}
+        @Override
+        public String toString() {
+            return "Last{" +
+                    "last=" + last +
+                    '}';
+        }
+    }
 }

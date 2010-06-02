@@ -16,33 +16,34 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class DeleteFirstCharFactory implements Factory<Transformer> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "deleteFirstChar".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "deleteFirstChar".equals(element.getName());
+    }
 
-	@Override
-	public Transformer factor(Element n, XMLReader reader) {
-		return new DeleteFirstChar();
-	}
+    @Override
+    public Transformer factor(Element n, XMLReader reader) {
+        return new DeleteFirstChar();
+    }
 
-	/**
-	 * A Transformer who delete the first char of the value.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class DeleteFirstChar implements Transformer {
-		@Override
-		public String transform(String value){
-			return value.substring(1);
-		}
-	}
+    /**
+     * A Transformer who delete the first char of the value.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class DeleteFirstChar implements Transformer {
+        @Override
+        public String transform(String value) {
+            return value.substring(1);
+        }
+    }
 }

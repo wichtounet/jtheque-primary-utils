@@ -26,31 +26,31 @@ import org.jtheque.ui.able.IModel;
  * @author Baptiste Wicht
  */
 public interface ISimpleDataModel extends IModel {
-	/**
-	 * Return the current simple data.
-	 *
-	 * @return The current simple data.
-	 */
-	SimpleData getSimpleData();
+    /**
+     * Return the current simple data.
+     *
+     * @return The current simple data.
+     */
+    SimpleData getSimpleData();
 
-	/**
-	 * Set the current simple data.
-	 *
-	 * @param data The simple data to set as current.
-	 */
-	void setSimpleData(SimpleData data);
+    /**
+     * Set the current simple data.
+     *
+     * @param data The simple data to set as current.
+     */
+    void setSimpleData(SimpleData data);
 
-	/**
-	 * Set the current controller of the model.
-	 *
-	 * @param id The bean ide of the controller.
-	 */
+    /**
+     * Set the current controller of the model.
+     *
+     * @param id The bean ide of the controller.
+     */
     void setCurrentController(SimpleController id);
 
-	/**
-	 * Return the id of the controller.
-	 *
-	 * @return The bean id of the current controller.
-	 */
+    /**
+     * Return the id of the controller.
+     *
+     * @return The bean id of the current controller.
+     */
     SimpleController getController();
 }

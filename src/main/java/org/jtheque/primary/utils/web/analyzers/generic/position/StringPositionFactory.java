@@ -16,128 +16,129 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class StringPositionFactory implements Factory<Position> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader) {
-		return "string".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "string".equals(element.getName());
+    }
 
-	@Override
-	public Position factor(Element node, XMLReader reader) throws XMLException {
-		StringPosition p = new StringPosition(reader.readString("text", node));
+    @Override
+    public Position factor(Element node, XMLReader reader) throws XMLException {
+        StringPosition p = new StringPosition(reader.readString("text", node));
 
-		if ("true".equals(reader.readString("@first", node))){
-			p.setFirst();
-		}
+        if ("true".equals(reader.readString("@first", node))) {
+            p.setFirst();
+        }
 
-		if ("true".equals(reader.readString("@last", node))){
-			p.setLast();
-		}
+        if ("true".equals(reader.readString("@last", node))) {
+            p.setLast();
+        }
 
-		Element fromNode = reader.getNode("from", node);
+        Element fromNode = reader.getNode("from", node);
 
-		if (fromNode != null){
-			p.setFrom(fromNode.getText());
-		}
+        if (fromNode != null) {
+            p.setFrom(fromNode.getText());
+        }
 
-		Object addNode = reader.getNode("add", node);
+        Object addNode = reader.getNode("add", node);
 
-		if (addNode != null){
-			p.setAdd(Integer.parseInt(((Element) addNode).getText()));
-		}
+        if (addNode != null) {
+            p.setAdd(Integer.parseInt(((Element) addNode).getText()));
+        }
 
-		return p;
-	}
+        return p;
+    }
 
-	/**
-	 * A position of a String in a line.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class StringPosition implements Position {
-		private final String text;
-		private String from;
-		private boolean first;
-		private boolean last;
-		private int add;
+    /**
+     * A position of a String in a line.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class StringPosition implements Position {
+        private final String text;
+        private String from;
+        private boolean first;
+        private boolean last;
+        private int add;
 
-		/**
-		 * Construct a new StringPosition.
-		 *
-		 * @param text The text to search in the line.
-		 */
-		private StringPosition(String text){
-			super();
+        /**
+         * Construct a new StringPosition.
+         *
+         * @param text The text to search in the line.
+         */
+        private StringPosition(String text) {
+            super();
 
-			this.text = text;
-		}
+            this.text = text;
+        }
 
-		/**
-		 * Set the boolean flag indicate if we must add the length of the String to the position.
-		 */
-		public void setFirst(){
-			first = true;
-		}
+        /**
+         * Set the boolean flag indicate if we must add the length of the String to the position.
+         */
+        public void setFirst() {
+            first = true;
+        }
 
-		/**
-		 * Set the boolean flag indicate if we must search the last occurrence.
-		 */
-		public void setLast(){
-			last = true;
-		}
+        /**
+         * Set the boolean flag indicate if we must search the last occurrence.
+         */
+        public void setLast() {
+            last = true;
+        }
 
-		/**
-		 * Set the String from which we start to search the occurrence.
-		 *
-		 * @param from The String from which we start to search the occurrence.
-		 */
-		public void setFrom(String from){
-			this.from = from;
-		}
+        /**
+         * Set the String from which we start to search the occurrence.
+         *
+         * @param from The String from which we start to search the occurrence.
+         */
+        public void setFrom(String from) {
+            this.from = from;
+        }
 
-		/**
-		 * Set a int value to add to the position.
-		 *
-		 * @param add The value to add to the position.
-		 */
-		public void setAdd(int add){
-			this.add = add;
-		}
+        /**
+         * Set a int value to add to the position.
+         *
+         * @param add The value to add to the position.
+         */
+        public void setAdd(int add) {
+            this.add = add;
+        }
 
-		@Override
-		public int intValue(String line){
-			int index;
+        @Override
+        public int intValue(String line) {
+            int index;
 
-			if (last){
-				index = from != null && !from.isEmpty() ? line.lastIndexOf(text, line.indexOf(from)) : line.lastIndexOf(text);
-			} else {
-				index = from != null && !from.isEmpty() ? line.indexOf(text, line.indexOf(from)) : line.indexOf(text);
-			}
+            if (last) {
+                index = from != null && !from.isEmpty() ? line.lastIndexOf(text, line.indexOf(from)) : line.lastIndexOf(text);
+            } else {
+                index = from != null && !from.isEmpty() ? line.indexOf(text, line.indexOf(from)) : line.indexOf(text);
+            }
 
-			if (first){
-				index = index + text.length() + add;
-			}
+            if (first) {
+                index = index + text.length() + add;
+            }
 
-			return index;
-		}
+            return index;
+        }
 
-		@Override
-		public String toString(){
-			return "StringPosition{" +
-					"text='" + text + '\'' +
-					", from='" + from + '\'' +
-					", first=" + first +
-					", last=" + last +
-					", add=" + add +
-					'}';
-		}
-	}
+        @Override
+        public String toString() {
+            return "StringPosition{" +
+                    "text='" + text + '\'' +
+                    ", from='" + from + '\'' +
+                    ", first=" + first +
+                    ", last=" + last +
+                    ", add=" + add +
+                    '}';
+        }
+    }
 }

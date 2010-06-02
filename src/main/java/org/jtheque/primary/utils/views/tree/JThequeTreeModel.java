@@ -29,96 +29,96 @@ import javax.swing.tree.TreePath;
  * @author Baptiste Wicht
  */
 public final class JThequeTreeModel implements TreeModel {
-	private TreeElement root;
-	private final WeakEventListenerList listeners;
+    private TreeElement root;
+    private final WeakEventListenerList listeners;
 
-	/**
-	 * Construct a new JTheque Tree Model with a root element.
-	 *
-	 * @param root The root element.
-	 */
-	public JThequeTreeModel(TreeElement root){
-		super();
+    /**
+     * Construct a new JTheque Tree Model with a root element.
+     *
+     * @param root The root element.
+     */
+    public JThequeTreeModel(TreeElement root) {
+        super();
 
-		this.root = root;
-		listeners = new WeakEventListenerList();
-	}
+        this.root = root;
+        listeners = new WeakEventListenerList();
+    }
 
-	/**
-	 * Set the root element of the model.
-	 *
-	 * @param root The root element of the model.
-	 */
-	public void setRootElement(TreeElement root){
-		this.root = root;
+    /**
+     * Set the root element of the model.
+     *
+     * @param root The root element of the model.
+     */
+    public void setRootElement(TreeElement root) {
+        this.root = root;
 
-		fireTreeStructureChanged(root);
-	}
+        fireTreeStructureChanged(root);
+    }
 
-	@Override
-	public Object getChild(Object parent, int index){
-		TreeElement element = (TreeElement) parent;
+    @Override
+    public Object getChild(Object parent, int index) {
+        TreeElement element = (TreeElement) parent;
 
-		if (element.isRoot() || element.isCategory()){
-			return element.getChild(index);
-		} else {
-			assert element.isLeaf() : "Element must be one of (root, category, tree";
+        if (element.isRoot() || element.isCategory()) {
+            return element.getChild(index);
+        } else {
+            assert element.isLeaf() : "Element must be one of (root, category, tree";
 
-			return null;
-		}
-	}
+            return null;
+        }
+    }
 
-	@Override
-	public int getChildCount(Object parent){
-		TreeElement element = (TreeElement) parent;
+    @Override
+    public int getChildCount(Object parent) {
+        TreeElement element = (TreeElement) parent;
 
-		return element.getChildCount();
-	}
+        return element.getChildCount();
+    }
 
-	@Override
-	public int getIndexOfChild(Object parent, Object child){
-		TreeElement element = (TreeElement) parent;
+    @Override
+    public int getIndexOfChild(Object parent, Object child) {
+        TreeElement element = (TreeElement) parent;
 
-		return element.indexOf((TreeElement) child);
-	}
+        return element.indexOf((TreeElement) child);
+    }
 
-	@Override
-	public TreeElement getRoot(){
-		return root;
-	}
+    @Override
+    public TreeElement getRoot() {
+        return root;
+    }
 
-	@Override
-	public boolean isLeaf(Object node){
-		TreeElement element = (TreeElement) node;
+    @Override
+    public boolean isLeaf(Object node) {
+        TreeElement element = (TreeElement) node;
 
-		return element.isLeaf();
-	}
+        return element.isLeaf();
+    }
 
-	/**
-	 * Fire a event to say that the tree structure has changed.
-	 *
-	 * @param root The root element.
-	 */
-	void fireTreeStructureChanged(TreeElement root){
-		TreeModelEvent event = new TreeModelEvent(this, new TreeElement[]{root});
+    /**
+     * Fire a event to say that the tree structure has changed.
+     *
+     * @param root The root element.
+     */
+    void fireTreeStructureChanged(TreeElement root) {
+        TreeModelEvent event = new TreeModelEvent(this, new TreeElement[]{root});
 
-		for (TreeModelListener tml : listeners.getListeners(TreeModelListener.class)){
-			tml.treeStructureChanged(event);
-		}
-	}
+        for (TreeModelListener tml : listeners.getListeners(TreeModelListener.class)) {
+            tml.treeStructureChanged(event);
+        }
+    }
 
-	@Override
-	public void addTreeModelListener(TreeModelListener listener){
-		listeners.add(TreeModelListener.class, listener);
-	}
+    @Override
+    public void addTreeModelListener(TreeModelListener listener) {
+        listeners.add(TreeModelListener.class, listener);
+    }
 
-	@Override
-	public void removeTreeModelListener(TreeModelListener listener){
-		listeners.remove(TreeModelListener.class, listener);
-	}
+    @Override
+    public void removeTreeModelListener(TreeModelListener listener) {
+        listeners.remove(TreeModelListener.class, listener);
+    }
 
-	@Override
-	public void valueForPathChanged(TreePath arg0, Object arg1){
-		//Nothing to be done
-	}
+    @Override
+    public void valueForPathChanged(TreePath arg0, Object arg1) {
+        //Nothing to be done
+    }
 }

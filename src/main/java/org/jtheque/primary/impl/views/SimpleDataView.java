@@ -37,53 +37,53 @@ import javax.swing.JTextField;
  * @author Baptiste Wicht
  */
 public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDataModel> implements ISimpleDataView {
-	private static final int NAME_LENGTH_LIMIT = 100;
-	private static final int FIELD_COLUMNS = 15;
+    private static final int NAME_LENGTH_LIMIT = 100;
+    private static final int FIELD_COLUMNS = 15;
 
-	private JTextField fieldName;
+    private JTextField fieldName;
 
-	@Override
-	protected void initView(){
-		setModel(new SimpleDataModel());
-	}
+    @Override
+    protected void initView() {
+        setModel(new SimpleDataModel());
+    }
 
-	@Override
-	protected void buildView(I18nPanelBuilder builder){
-		Action validateAction = new ValidateSimpleDataViewAction(this);
+    @Override
+    protected void buildView(I18nPanelBuilder builder) {
+        Action validateAction = new ValidateSimpleDataViewAction(this);
 
-		builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));
+        builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));
 
-		fieldName = builder.add(new JTextField(FIELD_COLUMNS), builder.gbcSet(1, 0));
-		SwingUtils.addFieldValidateAction(fieldName, validateAction);
+        fieldName = builder.add(new JTextField(FIELD_COLUMNS), builder.gbcSet(1, 0));
+        SwingUtils.addFieldValidateAction(fieldName, validateAction);
 
-		addConstraint(fieldName, new MaxLengthConstraint(NAME_LENGTH_LIMIT, "data.view.name", false, false));
+        addConstraint(fieldName, new MaxLengthConstraint(NAME_LENGTH_LIMIT, "data.view.name", false, false));
 
-		builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
-				validateAction, getCloseAction("data.view.actions.cancel"));
-	}
+        builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
+                validateAction, getCloseAction("data.view.actions.cancel"));
+    }
 
-	@Override
-	public void reload(){
+    @Override
+    public void reload() {
         SimpleData simpleData = getModel().getSimpleData();
 
-        if(simpleData.isSaved()){
+        if (simpleData.isSaved()) {
             refreshText(getService(ILanguageService.class));
         } else {
             setTitleKey("data.view.title");
         }
 
-		fieldName.setText(simpleData.getName());
-	}
+        fieldName.setText(simpleData.getName());
+    }
 
-	@Override
-	public String getDataName(){
-		return fieldName.getText();
-	}
+    @Override
+    public String getDataName() {
+        return fieldName.getText();
+    }
 
-	@Override
-	public void refreshText(ILanguageService languageService){
-		if (getModel().getSimpleData() != null){
-			setTitle(getMessage("data.view.title.modify", getModel().getSimpleData().getName()));
-		}
-	}
+    @Override
+    public void refreshText(ILanguageService languageService) {
+        if (getModel().getSimpleData() != null) {
+            setTitle(getMessage("data.view.title.modify", getModel().getSimpleData().getName()));
+        }
+    }
 }

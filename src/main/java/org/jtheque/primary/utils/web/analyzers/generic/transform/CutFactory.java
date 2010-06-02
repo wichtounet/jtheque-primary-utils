@@ -16,53 +16,54 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class CutFactory implements Factory<Transformer> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "cut".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "cut".equals(element.getName());
+    }
 
-	@Override
-	public Transformer factor(Element element, XMLReader reader){
-		return new Cut(Integer.parseInt(element.getText()));
-	}
+    @Override
+    public Transformer factor(Element element, XMLReader reader) {
+        return new Cut(Integer.parseInt(element.getText()));
+    }
 
-	/**
-	 * A Transformer who take only the X first chars.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class Cut implements Transformer {
-		private final int cut;
+    /**
+     * A Transformer who take only the X first chars.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class Cut implements Transformer {
+        private final int cut;
 
-		/**
-		 * Construct a new Cut object.
-		 *
-		 * @param cut The number of characters to take.
-		 */
-		private Cut(int cut){
-			super();
+        /**
+         * Construct a new Cut object.
+         *
+         * @param cut The number of characters to take.
+         */
+        private Cut(int cut) {
+            super();
 
-			this.cut = cut;
-		}
+            this.cut = cut;
+        }
 
-		@Override
-		public String transform(String value){
-			return value.substring(0, value.length() - cut);
-		}
+        @Override
+        public String transform(String value) {
+            return value.substring(0, value.length() - cut);
+        }
 
-		@Override
-		public String toString(){
-			return "Cut{" +
-					"cut=" + cut +
-					'}';
-		}
-	}
+        @Override
+        public String toString() {
+            return "Cut{" +
+                    "cut=" + cut +
+                    '}';
+        }
+    }
 }

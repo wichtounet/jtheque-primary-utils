@@ -16,53 +16,54 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class AbsolutePositionFactory implements Factory<Position> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "absolute".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "absolute".equals(element.getName());
+    }
 
-	@Override
-	public Position factor(Element n, XMLReader reader) {
-		return new AbsolutePosition(Integer.parseInt(n.getText()));
-	}
+    @Override
+    public Position factor(Element n, XMLReader reader) {
+        return new AbsolutePosition(Integer.parseInt(n.getText()));
+    }
 
-	/**
-	 * An absolute position.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class AbsolutePosition implements Position {
-		private final int position;
+    /**
+     * An absolute position.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class AbsolutePosition implements Position {
+        private final int position;
 
-		/**
-		 * Construct a new AbsolutePosition.
-		 *
-		 * @param position The position to return.
-		 */
-		private AbsolutePosition(int position){
-			super();
+        /**
+         * Construct a new AbsolutePosition.
+         *
+         * @param position The position to return.
+         */
+        private AbsolutePosition(int position) {
+            super();
 
-			this.position = position;
-		}
+            this.position = position;
+        }
 
-		@Override
-		public int intValue(String line){
-			return position;
-		}
+        @Override
+        public int intValue(String line) {
+            return position;
+        }
 
-		@Override
-		public String toString(){
-			return "AbsolutePosition{" +
-					"position=" + position +
-					'}';
-		}
-	}
+        @Override
+        public String toString() {
+            return "AbsolutePosition{" +
+                    "position=" + position +
+                    '}';
+        }
+    }
 }

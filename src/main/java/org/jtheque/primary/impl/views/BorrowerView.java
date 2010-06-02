@@ -38,77 +38,77 @@ import javax.swing.JTextField;
  * @author Baptiste Wicht
  */
 public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerModel> implements IBorrowerView {
-	private static final int DEFAULT_COLUMNS = 15;
-	private static final int DEFAULT_FIELD_LENGTH = 100;
+    private static final int DEFAULT_COLUMNS = 15;
+    private static final int DEFAULT_FIELD_LENGTH = 100;
 
-	private JTextField fieldNom;
-	private JTextField fieldFirstName;
-	private JTextField fieldEmail;
-	
-	@Override
-	protected void initView(){
-		setModel(new BorrowerModel());
-	}
+    private JTextField fieldNom;
+    private JTextField fieldFirstName;
+    private JTextField fieldEmail;
 
-	@Override
-	protected void buildView(I18nPanelBuilder builder){
-		builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));
-		fieldNom = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 0));
+    @Override
+    protected void initView() {
+        setModel(new BorrowerModel());
+    }
 
-		builder.addI18nLabel("borrower.view.firstname", builder.gbcSet(0, 1));
-		fieldFirstName = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 1));
+    @Override
+    protected void buildView(I18nPanelBuilder builder) {
+        builder.addI18nLabel("borrower.view.name", builder.gbcSet(0, 0));
+        fieldNom = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 0));
 
-		builder.addI18nLabel("borrower.view.mail", builder.gbcSet(0, 2));
-		fieldEmail = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 2));
+        builder.addI18nLabel("borrower.view.firstname", builder.gbcSet(0, 1));
+        fieldFirstName = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 1));
 
-		Action validateAction = new AcValidateBorrowerView(getService(IBorrowerController.class));
+        builder.addI18nLabel("borrower.view.mail", builder.gbcSet(0, 2));
+        fieldEmail = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 2));
 
-		builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
-				validateAction, getCloseAction("borrower.actions.cancel"));
+        Action validateAction = new AcValidateBorrowerView(getService(IBorrowerController.class));
 
-		addConstraint(fieldNom, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.name", false, false));
-		addConstraint(fieldFirstName, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.firstname", false, false));
-		addConstraint(fieldEmail, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.mail", false, false));
+        builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
+                validateAction, getCloseAction("borrower.actions.cancel"));
 
-		SwingUtils.addFieldsValidateAction(validateAction, fieldNom, fieldFirstName, fieldEmail);
-	}
+        addConstraint(fieldNom, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.name", false, false));
+        addConstraint(fieldFirstName, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.firstname", false, false));
+        addConstraint(fieldEmail, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.mail", false, false));
 
-	@Override
-	public void reload(){
+        SwingUtils.addFieldsValidateAction(validateAction, fieldNom, fieldFirstName, fieldEmail);
+    }
+
+    @Override
+    public void reload() {
         Person borrower = getModel().getBorrower();
 
-        if(borrower.isSaved()){
-		    setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
+        if (borrower.isSaved()) {
+            setTitle(getMessage("borrower.view.title.edit") + borrower.getName());
         } else {
             setTitleKey("borrower.view.title");
         }
 
-		fieldNom.setText(borrower.getName());
-		fieldFirstName.setText(borrower.getFirstName());
-		fieldEmail.setText(borrower.getEmail());
-	}
+        fieldNom.setText(borrower.getName());
+        fieldFirstName.setText(borrower.getFirstName());
+        fieldEmail.setText(borrower.getEmail());
+    }
 
-	@Override
-	public JTextField getFieldNom(){
-		return fieldNom;
-	}
+    @Override
+    public JTextField getFieldNom() {
+        return fieldNom;
+    }
 
-	@Override
-	public JTextField getFieldFirstName(){
-		return fieldFirstName;
-	}
+    @Override
+    public JTextField getFieldFirstName() {
+        return fieldFirstName;
+    }
 
-	@Override
-	public JTextField getFieldEmail(){
-		return fieldEmail;
-	}
+    @Override
+    public JTextField getFieldEmail() {
+        return fieldEmail;
+    }
 
-	@Override
-	public void refreshText(ILanguageService languageService){
-		super.refreshText(languageService);
+    @Override
+    public void refreshText(ILanguageService languageService) {
+        super.refreshText(languageService);
 
-		if (getModel().getBorrower() != null){
-			setTitle(getMessage("borrower.view.title.edit") + getModel().getBorrower().getName());
-		}
-	}
+        if (getModel().getBorrower() != null) {
+            setTitle(getMessage("borrower.view.title.edit") + getModel().getBorrower().getName());
+        }
+    }
 }

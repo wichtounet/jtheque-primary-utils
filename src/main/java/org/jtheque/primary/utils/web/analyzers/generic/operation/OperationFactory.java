@@ -1,9 +1,10 @@
 package org.jtheque.primary.utils.web.analyzers.generic.operation;
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -27,33 +28,31 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public final class OperationFactory {
-	private static final FactoryContainer<Operation> FACTORY = new FactoryContainer<Operation>();
+    private static final FactoryContainer<Operation> FACTORY = new FactoryContainer<Operation>();
 
-	/**
-	 * This an utility class, not instanciable.
-	 */
-	private OperationFactory(){
-		super();
-	}
+    /**
+     * This an utility class, not instanciable.
+     */
+    private OperationFactory() {
+        super();
+    }
 
-	static{
-		FACTORY.add(new NextLineFactory());
-		FACTORY.add(new TrimFactory());
-		FACTORY.add(new DeleterFactory());
-	}
+    static {
+        FACTORY.add(new NextLineFactory());
+        FACTORY.add(new TrimFactory());
+        FACTORY.add(new DeleterFactory());
+    }
 
-	/**
-	 * Return the operation value on the element.
-	 *
-	 * @param element The element to get the value getter for.
-	 * @param reader The reader to use.
-	 *
-	 * @return The factored Operation to use.
-	 *
-	 * @throws XMLException If an error occurs during the XML processing.
-	 */
-	public static Operation getValueGetter(Element element, XMLReader reader) throws XMLException {
-		return FACTORY.getFactoredObject(element, reader);
+    /**
+     * Return the operation value on the element.
+     *
+     * @param element The element to get the value getter for.
+     * @param reader  The reader to use.
+     * @return The factored Operation to use.
+     * @throws XMLException If an error occurs during the XML processing.
+     */
+    public static Operation getValueGetter(Element element, XMLReader reader) throws XMLException {
+        return FACTORY.getFactoredObject(element, reader);
 	}
 
 }

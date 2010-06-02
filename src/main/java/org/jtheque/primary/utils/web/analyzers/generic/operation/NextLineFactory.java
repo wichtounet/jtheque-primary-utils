@@ -16,33 +16,34 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 final class NextLineFactory implements Factory<Operation> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader) {
-		return "nextline".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "nextline".equals(element.getName());
+    }
 
-	@Override
-	public Operation factor(Element element, XMLReader reader){
-		return new NextLineOperation();
-	}
+    @Override
+    public Operation factor(Element element, XMLReader reader) {
+        return new NextLineOperation();
+    }
 
-	/**
-	 * An operation which pass to the next line.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	static final class NextLineOperation implements Operation {
-		@Override
-		public String perform(String line, ScannerPossessor analyzer){
-			return analyzer.getScanner().nextLine();
-		}
-	}
+    /**
+     * An operation which pass to the next line.
+     *
+     * @author Baptiste Wicht
+     */
+    static final class NextLineOperation implements Operation {
+        @Override
+        public String perform(String line, ScannerPossessor analyzer) {
+            return analyzer.getScanner().nextLine();
+        }
+    }
 }

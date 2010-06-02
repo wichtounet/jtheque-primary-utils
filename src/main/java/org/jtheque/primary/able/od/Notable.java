@@ -24,17 +24,17 @@ import org.jtheque.persistence.able.Note;
  * @author Baptiste Wicht
  */
 public interface Notable {
-	/**
-	 * Set the note of the object.
-	 *
-	 * @param note The new note to set
-	 */
-	void setNote(Note note);
+    /**
+     * Set the note of the object.
+     *
+     * @param note The new note to set
+     */
+    void setNote(Note note);
 
-	/**
-	 * Return the note of the data.
-	 *
-	 * @return The note
-	 */
-	Note getNote();
+    /**
+     * Return the note of the data.
+     *
+     * @return The note
+     */
+    Note getNote();
 }

@@ -27,38 +27,38 @@ import javax.swing.undo.AbstractUndoableEdit;
  * @author Baptiste Wicht
  */
 public final class GenericDataDeletedEdit<T extends Entity> extends AbstractUndoableEdit {
-	private final T entity;
-	private final DataService<T> dataService;
+    private final T entity;
+    private final DataService<T> dataService;
 
     /**
-	 * Construct a new DeletedFilmEdit.
-	 *
-	 * @param dataService The data service to use.
-	 * @param entity The deleted entity.
-	 */
-	public GenericDataDeletedEdit(DataService<T> dataService, T entity){
-		super();
+     * Construct a new DeletedFilmEdit.
+     *
+     * @param dataService The data service to use.
+     * @param entity      The deleted entity.
+     */
+    public GenericDataDeletedEdit(DataService<T> dataService, T entity) {
+        super();
 
-		this.dataService = dataService;
-		this.entity = entity;
-	}
+        this.dataService = dataService;
+        this.entity = entity;
+    }
 
-	@Override
-	public void undo(){
-		super.undo();
+    @Override
+    public void undo() {
+        super.undo();
 
-		dataService.create(entity);
-	}
+        dataService.create(entity);
+    }
 
-	@Override
-	public void redo(){
-		super.redo();
+    @Override
+    public void redo() {
+        super.redo();
 
-		dataService.delete(entity);
-	}
+        dataService.delete(entity);
+    }
 
-	@Override
-	public String getPresentationName(){
-		return "undo.edits.delete";
+    @Override
+    public String getPresentationName() {
+        return "undo.edits.delete";
 	}
 }

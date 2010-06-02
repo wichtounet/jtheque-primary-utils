@@ -25,15 +25,15 @@ import org.jtheque.primary.utils.AbstractData;
  * @author Baptiste Wicht
  */
 public abstract class AbstractPrimaryData extends AbstractData implements PrimaryData {
-	private String primaryImpl;
+    private String primaryImpl;
 
-	@Override
-	public final String getPrimaryImpl(){
-		return primaryImpl;
-	}
+    @Override
+    public final String getPrimaryImpl() {
+        return primaryImpl;
+    }
 
-	@Override
-	public final void setPrimaryImpl(String primaryImpl){
-		this.primaryImpl = primaryImpl;
-	}
+    @Override
+    public final void setPrimaryImpl(String primaryImpl) {
+        this.primaryImpl = primaryImpl;
+    }
 }

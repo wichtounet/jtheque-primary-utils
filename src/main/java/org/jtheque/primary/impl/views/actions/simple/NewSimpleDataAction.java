@@ -27,23 +27,23 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class NewSimpleDataAction extends JThequeAction {
-	private final ISimpleController controller;
+    private final ISimpleController controller;
 
-	/**
-	 * Construct a AcNewKind.
-	 *
-	 * @param key The text key of the action.
-	 * @param controller The controller to use.
-	 */
-	public NewSimpleDataAction(String key, ISimpleController controller){
-		super(key);
+    /**
+     * Construct a AcNewKind.
+     *
+     * @param key        The text key of the action.
+     * @param controller The controller to use.
+     */
+    public NewSimpleDataAction(String key, ISimpleController controller) {
+        super(key);
 
-		this.controller = controller;
-	}
+        this.controller = controller;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e){
-		controller.create();
-		controller.displayView();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        controller.create();
+        controller.displayView();
 	}
 }

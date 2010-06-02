@@ -19,6 +19,7 @@ package org.jtheque.primary.utils.views.tree;
 import org.jtheque.resources.able.IResourceService;
 
 import javax.swing.Icon;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,75 +29,75 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 public final class Category implements TreeElement {
-	private final List<TreeElement> elements;
-	private final String name;
+    private final List<TreeElement> elements;
+    private final String name;
 
-	/**
-	 * Constructs a new category.
-	 *
-	 * @param name The name of element
-	 */
-	public Category(String name){
-		super();
+    /**
+     * Constructs a new category.
+     *
+     * @param name The name of element
+     */
+    public Category(String name) {
+        super();
 
-		this.name = name;
-		elements = new ArrayList<TreeElement>(20);
-	}
+        this.name = name;
+        elements = new ArrayList<TreeElement>(20);
+    }
 
-	@Override
-	public String getElementName(){
-		return name;
-	}
+    @Override
+    public String getElementName() {
+        return name;
+    }
 
-	@Override
-	public Icon getIcon(IResourceService resourceService){
-		return null;
-	}
+    @Override
+    public Icon getIcon(IResourceService resourceService) {
+        return null;
+    }
 
-	@Override
-	public boolean isRoot(){
-		return false;
-	}
+    @Override
+    public boolean isRoot() {
+        return false;
+    }
 
-	@Override
-	public boolean isCategory(){
-		return true;
-	}
+    @Override
+    public boolean isCategory() {
+        return true;
+    }
 
-	@Override
-	public boolean isLeaf(){
-		return false;
-	}
+    @Override
+    public boolean isLeaf() {
+        return false;
+    }
 
-	@Override
-	public TreeElement getChild(int index){
-		return elements.get(index);
-	}
+    @Override
+    public TreeElement getChild(int index) {
+        return elements.get(index);
+    }
 
-	@Override
-	public int getChildCount(){
-		return elements.size();
-	}
+    @Override
+    public int getChildCount() {
+        return elements.size();
+    }
 
-	@Override
-	public int indexOf(TreeElement element){
-		return elements.indexOf(element);
-	}
+    @Override
+    public int indexOf(TreeElement element) {
+        return elements.indexOf(element);
+    }
 
-	@Override
-	public void add(TreeElement element){
-		elements.add(element);
-	}
+    @Override
+    public void add(TreeElement element) {
+        elements.add(element);
+    }
 
-	@Override
-	public void addAll(Iterable<? extends TreeElement> elements){
-		for (TreeElement element : elements){
-			add(element);
-		}
-	}
+    @Override
+    public void addAll(Iterable<? extends TreeElement> elements) {
+        for (TreeElement element : elements) {
+            add(element);
+        }
+    }
 
-	@Override
-	public void clear(){
-		elements.clear();
-	}
+    @Override
+    public void clear() {
+        elements.clear();
+    }
 }

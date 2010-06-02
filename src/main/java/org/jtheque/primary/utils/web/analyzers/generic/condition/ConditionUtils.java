@@ -1,8 +1,9 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
-import org.jdom.Element;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -26,34 +27,32 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public final class ConditionUtils {
-	/**
-	 * Utility class, not instanciable.
-	 */
-	private ConditionUtils(){
-		super();
-	}
+    /**
+     * Utility class, not instanciable.
+     */
+    private ConditionUtils() {
+        super();
+    }
 
-	/**
-	 * Return the condition contained in a specific location of a specific node.
-	 *
-	 * @param currentNode The node to search in.
-	 * @param location The location to search in.
-	 * @param reader The XML Reader
-	 *
-	 * @return The Condition or null if we doesn't found one.
-	 *
-	 * @throws XMLException If an errors occurs during the parse of the XML Elements.
-	 */
-	public static Condition getCondition(Object currentNode, String location, XMLReader reader) throws XMLException {
-		Object conditionNode = reader.getNode(location, currentNode);
+    /**
+     * Return the condition contained in a specific location of a specific node.
+     *
+     * @param currentNode The node to search in.
+     * @param location    The location to search in.
+     * @param reader      The XML Reader
+     * @return The Condition or null if we doesn't found one.
+     * @throws XMLException If an errors occurs during the parse of the XML Elements.
+     */
+    public static Condition getCondition(Object currentNode, String location, XMLReader reader) throws XMLException {
+        Object conditionNode = reader.getNode(location, currentNode);
 
-		if (conditionNode != null){
-			Element node = reader.getNode("*", conditionNode);
+        if (conditionNode != null) {
+            Element node = reader.getNode("*", conditionNode);
 
-			if (node != null){
-				return ConditionFactory.getCondition(node, reader);
-			}
-		}
+            if (node != null) {
+                return ConditionFactory.getCondition(node, reader);
+            }
+        }
 
 		return null;
 	}

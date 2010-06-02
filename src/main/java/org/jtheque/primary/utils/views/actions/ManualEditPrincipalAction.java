@@ -28,22 +28,22 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class ManualEditPrincipalAction extends JThequeAction {
-	private final IPrincipalController<? extends Data> controller;
+    private final IPrincipalController<? extends Data> controller;
 
-	/**
-	 * Construct a new ManualEditPrincipalAction.
-	 *
-	 * @param key The i18n key of the action.
-	 * @param controller The controller to use.
-	 */
-	public ManualEditPrincipalAction(String key, IPrincipalController<? extends Data> controller){
-		super(key);
+    /**
+     * Construct a new ManualEditPrincipalAction.
+     *
+     * @param key        The i18n key of the action.
+     * @param controller The controller to use.
+     */
+    public ManualEditPrincipalAction(String key, IPrincipalController<? extends Data> controller) {
+        super(key);
 
-		this.controller = controller;
-	}
+        this.controller = controller;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e){
-		controller.manualEdit();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        controller.manualEdit();
 	}
 }

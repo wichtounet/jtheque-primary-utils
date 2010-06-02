@@ -29,9 +29,9 @@ public interface ISimpleDataView extends DataView, IView {
     ISimpleDataModel getModel();
 
     /**
-	 * Return the entered name.
-	 *
-	 * @return The entered name.
-	 */
-	String getDataName();
+     * Return the entered name.
+     *
+     * @return The entered name.
+     */
+    String getDataName();
 }

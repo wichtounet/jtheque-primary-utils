@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -37,119 +38,118 @@ import java.util.Arrays;
  * @author Baptiste Wicht
  */
 public final class JDropDownButton extends JPanel implements ActionListener {
-	private final JPopupMenu popup;
+    private final JPopupMenu popup;
 
-	/**
-	 * Construct a new Drop Down Button with a list of action to provide.
-	 *
-	 * @param actions All the actions of the Drop Down Button.
-	 */
-	public JDropDownButton(Iterable<Action> actions){
-		super();
+    /**
+     * Construct a new Drop Down Button with a list of action to provide.
+     *
+     * @param actions All the actions of the Drop Down Button.
+     */
+    public JDropDownButton(Iterable<Action> actions) {
+        super();
 
-		setBorder(null);
-		setLayout(new FlowLayout(FlowLayout.LEFT, 2, 0));
-		setBackground(Color.white);
+        setBorder(null);
+        setLayout(new FlowLayout(FlowLayout.LEFT, 2, 0));
+        setBackground(Color.white);
 
-		JButton mainButton = buildMainButton(actions.iterator().next());
-		add(mainButton);
+        JButton mainButton = buildMainButton(actions.iterator().next());
+        add(mainButton);
 
-		JButton arrowButton = buildArrowButton();
-		add(arrowButton);
+        JButton arrowButton = buildArrowButton();
+        add(arrowButton);
 
-		calculateSizes(mainButton.getPreferredSize(), arrowButton.getPreferredSize());
+        calculateSizes(mainButton.getPreferredSize(), arrowButton.getPreferredSize());
 
-		popup = new JPopupMenu();
+        popup = new JPopupMenu();
 
-		for (Action a : actions){
-			popup.add(a);
-		}
-	}
+        for (Action a : actions) {
+            popup.add(a);
+        }
+    }
 
-	/**
-	 * Construct a new JDropDownButton with the specified actions.
-	 *
-	 * @param actions All the actions to be displayed in the view.
-	 */
-	public JDropDownButton(Action... actions){
-		this(Arrays.asList(actions));
-	}
+    /**
+     * Construct a new JDropDownButton with the specified actions.
+     *
+     * @param actions All the actions to be displayed in the view.
+     */
+    public JDropDownButton(Action... actions) {
+        this(Arrays.asList(actions));
+    }
 
-	/**
-	 * Build the main button.
-	 *
-	 * @param action The action executing by this button.
-	 *
-	 * @return The builded button.
-	 */
-	private static JButton buildMainButton(Action action){
-		JButton button = new JButton(action);
-		button.setRequestFocusEnabled(false);
-		button.setRolloverEnabled(true);
+    /**
+     * Build the main button.
+     *
+     * @param action The action executing by this button.
+     * @return The builded button.
+     */
+    private static JButton buildMainButton(Action action) {
+        JButton button = new JButton(action);
+        button.setRequestFocusEnabled(false);
+        button.setRolloverEnabled(true);
 
-		return button;
-	}
+        return button;
+    }
 
-	/**
-	 * Build the arrow button.
-	 *
-	 * @return The builded button.
-	 */
-	private JButton buildArrowButton(){
-		JButton button = new JButton();
+    /**
+     * Build the arrow button.
+     *
+     * @return The builded button.
+     */
+    private JButton buildArrowButton() {
+        JButton button = new JButton();
 
-		button.setIcon(new ArrowIcon());
-		button.addActionListener(this);
-		button.setRequestFocusEnabled(false);
-		button.setRolloverEnabled(true);
+        button.setIcon(new ArrowIcon());
+        button.addActionListener(this);
+        button.setRequestFocusEnabled(false);
+        button.setRolloverEnabled(true);
 
-		return button;
-	}
+        return button;
+    }
 
-	/**
-	 * Define the size of the button basing on the size of the two buttons.
-	 *
-	 * @param buttonSize1 The preferred size of the main button.
-	 * @param buttonSize2 The preferred size of the arrow button.
-	 */
-	private void calculateSizes(Dimension2D buttonSize1, Dimension2D buttonSize2){
-		int width = (int) (buttonSize1.getWidth() + buttonSize2.getWidth());
-		int height = (int) Math.max(buttonSize1.getHeight(), buttonSize2.getHeight());
+    /**
+     * Define the size of the button basing on the size of the two buttons.
+     *
+     * @param buttonSize1 The preferred size of the main button.
+     * @param buttonSize2 The preferred size of the arrow button.
+     */
+    private void calculateSizes(Dimension2D buttonSize1, Dimension2D buttonSize2) {
+        int width = (int) (buttonSize1.getWidth() + buttonSize2.getWidth());
+        int height = (int) Math.max(buttonSize1.getHeight(), buttonSize2.getHeight());
 
-		Dimension dimension = new Dimension(width + 7, height);
+        Dimension dimension = new Dimension(width + 7, height);
 
-		setMaximumSize(dimension);
-		setMinimumSize(dimension);
-		setPreferredSize(dimension);
-	}
+        setMaximumSize(dimension);
+        setMinimumSize(dimension);
+        setPreferredSize(dimension);
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent event){
-		popup.show(this, 0, getHeight());
-	}
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        popup.show(this, 0, getHeight());
+    }
 
-	/**
-	 * An icon representing an arrow.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class ArrowIcon implements Icon {
-		@Override
-		public void paintIcon(Component c, Graphics g, int x, int y){
-			g.setColor(Color.black);
-			g.drawLine(x, y, x + 4, y);
-			g.drawLine(x + 1, y + 1, x + 3, y + 1);
-			g.drawLine(x + 2, y + 2, x + 2, y + 2);
-		}
+    /**
+     * An icon representing an arrow.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class ArrowIcon implements Icon {
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            g.setColor(Color.black);
+            g.drawLine(x, y, x + 4, y);
+            g.drawLine(x + 1, y + 1, x + 3, y + 1);
+            g.drawLine(x + 2, y + 2, x + 2, y + 2);
+        }
 
-		@Override
-		public int getIconWidth(){
-			return 6;
-		}
+        @Override
+        public int getIconWidth() {
+            return 6;
+        }
 
-		@Override
-		public int getIconHeight(){
-			return 4;
+        @Override
+        public int getIconHeight() {
+            return 4;
 		}
 	}
 }

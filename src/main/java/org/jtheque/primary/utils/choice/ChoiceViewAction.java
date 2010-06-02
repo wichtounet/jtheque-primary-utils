@@ -27,30 +27,30 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class ChoiceViewAction extends JThequeAction {
-	private final String action;
-	private final String dataType;
+    private final String action;
+    private final String dataType;
     private final IChoiceController choiceController;
 
-	/**
-	 * Construct a new ChoiceViewAction.
-	 *
-	 * @param key The internationalization key.
-     * @param action The choice action.
-     * @param dataType The datatype of the data container.
-     * @param choiceController The choice controller. 
+    /**
+     * Construct a new ChoiceViewAction.
+     *
+     * @param key              The internationalization key.
+     * @param action           The choice action.
+     * @param dataType         The data type of the data container.
+     * @param choiceController The choice controller.
      */
-	public ChoiceViewAction(String key, String action, String dataType, IChoiceController choiceController){
-		super(key);
+    public ChoiceViewAction(String key, String action, String dataType, IChoiceController choiceController) {
+        super(key);
 
-		this.action = action;
-		this.dataType = dataType;
+        this.action = action;
+        this.dataType = dataType;
         this.choiceController = choiceController;
     }
 
-	@Override
-	public void actionPerformed(ActionEvent event){
-		choiceController.setAction(action);
-		choiceController.setContent(dataType);
-		choiceController.displayView();
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        choiceController.setAction(action);
+        choiceController.setContent(dataType);
+        choiceController.displayView();
 	}
 }

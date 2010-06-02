@@ -26,18 +26,18 @@ import org.jtheque.primary.impl.controller.SimpleController;
  * @author Baptiste Wicht
  */
 public final class SimpleDataModel implements ISimpleDataModel {
-	private SimpleData data;
+    private SimpleData data;
     private SimpleController id;
 
-	@Override
-	public SimpleData getSimpleData(){
-		return data;
-	}
+    @Override
+    public SimpleData getSimpleData() {
+        return data;
+    }
 
-	@Override
-	public void setSimpleData(SimpleData data){
-		this.data = data;
-	}
+    @Override
+    public void setSimpleData(SimpleData data) {
+        this.data = data;
+    }
 
     @Override
     public void setCurrentController(SimpleController id) {

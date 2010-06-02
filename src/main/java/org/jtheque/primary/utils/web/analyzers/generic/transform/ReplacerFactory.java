@@ -16,10 +16,11 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * A factory for replacer objects.
@@ -27,48 +28,48 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 final class ReplacerFactory implements Factory<Transformer> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "replacer".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "replacer".equals(element.getName());
+    }
 
-	@Override
-	public Transformer factor(Element n, XMLReader reader) throws XMLException {
-		return new Replacer(reader.readString("from", n), reader.readString("to", n));
-	}
+    @Override
+    public Transformer factor(Element n, XMLReader reader) throws XMLException {
+        return new Replacer(reader.readString("from", n), reader.readString("to", n));
+    }
 
-	/**
-	 * A Transformer who replace all the occurrences of a char sequence with an another.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class Replacer implements Transformer {
-		private final String from;
-		private final String to;
+    /**
+     * A Transformer who replace all the occurrences of a char sequence with an another.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class Replacer implements Transformer {
+        private final String from;
+        private final String to;
 
-		/**
-		 * Construct a new Replacer.
-		 *
-		 * @param from The char sequence to replace.
-		 * @param to The char to replace with.
-		 */
-		private Replacer(String from, String to){
-			super();
+        /**
+         * Construct a new Replacer.
+         *
+         * @param from The char sequence to replace.
+         * @param to   The char to replace with.
+         */
+        private Replacer(String from, String to) {
+            super();
 
-			this.from = from;
-			this.to = to;
-		}
+            this.from = from;
+            this.to = to;
+        }
 
-		@Override
-		public String transform(String value){
-			return value.replace(from, to);
-		}
+        @Override
+        public String transform(String value) {
+            return value.replace(from, to);
+        }
 
-		@Override
-		public String toString(){
-			return "Replacer{" +
-					"from='" + from + '\'' +
-					", to='" + to + '\'' +
+        @Override
+        public String toString() {
+            return "Replacer{" +
+                    "from='" + from + '\'' +
+                    ", to='" + to + '\'' +
 					'}';
 		}
 	}

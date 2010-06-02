@@ -22,13 +22,12 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation;
  * @author Baptiste Wicht
  */
 public interface Operation {
-	/**
-	 * Perform the operation.
-	 *
-	 * @param line The line.
-	 * @param analyzer The film analyzer.
-	 *
-	 * @return The line, eventually modified.
-	 */
-	String perform(String line, ScannerPossessor analyzer);
+    /**
+     * Perform the operation.
+     *
+     * @param line     The line.
+     * @param analyzer The film analyzer.
+     * @return The line, eventually modified.
+     */
+    String perform(String line, ScannerPossessor analyzer);
 }

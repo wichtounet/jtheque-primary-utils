@@ -1,6 +1,5 @@
 package org.jtheque.primary.utils.web.analyzers.generic.field;
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.field.SimpleFieldGetterFactory.SimpleFieldGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.Operation;
@@ -9,6 +8,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.xml.utils.XMLException;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /*
  * This file is part of JTheque.
@@ -30,40 +31,38 @@ import org.jtheque.xml.utils.XMLReader;
  * @author Baptiste Wicht
  */
 public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter> {
-	/**
-	 * Init the operations of a Field Getter.
-	 *
-	 * @param getter The field getter.
-	 * @param node The node in which we search for operations.
-	 * @param reader The XML Reader
-	 *
-	 * @throws XMLException If an errors occurs during the parse of the XML Elements.
-	 */
-	static void initOperations(SimpleFieldGetter getter, Object node, XMLReader reader) throws XMLException {
-		for (Element n : reader.getNodes("operations/*", node)){
-			Operation operation = OperationFactory.getValueGetter(n, reader);
+    /**
+     * Init the operations of a Field Getter.
+     *
+     * @param getter The field getter.
+     * @param node   The node in which we search for operations.
+     * @param reader The XML Reader
+     * @throws XMLException If an errors occurs during the parse of the XML Elements.
+     */
+    static void initOperations(SimpleFieldGetter getter, Object node, XMLReader reader) throws XMLException {
+        for (Element n : reader.getNodes("operations/*", node)) {
+            Operation operation = OperationFactory.getValueGetter(n, reader);
 
-			if (operation != null){
-				getter.addOperation(operation);
-			}
-		}
-	}
+            if (operation != null) {
+                getter.addOperation(operation);
+            }
+        }
+    }
 
-	/**
-	 * Init the transformers of a field getter.
-	 *
-	 * @param getter The getter to fill.
-	 * @param currentNode The node of the getter.
-	 * @param reader The XML Reader
-	 *
-	 * @throws XMLException Thrown if an errors occurs during the xml reading process.
-	 */
-	static void initTransformers(SimpleFieldGetter getter, Object currentNode, XMLReader reader) throws XMLException{
-		for (Element n : reader.getNodes("transformers/*", currentNode)){
-			Transformer transformer = TransformerFactory.getTransformer(n, reader);
+    /**
+     * Init the transformers of a field getter.
+     *
+     * @param getter      The getter to fill.
+     * @param currentNode The node of the getter.
+     * @param reader      The XML Reader
+     * @throws XMLException Thrown if an errors occurs during the xml reading process.
+     */
+    static void initTransformers(SimpleFieldGetter getter, Object currentNode, XMLReader reader) throws XMLException {
+        for (Element n : reader.getNodes("transformers/*", currentNode)) {
+            Transformer transformer = TransformerFactory.getTransformer(n, reader);
 
-			if (transformer != null){
-				getter.addTransformer(transformer);
+            if (transformer != null) {
+                getter.addTransformer(transformer);
 			}
 		}
 	}

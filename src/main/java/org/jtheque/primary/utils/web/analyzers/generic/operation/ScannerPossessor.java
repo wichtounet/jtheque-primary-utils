@@ -24,10 +24,10 @@ import java.util.Scanner;
  * @author Baptiste Wicht
  */
 public interface ScannerPossessor {
-	/**
-	 * Return the scanner.
-	 *
-	 * @return The scanner.
-	 */
-	Scanner getScanner();
+    /**
+     * Return the scanner.
+     *
+     * @return The scanner.
+     */
+    Scanner getScanner();
 }

@@ -16,53 +16,54 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdom.Element;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLReader;
+
+import org.jdom.Element;
 
 /**
  * @author Baptiste Wicht
  */
 public final class DeleterFactory implements Factory<Transformer> {
-	@Override
-	public boolean canFactor(Element element, XMLReader reader){
-		return "deleter".equals(element.getName());
-	}
+    @Override
+    public boolean canFactor(Element element, XMLReader reader) {
+        return "deleter".equals(element.getName());
+    }
 
-	@Override
-	public Transformer factor(Element element, XMLReader reader){
-		return new DeleterTransformer(element.getText());
-	}
+    @Override
+    public Transformer factor(Element element, XMLReader reader) {
+        return new DeleterTransformer(element.getText());
+    }
 
-	/**
-	 * A Transformer who delete some text of the value.
-	 *
-	 * @author Baptiste Wicht
-	 */
-	private static final class DeleterTransformer implements Transformer {
-		private final String text;
+    /**
+     * A Transformer who delete some text of the value.
+     *
+     * @author Baptiste Wicht
+     */
+    private static final class DeleterTransformer implements Transformer {
+        private final String text;
 
-		/**
-		 * Construct a new Deleter.
-		 *
-		 * @param text The text to delete.
-		 */
-		private DeleterTransformer(String text){
-			super();
+        /**
+         * Construct a new Deleter.
+         *
+         * @param text The text to delete.
+         */
+        private DeleterTransformer(String text) {
+            super();
 
-			this.text = text;
-		}
+            this.text = text;
+        }
 
-		@Override
-		public String transform(String value){
-			return value.replace(text, "");
-		}
+        @Override
+        public String transform(String value) {
+            return value.replace(text, "");
+        }
 
-		@Override
-		public String toString(){
-			return "DeleterTransformer{" +
-					"text='" + text + '\'' +
-					'}';
-		}
-	}
+        @Override
+        public String toString() {
+            return "DeleterTransformer{" +
+                    "text='" + text + '\'' +
+                    '}';
+        }
+    }
 }

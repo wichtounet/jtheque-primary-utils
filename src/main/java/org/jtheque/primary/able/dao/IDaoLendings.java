@@ -27,23 +27,22 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IDaoLendings extends Dao<Lending> {
-	String TABLE = "T_LENDINGS";
+    String TABLE = "T_LENDINGS";
 
-	/**
-	 * Return the lending with the specified ID.
-	 *
-	 * @param id The ID of the searched lending.
-	 *
-	 * @return The lending.
-	 */
-	Lending getLending(int id);
+    /**
+     * Return the lending with the specified ID.
+     *
+     * @param id The ID of the searched lending.
+     * @return The lending.
+     */
+    Lending getLending(int id);
 
-	Collection<Lending> getAllLendings();
+    Collection<Lending> getAllLendings();
 
-	/**
-	 * Return all the lendings of the current collection.
-	 *
-	 * @return All the lendings of the current collection.
-	 */
-	Collection<Lending> getLendings();
+    /**
+     * Return all the lendings of the current collection.
+     *
+     * @return All the lendings of the current collection.
+     */
+    Collection<Lending> getLendings();
 }

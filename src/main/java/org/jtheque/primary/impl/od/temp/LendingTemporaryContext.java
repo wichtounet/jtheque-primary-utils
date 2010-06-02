@@ -24,42 +24,42 @@ import org.jtheque.persistence.utils.TemporaryContext;
  * @author Baptiste Wicht
  */
 public final class LendingTemporaryContext extends TemporaryContext {
-	private int film;
-	private int borrower;
+    private int film;
+    private int borrower;
 
-	/**
-	 * Return the borrower of the context.
-	 *
-	 * @return the borrower.
-	 */
-	public int getBorrower(){
-		return borrower;
-	}
+    /**
+     * Return the borrower of the context.
+     *
+     * @return the borrower.
+     */
+    public int getBorrower() {
+        return borrower;
+    }
 
-	/**
-	 * Set the borrower of the context.
-	 *
-	 * @param borrower the borrower.
-	 */
-	public void setBorrower(int borrower){
-		this.borrower = borrower;
-	}
+    /**
+     * Set the borrower of the context.
+     *
+     * @param borrower the borrower.
+     */
+    public void setBorrower(int borrower) {
+        this.borrower = borrower;
+    }
 
-	/**
-	 * Return the film of the context.
-	 *
-	 * @return the film.
-	 */
-	public int getFilm(){
-		return film;
-	}
+    /**
+     * Return the film of the context.
+     *
+     * @return the film.
+     */
+    public int getFilm() {
+        return film;
+    }
 
-	/**
-	 * Set the film of the context.
-	 *
-	 * @param film the film.
-	 */
-	public void setFilm(int film){
-		this.film = film;
-	}
+    /**
+     * Set the film of the context.
+     *
+     * @param film the film.
+     */
+    public void setFilm(int film) {
+        this.film = film;
+    }
 }

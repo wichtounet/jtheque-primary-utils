@@ -7,6 +7,7 @@ import org.jtheque.undo.able.IUndoRedoService;
 
 import javax.annotation.Resource;
 import javax.swing.undo.UndoableEdit;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,30 +34,30 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
-	private final Collection<Deleter<? extends Entity>> deleters = new ArrayList<Deleter<? extends Entity>>(10);
+    private final Collection<Deleter<? extends Entity>> deleters = new ArrayList<Deleter<? extends Entity>>(10);
 
-	@Resource
-	private ILanguageService languageService;
+    @Resource
+    private ILanguageService languageService;
 
-	@Resource
-	private IUndoRedoService undoRedoService;
-	
-	@Resource
-	private IUIUtils uiUtils;
+    @Resource
+    private IUndoRedoService undoRedoService;
 
-	/**
-	 * Set the deleters to use to execute the action.
-	 *
-	 * @param deleters The deleters to use.
-	 */
-	protected final void addDeleters(Deleter<? extends Entity>... deleters){
-		this.deleters.addAll(Arrays.asList(deleters));
-	}
+    @Resource
+    private IUIUtils uiUtils;
 
-	@Override
-	public final boolean canDoAction(String action){
-		return "delete".equals(action);
-	}
+    /**
+     * Set the deleters to use to execute the action.
+     *
+     * @param deleters The deleters to use.
+     */
+    protected final void addDeleters(Deleter<? extends Entity>... deleters) {
+        this.deleters.addAll(Arrays.asList(deleters));
+    }
+
+    @Override
+    public final boolean canDoAction(String action) {
+        return "delete".equals(action);
+    }
 
     @Override
     public void execute() {
@@ -65,25 +66,25 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
                 languageService.getMessage("choice.dialogs.delete.title"));
 
         if (yes) {
-			for (Deleter<? extends Entity> deleter : deleters){
-				if (deleter.canDelete(getContent())){
-					deleter.delete(getSelectedItem());
+            for (Deleter<? extends Entity> deleter : deleters) {
+                if (deleter.canDelete(getContent())) {
+                    deleter.delete(getSelectedItem());
 
-					break;
-				}
-			}
-		}
+                    break;
+                }
+            }
+        }
     }
 
-	/**
-	 * Add an edit to undo-redo manager if deleted.
-	 *
-	 * @param deleted The boolean tag of the delete operation.
-	 * @param edit The undoable edit.
-	 */
-	protected final void addEditIfDeleted(boolean deleted, UndoableEdit edit){
-		if (deleted){
-			undoRedoService.addEdit(edit);
+    /**
+     * Add an edit to undo-redo manager if deleted.
+     *
+     * @param deleted The boolean tag of the delete operation.
+     * @param edit    The undoable edit.
+     */
+    protected final void addEditIfDeleted(boolean deleted, UndoableEdit edit) {
+        if (deleted) {
+            undoRedoService.addEdit(edit);
 		}
 	}
 }

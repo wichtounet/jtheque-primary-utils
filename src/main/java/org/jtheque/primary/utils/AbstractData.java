@@ -29,58 +29,58 @@ import javax.swing.Icon;
  * @author Baptiste Wicht
  */
 public abstract class AbstractData extends AbstractEntity implements Data {
-	@Override
-	public final String getElementName(){
-		return getDisplayableText();
-	}
+    @Override
+    public final String getElementName() {
+        return getDisplayableText();
+    }
 
-	@Override
-	public Icon getIcon(IResourceService resourceService){
-		return null;
-	}
+    @Override
+    public Icon getIcon(IResourceService resourceService) {
+        return null;
+    }
 
-	@Override
-	public boolean isRoot(){
-		return false;
-	}
+    @Override
+    public boolean isRoot() {
+        return false;
+    }
 
-	@Override
-	public boolean isCategory(){
-		return false;
-	}
+    @Override
+    public boolean isCategory() {
+        return false;
+    }
 
-	@Override
-	public boolean isLeaf(){
-		return true;
-	}
+    @Override
+    public boolean isLeaf() {
+        return true;
+    }
 
-	@Override
-	public TreeElement getChild(int index){
-		return null;
-	}
+    @Override
+    public TreeElement getChild(int index) {
+        return null;
+    }
 
-	@Override
-	public int getChildCount(){
-		return 0;
-	}
+    @Override
+    public int getChildCount() {
+        return 0;
+    }
 
-	@Override
-	public int indexOf(TreeElement treeElement){
-		return -1;
-	}
+    @Override
+    public int indexOf(TreeElement treeElement) {
+        return -1;
+    }
 
-	@Override
-	public void add(TreeElement element){
-		throw new UnsupportedOperationException("Add is not supported on leaf");
-	}
+    @Override
+    public void add(TreeElement element) {
+        throw new UnsupportedOperationException("Add is not supported on leaf");
+    }
 
-	@Override
-	public void addAll(Iterable<? extends TreeElement> elements){
-		throw new UnsupportedOperationException("Add is not supported on leaf");
-	}
+    @Override
+    public void addAll(Iterable<? extends TreeElement> elements) {
+        throw new UnsupportedOperationException("Add is not supported on leaf");
+    }
 
-	@Override
-	public void clear(){
-		throw new UnsupportedOperationException("Clear is not supported on leaf");
-	}
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Clear is not supported on leaf");
+    }
 }

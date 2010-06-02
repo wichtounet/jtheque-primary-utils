@@ -1,10 +1,11 @@
 package org.jtheque.primary.utils.choice;
 
+import org.jtheque.primary.able.controller.IBorrowerController;
+import org.jtheque.primary.able.controller.ISimpleController;
 import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.impl.PrimaryConstants;
-import org.jtheque.primary.able.controller.IBorrowerController;
-import org.jtheque.primary.able.controller.ISimpleController;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -30,19 +31,18 @@ import org.springframework.context.ApplicationContextAware;
  * @author Baptiste Wicht
  */
 public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction implements ApplicationContextAware {
-	private ApplicationContext applicationContext;
-	
-	/**
-	 * Execute the action for the datas of the primary utils.
-	 *
-	 * @param item The item to execute the action on.
-	 * @param content The current content.
-	 *
-	 * @return <code>true</code> if the primary choice action can execute this action on this
-	 * content else <code>false</code>. 
-	 */
-	public boolean execute(Object item, String content) {
-        if (SimpleData.DataType.KIND.getDataType().equals(content)){
+    private ApplicationContext applicationContext;
+
+    /**
+     * Execute the action for the datas of the primary utils.
+     *
+     * @param item    The item to execute the action on.
+     * @param content The current content.
+     * @return <code>true</code> if the primary choice action can execute this action on this
+     *         content else <code>false</code>.
+     */
+    public boolean execute(Object item, String content) {
+        if (SimpleData.DataType.KIND.getDataType().equals(content)) {
             applicationContext.getBean("kindController", ISimpleController.class).edit((SimpleData) item);
 
             return true;
@@ -71,8 +71,8 @@ public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction im
         return false;
     }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext){
-		this.applicationContext = applicationContext;
+    @Override
+    public final void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
 	}
 }

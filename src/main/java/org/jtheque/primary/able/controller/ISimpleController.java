@@ -26,25 +26,25 @@ import org.jtheque.views.able.Controller;
  * @author Baptiste Wicht
  */
 public interface ISimpleController extends Controller {
-	/**
-	 * Create a new simple data.
-	 */
-	void create();
+    /**
+     * Create a new simple data.
+     */
+    void create();
 
-	/**
-	 * Edit the specified data.
-	 *
-	 * @param data The data to edit.
-	 */
-	void edit(SimpleData data);
+    /**
+     * Edit the specified data.
+     *
+     * @param data The data to edit.
+     */
+    void edit(SimpleData data);
 
-	/**
-	 * Save the data using the specified name as the new name of the data.
-	 *
-	 * @param name The new name to set.
-	 */
-	void save(String name);
+    /**
+     * Save the data using the specified name as the new name of the data.
+     *
+     * @param name The new name to set.
+     */
+    void save(String name);
 
-	@Override
-	ISimpleDataView getView();
+    @Override
+    ISimpleDataView getView();
 }

@@ -17,6 +17,7 @@ import org.jtheque.utils.bean.Version;
 import org.jtheque.xml.utils.Node;
 
 import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -102,7 +103,7 @@ public class PrimaryBackuper implements ModuleBackuper {
     }
 
     private void addPersons(Collection<Node> nodes) {
-        for(Person person : daoPersons.getPersons()){
+        for (Person person : daoPersons.getPersons()) {
             Node node = new Node("person");
 
             node.addSimpleChildValue("id", person.getId());
@@ -119,7 +120,7 @@ public class PrimaryBackuper implements ModuleBackuper {
     }
 
     private void addLendings(Collection<Node> nodes) {
-        for(Lending lending : daoLendings.getAllLendings()){
+        for (Lending lending : daoLendings.getAllLendings()) {
             Node node = new Node("lending");
 
             node.addSimpleChildValue("id", lending.getId());
@@ -133,14 +134,14 @@ public class PrimaryBackuper implements ModuleBackuper {
     }
 
     private static void addSimpleData(IDaoSimpleDatas dao, Collection<Node> nodes) {
-        for(SimpleData data : dao.getSimpleDatas()){
+        for (SimpleData data : dao.getSimpleDatas()) {
             Node node = new Node("data");
 
             node.addSimpleChildValue("id", data.getId());
             node.addSimpleChildValue("name", data.getName());
             node.addSimpleChildValue("type", data.getType().toString());
 
-            if(dao.isPrimary()){
+            if (dao.isPrimary()) {
                 node.addSimpleChildValue("primary", "true");
                 node.addSimpleChildValue("impl", ((PrimaryData) data).getPrimaryImpl());
             }
@@ -163,16 +164,16 @@ public class PrimaryBackuper implements ModuleBackuper {
     private void restoreSimpleDatas(Iterator<Node> nodeIterator) {
         Map<DataType, IDaoSimpleDatas> daoCache = new EnumMap<DataType, IDaoSimpleDatas>(DataType.class);
 
-	    daoCache.put(DataType.COUNTRY, daoCountries);
-	    daoCache.put(DataType.KIND, daoKinds);
-	    daoCache.put(DataType.TYPE, daoTypes);
-	    daoCache.put(DataType.SAGA, daoSagas);
-	    daoCache.put(DataType.LANGUAGE, daoLanguages);
+        daoCache.put(DataType.COUNTRY, daoCountries);
+        daoCache.put(DataType.KIND, daoKinds);
+        daoCache.put(DataType.TYPE, daoTypes);
+        daoCache.put(DataType.SAGA, daoSagas);
+        daoCache.put(DataType.LANGUAGE, daoLanguages);
 
-        while(nodeIterator.hasNext()){
+        while (nodeIterator.hasNext()) {
             Node node = nodeIterator.next();
 
-            if("data".equals(node.getName())){
+            if ("data".equals(node.getName())) {
                 DataType type = DataType.valueOf(node.getChildValue("type"));
 
                 SimpleData data = daoCache.get(type).create();
@@ -180,8 +181,8 @@ public class PrimaryBackuper implements ModuleBackuper {
                 data.getTemporaryContext().setId(node.getChildIntValue("id"));
                 data.setName(node.getChildValue("name"));
 
-                if(type.isPrimary()){
-                    ((PrimaryData)data).setPrimaryImpl(node.getChildValue("impl"));
+                if (type.isPrimary()) {
+                    ((PrimaryData) data).setPrimaryImpl(node.getChildValue("impl"));
                 }
 
                 daoCache.get(type).create(data);
@@ -192,10 +193,10 @@ public class PrimaryBackuper implements ModuleBackuper {
     }
 
     private void restorePersons(Iterator<Node> nodeIterator) {
-        while(nodeIterator.hasNext()){
+        while (nodeIterator.hasNext()) {
             Node node = nodeIterator.next();
 
-            if("person".equals(node.getName())){
+            if ("person".equals(node.getName())) {
                 Person person = daoPersons.create();
 
                 person.getTemporaryContext().setId(node.getChildIntValue("id"));
@@ -216,10 +217,10 @@ public class PrimaryBackuper implements ModuleBackuper {
     }
 
     private void restoreLendings(Iterator<Node> nodeIterator) {
-        while(nodeIterator.hasNext()){
+        while (nodeIterator.hasNext()) {
             Node node = nodeIterator.next();
 
-            if("lending".equals(node.getName())){
+            if ("lending".equals(node.getName())) {
                 Lending lending = daoLendings.create();
 
                 lending.getTemporaryContext().setId(node.getChildIntValue("id"));

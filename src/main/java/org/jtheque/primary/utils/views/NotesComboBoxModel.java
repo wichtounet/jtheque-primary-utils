@@ -27,35 +27,35 @@ import javax.swing.DefaultComboBoxModel;
  * @author Baptiste Wicht
  */
 public final class NotesComboBoxModel extends DefaultComboBoxModel {
-	private final IDaoNotes daoNotes;
+    private final IDaoNotes daoNotes;
 
-	/**
-	 * Construct a new NotesComboBoxModel.
-	 *
-	 * @param daoNotes
-	 */
-	public NotesComboBoxModel(IDaoNotes daoNotes){
-		super();
+    /**
+     * Construct a new NotesComboBoxModel.
+     *
+     * @param daoNotes The dao notes.
+     */
+    public NotesComboBoxModel(IDaoNotes daoNotes) {
+        super();
 
-		this.daoNotes = daoNotes;
-	}
+        this.daoNotes = daoNotes;
+    }
 
-	@Override
-	public Object getElementAt(int index){
-		return daoNotes.getNotes()[index];
-	}
+    @Override
+    public Object getElementAt(int index) {
+        return daoNotes.getNotes()[index];
+    }
 
-	@Override
-	public int getSize(){
-		return daoNotes.getNotes().length;
-	}
+    @Override
+    public int getSize() {
+        return daoNotes.getNotes().length;
+    }
 
-	/**
-	 * Return the selected data in the model.
-	 *
-	 * @return The data who's selected.
-	 */
-	public Note getSelectedNote(){
-		return (Note) getSelectedItem();
+    /**
+     * Return the selected data in the model.
+     *
+     * @return The data who's selected.
+     */
+    public Note getSelectedNote() {
+        return (Note) getSelectedItem();
 	}
 }

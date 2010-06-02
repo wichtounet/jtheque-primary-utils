@@ -29,7 +29,7 @@
     <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.IDaoPersistenceContext"/>
     <osgi:reference id="views" interface="org.jtheque.views.able.IViews"/>
 
-    <osgi:service ref="choiceController" interface="org.jtheque.primary.able.controller.IChoiceController" />
+    <osgi:service ref="choiceController" interface="org.jtheque.primary.able.controller.IChoiceController"/>
 
     <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils"/>
 
@@ -98,7 +98,7 @@
     <bean id="choiceController" class="org.jtheque.primary.impl.controller.ChoiceController">
         <constructor-arg>
             <bean class="org.jtheque.spring.utils.SwingSpringProxy">
-                <constructor-arg value="org.jtheque.primary.able.views.IChoiceView" />
+                <constructor-arg value="org.jtheque.primary.able.views.IChoiceView"/>
             </bean>
         </constructor-arg>
     </bean>
@@ -146,6 +146,6 @@
         <property name="schemaService" ref="schemaService"/>
     </bean>
 
-    <bean class="org.jtheque.primary.impl.PrimaryUtilsSchema" />
-    <bean class="org.jtheque.primary.impl.PrimaryBackuper" />
+    <bean class="org.jtheque.primary.impl.PrimaryUtilsSchema"/>
+    <bean class="org.jtheque.primary.impl.PrimaryBackuper"/>
 </beans>

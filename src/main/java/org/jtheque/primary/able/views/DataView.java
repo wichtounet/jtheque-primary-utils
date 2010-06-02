@@ -22,8 +22,8 @@ package org.jtheque.primary.able.views;
  * @author Baptiste Wicht
  */
 public interface DataView {
-	/**
-	 * Reload the view with the default value.
-	 */
-	void reload();
+    /**
+     * Reload the view with the default value.
+     */
+    void reload();
 }

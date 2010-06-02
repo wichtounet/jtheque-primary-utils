@@ -6,17 +6,17 @@ package org.jtheque.primary.able.od;
  * @author Baptiste Wicht
  */
 public interface PrimaryData extends Data {
-	/**
-	 * Return the primary implementation of this data.
-	 *
-	 * @return The primary implementation of this data.
-	 */
-	String getPrimaryImpl();
+    /**
+     * Return the primary implementation of this data.
+     *
+     * @return The primary implementation of this data.
+     */
+    String getPrimaryImpl();
 
-	/**
-	 * Set the primary implementation of the data.
-	 *
-	 * @param impl The primary impl of the data.
-	 */
-	void setPrimaryImpl(String impl);
+    /**
+     * Set the primary implementation of the data.
+     *
+     * @param impl The primary impl of the data.
+     */
+    void setPrimaryImpl(String impl);
 }

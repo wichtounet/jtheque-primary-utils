@@ -26,35 +26,35 @@ import java.util.EventObject;
  * @author Baptiste Wicht
  */
 public final class ObjectChangedEvent extends EventObject {
-	private final Data object;
+    private final Data object;
 
-	/**
-	 * Construct a new ObjectChangedEvent.
-	 *
-	 * @param source The source of the event
-	 */
-	public ObjectChangedEvent(Object source){
-		this(source, null);
-	}
+    /**
+     * Construct a new ObjectChangedEvent.
+     *
+     * @param source The source of the event
+     */
+    public ObjectChangedEvent(Object source) {
+        this(source, null);
+    }
 
-	/**
-	 * Construct a new ObjectChangedEvent.
-	 *
-	 * @param source The source of the event
-	 * @param object The object who has changed
-	 */
-	public ObjectChangedEvent(Object source, Data object){
-		super(source);
+    /**
+     * Construct a new ObjectChangedEvent.
+     *
+     * @param source The source of the event
+     * @param object The object who has changed
+     */
+    public ObjectChangedEvent(Object source, Data object) {
+        super(source);
 
-		this.object = object;
-	}
+        this.object = object;
+    }
 
-	/**
-	 * Return the object of the event.
-	 *
-	 * @return The object.
-	 */
-	public Data getObject(){
-		return object;
-	}
+    /**
+     * Return the object of the event.
+     *
+     * @return The object.
+     */
+    public Data getObject() {
+        return object;
+    }
 }

@@ -16,9 +16,10 @@ package org.jtheque.primary.utils.views.components;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdesktop.swingx.JXTitledPanel;
 import org.jtheque.i18n.able.ILanguageService;
 import org.jtheque.i18n.able.Internationalizable;
+
+import org.jdesktop.swingx.JXTitledPanel;
 
 /**
  * A JTheque Titled Panel.
@@ -26,21 +27,21 @@ import org.jtheque.i18n.able.Internationalizable;
  * @author Baptiste Wicht
  */
 public final class JThequeTitledPanel extends JXTitledPanel implements Internationalizable {
-	private final String key;
+    private final String key;
 
-	/**
-	 * Construct a new JThequeTitledPanel.
-	 *
-	 * @param key The internationalization key.
-	 */
-	public JThequeTitledPanel(String key){
-		super();
+    /**
+     * Construct a new JThequeTitledPanel.
+     *
+     * @param key The internationalization key.
+     */
+    public JThequeTitledPanel(String key) {
+        super();
 
-		this.key = key;
-	}
+        this.key = key;
+    }
 
-	@Override
-	public void refreshText(ILanguageService languageService){
-		setTitle(languageService.getMessage(key));
-	}
+    @Override
+    public void refreshText(ILanguageService languageService) {
+        setTitle(languageService.getMessage(key));
+    }
 }

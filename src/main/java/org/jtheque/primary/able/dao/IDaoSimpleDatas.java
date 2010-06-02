@@ -27,30 +27,28 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public interface IDaoSimpleDatas extends Dao<SimpleData> {
-	/**
-	 * Return all the simple datas.
-	 *
-	 * @return A Collection containing all the simple datas.
-	 */
-	Collection<SimpleData> getSimpleDatas();
+    /**
+     * Return all the simple datas.
+     *
+     * @return A Collection containing all the simple datas.
+     */
+    Collection<SimpleData> getSimpleDatas();
 
-	/**
-	 * Return the simple data of the specified id.
-	 *
-	 * @param id The id to search.
-	 *
-	 * @return The simple data with the specified id.
-	 */
-	SimpleData getSimpleData(int id);
+    /**
+     * Return the simple data of the specified id.
+     *
+     * @param id The id to search.
+     * @return The simple data with the specified id.
+     */
+    SimpleData getSimpleData(int id);
 
-	/**
-	 * Return the simple data of the specified title.
-	 *
-	 * @param title The title to search.
-	 *
-	 * @return The simple data with the specified title.
-	 */
-	SimpleData getSimpleData(String title);
+    /**
+     * Return the simple data of the specified title.
+     *
+     * @param title The title to search.
+     * @return The simple data with the specified title.
+     */
+    SimpleData getSimpleData(String title);
 
     SimpleData getSimpleDataByTemporaryId(int id);
 

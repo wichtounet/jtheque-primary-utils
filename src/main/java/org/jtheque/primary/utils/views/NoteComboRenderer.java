@@ -16,15 +16,17 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdesktop.swingx.JXImagePanel;
 import org.jtheque.persistence.able.IDaoNotes;
 import org.jtheque.persistence.able.Note;
 import org.jtheque.ui.able.Filthy;
 import org.jtheque.ui.utils.components.Borders;
 
+import org.jdesktop.swingx.JXImagePanel;
+
 import javax.swing.BorderFactory;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+
 import java.awt.Component;
 
 /**
@@ -33,32 +35,33 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer, Filthy {
-	private final IDaoNotes daoNotes;
+    private final IDaoNotes daoNotes;
 
-	/**
-	 * Construct a new <code>NoteComboRenderer</code>.
-	 * @param daoNotes
-	 */
-	public NoteComboRenderer(IDaoNotes daoNotes){
-		super();
+    /**
+     * Construct a new <code>NoteComboRenderer</code>.
+     *
+     * @param daoNotes The dao notes.
+     */
+    public NoteComboRenderer(IDaoNotes daoNotes) {
+        super();
 
-		this.daoNotes = daoNotes;
+        this.daoNotes = daoNotes;
 
-		setOpaque(false);
-	}
+        setOpaque(false);
+    }
 
-	@Override
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
-		if (value != null){
-			setImage(daoNotes.getImage((Note) value));
-		}
+    @Override
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        if (value != null) {
+            setImage(daoNotes.getImage((Note) value));
+        }
 
-		if (isSelected){
-			setBorder(BorderFactory.createLineBorder(INPUT_BORDER_COLOR, 2));
-		} else {
-			setBorder(Borders.EMPTY_BORDER);
-		}
+        if (isSelected) {
+            setBorder(BorderFactory.createLineBorder(INPUT_BORDER_COLOR, 2));
+        } else {
+            setBorder(Borders.EMPTY_BORDER);
+        }
 
-		return this;
+        return this;
 	}
 }

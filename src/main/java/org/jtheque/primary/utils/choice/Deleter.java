@@ -22,43 +22,42 @@ import org.jtheque.persistence.able.Entity;/*
  * @author Baptiste Wicht
  */
 public abstract class Deleter<T extends Entity> {
-	private final String content;
+    private final String content;
 
-	/**
-	 * Construct a new <code>Deleter</code>
-	 *
-	 * @param content The content to delete.
-	 */
-	public Deleter(String content){
-		super();
+    /**
+     * Construct a new <code>Deleter</code>
+     *
+     * @param content The content to delete.
+     */
+    public Deleter(String content) {
+        super();
 
-		this.content = content;
-	}
+        this.content = content;
+    }
 
-	/**
-	 * Indicate if this deleter can delete the specified content or not.
-	 *
-	 * @param content The content to delete.
-	 *
-	 * @return <code>true</code> if the deleter can delete this content else <code>false</code>.
-	 */
-	public final boolean canDelete(String content){
-		return this.content.equals(content);
-	}
+    /**
+     * Indicate if this deleter can delete the specified content or not.
+     *
+     * @param content The content to delete.
+     * @return <code>true</code> if the deleter can delete this content else <code>false</code>.
+     */
+    public final boolean canDelete(String content) {
+        return this.content.equals(content);
+    }
 
-	/**
-	 * Delete the object.
-	 *
-	 * @param item The object to delete.
-	 */
-	public final void delete(Object item){
-		delete((T) item);
-	}
+    /**
+     * Delete the object.
+     *
+     * @param item The object to delete.
+     */
+    public final void delete(Object item) {
+        delete((T) item);
+    }
 
-	/**
-	 * Delete the specified item.
-	 *
-	 * @param item The item to delete. 
-	 */
-	public abstract void delete(T item);
+    /**
+     * Delete the specified item.
+     *
+     * @param item The item to delete.
+     */
+    public abstract void delete(T item);
 }

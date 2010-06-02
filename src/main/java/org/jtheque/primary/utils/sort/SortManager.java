@@ -27,49 +27,48 @@ import org.jtheque.primary.utils.views.tree.TreeElement;
  * @author Baptiste Wicht
  */
 public final class SortManager {
-	private final SorterFactory factory;
+    private final SorterFactory factory;
 
-	/**
-	 * Construct a new <code>SortManager</code>.
-	 */
-	public SortManager(){
-		super();
+    /**
+     * Construct a new <code>SortManager</code>.
+     */
+    public SortManager() {
+        super();
 
-		factory = SorterFactory.getInstance();
-	}
+        factory = SorterFactory.getInstance();
+    }
 
-	/**
-	 * Sort the model with specific content and type of sort.
-	 *
-	 * @param model The model of the JTree
-	 * @param content The content of the model
-	 * @param sortType The type of sort
-	 */
-	public void sort(JThequeTreeModel model, String content, String sortType){
-		TreeElement root = model.getRoot();
+    /**
+     * Sort the model with specific content and type of sort.
+     *
+     * @param model    The model of the JTree
+     * @param content  The content of the model
+     * @param sortType The type of sort
+     */
+    public void sort(JThequeTreeModel model, String content, String sortType) {
+        TreeElement root = model.getRoot();
 
-		root.clear();
+        root.clear();
 
-		Sorter sorter = factory.getSorter(content, sortType);
+        Sorter sorter = factory.getSorter(content, sortType);
 
-		if (sorter != null){
-			sorter.sort(model);
-		}
-	}
+        if (sorter != null) {
+            sorter.sort(model);
+        }
+    }
 
-	/**
-	 * Create a model with initial content.
-	 *
-	 * @param type The type of content
-	 *
-	 * @return The model initiated
-	 */
-	public JThequeTreeModel createInitialModel(String type){
-		TreeElement root = new RootElement(DataTypeManager.getKeyForDataType(type));
+    /**
+     * Create a model with initial content.
+     *
+     * @param type The type of content
+     * @return The model initiated
+     */
+    public JThequeTreeModel createInitialModel(String type) {
+        TreeElement root = new RootElement(DataTypeManager.getKeyForDataType(type));
 
-		JThequeTreeModel model = new JThequeTreeModel(root);
+        JThequeTreeModel model = new JThequeTreeModel(root);
 
-		sort(model, type, "None");
+        sort(model, type, "None");
 
 		return model;
 	}
