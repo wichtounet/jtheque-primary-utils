@@ -19,7 +19,7 @@ package org.jtheque.primary.utils;
 import org.jtheque.persistence.utils.AbstractEntity;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.utils.views.tree.TreeElement;
-import org.jtheque.resources.able.IResourceService;
+import org.jtheque.images.able.IImageService;
 
 import javax.swing.Icon;
 
@@ -35,7 +35,7 @@ public abstract class AbstractData extends AbstractEntity implements Data {
     }
 
     @Override
-    public Icon getIcon(IResourceService resourceService) {
+    public Icon getIcon(IImageService imageService) {
         return null;
     }
 

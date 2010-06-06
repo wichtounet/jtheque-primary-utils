@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.tree;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.resources.able.IResourceService;
+import org.jtheque.images.able.IImageService;
 
 import javax.swing.Icon;
 
@@ -36,10 +36,10 @@ public interface TreeElement {
     /**
      * Return the icon of the element.
      *
-     * @param resourceService The resource service to use.
+     * @param imageService The resource service to use.
      * @return The icon
      */
-    Icon getIcon(IResourceService resourceService);
+    Icon getIcon(IImageService imageService);
 
     /**
      * Indicate if the element is root or not.

@@ -17,7 +17,7 @@ package org.jtheque.primary.impl.views.renderers;
  */
 
 import org.jtheque.primary.utils.views.tree.TreeElement;
-import org.jtheque.resources.able.IResourceService;
+import org.jtheque.images.able.IImageService;
 
 import javax.swing.JLabel;
 import javax.swing.JTree;
@@ -31,12 +31,12 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class JThequeTreeCellRenderer extends DefaultTreeCellRenderer {
-    private final IResourceService resourceService;
+    private final IImageService imageService;
 
-    public JThequeTreeCellRenderer(IResourceService resourceService) {
+    public JThequeTreeCellRenderer(IImageService imageService) {
         super();
 
-        this.resourceService = resourceService;
+        this.imageService = imageService;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class JThequeTreeCellRenderer extends DefaultTreeCellRenderer {
         component.setText(element.getElementName());
 
         if (element.isLeaf()) {
-            component.setIcon(element.getIcon(resourceService));
+            component.setIcon(element.getIcon(imageService));
         }
 
         return component;

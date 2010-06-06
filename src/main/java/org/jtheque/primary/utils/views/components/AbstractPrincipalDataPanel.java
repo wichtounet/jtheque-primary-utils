@@ -4,7 +4,7 @@ import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.views.ToolbarView;
 import org.jtheque.primary.impl.views.renderers.JThequeTreeCellRenderer;
 import org.jtheque.primary.utils.sort.SortManager;
-import org.jtheque.resources.able.IResourceService;
+import org.jtheque.images.able.IImageService;
 import org.jtheque.ui.able.IModel;
 
 import org.jdesktop.swingx.JXTree;
@@ -42,7 +42,7 @@ public abstract class AbstractPrincipalDataPanel<M extends IModel> extends Princ
     private JXTree tree;
 
     @Resource
-    private IResourceService resourceService;
+    private IImageService imageService;
 
     /**
      * Construct a new AbstractPrincipalDataPanel for a specific data type.
@@ -84,7 +84,7 @@ public abstract class AbstractPrincipalDataPanel<M extends IModel> extends Princ
      */
     public final void initTree() {
         tree = new JXTree(getTreeModel());
-        tree.setCellRenderer(new JThequeTreeCellRenderer(resourceService));
+        tree.setCellRenderer(new JThequeTreeCellRenderer(imageService));
         tree.putClientProperty("JTree.lineStyle", "None");
     }
 
