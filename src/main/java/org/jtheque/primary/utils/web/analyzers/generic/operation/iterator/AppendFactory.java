@@ -22,9 +22,9 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * A factory for append iterator operation.
@@ -33,12 +33,12 @@ import org.jdom.Element;
  */
 final class AppendFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "append".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "append".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Element n, XMLReader reader) throws XMLException {
+    public IteratorOperation factor(Node n, XMLReader reader) throws XMLException {
         return new AppendIteratorOperation(ValueGetterFactory.getValueGetter(n, reader));
     }
 

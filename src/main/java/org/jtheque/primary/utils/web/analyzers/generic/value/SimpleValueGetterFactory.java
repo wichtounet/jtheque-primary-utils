@@ -20,21 +20,21 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.position.Position;
 import org.jtheque.primary.utils.web.analyzers.generic.position.PositionFactory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class SimpleValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
         return !reader.getNodes("value", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Element element, XMLReader reader) throws XMLException {
+    public ValueGetter factor(Node element, XMLReader reader) throws XMLException {
         SimpleValueGetter simpleGetter = new SimpleValueGetter();
 
         simpleGetter.setEnd(getPosition(element, "end", reader));
@@ -56,7 +56,7 @@ final class SimpleValueGetterFactory implements Factory<ValueGetter> {
         Object positionNode = reader.getNode("value/" + location, currentNode);
 
         if (positionNode != null) {
-            Element node = reader.getNode("*", positionNode);
+            Node node = reader.getNode("*", positionNode);
 
             if (node != null) {
                 return PositionFactory.getPosition(node, reader);

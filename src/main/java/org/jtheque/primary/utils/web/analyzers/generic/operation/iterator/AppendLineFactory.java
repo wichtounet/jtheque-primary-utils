@@ -19,21 +19,21 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class AppendLineFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "appendLine".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "appendLine".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Element n, XMLReader reader) {
+    public IteratorOperation factor(Node n, XMLReader reader) {
         return new AppendLineIteratorOperation();
     }
 

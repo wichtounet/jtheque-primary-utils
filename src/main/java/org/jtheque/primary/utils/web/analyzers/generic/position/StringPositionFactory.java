@@ -18,21 +18,21 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class StringPositionFactory implements Factory<Position> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "string".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "string".equals(element.getNodeName());
     }
 
     @Override
-    public Position factor(Element node, XMLReader reader) throws XMLException {
+    public Position factor(Node node, XMLReader reader) throws XMLException {
         StringPosition p = new StringPosition(reader.readString("text", node));
 
         if ("true".equals(reader.readString("@first", node))) {
@@ -43,16 +43,16 @@ final class StringPositionFactory implements Factory<Position> {
             p.setLast();
         }
 
-        Element fromNode = reader.getNode("from", node);
+        Node fromNode = reader.getNode("from", node);
 
         if (fromNode != null) {
-            p.setFrom(fromNode.getText());
+            p.setFrom(fromNode.getTextContent());
         }
 
         Object addNode = reader.getNode("add", node);
 
         if (addNode != null) {
-            p.setAdd(Integer.parseInt(((Element) addNode).getText()));
+            p.setAdd(Integer.parseInt(((Node) addNode).getTextContent()));
         }
 
         return p;

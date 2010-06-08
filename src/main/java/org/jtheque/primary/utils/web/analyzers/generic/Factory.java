@@ -1,9 +1,9 @@
 package org.jtheque.primary.utils.web.analyzers.generic;
 
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /*
  * This file is part of JTheque.
@@ -35,7 +35,7 @@ public interface Factory<T> {
      * @return true if the factory can factor else false.
      * @throws XMLException If an error occurs during the XML processing.
      */
-    boolean canFactor(Element element, XMLReader reader) throws XMLException;
+    boolean canFactor(Node element, XMLReader reader) throws XMLException;
 
     /**
      * Create and return the factored element.
@@ -45,5 +45,5 @@ public interface Factory<T> {
      * @return The factored element.
      * @throws XMLException If an error occurs during the XML processing.
      */
-    T factor(Element element, XMLReader reader) throws XMLException;
+    T factor(Node element, XMLReader reader) throws XMLException;
 }

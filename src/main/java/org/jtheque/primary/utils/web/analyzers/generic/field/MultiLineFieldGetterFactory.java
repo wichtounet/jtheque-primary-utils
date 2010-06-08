@@ -23,21 +23,21 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossesso
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
         return "true".equals(reader.readString("@multiline", element));
     }
 
     @Override
-    public FieldGetter factor(Element element, XMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, XMLReader reader) throws XMLException {
         MultiLineFieldGetter getter = new MultiLineFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));

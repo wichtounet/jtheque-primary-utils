@@ -17,22 +17,22 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class CutFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "cut".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "cut".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Element element, XMLReader reader) {
-        return new Cut(Integer.parseInt(element.getText()));
+    public Transformer factor(Node element, XMLReader reader) {
+        return new Cut(Integer.parseInt(element.getTextContent()));
     }
 
     /**

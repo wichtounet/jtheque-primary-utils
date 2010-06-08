@@ -1,9 +1,9 @@
 package org.jtheque.primary.utils.web.analyzers.generic;
 
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +49,7 @@ public final class FactoryContainer<T> {
      * @return The factored object.
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public T getFactoredObject(Element element, XMLReader reader) throws XMLException {
+    public T getFactoredObject(Node element, XMLReader reader) throws XMLException {
         for (Factory<T> factory : factories) {
             if (factory.canFactor(element, reader)) {
                 return factory.factor(element, reader);

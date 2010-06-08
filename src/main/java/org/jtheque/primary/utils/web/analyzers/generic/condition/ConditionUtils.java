@@ -1,9 +1,9 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /*
  * This file is part of JTheque.
@@ -47,7 +47,7 @@ public final class ConditionUtils {
         Object conditionNode = reader.getNode(location, currentNode);
 
         if (conditionNode != null) {
-            Element node = reader.getNode("*", conditionNode);
+            Node node = reader.getNode("*", conditionNode);
 
             if (node != null) {
                 return ConditionFactory.getCondition(node, reader);

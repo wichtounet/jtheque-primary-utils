@@ -21,9 +21,9 @@ import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperation;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperationFactory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,13 +33,13 @@ import java.util.Collection;
  */
 public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
         return !reader.getNodes("iterator", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Element element, XMLReader reader) throws XMLException {
-        Element n = reader.getNode("iterator", element);
+    public ValueGetter factor(Node element, XMLReader reader) throws XMLException {
+        Node n = reader.getNode("iterator", element);
 
         IteratorValue value = new IteratorValue(ValueGetterFactory.getScannerPossessor());
 
@@ -72,7 +72,7 @@ public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
     private static Iterable<IteratorOperation> getIteratorOperations(Object node, String location, XMLReader reader) throws XMLException {
         Collection<IteratorOperation> operations = new ArrayList<IteratorOperation>(8);
 
-        for (Element n : reader.getNodes(location + "/*", node)) {
+        for (Node n : reader.getNodes(location + "/*", node)) {
             operations.add(IteratorOperationFactory.getPosition(n, reader));
         }
 

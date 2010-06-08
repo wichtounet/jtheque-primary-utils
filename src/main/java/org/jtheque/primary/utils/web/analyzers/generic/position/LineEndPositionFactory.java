@@ -17,21 +17,21 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class LineEndPositionFactory implements Factory<Position> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "lineEnd".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "lineEnd".equals(element.getNodeName());
     }
 
     @Override
-    public Position factor(Element n, XMLReader reader) {
+    public Position factor(Node n, XMLReader reader) {
         return new LineEndPosition();
     }
 

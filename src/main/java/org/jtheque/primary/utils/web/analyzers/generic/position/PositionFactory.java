@@ -2,9 +2,9 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
 
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /*
  * This file is part of JTheque.
@@ -51,7 +51,7 @@ public final class PositionFactory {
      * @return The factored Position to use.
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static Position getPosition(Element element, XMLReader reader) throws XMLException {
+    public static Position getPosition(Node element, XMLReader reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
 	}
 

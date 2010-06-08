@@ -7,9 +7,9 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.OperationFactor
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /*
  * This file is part of JTheque.
@@ -40,7 +40,7 @@ public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter>
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
     static void initOperations(SimpleFieldGetter getter, Object node, XMLReader reader) throws XMLException {
-        for (Element n : reader.getNodes("operations/*", node)) {
+        for (Node n : reader.getNodes("operations/*", node)) {
             Operation operation = OperationFactory.getValueGetter(n, reader);
 
             if (operation != null) {
@@ -58,12 +58,12 @@ public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter>
      * @throws XMLException Thrown if an errors occurs during the xml reading process.
      */
     static void initTransformers(SimpleFieldGetter getter, Object currentNode, XMLReader reader) throws XMLException {
-        for (Element n : reader.getNodes("transformers/*", currentNode)) {
+        for (Node n : reader.getNodes("transformers/*", currentNode)) {
             Transformer transformer = TransformerFactory.getTransformer(n, reader);
 
             if (transformer != null) {
                 getter.addTransformer(transformer);
-			}
-		}
-	}
+            }
+        }
+    }
 }

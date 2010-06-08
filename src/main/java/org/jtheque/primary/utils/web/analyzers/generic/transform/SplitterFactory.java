@@ -21,21 +21,21 @@ import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.StringUtils;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class SplitterFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "splitter".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "splitter".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Element n, XMLReader reader) throws XMLException {
+    public Transformer factor(Node n, XMLReader reader) throws XMLException {
         Splitter splitter = new Splitter();
 
         splitter.setSplitter(reader.readString("split", n));

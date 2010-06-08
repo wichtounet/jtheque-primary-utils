@@ -17,22 +17,22 @@ package org.jtheque.primary.utils.web.analyzers.generic.condition;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class StartsNotFactory implements Factory<Condition> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "notstarts".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "notstarts".equals(element.getNodeName());
     }
 
     @Override
-    public Condition factor(Element element, XMLReader reader) {
-        return new StartsNot(element.getText());
+    public Condition factor(Node element, XMLReader reader) {
+        return new StartsNot(element.getTextContent());
     }
 
     /**

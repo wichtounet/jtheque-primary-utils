@@ -17,21 +17,21 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
+import org.w3c.dom.Node;
 
 /**
  * @author Baptiste Wicht
  */
 final class TrimFactory implements Factory<Operation> {
     @Override
-    public boolean canFactor(Element element, XMLReader reader) {
-        return "trim".equals(element.getName());
+    public boolean canFactor(Node element, XMLReader reader) {
+        return "trim".equals(element.getNodeName());
     }
 
     @Override
-    public Operation factor(Element element, XMLReader reader) {
+    public Operation factor(Node element, XMLReader reader) {
         return new TrimOperation();
     }
 

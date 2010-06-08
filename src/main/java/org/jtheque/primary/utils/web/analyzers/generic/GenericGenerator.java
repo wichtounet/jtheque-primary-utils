@@ -24,10 +24,10 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFact
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.io.FileUtils;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.XMLReader;
+import org.jtheque.xml.utils.javax.XMLReader;
 
-import org.jdom.Element;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Node;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -103,7 +103,7 @@ public final class GenericGenerator {
     private void init() throws XMLException {
         initPages();
 
-        for (Element currentNode : reader.getNodes("getter", reader.getRootElement())) {
+        for (Node currentNode : reader.getNodes("getter", reader.getRootElement())) {
             getters.add(FieldGetterFactory.getFieldGetter(currentNode, reader));
         }
     }
@@ -114,12 +114,12 @@ public final class GenericGenerator {
      * @throws XMLException Thrown if an errors occurs during the xml reading process.
      */
     private void initPages() throws XMLException {
-        for (Element currentNode : reader.getNodes("pages/*", reader.getRootElement())) {
-            if ("films".equals(currentNode.getName())) {
+        for (Node currentNode : reader.getNodes("pages/*", reader.getRootElement())) {
+            if ("films".equals(currentNode.getNodeName())) {
                 pages.setFilmsPage(getPage(currentNode));
-            } else if ("actors".equals(currentNode.getName())) {
+            } else if ("actors".equals(currentNode.getNodeName())) {
                 pages.setActorsPage(getPage(currentNode));
-            } else if ("results".equals(currentNode.getName())) {
+            } else if ("results".equals(currentNode.getNodeName())) {
                 pages.setResultsPage(getPage(currentNode));
             }
         }
@@ -132,13 +132,13 @@ public final class GenericGenerator {
      * @return The Page corresponding to the element.
      * @throws XMLException Thrown if an errors occurs during the xml reading process.
      */
-    private Page getPage(Element element) throws XMLException {
+    private Page getPage(Node element) throws XMLException {
         Page page = new Page();
 
         page.setUrl(reader.readString("url", element));
         page.setTransformers(new ArrayList<Transformer>(5));
 
-        for (Element n : reader.getNodes("transformers/*", element)) {
+        for (Node n : reader.getNodes("transformers/*", element)) {
             Transformer transformer = TransformerFactory.getTransformer(n, reader);
 
             if (transformer != null) {
