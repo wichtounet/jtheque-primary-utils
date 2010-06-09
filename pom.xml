@@ -70,7 +70,6 @@
                         <Bundle-Vendor>Baptiste Wicht</Bundle-Vendor>
                         <Spring-Context>*;create-asynchronously:=false;publish-context:=false</Spring-Context>
                         <Module-Core>2.1.0</Module-Core>
-                        <Module-Config>org/jtheque/primary/module.xml</Module-Config>
                     </instructions>
                 </configuration>
             </plugin>
