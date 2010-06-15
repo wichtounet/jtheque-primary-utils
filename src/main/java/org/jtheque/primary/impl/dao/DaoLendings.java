@@ -111,6 +111,7 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
      * Return all the lendings of the specific primary implementation.
      *
      * @param impl The primary implementation.
+     *
      * @return A Collection containing all the lendings of the specific primary implementation.
      */
     private Collection<Lending> getLendings(CharSequence impl) {
@@ -193,6 +194,7 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
          *
          * @param lending The lending to use to fill the array.
          * @param id      Indicate if we must add the id to the array.
+         *
          * @return The filled array.
          */
         private static Object[] fillArray(Lending lending, boolean id) {
@@ -205,9 +207,9 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
 
             if (id) {
                 values[4] = lending.getId();
-			}
+            }
 
-			return values;
-		}
-	}
+            return values;
+        }
+    }
 }

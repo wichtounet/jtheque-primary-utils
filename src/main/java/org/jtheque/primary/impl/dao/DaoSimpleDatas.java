@@ -97,6 +97,7 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
      * Return all the simple datas of the primary impl.
      *
      * @param impl The primary implementation.
+     *
      * @return A Collection containing all the simple datas of the primary implementation.
      */
     private Collection<SimpleData> getAll(CharSequence impl) {
@@ -150,6 +151,7 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
      * Return the simple primary data of the specified name.
      *
      * @param name The name of the primary data to search.
+     *
      * @return The simple primary data.
      */
     private SimpleData getSimplePrimaryData(String name) {

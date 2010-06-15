@@ -52,5 +52,5 @@ public final class ChoiceViewAction extends JThequeAction {
         choiceController.setAction(action);
         choiceController.setContent(dataType);
         choiceController.displayView();
-	}
+    }
 }

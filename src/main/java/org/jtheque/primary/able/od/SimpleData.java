@@ -104,6 +104,6 @@ public interface SimpleData extends Data {
      * Return the data type of the simple data.
      *
      * @return The data type of this simple data.
-	 */
-	DataType getType();
+     */
+    DataType getType();
 }

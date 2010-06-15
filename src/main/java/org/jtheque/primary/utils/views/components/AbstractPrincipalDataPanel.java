@@ -1,10 +1,10 @@
 package org.jtheque.primary.utils.views.components;
 
+import org.jtheque.images.able.IImageService;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.views.ToolbarView;
 import org.jtheque.primary.impl.views.renderers.JThequeTreeCellRenderer;
 import org.jtheque.primary.utils.sort.SortManager;
-import org.jtheque.images.able.IImageService;
 import org.jtheque.ui.able.IModel;
 
 import org.jdesktop.swingx.JXTree;

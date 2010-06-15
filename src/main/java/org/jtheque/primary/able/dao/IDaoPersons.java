@@ -35,6 +35,7 @@ public interface IDaoPersons extends Dao<Person> {
      * Return all the persons.
      *
      * @param type The type of persons to search for.
+     *
      * @return All the persons.
      */
     Collection<Person> getPersons(String type);
@@ -43,6 +44,7 @@ public interface IDaoPersons extends Dao<Person> {
      * Return the person of the specified id.
      *
      * @param id The person borrower id.
+     *
      * @return The person corresponding the id or <code>null</code> if there is no person with this id.
      */
     Person getPerson(int id);
@@ -53,6 +55,7 @@ public interface IDaoPersons extends Dao<Person> {
      * @param firstName The searched first name.
      * @param name      The searched name.
      * @param type      The type of persons to search for.
+     *
      * @return The person if there is no for this arguments else <code>null</code>.
      */
     Person getPerson(String firstName, String name, String type);
@@ -63,6 +66,7 @@ public interface IDaoPersons extends Dao<Person> {
      * @param firstName The searched first name.
      * @param name      The searched name.
      * @param type      The type of persons to search for.
+     *
      * @return <code>true</code> if an person exist with first name and this name else <code>false</code>.
      */
     boolean exists(String firstName, String name, String type);

@@ -38,8 +38,9 @@ public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction im
      *
      * @param item    The item to execute the action on.
      * @param content The current content.
-     * @return <code>true</code> if the primary choice action can execute this action on this
-     *         content else <code>false</code>.
+     *
+     * @return <code>true</code> if the primary choice action can execute this action on this content else
+     *         <code>false</code>.
      */
     public boolean execute(Object item, String content) {
         if (SimpleData.DataType.KIND.getDataType().equals(content)) {
@@ -74,5 +75,5 @@ public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction im
     @Override
     public final void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-	}
+    }
 }

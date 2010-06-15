@@ -31,6 +31,7 @@ public interface IteratorOperation {
      * @param line     The line.
      * @param analyzer The film analyzer.
      * @param iterator The iterator value.
+     *
      * @return The line, eventually modified.
      */
     String perform(String line, ScannerPossessor analyzer, BuilderPossessor iterator);

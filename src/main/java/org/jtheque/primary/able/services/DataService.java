@@ -27,6 +27,7 @@ public interface DataService<T extends Entity> {
      * Delete the data.
      *
      * @param data The data to delete.
+     *
      * @return true if the data has been deleted else false.
      */
     boolean delete(T data);

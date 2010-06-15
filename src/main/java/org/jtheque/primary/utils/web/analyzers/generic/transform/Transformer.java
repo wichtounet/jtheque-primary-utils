@@ -26,6 +26,7 @@ public interface Transformer {
      * Transform the value to another.
      *
      * @param value The value.
+     *
      * @return The new value.
      */
     String transform(String value);

@@ -63,5 +63,5 @@ public final class NoteComboRenderer extends JXImagePanel implements ListCellRen
         }
 
         return this;
-	}
+    }
 }

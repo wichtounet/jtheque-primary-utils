@@ -66,5 +66,5 @@ public final class PrimarySimpleDataImpl extends SimpleDataImpl implements Prima
         return EqualsUtils.areEqualsDirect(this, obj,
                 getName(), primaryImpl,
                 other.getName(), other.getPrimaryImpl());
-	}
+    }
 }

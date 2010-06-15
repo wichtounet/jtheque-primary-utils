@@ -24,8 +24,8 @@ import java.util.Collection;
  */
 
 /**
- * A bean post processor to register all the resources of a module in the application context. This
- * post processor add automatically state bar components to state bar.
+ * A bean post processor to register all the resources of a module in the application context. This post processor add
+ * automatically state bar components to state bar.
  *
  * @author Baptiste Wicht
  */
@@ -58,5 +58,5 @@ public final class ChoiceActionsPostProcessor implements BeanPostProcessor {
         for (ChoiceAction choiceAction : choiceActions) {
             ChoiceActionFactory.removeChoiceAction(choiceAction);
         }
-	}
+    }
 }

@@ -31,6 +31,7 @@ public interface ISimpleDataService extends DataContainer<SimpleData>, DataServi
      * Return the simple data of the specified name.
      *
      * @param name The name to search.
+     *
      * @return The simple data of the specified name if there is one else null.
      */
     SimpleData getSimpleData(String name);
@@ -46,6 +47,7 @@ public interface ISimpleDataService extends DataContainer<SimpleData>, DataServi
      * Indicate if the specified simple data exists.
      *
      * @param data The simple data to test.
+     *
      * @return <code>true</code> if the data exists else <code>false</code>.
      */
     boolean exist(SimpleData data);
@@ -68,6 +70,7 @@ public interface ISimpleDataService extends DataContainer<SimpleData>, DataServi
      * Test if a simple data exists with the specified name or not.
      *
      * @param name The name to search for.
+     *
      * @return <code>true</code> if a data exists else <code>false</code>.
      */
     boolean exist(String name);
@@ -76,6 +79,6 @@ public interface ISimpleDataService extends DataContainer<SimpleData>, DataServi
      * Indicate if there is no datas.
      *
      * @return <code>true</code> if there is no datas else <code>false</code>.
-	 */
-	boolean hasNoDatas();
+     */
+    boolean hasNoDatas();
 }

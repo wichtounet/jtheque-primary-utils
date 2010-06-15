@@ -16,8 +16,8 @@ package org.jtheque.primary.impl.views.renderers;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.primary.utils.views.tree.TreeElement;
 import org.jtheque.images.able.IImageService;
+import org.jtheque.primary.utils.views.tree.TreeElement;
 
 import javax.swing.JLabel;
 import javax.swing.JTree;

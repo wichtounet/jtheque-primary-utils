@@ -26,6 +26,7 @@ public interface ChoiceAction {
      * Indicate if this action can do the type of action.
      *
      * @param action The type of action.
+     *
      * @return <code>true</code> if the action can do this type else <code>false</code>.
      */
     boolean canDoAction(String action);

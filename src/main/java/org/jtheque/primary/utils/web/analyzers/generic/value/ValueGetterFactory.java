@@ -2,8 +2,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
 
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -70,10 +70,12 @@ public final class ValueGetterFactory {
      *
      * @param element The element to get the value getter for.
      * @param reader  The reader to use.
+     *
      * @return The factored ValueGetter to use.
+     *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static ValueGetter getValueGetter(Node element, XMLReader reader) throws XMLException {
+    public static ValueGetter getValueGetter(Node element, IXMLReader reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
-	}
+    }
 }

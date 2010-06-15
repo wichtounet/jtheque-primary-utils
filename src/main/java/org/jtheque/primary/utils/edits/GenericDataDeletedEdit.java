@@ -60,5 +60,5 @@ public final class GenericDataDeletedEdit<T extends Entity> extends AbstractUndo
     @Override
     public String getPresentationName() {
         return "undo.edits.delete";
-	}
+    }
 }

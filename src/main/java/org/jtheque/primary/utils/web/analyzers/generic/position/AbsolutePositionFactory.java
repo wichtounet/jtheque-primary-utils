@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.position;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.javax.XMLReader;
+import org.jtheque.xml.utils.IXMLReader;
 
 import org.w3c.dom.Node;
 
@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class AbsolutePositionFactory implements Factory<Position> {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader reader) {
         return "absolute".equals(element.getNodeName());
     }
 
     @Override
-    public Position factor(Node n, XMLReader reader) {
+    public Position factor(Node n, IXMLReader reader) {
         return new AbsolutePosition(Integer.parseInt(n.getTextContent()));
     }
 

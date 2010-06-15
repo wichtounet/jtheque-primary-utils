@@ -19,8 +19,8 @@ package org.jtheque.primary.able.controller;
 import org.jtheque.primary.able.od.Data;
 
 /**
- * Represents a state of a controller. This is for the controllers of principal datas. The state can change when
- * a user interaction occurs or a state can be changed by an other state.
+ * Represents a state of a controller. This is for the controllers of principal datas. The state can change when a user
+ * interaction occurs or a state can be changed by an other state.
  *
  * @author Baptiste Wicht
  */
@@ -34,6 +34,7 @@ public interface ControllerState {
      * Save the current data.
      *
      * @param infos The informations of the interface
+     *
      * @return The new <code>ControllerState</code> or <code>null</code>
      */
     ControllerState save(FormBean infos);
@@ -70,6 +71,7 @@ public interface ControllerState {
      * Display a data.
      *
      * @param data the data to display.
+     *
      * @return The new <code>ControllerState</code> or <code>null</code>
      */
     ControllerState view(Data data);

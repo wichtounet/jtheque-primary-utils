@@ -17,8 +17,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -27,12 +27,12 @@ import org.w3c.dom.Node;
  */
 final class EmptyValueFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
         return !reader.getNodes("emptyValue", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, XMLReader reader) {
+    public ValueGetter factor(Node element, IXMLReader reader) {
         return new EmptyValue();
     }
 

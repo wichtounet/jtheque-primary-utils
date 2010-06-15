@@ -20,8 +20,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperation;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperationFactory;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -33,12 +33,12 @@ import java.util.Collection;
  */
 public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
         return !reader.getNodes("iterator", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, XMLReader reader) throws XMLException {
+    public ValueGetter factor(Node element, IXMLReader reader) throws XMLException {
         Node n = reader.getNode("iterator", element);
 
         IteratorValue value = new IteratorValue(ValueGetterFactory.getScannerPossessor());
@@ -66,10 +66,12 @@ public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
      * @param node     The node to search in.
      * @param location The location to search in.
      * @param reader   The XML reader.
+     *
      * @return A List containing all the IteratorOperation found in the specific location of the node.
+     *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static Iterable<IteratorOperation> getIteratorOperations(Object node, String location, XMLReader reader) throws XMLException {
+    private static Iterable<IteratorOperation> getIteratorOperations(Object node, String location, IXMLReader reader) throws XMLException {
         Collection<IteratorOperation> operations = new ArrayList<IteratorOperation>(8);
 
         for (Node n : reader.getNodes(location + "/*", node)) {
@@ -77,5 +79,5 @@ public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
         }
 
         return operations;
-	}
+    }
 }

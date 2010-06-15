@@ -19,8 +19,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -32,12 +32,12 @@ import java.util.Collection;
  */
 final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
         return !reader.getNodes("conditional", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, XMLReader reader) throws XMLException {
+    public ValueGetter factor(Node element, IXMLReader reader) throws XMLException {
         Node n = reader.getNode("conditional", element);
 
         ConditionalValueGetter conditionalGetter = new ConditionalValueGetter();
@@ -62,10 +62,12 @@ final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
      *
      * @param node   The nod to search in.
      * @param reader The XML reader.
+     *
      * @return The else object.
+     *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static ConditionalValue getElse(Node node, XMLReader reader) throws XMLException {
+    private static ConditionalValue getElse(Node node, IXMLReader reader) throws XMLException {
         Else elseCondition = new Else();
 
         elseCondition.setGetter(ValueGetterFactory.getValueGetter(node, reader));
@@ -78,10 +80,12 @@ final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
      *
      * @param node   The nod to search in.
      * @param reader The XML reader.
+     *
      * @return The
+     *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static ConditionalValue getIf(Node node, XMLReader reader) throws XMLException {
+    private static ConditionalValue getIf(Node node, IXMLReader reader) throws XMLException {
         If ifCondition = new If();
 
         ifCondition.setCondition(ConditionUtils.getCondition(node, "condition", reader));
@@ -192,8 +196,8 @@ final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
          *
          * @param getter The value getter.
          */
-        public void setGetter(ValueGetter getter){
-			this.getter = getter;
-		}
-	}
+        public void setGetter(ValueGetter getter) {
+            this.getter = getter;
+        }
+    }
 }

@@ -143,5 +143,5 @@ public final class SimpleDatasService implements ISimpleDataService {
     @Override
     public String getDataType() {
         return dataType.getDataType();
-	}
+    }
 }

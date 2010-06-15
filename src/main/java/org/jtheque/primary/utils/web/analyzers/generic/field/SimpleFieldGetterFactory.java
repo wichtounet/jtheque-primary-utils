@@ -23,8 +23,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossesso
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -36,12 +36,12 @@ import java.util.Collection;
  */
 final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader reader) {
         return "getter".equals(element.getNodeName());
     }
 
     @Override
-    public FieldGetter factor(Node element, XMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, IXMLReader reader) throws XMLException {
         SimpleFieldGetter getter = new SimpleFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));
@@ -54,8 +54,7 @@ final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
     }
 
     /**
-     * A Field Getter. It's an object who's responsible to get the value of a field of a film in
-     * the site.
+     * A Field Getter. It's an object who's responsible to get the value of a field of a film in the site.
      *
      * @author Baptiste Wicht
      */
@@ -100,8 +99,8 @@ final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
         }
 
         /**
-         * Set the value getter of the field getter. This object is responsible to get the
-         * value of the field if the condition match the line.
+         * Set the value getter of the field getter. This object is responsible to get the value of the field if the
+         * condition match the line.
          *
          * @param valueGetter The value getter.
          */

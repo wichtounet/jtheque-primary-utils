@@ -70,6 +70,7 @@ public final class SorterFactory {
      *
      * @param content  The content type.
      * @param sortType The sort type.
+     *
      * @return The sorter of the specified or <code>null</code> if no sorter of this type exist.
      */
     public Sorter getSorter(String content, String sortType) {
@@ -90,6 +91,6 @@ public final class SorterFactory {
     public void removeSorters(Sorter[] sorters) {
         for (Sorter sorter : sorters) {
             removeSorter(sorter);
-		}
-	}
+        }
+    }
 }

@@ -146,7 +146,7 @@ final class PrimaryMenu extends AbstractMenu {
      */
     private static void fillFeature(IFeature feature, Iterable<IFeature> features) {
         for (IFeature f : features) {
-            ((Feature)feature).addSubFeature(f);
-		}
-	}
+            ((Feature) feature).addSubFeature(f);
+        }
+    }
 }

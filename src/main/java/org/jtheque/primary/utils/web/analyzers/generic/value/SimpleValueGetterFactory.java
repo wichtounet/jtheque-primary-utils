@@ -19,8 +19,8 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.position.Position;
 import org.jtheque.primary.utils.web.analyzers.generic.position.PositionFactory;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -29,12 +29,12 @@ import org.w3c.dom.Node;
  */
 final class SimpleValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
         return !reader.getNodes("value", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, XMLReader reader) throws XMLException {
+    public ValueGetter factor(Node element, IXMLReader reader) throws XMLException {
         SimpleValueGetter simpleGetter = new SimpleValueGetter();
 
         simpleGetter.setEnd(getPosition(element, "end", reader));
@@ -49,10 +49,12 @@ final class SimpleValueGetterFactory implements Factory<ValueGetter> {
      * @param currentNode The node to search in.
      * @param location    The location to search in.
      * @param reader      The XML reader.
+     *
      * @return The Position or null if we doesn't found one.
+     *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static Position getPosition(Object currentNode, String location, XMLReader reader) throws XMLException {
+    private static Position getPosition(Object currentNode, String location, IXMLReader reader) throws XMLException {
         Object positionNode = reader.getNode("value/" + location, currentNode);
 
         if (positionNode != null) {
@@ -67,8 +69,7 @@ final class SimpleValueGetterFactory implements Factory<ValueGetter> {
     }
 
     /**
-     * A simple value getter. It seems a getter who takes a value from a start position to an end
-     * position.
+     * A simple value getter. It seems a getter who takes a value from a start position to an end position.
      *
      * @author Baptiste Wicht
      */
@@ -104,7 +105,7 @@ final class SimpleValueGetterFactory implements Factory<ValueGetter> {
             return "SimpleValueGetter{" +
                     "start=" + start +
                     ", end=" + end +
-					'}';
-		}
-	}
+                    '}';
+        }
+    }
 }

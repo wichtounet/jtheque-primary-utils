@@ -1,7 +1,7 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -40,10 +40,12 @@ public final class ConditionUtils {
      * @param currentNode The node to search in.
      * @param location    The location to search in.
      * @param reader      The XML Reader
+     *
      * @return The Condition or null if we doesn't found one.
+     *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    public static Condition getCondition(Object currentNode, String location, XMLReader reader) throws XMLException {
+    public static Condition getCondition(Object currentNode, String location, IXMLReader reader) throws XMLException {
         Object conditionNode = reader.getNode(location, currentNode);
 
         if (conditionNode != null) {
@@ -54,6 +56,6 @@ public final class ConditionUtils {
             }
         }
 
-		return null;
-	}
+        return null;
+    }
 }

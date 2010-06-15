@@ -52,6 +52,6 @@ public final class AcValidateBorrowerView extends JThequeAction {
                     borrowerView.getFieldEmail().getText());
 
             borrowerView.closeDown();
-		}
-	}
+        }
+    }
 }

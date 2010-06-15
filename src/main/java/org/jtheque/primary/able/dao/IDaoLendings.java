@@ -33,6 +33,7 @@ public interface IDaoLendings extends Dao<Lending> {
      * Return the lending with the specified ID.
      *
      * @param id The ID of the searched lending.
+     *
      * @return The lending.
      */
     Lending getLending(int id);

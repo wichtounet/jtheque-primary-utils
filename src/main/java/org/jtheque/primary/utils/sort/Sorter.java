@@ -29,6 +29,7 @@ public interface Sorter {
      *
      * @param content  The content.
      * @param sortType The type of sort.
+     *
      * @return <code>true</code> if the sorter can sort the specified type.
      */
     boolean canSort(String content, String sortType);

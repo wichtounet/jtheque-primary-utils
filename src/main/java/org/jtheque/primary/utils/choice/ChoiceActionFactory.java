@@ -39,6 +39,7 @@ public final class ChoiceActionFactory {
      * Get the good choice action for a specific type of action.
      *
      * @param action The type of the action
+     *
      * @return The good choice action or null if we don't found it.
      */
     public static ChoiceAction getChoiceAction(String action) {
@@ -81,6 +82,6 @@ public final class ChoiceActionFactory {
     public static void removeChoiceActions(ChoiceAction[] choiceActions) {
         for (ChoiceAction action : choiceActions) {
             removeChoiceAction(action);
-		}
-	}
+        }
+    }
 }

@@ -52,6 +52,7 @@ public interface IPersonService extends DataContainer<Person>, DataService<Perso
      * Indicate if an person exists or not.
      *
      * @param person The person to test.
+     *
      * @return true if the person exists else false.
      */
     boolean exist(Person person);
@@ -61,6 +62,7 @@ public interface IPersonService extends DataContainer<Person>, DataService<Perso
      *
      * @param firstName The first name of the person.
      * @param name      The name of the person.
+     *
      * @return The person.
      */
     Person getPerson(String firstName, String name);
@@ -70,6 +72,7 @@ public interface IPersonService extends DataContainer<Person>, DataService<Perso
      *
      * @param firstName The first name of the person.
      * @param name      The name of the person.
+     *
      * @return true if the person exists else false.
      */
     boolean exist(String firstName, String name);
@@ -92,6 +95,6 @@ public interface IPersonService extends DataContainer<Person>, DataService<Perso
      * Return the type of person managed by this service.
      *
      * @return The person type.
-	 */
-	String getPersonType();
+     */
+    String getPersonType();
 }

@@ -85,6 +85,6 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
     protected final void addEditIfDeleted(boolean deleted, UndoableEdit edit) {
         if (deleted) {
             undoRedoService.addEdit(edit);
-		}
-	}
+        }
+    }
 }

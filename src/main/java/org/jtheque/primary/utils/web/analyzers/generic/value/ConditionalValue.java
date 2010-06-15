@@ -26,6 +26,7 @@ public interface ConditionalValue {
      * Indicate if the condition match the line.
      *
      * @param line The line to test.
+     *
      * @return true if the condition match the line or not.
      */
     boolean match(String line);
@@ -34,6 +35,7 @@ public interface ConditionalValue {
      * Return the value.
      *
      * @param line The line to search in.
+     *
      * @return The value.
      */
     String getValue(String line);

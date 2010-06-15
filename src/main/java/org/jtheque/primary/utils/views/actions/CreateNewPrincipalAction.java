@@ -45,5 +45,5 @@ public final class CreateNewPrincipalAction extends JThequeAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         controller.create();
-	}
+    }
 }

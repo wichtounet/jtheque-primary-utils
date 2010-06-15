@@ -39,6 +39,7 @@ public abstract class Deleter<T extends Entity> {
      * Indicate if this deleter can delete the specified content or not.
      *
      * @param content The content to delete.
+     *
      * @return <code>true</code> if the deleter can delete this content else <code>false</code>.
      */
     public final boolean canDelete(String content) {

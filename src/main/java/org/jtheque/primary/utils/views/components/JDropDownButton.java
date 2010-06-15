@@ -80,6 +80,7 @@ public final class JDropDownButton extends JPanel implements ActionListener {
      * Build the main button.
      *
      * @param action The action executing by this button.
+     *
      * @return The builded button.
      */
     private static JButton buildMainButton(Action action) {
@@ -150,6 +151,6 @@ public final class JDropDownButton extends JPanel implements ActionListener {
         @Override
         public int getIconHeight() {
             return 4;
-		}
-	}
+        }
+    }
 }

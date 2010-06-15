@@ -22,8 +22,8 @@ import org.jtheque.primary.utils.web.analyzers.generic.field.SimpleFieldGetterFa
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
+import org.jtheque.xml.utils.IXMLReader;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -32,12 +32,12 @@ import org.w3c.dom.Node;
  */
 final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, XMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
         return "true".equals(reader.readString("@multiline", element));
     }
 
     @Override
-    public FieldGetter factor(Node element, XMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, IXMLReader reader) throws XMLException {
         MultiLineFieldGetter getter = new MultiLineFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));
@@ -52,8 +52,7 @@ final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
     }
 
     /**
-     * A multi line field getter. It seems a field getter who get the value of the field on several
-     * different lines.
+     * A multi line field getter. It seems a field getter who get the value of the field on several different lines.
      *
      * @author Baptiste Wicht
      */
@@ -166,8 +165,7 @@ final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
         }
 
         /**
-         * Set the get condition. This condition indicate to the getter when it must analyze the line
-         * to get a value.
+         * Set the get condition. This condition indicate to the getter when it must analyze the line to get a value.
          *
          * @param getCondition The condition who indicate when the parser must get a value.
          */

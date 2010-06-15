@@ -26,6 +26,7 @@ public interface Position {
      * Return the int value of the position.
      *
      * @param line The line.
+     *
      * @return A position on the line.
      */
     int intValue(String line);

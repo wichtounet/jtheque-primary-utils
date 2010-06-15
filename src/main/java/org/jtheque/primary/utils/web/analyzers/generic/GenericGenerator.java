@@ -23,8 +23,9 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.io.FileUtils;
+import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XML;
 import org.jtheque.xml.utils.XMLException;
-import org.jtheque.xml.utils.javax.XMLReader;
 
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
@@ -43,7 +44,7 @@ public final class GenericGenerator {
 
     private final Pages pages;
 
-    private XMLReader reader;
+    private IXMLReader<Node> reader;
 
     /**
      * Construct a new GenericGenerator for an analyzer.
@@ -66,7 +67,7 @@ public final class GenericGenerator {
      */
     public void generate(String path) {
         try {
-            reader = new XMLReader();
+            reader = XML.newJavaFactory().newReader();
             reader.openURL(getClass().getClassLoader().getResource(path));
 
             init();
@@ -84,7 +85,7 @@ public final class GenericGenerator {
      */
     public void generate(File file) {
         try {
-            reader = new XMLReader();
+            reader = XML.newJavaFactory().newReader();
             reader.openFile(file);
 
             init();
@@ -129,7 +130,9 @@ public final class GenericGenerator {
      * Return the page of the XML Element.
      *
      * @param element The element to search in.
+     *
      * @return The Page corresponding to the element.
+     *
      * @throws XMLException Thrown if an errors occurs during the xml reading process.
      */
     private Page getPage(Node element) throws XMLException {
@@ -153,6 +156,7 @@ public final class GenericGenerator {
      * Return the FieldGetter with the specific name.
      *
      * @param name The name of the searched getter.
+     *
      * @return The FieldGetter or null if there is no FieldGetter with this name.
      */
     public FieldGetter getFieldGetter(String name) {
@@ -173,7 +177,7 @@ public final class GenericGenerator {
      *
      * @return The pages of the generator.
      */
-    public Pages getPages(){
-		return pages;
-	}
+    public Pages getPages() {
+        return pages;
+    }
 }

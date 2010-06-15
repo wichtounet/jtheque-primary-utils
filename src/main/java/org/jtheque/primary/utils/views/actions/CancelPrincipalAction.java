@@ -45,5 +45,5 @@ public final class CancelPrincipalAction extends JThequeAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         controller.cancel();
-	}
+    }
 }

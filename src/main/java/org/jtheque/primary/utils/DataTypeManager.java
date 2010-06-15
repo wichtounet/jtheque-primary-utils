@@ -57,9 +57,10 @@ public final class DataTypeManager {
      * Return the internationalization key for a data type.
      *
      * @param dataType The data type.
+     *
      * @return The internationalization for the data type.
      */
     public static String getKeyForDataType(String dataType) {
         return DATA_TYPES.get(dataType);
-	}
+    }
 }

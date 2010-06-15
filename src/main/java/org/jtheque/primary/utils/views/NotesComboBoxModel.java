@@ -57,5 +57,5 @@ public final class NotesComboBoxModel extends DefaultComboBoxModel {
      */
     public Note getSelectedNote() {
         return (Note) getSelectedItem();
-	}
+    }
 }

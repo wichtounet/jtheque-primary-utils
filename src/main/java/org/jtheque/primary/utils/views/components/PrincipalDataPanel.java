@@ -174,6 +174,7 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
      * Return the message for the internationalization key.
      *
      * @param key The internationalization key.
+     *
      * @return The message.
      */
     protected String getMessage(String key) {

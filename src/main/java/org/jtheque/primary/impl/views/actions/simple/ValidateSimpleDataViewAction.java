@@ -46,6 +46,6 @@ public final class ValidateSimpleDataViewAction extends JThequeAction {
             simpleDataView.getModel().getController().save(simpleDataView.getDataName());
 
             simpleDataView.closeDown();
-		}
-	}
+        }
+    }
 }

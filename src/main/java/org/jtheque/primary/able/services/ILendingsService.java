@@ -33,6 +33,7 @@ public interface ILendingsService extends DataContainer<Lending>, DataService<Le
      * Return the lending with this id.
      *
      * @param id The id to search the kind with.
+     *
      * @return The lending.
      */
     Lending getLending(int id);
@@ -56,6 +57,7 @@ public interface ILendingsService extends DataContainer<Lending>, DataService<Le
      *
      * @param lending The lendings to test.
      * @param days    The days limit for lendings.
+     *
      * @return <code>true</code> if the lending is late else <code>false</code>.
      */
     boolean isLate(Lending lending, int days);
@@ -65,5 +67,5 @@ public interface ILendingsService extends DataContainer<Lending>, DataService<Le
      *
      * @return An empty lending.
      */
-	Lending getEmptyLending();
+    Lending getEmptyLending();
 }

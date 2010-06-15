@@ -88,6 +88,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
      * Return all the persons of the specified type.
      *
      * @param type The searched type.
+     *
      * @return Return a Collection containing all the persons of the specified type.
      */
     private Collection<Person> getAll(CharSequence type) {
@@ -234,6 +235,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
          *
          * @param person The person to use to fill the array.
          * @param id     Indicate if we must add the id to the array.
+         *
          * @return The filled array.
          */
         private static Object[] fillArray(Person person, boolean id) {
@@ -248,9 +250,9 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
 
             if (id) {
                 values[6] = person.getId();
-			}
+            }
 
-			return values;
-		}
-	}
+            return values;
+        }
+    }
 }

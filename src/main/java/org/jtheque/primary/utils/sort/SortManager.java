@@ -61,6 +61,7 @@ public final class SortManager {
      * Create a model with initial content.
      *
      * @param type The type of content
+     *
      * @return The model initiated
      */
     public JThequeTreeModel createInitialModel(String type) {
@@ -70,6 +71,6 @@ public final class SortManager {
 
         sort(model, type, "None");
 
-		return model;
-	}
+        return model;
+    }
 }

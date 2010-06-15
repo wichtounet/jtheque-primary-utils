@@ -45,5 +45,5 @@ public final class ManualEditPrincipalAction extends JThequeAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         controller.manualEdit();
-	}
+    }
 }

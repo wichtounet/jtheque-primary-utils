@@ -23,8 +23,8 @@ package org.jtheque.primary.able.views;
  */
 public interface ToolbarView {
     /**
-     * Set the display mode of the toolbar. A toolbar can have different mode normally in function of the mode of
-     * the controller.
+     * Set the display mode of the toolbar. A toolbar can have different mode normally in function of the mode of the
+     * controller.
      *
      * @param mode The mode to set.
      */

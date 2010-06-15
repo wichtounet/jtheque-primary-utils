@@ -43,5 +43,5 @@ public final class AcNewBorrower extends JThequeAction {
     public void actionPerformed(ActionEvent event) {
         borrowerController.newBorrower();
         borrowerController.displayView();
-	}
+    }
 }

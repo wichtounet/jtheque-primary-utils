@@ -21,8 +21,7 @@ import org.jtheque.primary.able.od.Data;
  */
 
 /**
- * An abstract controller state. It implements all the methods of a controller state with
- * default implementations.
+ * An abstract controller state. It implements all the methods of a controller state with default implementations.
  *
  * @author Baptiste Wicht
  */

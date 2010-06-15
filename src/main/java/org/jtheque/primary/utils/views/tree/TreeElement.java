@@ -37,6 +37,7 @@ public interface TreeElement {
      * Return the icon of the element.
      *
      * @param imageService The resource service to use.
+     *
      * @return The icon
      */
     Icon getIcon(IImageService imageService);
@@ -66,6 +67,7 @@ public interface TreeElement {
      * Return the child a the specified index.
      *
      * @param index The index.
+     *
      * @return The element at the index else <code>null</code>.
      */
     TreeElement getChild(int index);
@@ -81,6 +83,7 @@ public interface TreeElement {
      * Return the index of the specified element.
      *
      * @param treeElement The element to search.
+     *
      * @return the index of the element if found else <code>-1</code>.
      */
     int indexOf(TreeElement treeElement);
@@ -100,7 +103,7 @@ public interface TreeElement {
     void addAll(Iterable<? extends TreeElement> elements);
 
     /**
-	 * Clear the element.
-	 */
-	void clear();
+     * Clear the element.
+     */
+    void clear();
 }

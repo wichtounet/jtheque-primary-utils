@@ -38,6 +38,7 @@ public interface IDaoSimpleDatas extends Dao<SimpleData> {
      * Return the simple data of the specified id.
      *
      * @param id The id to search.
+     *
      * @return The simple data with the specified id.
      */
     SimpleData getSimpleData(int id);
@@ -46,11 +47,12 @@ public interface IDaoSimpleDatas extends Dao<SimpleData> {
      * Return the simple data of the specified title.
      *
      * @param title The title to search.
+     *
      * @return The simple data with the specified title.
      */
     SimpleData getSimpleData(String title);
 
     SimpleData getSimpleDataByTemporaryId(int id);
 
-	boolean isPrimary();
+    boolean isPrimary();
 }

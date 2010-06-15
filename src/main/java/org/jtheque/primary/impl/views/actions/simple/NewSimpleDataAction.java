@@ -45,5 +45,5 @@ public final class NewSimpleDataAction extends JThequeAction {
     public void actionPerformed(ActionEvent e) {
         controller.create();
         controller.displayView();
-	}
+    }
 }

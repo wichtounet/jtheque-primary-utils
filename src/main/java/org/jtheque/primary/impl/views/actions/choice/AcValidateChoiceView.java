@@ -47,6 +47,6 @@ public final class AcValidateChoiceView extends JThequeAction {
 
         if (choiceView.validateContent()) {
             choiceController.doAction(choiceView.getSelectedItem());
-		}
-	}
+        }
+    }
 }

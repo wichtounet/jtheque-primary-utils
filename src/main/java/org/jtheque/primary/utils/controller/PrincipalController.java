@@ -183,5 +183,5 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         this.state = state;
 
         state.apply();
-	}
+    }
 }

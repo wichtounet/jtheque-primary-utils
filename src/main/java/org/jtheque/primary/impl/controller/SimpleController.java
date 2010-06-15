@@ -92,5 +92,5 @@ public final class SimpleController extends AbstractController implements ISimpl
     @Override
     public ISimpleDataView getView() {
         return simpleDataView.get();
-	}
+    }
 }

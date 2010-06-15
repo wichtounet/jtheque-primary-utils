@@ -163,5 +163,5 @@ public class PersonService implements IPersonService {
     @Override
     public String getPersonType() {
         return personType;
-	}
+    }
 }

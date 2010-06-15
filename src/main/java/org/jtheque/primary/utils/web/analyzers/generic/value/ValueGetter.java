@@ -26,6 +26,7 @@ public interface ValueGetter {
      * Return the value in the line.
      *
      * @param line The line to search in.
+     *
      * @return The value.
      */
     String getValue(String line);
