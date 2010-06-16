@@ -28,12 +28,12 @@ import org.w3c.dom.Node;
  */
 final class AppendLineFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "appendLine".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Node n, IXMLReader reader) {
+    public IteratorOperation factor(Node n, IXMLReader<Node> reader) {
         return new AppendLineIteratorOperation();
     }
 

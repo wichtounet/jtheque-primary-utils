@@ -36,12 +36,12 @@ import java.util.Collection;
  */
 final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "getter".equals(element.getNodeName());
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
         SimpleFieldGetter getter = new SimpleFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));

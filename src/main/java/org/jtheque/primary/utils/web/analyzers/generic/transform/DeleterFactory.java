@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 public final class DeleterFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "deleter".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node element, IXMLReader reader) {
+    public Transformer factor(Node element, IXMLReader<Node> reader) {
         return new DeleterTransformer(element.getTextContent());
     }
 

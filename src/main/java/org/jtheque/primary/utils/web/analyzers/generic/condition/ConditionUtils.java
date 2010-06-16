@@ -45,7 +45,7 @@ public final class ConditionUtils {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    public static Condition getCondition(Object currentNode, String location, IXMLReader reader) throws XMLException {
+    public static Condition getCondition(Object currentNode, String location, IXMLReader<Node> reader) throws XMLException {
         Object conditionNode = reader.getNode(location, currentNode);
 
         if (conditionNode != null) {

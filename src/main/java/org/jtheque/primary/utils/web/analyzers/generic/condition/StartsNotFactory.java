@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class StartsNotFactory implements Factory<Condition> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "notstarts".equals(element.getNodeName());
     }
 
     @Override
-    public Condition factor(Node element, IXMLReader reader) {
+    public Condition factor(Node element, IXMLReader<Node> reader) {
         return new StartsNot(element.getTextContent());
     }
 

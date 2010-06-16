@@ -53,7 +53,7 @@ public final class FieldGetterFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static FieldGetter getFieldGetter(Node element, IXMLReader reader) throws XMLException {
+    public static FieldGetter getFieldGetter(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

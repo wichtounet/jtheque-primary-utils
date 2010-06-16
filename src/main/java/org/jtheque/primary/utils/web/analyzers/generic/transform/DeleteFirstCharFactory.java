@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class DeleteFirstCharFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "deleteFirstChar".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node n, IXMLReader reader) {
+    public Transformer factor(Node n, IXMLReader<Node> reader) {
         return new DeleteFirstChar();
     }
 

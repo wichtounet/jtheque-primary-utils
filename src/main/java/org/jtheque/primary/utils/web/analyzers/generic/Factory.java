@@ -37,7 +37,7 @@ public interface Factory<T> {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    boolean canFactor(Node element, IXMLReader reader) throws XMLException;
+    boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException;
 
     /**
      * Create and return the factored element.
@@ -49,5 +49,5 @@ public interface Factory<T> {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    T factor(Node element, IXMLReader reader) throws XMLException;
+    T factor(Node element, IXMLReader<Node> reader) throws XMLException;
 }

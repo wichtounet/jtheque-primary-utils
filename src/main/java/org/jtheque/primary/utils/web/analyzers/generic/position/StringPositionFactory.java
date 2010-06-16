@@ -27,12 +27,12 @@ import org.w3c.dom.Node;
  */
 final class StringPositionFactory implements Factory<Position> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "string".equals(element.getNodeName());
     }
 
     @Override
-    public Position factor(Node node, IXMLReader reader) throws XMLException {
+    public Position factor(Node node, IXMLReader<Node> reader) throws XMLException {
         StringPosition p = new StringPosition(reader.readString("text", node));
 
         if ("true".equals(reader.readString("@first", node))) {

@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class NextLineFactory implements Factory<Operation> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "nextline".equals(element.getNodeName());
     }
 
     @Override
-    public Operation factor(Node element, IXMLReader reader) {
+    public Operation factor(Node element, IXMLReader<Node> reader) {
         return new NextLineOperation();
     }
 

@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class LastFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "last".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node element, IXMLReader reader) {
+    public Transformer factor(Node element, IXMLReader<Node> reader) {
         return new Last(Integer.parseInt(element.getTextContent()));
     }
 

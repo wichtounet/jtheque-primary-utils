@@ -75,7 +75,7 @@ public final class ValueGetterFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static ValueGetter getValueGetter(Node element, IXMLReader reader) throws XMLException {
+    public static ValueGetter getValueGetter(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

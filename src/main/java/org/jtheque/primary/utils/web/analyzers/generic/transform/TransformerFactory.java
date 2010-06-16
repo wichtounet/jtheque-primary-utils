@@ -58,7 +58,7 @@ public final class TransformerFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static Transformer getTransformer(Node element, IXMLReader reader) throws XMLException {
+    public static Transformer getTransformer(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

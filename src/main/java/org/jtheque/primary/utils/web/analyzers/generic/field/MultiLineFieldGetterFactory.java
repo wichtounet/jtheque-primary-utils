@@ -32,12 +32,12 @@ import org.w3c.dom.Node;
  */
 final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
         return "true".equals(reader.readString("@multiline", element));
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
         MultiLineFieldGetter getter = new MultiLineFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));
