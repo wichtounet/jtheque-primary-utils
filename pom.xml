@@ -66,7 +66,7 @@
                         <Bundle-Vendor>Baptiste Wicht</Bundle-Vendor>
                         <Spring-Context>*;create-asynchronously:=false;publish-context:=false</Spring-Context>
                         <Module-Core>2.1.0</Module-Core>
-                        <Module-UpdateUrl>http://jtheque.developpez.com/descriptors/jtheque-primary-utils.xml
+                        <Module-UpdateUrl>http://jtheque.baptiste-wicht.com/files/descriptors/jtheque-primary-utils.xml
                         </Module-UpdateUrl>
                     </instructions>
                 </configuration>
