@@ -68,6 +68,7 @@
                         <Module-Core>2.1.0</Module-Core>
                         <Module-UpdateUrl>http://jtheque.baptiste-wicht.com/files/descriptors/jtheque-primary-utils.xml
                         </Module-UpdateUrl>
+                        <Module-Collection>true</Module-Collection>
                     </instructions>
                 </configuration>
             </plugin>

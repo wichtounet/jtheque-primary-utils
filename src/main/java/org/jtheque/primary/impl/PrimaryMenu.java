@@ -16,7 +16,6 @@ package org.jtheque.primary.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.features.able.Feature;
 import org.jtheque.features.able.IFeature;
 import org.jtheque.primary.able.controller.IBorrowerController;
 import org.jtheque.primary.able.controller.IChoiceController;
@@ -146,7 +145,7 @@ final class PrimaryMenu extends AbstractMenu {
      */
     private static void fillFeature(IFeature feature, Iterable<IFeature> features) {
         for (IFeature f : features) {
-            ((Feature) feature).addSubFeature(f);
+            feature.addSubFeature(f);
         }
     }
 }
