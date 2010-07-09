@@ -87,42 +87,9 @@
 
     <!-- Controllers -->
 
-    <bean id="borrowerController" class="org.jtheque.primary.impl.controller.BorrowerController">
-        <constructor-arg>
-            <bean class="org.jtheque.spring.utils.SwingSpringProxy">
-                <constructor-arg value="org.jtheque.primary.able.views.IBorrowerView"/>
-            </bean>
-        </constructor-arg>
-    </bean>
-
-    <bean id="choiceController" class="org.jtheque.primary.impl.controller.ChoiceController">
-        <constructor-arg>
-            <bean class="org.jtheque.spring.utils.SwingSpringProxy">
-                <constructor-arg value="org.jtheque.primary.able.views.IChoiceView"/>
-            </bean>
-        </constructor-arg>
-    </bean>
-
-    <bean id="countryController" class="org.jtheque.primary.impl.controller.SimpleController">
-        <constructor-arg ref="countriesService"/>
-        <constructor-arg ref="simpleDataView"/>
-    </bean>
-    <bean id="languageController" class="org.jtheque.primary.impl.controller.SimpleController">
-        <constructor-arg ref="languagesService"/>
-        <constructor-arg ref="simpleDataView"/>
-    </bean>
-    <bean id="typeController" class="org.jtheque.primary.impl.controller.SimpleController">
-        <constructor-arg ref="typesService"/>
-        <constructor-arg ref="simpleDataView"/>
-    </bean>
-    <bean id="kindController" class="org.jtheque.primary.impl.controller.SimpleController">
-        <constructor-arg ref="kindsService"/>
-        <constructor-arg ref="simpleDataView"/>
-    </bean>
-    <bean id="sagaController" class="org.jtheque.primary.impl.controller.SimpleController">
-        <constructor-arg ref="sagasService"/>
-        <constructor-arg ref="simpleDataView"/>
-    </bean>
+    <bean id="borrowerController" class="org.jtheque.primary.impl.views.controllers.BorrowerController" />
+    <bean id="choiceController" class="org.jtheque.primary.impl.views.controllers.ChoiceController"/>
+    <bean id="simpleController" class="org.jtheque.primary.impl.views.controllers.SimpleController"/>
 
     <!-- Views -->
 
@@ -130,9 +97,17 @@
         <constructor-arg value="org.jtheque.primary.able.views.ISimpleDataView"/>
     </bean>
 
-    <bean class="org.jtheque.primary.impl.views.BorrowerView" lazy-init="true"/>
-    <bean class="org.jtheque.primary.impl.views.ChoiceView" lazy-init="true"/>
-    <bean class="org.jtheque.primary.impl.views.SimpleDataView" lazy-init="true"/>
+    <bean class="org.jtheque.primary.impl.views.BorrowerView" lazy-init="true">
+        <property name="controller" ref="borrowerController" />
+    </bean>
+    
+    <bean class="org.jtheque.primary.impl.views.ChoiceView" lazy-init="true">
+        <property name="controller" ref="choiceController"/>
+    </bean>
+
+    <bean class="org.jtheque.primary.impl.views.SimpleDataView" lazy-init="true">
+        <property name="controller" ref="simpleController"/>
+    </bean>
 
     <!-- OSGI Services Registrations -->
 

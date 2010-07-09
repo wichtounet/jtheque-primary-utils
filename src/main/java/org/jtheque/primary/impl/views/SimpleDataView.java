@@ -20,7 +20,6 @@ import org.jtheque.i18n.able.ILanguageService;
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.able.views.model.ISimpleDataModel;
-import org.jtheque.primary.impl.views.actions.simple.ValidateSimpleDataViewAction;
 import org.jtheque.primary.impl.views.model.SimpleDataModel;
 import org.jtheque.ui.utils.builders.I18nPanelBuilder;
 import org.jtheque.ui.able.constraints.Constraints;
@@ -49,7 +48,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
 
     @Override
     protected void buildView(I18nPanelBuilder builder) {
-        Action validateAction = new ValidateSimpleDataViewAction(this);
+        Action validateAction = getControllerAction("data.view.actions.ok");
 
         builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));
 
@@ -59,7 +58,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
         addConstraint(fieldName, Constraints.max(NAME_LENGTH_LIMIT, "data.view.name", false, false));
 
         builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
-                validateAction, getCloseAction("data.view.actions.cancel"));
+                validateAction, getControllerAction("data.view.actions.cancel"));
     }
 
     @Override

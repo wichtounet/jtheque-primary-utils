@@ -17,12 +17,7 @@ package org.jtheque.primary.impl;
  */
 
 import org.jtheque.features.able.IFeature;
-import org.jtheque.primary.able.controller.IBorrowerController;
-import org.jtheque.primary.able.controller.IChoiceController;
-import org.jtheque.primary.able.controller.ISimpleController;
-import org.jtheque.primary.impl.views.actions.borrower.AcNewBorrower;
-import org.jtheque.primary.impl.views.actions.simple.NewSimpleDataAction;
-import org.jtheque.primary.utils.choice.ChoiceViewAction;
+import org.jtheque.ui.able.IController;
 import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.views.utils.AbstractMenu;
 
@@ -30,10 +25,6 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.Collection;
 import java.util.List;
-
-import static org.jtheque.primary.able.od.SimpleData.DataType.*;
-import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.DELETE;
-import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.EDIT;
 
 /**
  * The menu of the primary utils module.
@@ -82,13 +73,16 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the new menu.
      */
     private IFeature createNewFeature() {
+        IController simpleController = applicationContext.getBean("simpleController", IController.class);
+        IController borrowerController = applicationContext.getBean("borrowerController", IController.class);
+
         IFeature newFeature = createSubFeature(1, "menu.others.new",
-                createSubFeature(1, new NewSimpleDataAction("menu.others.kind", applicationContext.getBean("kindController", ISimpleController.class))),
-                createSubFeature(2, new NewSimpleDataAction("menu.others.type", applicationContext.getBean("typeController", ISimpleController.class))),
-                createSubFeature(3, new NewSimpleDataAction("menu.others.language", applicationContext.getBean("languageController", ISimpleController.class))),
-                createSubFeature(4, new NewSimpleDataAction("menu.others.country", applicationContext.getBean("countryController", ISimpleController.class))),
-                createSubFeature(5, new AcNewBorrower(applicationContext.getBean("borrowerController", IBorrowerController.class))),
-                createSubFeature(6, new NewSimpleDataAction("menu.others.saga", applicationContext.getBean("sagaController", ISimpleController.class))));
+                createSubFeature(1, createControllerAction("menu.new.kind", simpleController)),
+                createSubFeature(2, createControllerAction("menu.new.type", simpleController)),
+                createSubFeature(3, createControllerAction("menu.new.language", simpleController)),
+                createSubFeature(4, createControllerAction("menu.new.country", simpleController)),
+                createSubFeature(5, createControllerAction("menu.others.borrower", borrowerController)),
+                createSubFeature(6, createControllerAction("menu.new.saga", simpleController)));
 
         fillFeature(newFeature, addFeatures);
 
@@ -101,15 +95,15 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the delete menu.
      */
     private IFeature createDeleteFeature() {
-        IChoiceController choiceController = applicationContext.getBean("choiceController", IChoiceController.class);
+        IController choiceController = applicationContext.getBean("choiceController", IController.class);
 
         IFeature deleteFeature = createSubFeature(2, "menu.others.delete",
-                createSubFeature(1, new ChoiceViewAction("menu.others.kind", DELETE, KIND.getDataType(), choiceController)),
-                createSubFeature(2, new ChoiceViewAction("menu.others.type", DELETE, TYPE.getDataType(), choiceController)),
-                createSubFeature(3, new ChoiceViewAction("menu.others.language", DELETE, LANGUAGE.getDataType(), choiceController)),
-                createSubFeature(4, new ChoiceViewAction("menu.others.country", DELETE, COUNTRY.getDataType(), choiceController)),
-                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", DELETE, "Borrowers", choiceController)),
-                createSubFeature(6, new ChoiceViewAction("menu.others.saga", DELETE, SAGA.getDataType(), choiceController)));
+                createSubFeature(1, createControllerAction("menu.delete.kind", choiceController)),
+                createSubFeature(2, createControllerAction("menu.delete.type", choiceController)),
+                createSubFeature(3, createControllerAction("menu.delete.language", choiceController)),
+                createSubFeature(4, createControllerAction("menu.delete.country", choiceController)),
+                createSubFeature(5, createControllerAction("menu.delete.borrower", choiceController)),
+                createSubFeature(6, createControllerAction("menu.delete.saga", choiceController)));
 
         fillFeature(deleteFeature, removeFeatures);
 
@@ -122,15 +116,15 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the edit menu.
      */
     private IFeature createEditFeature() {
-        IChoiceController choiceController = applicationContext.getBean("choiceController", IChoiceController.class);
+        IController choiceController = applicationContext.getBean("choiceController", IController.class);
 
         IFeature editFeature = createSubFeature(3, "menu.others.edit",
-                createSubFeature(1, new ChoiceViewAction("menu.others.kind", EDIT, KIND.getDataType(), choiceController)),
-                createSubFeature(2, new ChoiceViewAction("menu.others.type", EDIT, TYPE.getDataType(), choiceController)),
-                createSubFeature(3, new ChoiceViewAction("menu.others.language", EDIT, LANGUAGE.getDataType(), choiceController)),
-                createSubFeature(4, new ChoiceViewAction("menu.others.country", EDIT, COUNTRY.getDataType(), choiceController)),
-                createSubFeature(5, new ChoiceViewAction("menu.others.borrower", EDIT, "Borrowers", choiceController)),
-                createSubFeature(6, new ChoiceViewAction("menu.others.saga", EDIT, SAGA.getDataType(), choiceController)));
+                createSubFeature(1, createControllerAction("menu.edit.kind", choiceController)),
+                createSubFeature(2, createControllerAction("menu.edit.type", choiceController)),
+                createSubFeature(3, createControllerAction("menu.edit.language", choiceController)),
+                createSubFeature(4, createControllerAction("menu.edit.country", choiceController)),
+                createSubFeature(5, createControllerAction("menu.edit.borrower", choiceController)),
+                createSubFeature(6, createControllerAction("menu.edit.saga", choiceController)));
 
         fillFeature(editFeature, editFeatures);
 

@@ -16,21 +16,12 @@ package org.jtheque.primary.able.controller;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.views.able.Controller;
-
 /**
  * A choice controller specification.
  *
  * @author Baptiste Wicht
  */
-public interface IChoiceController extends Controller {
-    /**
-     * Do the choice action on the selected item.
-     *
-     * @param selectedItem The item selected on the choice view.
-     */
-    void doAction(Object selectedItem);
-
+public interface IChoiceController  {
     /**
      * Set the action of the controller.
      *
@@ -44,5 +35,4 @@ public interface IChoiceController extends Controller {
      * @param content The new content
      */
     void setContent(String content);
-
 }

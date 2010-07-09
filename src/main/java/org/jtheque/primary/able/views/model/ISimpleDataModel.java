@@ -17,7 +17,6 @@ package org.jtheque.primary.able.views.model;
  */
 
 import org.jtheque.primary.able.od.SimpleData;
-import org.jtheque.primary.impl.controller.SimpleController;
 import org.jtheque.ui.able.IModel;
 
 /**
@@ -39,18 +38,4 @@ public interface ISimpleDataModel extends IModel {
      * @param data The simple data to set as current.
      */
     void setSimpleData(SimpleData data);
-
-    /**
-     * Set the current controller of the model.
-     *
-     * @param id The bean ide of the controller.
-     */
-    void setCurrentController(SimpleController id);
-
-    /**
-     * Return the id of the controller.
-     *
-     * @return The bean id of the current controller.
-     */
-    SimpleController getController();
 }

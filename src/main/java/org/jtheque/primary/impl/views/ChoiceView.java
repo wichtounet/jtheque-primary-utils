@@ -18,10 +18,8 @@ package org.jtheque.primary.impl.views;
 
 import org.jtheque.i18n.able.ILanguageService;
 import org.jtheque.persistence.utils.DataContainerProvider;
-import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.IChoiceView;
-import org.jtheque.primary.impl.views.actions.choice.AcValidateChoiceView;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
 import org.jtheque.ui.able.IModel;
@@ -76,12 +74,12 @@ public final class ChoiceView extends SwingDialogView<IModel> implements IChoice
 
         addConstraint(model, Constraints.atLeastOne("choice.view.title"));
 
-        Action validateAction = new AcValidateChoiceView(getService(IChoiceController.class));
+        Action validateAction = getControllerAction("choice.actions.validate");
 
         JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
         SwingUtils.addFieldValidateAction(comboElements, validateAction);
 
-        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getCloseAction("choice.actions.cancel"));
+        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getControllerAction("choice.actions.cancel"));
 
         return builder.getPanel();
     }

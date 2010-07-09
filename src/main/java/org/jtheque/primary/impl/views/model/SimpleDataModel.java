@@ -18,7 +18,6 @@ package org.jtheque.primary.impl.views.model;
 
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.model.ISimpleDataModel;
-import org.jtheque.primary.impl.controller.SimpleController;
 
 /**
  * A simple data model implementation.
@@ -27,7 +26,6 @@ import org.jtheque.primary.impl.controller.SimpleController;
  */
 public final class SimpleDataModel implements ISimpleDataModel {
     private SimpleData data;
-    private SimpleController id;
 
     @Override
     public SimpleData getSimpleData() {
@@ -37,15 +35,5 @@ public final class SimpleDataModel implements ISimpleDataModel {
     @Override
     public void setSimpleData(SimpleData data) {
         this.data = data;
-    }
-
-    @Override
-    public void setCurrentController(SimpleController id) {
-        this.id = id;
-    }
-
-    @Override
-    public SimpleController getController() {
-        return id;
     }
 }
