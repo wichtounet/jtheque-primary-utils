@@ -28,12 +28,12 @@ import org.w3c.dom.Node;
  */
 final class DisabledFieldGetterFactory implements Factory<FieldGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
         return "true".equals(reader.readString("@disabled", element));
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader reader) throws XMLException {
+    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
         return new DisabledFieldGetter(reader.readString("@field", element));
     }
 

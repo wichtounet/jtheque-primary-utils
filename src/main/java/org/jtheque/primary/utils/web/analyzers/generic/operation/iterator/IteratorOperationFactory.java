@@ -55,7 +55,7 @@ public final class IteratorOperationFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static IteratorOperation getPosition(Node element, IXMLReader reader) throws XMLException {
+    public static IteratorOperation getPosition(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

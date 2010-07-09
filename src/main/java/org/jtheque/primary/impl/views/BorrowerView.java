@@ -23,8 +23,8 @@ import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.model.IBorrowerModel;
 import org.jtheque.primary.impl.views.actions.borrower.AcValidateBorrowerView;
 import org.jtheque.primary.impl.views.model.BorrowerModel;
+import org.jtheque.ui.able.constraints.Constraints;
 import org.jtheque.ui.utils.builders.I18nPanelBuilder;
-import org.jtheque.ui.utils.constraints.MaxLengthConstraint;
 import org.jtheque.ui.utils.windows.dialogs.SwingFilthyBuildedDialogView;
 import org.jtheque.utils.ui.GridBagUtils;
 import org.jtheque.utils.ui.SwingUtils;
@@ -66,9 +66,9 @@ public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerMo
         builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
                 validateAction, getCloseAction("borrower.actions.cancel"));
 
-        addConstraint(fieldNom, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.name", false, false));
-        addConstraint(fieldFirstName, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.firstname", false, false));
-        addConstraint(fieldEmail, new MaxLengthConstraint(DEFAULT_FIELD_LENGTH, "borrower.view.mail", false, false));
+        addConstraint(fieldNom, Constraints.max(DEFAULT_FIELD_LENGTH, "borrower.view.name", false, false));
+        addConstraint(fieldFirstName, Constraints.max(DEFAULT_FIELD_LENGTH, "borrower.view.firstname", false, false));
+        addConstraint(fieldEmail, Constraints.max(DEFAULT_FIELD_LENGTH, "borrower.view.mail", false, false));
 
         SwingUtils.addFieldsValidateAction(validateAction, fieldNom, fieldFirstName, fieldEmail);
     }

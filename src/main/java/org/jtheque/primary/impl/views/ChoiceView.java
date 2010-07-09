@@ -25,9 +25,9 @@ import org.jtheque.primary.impl.views.actions.choice.AcValidateChoiceView;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
 import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.constraints.Constraints;
 import org.jtheque.ui.utils.builders.FilthyPanelBuilder;
 import org.jtheque.ui.utils.builders.PanelBuilder;
-import org.jtheque.ui.utils.constraints.AtLeastOneConstraint;
 import org.jtheque.ui.utils.windows.dialogs.SwingDialogView;
 import org.jtheque.utils.ui.SwingUtils;
 
@@ -74,7 +74,7 @@ public final class ChoiceView extends SwingDialogView<IModel> implements IChoice
 
         model = new DataContainerCachedComboBoxModel(DataContainerProvider.getInstance().getContainerForDataType(content));
 
-        addConstraint(model, new AtLeastOneConstraint("choice.view.title"));
+        addConstraint(model, Constraints.atLeastOne("choice.view.title"));
 
         Action validateAction = new AcValidateChoiceView(getService(IChoiceController.class));
 

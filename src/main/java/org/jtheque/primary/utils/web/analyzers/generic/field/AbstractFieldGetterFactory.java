@@ -40,7 +40,7 @@ public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter>
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    static void initOperations(SimpleFieldGetter getter, Object node, IXMLReader reader) throws XMLException {
+    static void initOperations(SimpleFieldGetter getter, Object node, IXMLReader<Node> reader) throws XMLException {
         for (Node n : reader.getNodes("operations/*", node)) {
             Operation operation = OperationFactory.getValueGetter(n, reader);
 
@@ -59,7 +59,7 @@ public abstract class AbstractFieldGetterFactory implements Factory<FieldGetter>
      *
      * @throws XMLException Thrown if an errors occurs during the xml reading process.
      */
-    static void initTransformers(SimpleFieldGetter getter, Object currentNode, IXMLReader reader) throws XMLException {
+    static void initTransformers(SimpleFieldGetter getter, Object currentNode, IXMLReader<Node> reader) throws XMLException {
         for (Node n : reader.getNodes("transformers/*", currentNode)) {
             Transformer transformer = TransformerFactory.getTransformer(n, reader);
 

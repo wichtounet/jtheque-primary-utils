@@ -30,12 +30,12 @@ import org.w3c.dom.Node;
  */
 final class SplitterFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "splitter".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node n, IXMLReader reader) throws XMLException {
+    public Transformer factor(Node n, IXMLReader<Node> reader) throws XMLException {
         Splitter splitter = new Splitter();
 
         splitter.setSplitter(reader.readString("split", n));

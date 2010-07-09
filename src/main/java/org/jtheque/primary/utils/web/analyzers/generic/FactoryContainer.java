@@ -51,7 +51,7 @@ public final class FactoryContainer<T> {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public T getFactoredObject(Node element, IXMLReader reader) throws XMLException {
+    public T getFactoredObject(Node element, IXMLReader<Node> reader) throws XMLException {
         for (Factory<T> factory : factories) {
             if (factory.canFactor(element, reader)) {
                 return factory.factor(element, reader);

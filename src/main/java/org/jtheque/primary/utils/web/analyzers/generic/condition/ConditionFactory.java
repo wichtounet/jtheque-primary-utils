@@ -54,7 +54,7 @@ final class ConditionFactory {
      *
      * @throws XMLException if an error occurs during the XML processing.
      */
-    public static Condition getCondition(Node element, IXMLReader reader) throws XMLException {
+    public static Condition getCondition(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

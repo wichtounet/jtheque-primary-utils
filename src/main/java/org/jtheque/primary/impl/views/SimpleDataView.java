@@ -23,7 +23,7 @@ import org.jtheque.primary.able.views.model.ISimpleDataModel;
 import org.jtheque.primary.impl.views.actions.simple.ValidateSimpleDataViewAction;
 import org.jtheque.primary.impl.views.model.SimpleDataModel;
 import org.jtheque.ui.utils.builders.I18nPanelBuilder;
-import org.jtheque.ui.utils.constraints.MaxLengthConstraint;
+import org.jtheque.ui.able.constraints.Constraints;
 import org.jtheque.ui.utils.windows.dialogs.SwingFilthyBuildedDialogView;
 import org.jtheque.utils.ui.GridBagUtils;
 import org.jtheque.utils.ui.SwingUtils;
@@ -56,7 +56,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
         fieldName = builder.add(new JTextField(FIELD_COLUMNS), builder.gbcSet(1, 0));
         SwingUtils.addFieldValidateAction(fieldName, validateAction);
 
-        addConstraint(fieldName, new MaxLengthConstraint(NAME_LENGTH_LIMIT, "data.view.name", false, false));
+        addConstraint(fieldName, Constraints.max(NAME_LENGTH_LIMIT, "data.view.name", false, false));
 
         builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
                 validateAction, getCloseAction("data.view.actions.cancel"));

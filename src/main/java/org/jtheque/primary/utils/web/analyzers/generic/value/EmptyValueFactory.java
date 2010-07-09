@@ -27,12 +27,12 @@ import org.w3c.dom.Node;
  */
 final class EmptyValueFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) throws XMLException {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
         return !reader.getNodes("emptyValue", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, IXMLReader reader) {
+    public ValueGetter factor(Node element, IXMLReader<Node> reader) {
         return new EmptyValue();
     }
 

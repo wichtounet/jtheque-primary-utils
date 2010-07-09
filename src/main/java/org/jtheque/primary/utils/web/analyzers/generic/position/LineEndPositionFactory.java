@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class LineEndPositionFactory implements Factory<Position> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "lineEnd".equals(element.getNodeName());
     }
 
     @Override
-    public Position factor(Node n, IXMLReader reader) {
+    public Position factor(Node n, IXMLReader<Node> reader) {
         return new LineEndPosition();
     }
 

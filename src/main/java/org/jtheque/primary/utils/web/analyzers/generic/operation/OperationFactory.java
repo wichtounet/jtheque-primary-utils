@@ -53,7 +53,7 @@ public final class OperationFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static Operation getValueGetter(Node element, IXMLReader reader) throws XMLException {
+    public static Operation getValueGetter(Node element, IXMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 

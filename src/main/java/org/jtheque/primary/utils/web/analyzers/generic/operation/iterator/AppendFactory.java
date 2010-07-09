@@ -33,12 +33,12 @@ import org.w3c.dom.Node;
  */
 final class AppendFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Node element, IXMLReader reader) {
+    public boolean canFactor(Node element, IXMLReader<Node> reader) {
         return "append".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Node n, IXMLReader reader) throws XMLException {
+    public IteratorOperation factor(Node n, IXMLReader<Node> reader) throws XMLException {
         return new AppendIteratorOperation(ValueGetterFactory.getValueGetter(n, reader));
     }
 
