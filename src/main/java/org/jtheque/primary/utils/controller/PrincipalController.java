@@ -20,16 +20,13 @@ import org.jtheque.primary.able.controller.ControllerState;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.controller.IPrincipalController;
 import org.jtheque.primary.able.od.Data;
+import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.views.able.IViews;
-import org.jtheque.views.able.components.MainComponent;
-import org.jtheque.views.utils.AbstractController;
 
 import javax.annotation.Resource;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.TreePath;
-
-import java.util.Collection;
 
 /**
  * An abstract principal Controller.
@@ -37,11 +34,12 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalController<T extends Data> extends AbstractController implements IPrincipalController<T> {
-    private ControllerState state;
     private final ControllerState viewState;
     private final ControllerState modifyState;
     private final ControllerState newObjectState;
     private final ControllerState autoAddState;
+
+    private ControllerState state;
 
     @Resource
     private IViews views;
@@ -67,17 +65,11 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     }
 
     @Override
-    public final void displayView() {
-        views.setSelectedView((MainComponent) getView());
-
-        super.displayView();
-    }
-
-    @Override
     public final void valueChanged(TreeSelectionEvent event) {
         TreePath current = ((JTree) event.getSource()).getSelectionPath();
 
         if (current != null && current.getLastPathComponent() instanceof Data) {
+            @SuppressWarnings("unchecked")
             T data = (T) current.getLastPathComponent();
 
             if (data != null) {
@@ -86,8 +78,12 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void save(FormBean formBean) {
+    /**
+     * Save the current data with the informations of the specified form bean.
+     *
+     * @param formBean The form bean.
+     */
+    protected final void save(FormBean formBean) {
         ControllerState newState = state.save(formBean);
 
         if (newState != null) {
@@ -95,8 +91,12 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void view(T data) {
+    /**
+     * View the specified data.
+     *
+     * @param data The data to view.
+     */
+    protected final void view(T data) {
         ControllerState newState = state.view(data);
 
         if (newState != null) {
@@ -104,8 +104,10 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void manualEdit() {
+    /**
+     * Edit manually the current data.
+     */
+    protected final void manualEdit() {
         ControllerState newState = state.manualEdit();
 
         if (newState != null) {
@@ -113,8 +115,10 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void create() {
+    /**
+     * Create a new data.
+     */
+    protected final void create() {
         ControllerState newState = state.create();
 
         if (newState != null) {
@@ -122,8 +126,10 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void deleteCurrent() {
+    /**
+     * Delete the current data.
+     */
+    protected final void deleteCurrent() {
         ControllerState newState = state.delete();
 
         if (newState != null) {
@@ -131,8 +137,10 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
         }
     }
 
-    @Override
-    public final void cancel() {
+    /**
+     * Cancel the current operation.
+     */
+    protected void cancel() {
         ControllerState newState = state.cancel();
 
         if (newState != null) {
@@ -158,11 +166,6 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     @Override
     public final ControllerState getNewObjectState() {
         return newObjectState;
-    }
-
-    @Override
-    public Collection<T> getDisplayList() {
-        return getViewModel().getDisplayList();
     }
 
     /**

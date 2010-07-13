@@ -18,14 +18,13 @@ package org.jtheque.primary.able.controller;
 
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.ISimpleDataView;
-import org.jtheque.views.able.Controller;
 
 /**
  * A controller for simple data.
  *
  * @author Baptiste Wicht
  */
-public interface ISimpleController extends Controller {
+public interface ISimpleController {
     /**
      * Create a new simple data.
      */
@@ -45,6 +44,5 @@ public interface ISimpleController extends Controller {
      */
     void save(String name);
 
-    @Override
     ISimpleDataView getView();
 }

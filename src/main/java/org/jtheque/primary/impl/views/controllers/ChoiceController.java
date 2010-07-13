@@ -32,7 +32,7 @@ import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.*;
  */
 
 public class ChoiceController extends AbstractController implements IChoiceController {
-    private Map<String, Pair<String, String>> actions = new HashMap<String, Pair<String, String>>(10);
+    private final Map<String, Pair<String, String>> actions = new HashMap<String, Pair<String, String>>(10);
 
     @Resource
     private IChoiceView choiceView;

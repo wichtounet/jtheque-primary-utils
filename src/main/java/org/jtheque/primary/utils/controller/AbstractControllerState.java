@@ -2,6 +2,7 @@ package org.jtheque.primary.utils.controller;
 
 import org.jtheque.primary.able.controller.ControllerState;
 import org.jtheque.primary.able.controller.FormBean;
+import org.jtheque.primary.able.controller.IPrincipalController;
 import org.jtheque.primary.able.od.Data;
 
 /*
@@ -26,6 +27,16 @@ import org.jtheque.primary.able.od.Data;
  * @author Baptiste Wicht
  */
 public class AbstractControllerState implements ControllerState {
+    private IPrincipalController<?> controller;
+
+    protected IPrincipalController<?> getController() {
+        return controller;
+    }
+
+    public void setController(IPrincipalController<?> controller) {
+        this.controller = controller;
+    }
+
     @Override
     public void apply() {
         //No action

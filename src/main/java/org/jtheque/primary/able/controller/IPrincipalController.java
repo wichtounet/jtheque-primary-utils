@@ -17,17 +17,14 @@ package org.jtheque.primary.able.controller;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.primary.able.views.model.IPrincipalDataModel;
-import org.jtheque.views.able.Controller;
+import org.jtheque.ui.able.IController;
 
 import javax.swing.event.TreeSelectionListener;
-
-import java.util.Collection;
 
 /**
  * @author Baptiste Wicht
  */
-public interface IPrincipalController<T extends Data> extends Controller, TreeSelectionListener {
+public interface IPrincipalController<T extends Data> extends IController, TreeSelectionListener {
     /**
      * Return the state state. This state is active when we show a data on the view.
      *
@@ -56,58 +53,5 @@ public interface IPrincipalController<T extends Data> extends Controller, TreeSe
      */
     ControllerState getNewObjectState();
 
-    /**
-     * Return the model of the view managed by the controller.
-     *
-     * @return The model of the view.
-     */
-    IPrincipalDataModel<T> getViewModel();
-
-    /**
-     * Return the associated data type.
-     *
-     * @return The associated data type.
-     */
-    String getDataType();
-
-    /**
-     * Return the display list.
-     *
-     * @return The display list.
-     */
-    Collection<T> getDisplayList();
-
-    /**
-     * Save the current data with the informations of the specified form bean.
-     *
-     * @param formBean The form bean.
-     */
-    void save(FormBean formBean);
-
-    /**
-     * View the specified data.
-     *
-     * @param data The data to view.
-     */
-    void view(T data);
-
-    /**
-     * Edit manually the current data.
-     */
-    void manualEdit();
-
-    /**
-     * Create a new data.
-     */
-    void create();
-
-    /**
-     * Delete the current data.
-     */
-    void deleteCurrent();
-
-    /**
-     * Cancel the current operation.
-     */
-    void cancel();
+    void save();
 }
