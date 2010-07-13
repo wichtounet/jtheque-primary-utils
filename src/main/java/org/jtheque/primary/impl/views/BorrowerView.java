@@ -59,10 +59,10 @@ public final class BorrowerView extends SwingFilthyBuildedDialogView<IBorrowerMo
         builder.addI18nLabel("borrower.view.mail", builder.gbcSet(0, 2));
         fieldEmail = builder.add(new JTextField(DEFAULT_COLUMNS), builder.gbcSet(1, 2));
 
-        Action validateAction = getControllerAction("borrower.actions.ok");
+        Action validateAction = getAction("borrower.actions.ok");
 
         builder.addButtonBar(builder.gbcSet(0, 3, GridBagUtils.NONE, GridBagUtils.BASELINE_LEADING, 2, 1),
-                validateAction, getControllerAction("borrower.actions.cancel"));
+                validateAction, getAction("borrower.actions.cancel"));
 
         addConstraint(fieldNom, Constraints.max(DEFAULT_FIELD_LENGTH, "borrower.view.name", false, false));
         addConstraint(fieldFirstName, Constraints.max(DEFAULT_FIELD_LENGTH, "borrower.view.firstname", false, false));

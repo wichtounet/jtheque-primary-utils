@@ -5,6 +5,7 @@ import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.choice.ChoiceAction;
 import org.jtheque.primary.utils.choice.ChoiceActionFactory;
 import org.jtheque.ui.utils.AbstractController;
+import org.jtheque.utils.bean.Pair;
 
 import javax.annotation.Resource;
 
@@ -31,6 +32,8 @@ import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.*;
  */
 
 public class ChoiceController extends AbstractController implements IChoiceController {
+    private Map<String, Pair<String, String>> actions = new HashMap<String, Pair<String, String>>(10);
+
     @Resource
     private IChoiceView choiceView;
 
@@ -60,13 +63,19 @@ public class ChoiceController extends AbstractController implements IChoiceContr
     }
 
     @Override
-    public void setAction(String action) {
-        this.action = action;
+    public void registerAction(String name, String action, String datatype) {
+        actions.put(name, new Pair<String, String>(action, datatype));
     }
 
     @Override
-    public void setContent(String content) {
-        this.content = content;
+    public void handleAction(String actionName) {
+        if(actions.containsKey(actionName)){
+            Pair<String, String> pair = actions.get(actionName);
+
+            display(pair.getA(), pair.getB());
+        } else {
+            super.handleAction(actionName);
+        }
     }
 
     private void editKind() {

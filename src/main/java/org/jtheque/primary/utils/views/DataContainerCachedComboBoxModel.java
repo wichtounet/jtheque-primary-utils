@@ -67,7 +67,7 @@ public final class DataContainerCachedComboBoxModel<T extends Data> extends Defa
      *
      * @return The data who's selected.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") //Safe because we guarantee to have only T elements added into the model
     public T getSelectedData() {
         return (T) getSelectedItem();
     }

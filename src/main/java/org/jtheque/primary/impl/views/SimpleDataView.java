@@ -48,7 +48,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
 
     @Override
     protected void buildView(I18nPanelBuilder builder) {
-        Action validateAction = getControllerAction("data.view.actions.ok");
+        Action validateAction = getAction("data.view.actions.ok");
 
         builder.addI18nLabel("data.view.name", builder.gbcSet(0, 0));
 
@@ -58,7 +58,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
         addConstraint(fieldName, Constraints.max(NAME_LENGTH_LIMIT, "data.view.name", false, false));
 
         builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL, GridBagUtils.BASELINE_LEADING, 2, 1),
-                validateAction, getControllerAction("data.view.actions.cancel"));
+                validateAction, getAction("data.view.actions.cancel"));
     }
 
     @Override

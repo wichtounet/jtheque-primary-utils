@@ -1,5 +1,7 @@
 package org.jtheque.primary.able.controller;
 
+import org.jtheque.ui.able.IController;
+
 /*
  * This file is part of JTheque.
  *
@@ -21,18 +23,6 @@ package org.jtheque.primary.able.controller;
  *
  * @author Baptiste Wicht
  */
-public interface IChoiceController  {
-    /**
-     * Set the action of the controller.
-     *
-     * @param action The new action
-     */
-    void setAction(String action);
-
-    /**
-     * Set the content of controller.
-     *
-     * @param content The new content
-     */
-    void setContent(String content);
+public interface IChoiceController extends IController {
+    void registerAction(String name, String action, String datatype);
 }

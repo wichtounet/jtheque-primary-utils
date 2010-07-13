@@ -18,7 +18,6 @@ package org.jtheque.primary.utils.views;
 
 import org.jtheque.persistence.able.IDaoNotes;
 import org.jtheque.persistence.able.Note;
-import org.jtheque.ui.able.Filthy;
 import org.jtheque.ui.utils.components.Borders;
 
 import org.jdesktop.swingx.JXImagePanel;
@@ -29,12 +28,14 @@ import javax.swing.ListCellRenderer;
 
 import java.awt.Component;
 
+import static org.jtheque.ui.able.FilthyConstants.*;
+
 /**
  * A combo box renderer to display star(s) depending on the note.
  *
  * @author Baptiste Wicht
  */
-public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer, Filthy {
+public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer {
     private final IDaoNotes daoNotes;
 
     /**

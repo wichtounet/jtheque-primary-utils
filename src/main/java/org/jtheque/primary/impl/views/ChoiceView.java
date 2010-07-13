@@ -74,12 +74,12 @@ public final class ChoiceView extends SwingDialogView<IModel> implements IChoice
 
         addConstraint(model, Constraints.atLeastOne("choice.view.title"));
 
-        Action validateAction = getControllerAction("choice.actions.validate");
+        Action validateAction = getAction("choice.actions.validate");
 
         JComponent comboElements = builder.addComboBox(model, builder.gbcSet(0, 0));
         SwingUtils.addFieldValidateAction(comboElements, validateAction);
 
-        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getControllerAction("choice.actions.cancel"));
+        builder.addButtonBar(builder.gbcSet(1, 0), validateAction, getAction("choice.actions.cancel"));
 
         return builder.getPanel();
     }
