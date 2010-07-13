@@ -21,17 +21,31 @@ package org.jtheque.primary.impl;
  *
  * @author Baptiste Wicht
  */
-public interface PrimaryConstants {
-    String BORROWER = "Borrower";
-    String BORROWERS = "Borrowers";
+public final class PrimaryConstants {
+    public static final String BORROWER = "Borrower";
+    public static final String BORROWERS = "Borrowers";
+
+    /**
+     * Constants class, not instantiable.
+     */
+    private PrimaryConstants() {
+        throw new AssertionError();
+    }
 
     /**
      * The choice actions of the module.
      *
      * @author Baptiste Wicht
      */
-    interface ChoiceActions {
-        String EDIT = "edit";
-        String DELETE = "delete";
+    public static final class ChoiceActions {
+        public static final String EDIT = "edit";
+        public static final String DELETE = "delete";
+
+        /**
+         * Constants class, not instantiable.
+         */
+        private ChoiceActions() {
+            throw new AssertionError();
+        }
     }
 }
