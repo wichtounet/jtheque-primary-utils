@@ -29,10 +29,7 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class BorrowerController extends AbstractController {
-    @Resource
-    private IBorrowerView borrowerView;
-
+public class BorrowerController extends AbstractController<IBorrowerView> {
     @Resource
     private IPersonService borrowersService;
 
@@ -40,6 +37,10 @@ public class BorrowerController extends AbstractController {
     private IUndoRedoService undoRedoService;
 
     private ViewMode state = ViewMode.NEW;
+
+    public BorrowerController() {
+        super(IBorrowerView.class);
+    }
 
     @Override
     protected Map<String, String> getTranslations() {
@@ -56,24 +57,24 @@ public class BorrowerController extends AbstractController {
     private void newBorrower() {
         state = ViewMode.NEW;
 
-        borrowerView.getModel().setBorrower(borrowersService.getEmptyPerson());
-        borrowerView.reload();
+        getView().getModel().setBorrower(borrowersService.getEmptyPerson());
+        getView().reload();
     }
 
     private void edit() {
         state = ViewMode.EDIT;
 
-        borrowerView.reload();
-        borrowerView.display();
+        getView().reload();
+        getView().display();
     }
 
     private void save() {
-        if (borrowerView.validateContent()) {
-            Person borrower = borrowerView.getModel().getBorrower();
+        if (getView().validateContent()) {
+            Person borrower = getView().getModel().getBorrower();
 
-            borrower.setFirstName(borrowerView.getFieldFirstName().getText());
-            borrower.setName(borrowerView.getFieldNom().getText());
-            borrower.setEmail(borrowerView.getFieldEmail().getText());
+            borrower.setFirstName(getView().getFieldFirstName().getText());
+            borrower.setName(getView().getFieldNom().getText());
+            borrower.setEmail(getView().getFieldEmail().getText());
 
             if (state == ViewMode.NEW) {
                 borrowersService.create(borrower);
@@ -83,11 +84,11 @@ public class BorrowerController extends AbstractController {
                 borrowersService.save(borrower);
             }
 
-            borrowerView.closeDown();
+            getView().closeDown();
         }
     }
 
-    private void cancel(){
-        borrowerView.closeDown();
+    private void cancel() {
+        getView().closeDown();
     }
 }

@@ -29,8 +29,6 @@
     <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.IDaoPersistenceContext"/>
     <osgi:reference id="views" interface="org.jtheque.views.able.IViews"/>
 
-    <osgi:service ref="choiceController" interface="org.jtheque.primary.able.controller.IChoiceController"/>
-
     <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils"/>
 
     <!-- Services -->
@@ -87,15 +85,13 @@
 
     <!-- Controllers -->
 
-    <bean id="borrowerController" class="org.jtheque.primary.impl.views.controllers.BorrowerController" />
-    <bean id="choiceController" class="org.jtheque.primary.impl.views.controllers.ChoiceController"/>
-    <bean id="simpleController" class="org.jtheque.primary.impl.views.controllers.SimpleController"/>
+    <bean id="borrowerController" class="org.jtheque.primary.impl.views.controllers.BorrowerController" lazy-init="true"/>
+    <bean id="choiceController" class="org.jtheque.primary.impl.views.controllers.ChoiceController" lazy-init="true"/>
+    <bean id="simpleController" class="org.jtheque.primary.impl.views.controllers.SimpleController" lazy-init="true"/>
 
     <!-- Views -->
 
-    <bean id="simpleDataView" class="org.jtheque.spring.utils.SwingSpringProxy">
-        <constructor-arg value="org.jtheque.primary.able.views.ISimpleDataView"/>
-    </bean>
+    <bean id="simpleDataView" class="org.jtheque.primary.impl.views.SimpleDataView" lazy-init="true"/>
 
     <bean class="org.jtheque.primary.impl.views.BorrowerView" lazy-init="true">
         <property name="controller" ref="borrowerController" />
@@ -112,6 +108,7 @@
     <!-- OSGI Services Registrations -->
 
     <osgi:service ref="primaryUtils" interface="org.jtheque.primary.able.IPrimaryUtils"/>
+    <osgi:service ref="choiceController" interface="org.jtheque.primary.able.controller.IChoiceController"/>
 
     <!-- Auto registration -->
 

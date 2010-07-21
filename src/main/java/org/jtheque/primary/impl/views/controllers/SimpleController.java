@@ -8,9 +8,6 @@ import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.undo.able.IUndoRedoService;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-
 import javax.annotation.Resource;
 
 import java.util.HashMap;
@@ -32,18 +29,16 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class SimpleController extends AbstractController implements ApplicationContextAware {
-    private ApplicationContext applicationContext;
-
-    private ViewMode state = ViewMode.NEW;
-
-    private ISimpleDataService simpleDataService;
-
-    @Resource
-    private ISimpleDataView simpleDataView;
-
+public class SimpleController extends AbstractController<ISimpleDataView> {
     @Resource
     private IUndoRedoService undoRedoService;
+
+    private ViewMode state = ViewMode.NEW;
+    private ISimpleDataService simpleDataService;
+
+    public SimpleController() {
+        super(ISimpleDataView.class);
+    }
 
     @Override
     protected Map<String, String> getTranslations() {
@@ -58,7 +53,6 @@ public class SimpleController extends AbstractController implements ApplicationC
         translations.put("data.view.actions.ok", "validate");
         translations.put("edit", "edit");
         translations.put("data.view.actions.cancel", "cancel");
-
 
         return translations;
     }
@@ -90,45 +84,40 @@ public class SimpleController extends AbstractController implements ApplicationC
     private void newSimple(String service) {
         state = ViewMode.NEW;
 
-        simpleDataService = applicationContext.getBean(service, ISimpleDataService.class);
+        simpleDataService = getContext().getBean(service, ISimpleDataService.class);
 
-        simpleDataView.getModel().setSimpleData(simpleDataService.getEmptySimpleData());
-        simpleDataView.reload();
+        getView().getModel().setSimpleData(simpleDataService.getEmptySimpleData());
+        getView().reload();
 
-        simpleDataView.display();
+        getView().display();
     }
 
     private void validate() {
-        if (simpleDataView.validateContent()) {
-            simpleDataView.getModel().getSimpleData().setName(simpleDataView.getDataName());
+        if (getView().validateContent()) {
+            getView().getModel().getSimpleData().setName(getView().getDataName());
 
             if (state == ViewMode.NEW) {
-                simpleDataService.create(simpleDataView.getModel().getSimpleData());
+                simpleDataService.create(getView().getModel().getSimpleData());
 
                 undoRedoService.addEdit(new GenericDataCreatedEdit<SimpleData>(
-                        simpleDataService, simpleDataView.getModel().getSimpleData()));
+                        simpleDataService, getView().getModel().getSimpleData()));
             } else {
-                simpleDataService.save(simpleDataView.getModel().getSimpleData());
+                simpleDataService.save(getView().getModel().getSimpleData());
             }
 
-            simpleDataView.closeDown();
+            getView().closeDown();
         }
     }
 
-    private void edit(){
+    private void edit() {
         state = ViewMode.EDIT;
-        
-        simpleDataView.reload();
 
-        simpleDataView.display();
+        getView().reload();
+
+        getView().display();
     }
 
     private void cancel() {
-        simpleDataView.closeDown();
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
+        getView().closeDown();
     }
 }

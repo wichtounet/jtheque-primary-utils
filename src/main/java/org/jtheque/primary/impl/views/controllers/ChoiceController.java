@@ -7,8 +7,6 @@ import org.jtheque.primary.utils.choice.ChoiceActionFactory;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.utils.bean.Pair;
 
-import javax.annotation.Resource;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,14 +29,15 @@ import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.*;
  * limitations under the License.
  */
 
-public class ChoiceController extends AbstractController implements IChoiceController {
+public class ChoiceController extends AbstractController<IChoiceView> implements IChoiceController {
     private final Map<String, Pair<String, String>> actions = new HashMap<String, Pair<String, String>>(10);
-
-    @Resource
-    private IChoiceView choiceView;
 
     private String action;
     private String content;
+
+    public ChoiceController() {
+        super(IChoiceView.class);
+    }
 
     @Override
     protected Map<String, String> getTranslations() {
@@ -127,17 +126,17 @@ public class ChoiceController extends AbstractController implements IChoiceContr
     }
 
     private void cancel() {
-        choiceView.closeDown();
+        getView().closeDown();
     }
 
     private void validate(){
-        if (choiceView.validateContent()) {
+        if (getView().validateContent()) {
             ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
-            choiceAction.setSelectedItem(choiceView.getSelectedItem());
+            choiceAction.setSelectedItem(getView().getSelectedItem());
             choiceAction.setContent(content);
             choiceAction.execute();
-            
-            choiceView.closeDown();
+
+            getView().closeDown();
         }
     }
 
@@ -145,6 +144,6 @@ public class ChoiceController extends AbstractController implements IChoiceContr
         this.action = action;
         this.content = content;
 
-        choiceView.display(content);
+        getView().display(content);
     }
 }

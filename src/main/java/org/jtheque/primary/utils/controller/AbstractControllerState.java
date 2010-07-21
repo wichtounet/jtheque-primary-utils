@@ -27,13 +27,13 @@ import org.jtheque.primary.able.od.Data;
  * @author Baptiste Wicht
  */
 public class AbstractControllerState implements ControllerState {
-    private IPrincipalController<?> controller;
+    private IPrincipalController<?, ?> controller;
 
-    protected IPrincipalController<?> getController() {
+    protected IPrincipalController<?, ?> getController() {
         return controller;
     }
 
-    public void setController(IPrincipalController<?> controller) {
+    public void setController(IPrincipalController<?, ?> controller) {
         this.controller = controller;
     }
 

@@ -149,7 +149,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
     public void saveToMemento() {
         mementoState = true;
 
-        memento = PropertiesUtils.createMemento(this);
+        memento = PropertiesUtils.createMemento(this, PersonImpl.class);
 
         if (memento == null) {
             mementoState = false;

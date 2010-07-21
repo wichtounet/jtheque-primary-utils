@@ -20,6 +20,7 @@ import org.jtheque.primary.able.controller.ControllerState;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.controller.IPrincipalController;
 import org.jtheque.primary.able.od.Data;
+import org.jtheque.ui.able.IView;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.views.able.IViews;
 
@@ -33,35 +34,19 @@ import javax.swing.tree.TreePath;
  *
  * @author Baptiste Wicht
  */
-public abstract class PrincipalController<T extends Data> extends AbstractController implements IPrincipalController<T> {
-    private final ControllerState viewState;
-    private final ControllerState modifyState;
-    private final ControllerState newObjectState;
-    private final ControllerState autoAddState;
+public abstract class PrincipalController<T extends Data, V extends IView> extends AbstractController<V> implements IPrincipalController<T, V> {
+    private ControllerState viewState;
+    private ControllerState modifyState;
+    private ControllerState newObjectState;
+    private ControllerState autoAddState;
 
     private ControllerState state;
 
     @Resource
     private IViews views;
 
-    /**
-     * Construct a new PrincipalController.
-     *
-     * @param viewState      The view state.
-     * @param modifyState    The modify state.
-     * @param newObjectState The new state.
-     * @param autoAddState   The auto add state.
-     */
-    protected PrincipalController(ControllerState viewState, ControllerState modifyState,
-                                  ControllerState newObjectState, ControllerState autoAddState) {
-        super();
-
-        this.viewState = viewState;
-        this.modifyState = modifyState;
-        this.newObjectState = newObjectState;
-        this.autoAddState = autoAddState;
-
-        state = viewState;
+    protected PrincipalController(Class<? extends V> type) {
+        super(type);
     }
 
     @Override
@@ -166,6 +151,26 @@ public abstract class PrincipalController<T extends Data> extends AbstractContro
     @Override
     public final ControllerState getNewObjectState() {
         return newObjectState;
+    }
+
+    public void setViewState(ControllerState viewState) {
+        this.viewState = viewState;
+
+        if(state == null){
+            state = viewState;
+        }
+    }
+
+    public void setModifyState(ControllerState modifyState) {
+        this.modifyState = modifyState;
+    }
+
+    public void setNewObjectState(ControllerState newObjectState) {
+        this.newObjectState = newObjectState;
+    }
+
+    public void setAutoAddState(ControllerState autoAddState) {
+        this.autoAddState = autoAddState;
     }
 
     /**
