@@ -38,7 +38,7 @@ public final class PrimaryUtilsSchema extends DefaultSchema {
      * Construct a new MoviesSchema.
      */
     public PrimaryUtilsSchema() {
-        super(new Version("1.1"), "PrimaryUtils-Schema", "jtheque-collection-schema");
+        super(Version.get("1.1"), "PrimaryUtils-Schema", "jtheque-collection-schema");
     }
 
     @Override

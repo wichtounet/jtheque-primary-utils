@@ -16,7 +16,7 @@ package org.jtheque.primary.impl.od;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.utils.PropertiesUtils;
+import org.jtheque.utils.bean.BeanUtils;
 import org.jtheque.persistence.able.Note;
 import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.od.SimpleData;
@@ -149,7 +149,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
     public void saveToMemento() {
         mementoState = true;
 
-        memento = PropertiesUtils.createMemento(this, PersonImpl.class);
+        memento = BeanUtils.createMemento(this, PersonImpl.class);
 
         if (memento == null) {
             mementoState = false;
@@ -159,7 +159,7 @@ public final class PersonImpl extends AbstractPrimaryData implements Person {
     @Override
     public void restoreMemento() {
         if (mementoState) {
-            PropertiesUtils.restoreMemento(this, memento);
+            BeanUtils.restoreMemento(this, memento);
         }
     }
 }

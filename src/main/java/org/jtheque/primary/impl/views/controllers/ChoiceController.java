@@ -6,6 +6,7 @@ import org.jtheque.primary.utils.choice.ChoiceAction;
 import org.jtheque.primary.utils.choice.ChoiceActionFactory;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.utils.bean.Pair;
+import org.jtheque.utils.collections.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,7 @@ import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.*;
  */
 
 public class ChoiceController extends AbstractController<IChoiceView> implements IChoiceController {
-    private final Map<String, Pair<String, String>> actions = new HashMap<String, Pair<String, String>>(10);
+    private final Map<String, Pair<String, String>> actions = CollectionUtils.newHashMap(10);
 
     private String action;
     private String content;

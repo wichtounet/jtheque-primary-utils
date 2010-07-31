@@ -44,7 +44,7 @@ import java.util.Map;
 public class PrimaryBackuper implements ModuleBackuper {
     private static final String[] DEPENDENCIES = {"jtheque-core-backuper"};
 
-    private static final Version BACKUP_VERSION = new Version("1.0");
+    private static final Version BACKUP_VERSION = Version.get("1.0");
 
     @Resource
     private IDaoPersons daoPersons;
