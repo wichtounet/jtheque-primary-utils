@@ -1,6 +1,6 @@
 package org.jtheque.primary.utils.views.components;
 
-import org.jtheque.images.able.IImageService;
+import org.jtheque.images.able.ImageService;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.views.ToolbarView;
 import org.jtheque.primary.impl.views.renderers.JThequeTreeCellRenderer;
@@ -42,7 +42,7 @@ public abstract class AbstractPrincipalDataPanel<M extends IModel> extends Princ
     private JXTree tree;
 
     @Resource
-    private IImageService imageService;
+    private ImageService imageService;
 
     /**
      * Construct a new AbstractPrincipalDataPanel for a specific data type.
