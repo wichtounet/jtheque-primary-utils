@@ -16,7 +16,7 @@ package org.jtheque.primary.impl.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.i18n.able.ILanguageService;
+import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.able.views.model.ISimpleDataModel;
@@ -66,7 +66,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
         SimpleData simpleData = getModel().getSimpleData();
 
         if (simpleData.isSaved()) {
-            refreshText(getService(ILanguageService.class));
+            refreshText(getService(LanguageService.class));
         } else {
             setTitleKey("data.view.title");
         }
@@ -80,7 +80,7 @@ public final class SimpleDataView extends SwingFilthyBuildedDialogView<ISimpleDa
     }
 
     @Override
-    public void refreshText(ILanguageService languageService) {
+    public void refreshText(LanguageService languageService) {
         if (getModel().getSimpleData() != null) {
             setTitle(getMessage("data.view.title.modify", getModel().getSimpleData().getName()));
         }

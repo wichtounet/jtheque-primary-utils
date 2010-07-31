@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.components;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.i18n.able.ILanguageService;
+import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.i18n.able.Internationalizable;
 
 import org.jdesktop.swingx.JXTitledPanel;
@@ -41,7 +41,7 @@ public final class JThequeTitledPanel extends JXTitledPanel implements Internati
     }
 
     @Override
-    public void refreshText(ILanguageService languageService) {
+    public void refreshText(LanguageService languageService) {
         setTitle(languageService.getMessage(key));
     }
 }

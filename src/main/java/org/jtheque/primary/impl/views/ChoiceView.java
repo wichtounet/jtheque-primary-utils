@@ -16,7 +16,7 @@ package org.jtheque.primary.impl.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.i18n.able.ILanguageService;
+import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.persistence.utils.DataContainerProvider;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.IChoiceView;
@@ -97,7 +97,7 @@ public final class ChoiceView extends SwingDialogView<IModel> implements IChoice
     }
 
     @Override
-    public void refreshText(ILanguageService languageService) {
+    public void refreshText(LanguageService languageService) {
         if (content != null) {
             setTitle(languageService.getMessage(DataTypeManager.getKeyForDataType(content)));
         }

@@ -19,7 +19,7 @@
 
     <bean class="org.jtheque.persistence.utils.DataContainerPostProcessor"/>
 
-    <osgi:reference id="languageService" interface="org.jtheque.i18n.able.ILanguageService"/>
+    <osgi:reference id="languageService" interface="org.jtheque.i18n.able.LanguageService"/>
     <osgi:reference id="schemaService" interface="org.jtheque.schemas.able.ISchemaService"/>
     <osgi:reference id="featureService" interface="org.jtheque.features.able.IFeatureService"/>
     <osgi:reference id="fileService" interface="org.jtheque.file.able.IFileService"/>

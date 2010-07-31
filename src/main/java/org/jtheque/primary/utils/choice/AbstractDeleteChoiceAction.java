@@ -1,6 +1,6 @@
 package org.jtheque.primary.utils.choice;
 
-import org.jtheque.i18n.able.ILanguageService;
+import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.persistence.able.Entity;
 import org.jtheque.ui.able.IUIUtils;
 import org.jtheque.undo.able.IUndoRedoService;
@@ -37,7 +37,7 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
     private final Collection<Deleter<? extends Entity>> deleters = new ArrayList<Deleter<? extends Entity>>(10);
 
     @Resource
-    private ILanguageService languageService;
+    private LanguageService languageService;
 
     @Resource
     private IUndoRedoService undoRedoService;

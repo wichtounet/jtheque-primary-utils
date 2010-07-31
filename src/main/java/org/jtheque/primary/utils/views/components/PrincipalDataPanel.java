@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.views.components;
  */
 
 import org.jtheque.errors.able.IError;
-import org.jtheque.i18n.able.ILanguageService;
+import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.PrincipalDataView;
 import org.jtheque.primary.able.views.ToolbarView;
@@ -52,7 +52,7 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
     private IViews views;
 
     @Resource
-    private ILanguageService languageService;
+    private LanguageService languageService;
 
     /**
      * Return the data tree.
