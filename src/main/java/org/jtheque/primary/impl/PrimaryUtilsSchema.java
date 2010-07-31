@@ -19,7 +19,7 @@ package org.jtheque.primary.impl;
 import org.jtheque.primary.able.dao.IDaoLendings;
 import org.jtheque.primary.able.dao.IDaoPersons;
 import org.jtheque.primary.able.od.SimpleData.DataType;
-import org.jtheque.schemas.utils.DefaultSchema;
+import org.jtheque.schemas.able.DefaultSchema;
 import org.jtheque.utils.bean.Version;
 
 import org.springframework.jdbc.core.RowMapper;

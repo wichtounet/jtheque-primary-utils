@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.tree;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.images.able.IImageService;
+import org.jtheque.images.able.ImageService;
 
 import javax.swing.Icon;
 
@@ -66,7 +66,7 @@ public final class RootElement implements TreeElement {
     }
 
     @Override
-    public Icon getIcon(IImageService imageService) {
+    public Icon getIcon(ImageService imageService) {
         return null;
     }
 

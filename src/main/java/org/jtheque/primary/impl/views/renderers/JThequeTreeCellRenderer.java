@@ -16,7 +16,7 @@ package org.jtheque.primary.impl.views.renderers;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.images.able.IImageService;
+import org.jtheque.images.able.ImageService;
 import org.jtheque.primary.utils.views.tree.TreeElement;
 
 import javax.swing.JLabel;
@@ -31,9 +31,9 @@ import java.awt.Component;
  * @author Baptiste Wicht
  */
 public final class JThequeTreeCellRenderer extends DefaultTreeCellRenderer {
-    private final IImageService imageService;
+    private final ImageService imageService;
 
-    public JThequeTreeCellRenderer(IImageService imageService) {
+    public JThequeTreeCellRenderer(ImageService imageService) {
         super();
 
         this.imageService = imageService;
