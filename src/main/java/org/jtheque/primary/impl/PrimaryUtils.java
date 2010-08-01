@@ -18,7 +18,7 @@ package org.jtheque.primary.impl;
 
 import org.jtheque.features.able.IFeature;
 import org.jtheque.features.able.IFeatureService;
-import org.jtheque.file.able.IFileService;
+import org.jtheque.file.able.FileService;
 import org.jtheque.file.able.ModuleBackuper;
 import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.od.SimpleData.DataType;
@@ -46,7 +46,7 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
     private ISchemaService schemaService;
 
     @Resource
-    private IFileService fileService;
+    private FileService fileService;
 
     @Resource
     private IFeatureService featureService;
