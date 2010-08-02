@@ -20,7 +20,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperation;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.iterator.IteratorOperationFactory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -33,12 +33,12 @@ import java.util.Collection;
  */
 public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader<Node> reader) throws XMLException {
         return !reader.getNodes("iterator", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public ValueGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         Node n = reader.getNode("iterator", element);
 
         IteratorValue value = new IteratorValue(ValueGetterFactory.getScannerPossessor());
@@ -71,7 +71,7 @@ public final class IteratorValueGetterFactory implements Factory<ValueGetter> {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static Iterable<IteratorOperation> getIteratorOperations(Object node, String location, IXMLReader<Node> reader) throws XMLException {
+    private static Iterable<IteratorOperation> getIteratorOperations(Object node, String location, XMLReader<Node> reader) throws XMLException {
         Collection<IteratorOperation> operations = new ArrayList<IteratorOperation>(8);
 
         for (Node n : reader.getNodes(location + "/*", node)) {

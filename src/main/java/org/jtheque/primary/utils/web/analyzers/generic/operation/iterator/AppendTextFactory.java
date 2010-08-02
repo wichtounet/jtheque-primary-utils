@@ -19,7 +19,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -28,12 +28,12 @@ import org.w3c.dom.Node;
  */
 final class AppendTextFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "appendText".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Node n, IXMLReader<Node> reader) {
+    public IteratorOperation factor(Node n, XMLReader<Node> reader) {
         return new AppendTextIteratorOperation(n.getTextContent());
     }
 

@@ -19,7 +19,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.Condition;
 import org.jtheque.primary.utils.web.analyzers.generic.condition.ConditionUtils;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -32,12 +32,12 @@ import java.util.Collection;
  */
 final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader<Node> reader) throws XMLException {
         return !reader.getNodes("conditional", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public ValueGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         Node n = reader.getNode("conditional", element);
 
         ConditionalValueGetter conditionalGetter = new ConditionalValueGetter();
@@ -67,7 +67,7 @@ final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static ConditionalValue getElse(Node node, IXMLReader<Node> reader) throws XMLException {
+    private static ConditionalValue getElse(Node node, XMLReader<Node> reader) throws XMLException {
         Else elseCondition = new Else();
 
         elseCondition.setGetter(ValueGetterFactory.getValueGetter(node, reader));
@@ -85,7 +85,7 @@ final class ConditionalValueGetterFactory implements Factory<ValueGetter> {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static ConditionalValue getIf(Node node, IXMLReader<Node> reader) throws XMLException {
+    private static ConditionalValue getIf(Node node, XMLReader<Node> reader) throws XMLException {
         If ifCondition = new If();
 
         ifCondition.setCondition(ConditionUtils.getCondition(node, "condition", reader));

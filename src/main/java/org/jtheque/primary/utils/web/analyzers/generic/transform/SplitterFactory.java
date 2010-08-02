@@ -20,7 +20,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.StringUtils;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -30,12 +30,12 @@ import org.w3c.dom.Node;
  */
 final class SplitterFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "splitter".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node n, IXMLReader<Node> reader) throws XMLException {
+    public Transformer factor(Node n, XMLReader<Node> reader) throws XMLException {
         Splitter splitter = new Splitter();
 
         splitter.setSplitter(reader.readString("split", n));

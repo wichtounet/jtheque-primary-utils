@@ -23,7 +23,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.TransformerFactory;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
 import org.jtheque.utils.io.FileUtils;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XML;
 import org.jtheque.xml.utils.XMLException;
 
@@ -44,7 +44,7 @@ public final class GenericGenerator {
 
     private final Pages pages;
 
-    private IXMLReader<Node> reader;
+    private XMLReader<Node> reader;
 
     /**
      * Construct a new GenericGenerator for an analyzer.

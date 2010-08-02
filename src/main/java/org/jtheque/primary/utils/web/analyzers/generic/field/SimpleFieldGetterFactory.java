@@ -23,7 +23,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossesso
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -36,12 +36,12 @@ import java.util.Collection;
  */
 final class SimpleFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "getter".equals(element.getNodeName());
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public FieldGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         SimpleFieldGetter getter = new SimpleFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));

@@ -1,7 +1,7 @@
 package org.jtheque.primary.utils.web.analyzers.generic.operation.iterator;
 
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -55,7 +55,7 @@ public final class IteratorOperationFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static IteratorOperation getPosition(Node element, IXMLReader<Node> reader) throws XMLException {
+    public static IteratorOperation getPosition(Node element, XMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

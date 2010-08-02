@@ -19,7 +19,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.value;
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.position.Position;
 import org.jtheque.primary.utils.web.analyzers.generic.position.PositionFactory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -29,12 +29,12 @@ import org.w3c.dom.Node;
  */
 final class SimpleValueGetterFactory implements Factory<ValueGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader<Node> reader) throws XMLException {
         return !reader.getNodes("value", element).isEmpty();
     }
 
     @Override
-    public ValueGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public ValueGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         SimpleValueGetter simpleGetter = new SimpleValueGetter();
 
         simpleGetter.setEnd(getPosition(element, "end", reader));
@@ -54,7 +54,7 @@ final class SimpleValueGetterFactory implements Factory<ValueGetter> {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    private static Position getPosition(Object currentNode, String location, IXMLReader<Node> reader) throws XMLException {
+    private static Position getPosition(Object currentNode, String location, XMLReader<Node> reader) throws XMLException {
         Object positionNode = reader.getNode("value/" + location, currentNode);
 
         if (positionNode != null) {

@@ -22,7 +22,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.field.SimpleFieldGetterFa
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.transform.Transformer;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -32,12 +32,12 @@ import org.w3c.dom.Node;
  */
 final class MultiLineFieldGetterFactory extends AbstractFieldGetterFactory {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader<Node> reader) throws XMLException {
         return "true".equals(reader.readString("@multiline", element));
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public FieldGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         MultiLineFieldGetter getter = new MultiLineFieldGetter();
 
         getter.setFieldName(reader.readString("@field", element));

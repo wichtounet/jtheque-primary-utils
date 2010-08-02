@@ -21,7 +21,7 @@ import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossesso
 import org.jtheque.primary.utils.web.analyzers.generic.value.BuilderPossessor;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetter;
 import org.jtheque.primary.utils.web.analyzers.generic.value.ValueGetterFactory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -33,12 +33,12 @@ import org.w3c.dom.Node;
  */
 final class AppendFactory implements Factory<IteratorOperation> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "append".equals(element.getNodeName());
     }
 
     @Override
-    public IteratorOperation factor(Node n, IXMLReader<Node> reader) throws XMLException {
+    public IteratorOperation factor(Node n, XMLReader<Node> reader) throws XMLException {
         return new AppendIteratorOperation(ValueGetterFactory.getValueGetter(n, reader));
     }
 

@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.condition;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 final class ContainFactory implements Factory<Condition> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "contains".equals(element.getNodeName());
     }
 
     @Override
-    public Condition factor(Node element, IXMLReader<Node> reader) {
+    public Condition factor(Node element, XMLReader<Node> reader) {
         return new Contain(element.getTextContent());
     }
 

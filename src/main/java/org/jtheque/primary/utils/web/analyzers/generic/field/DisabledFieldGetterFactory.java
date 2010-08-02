@@ -18,7 +18,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.field;
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
 import org.jtheque.primary.utils.web.analyzers.generic.operation.ScannerPossessor;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -28,12 +28,12 @@ import org.w3c.dom.Node;
  */
 final class DisabledFieldGetterFactory implements Factory<FieldGetter> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public boolean canFactor(Node element, XMLReader<Node> reader) throws XMLException {
         return "true".equals(reader.readString("@disabled", element));
     }
 
     @Override
-    public FieldGetter factor(Node element, IXMLReader<Node> reader) throws XMLException {
+    public FieldGetter factor(Node element, XMLReader<Node> reader) throws XMLException {
         return new DisabledFieldGetter(reader.readString("@field", element));
     }
 

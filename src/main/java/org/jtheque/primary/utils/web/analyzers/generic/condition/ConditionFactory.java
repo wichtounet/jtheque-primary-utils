@@ -1,7 +1,7 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -54,7 +54,7 @@ final class ConditionFactory {
      *
      * @throws XMLException if an error occurs during the XML processing.
      */
-    public static Condition getCondition(Node element, IXMLReader<Node> reader) throws XMLException {
+    public static Condition getCondition(Node element, XMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 }

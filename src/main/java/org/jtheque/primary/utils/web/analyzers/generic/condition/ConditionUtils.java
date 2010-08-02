@@ -1,6 +1,6 @@
 package org.jtheque.primary.utils.web.analyzers.generic.condition;
 
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -45,7 +45,7 @@ public final class ConditionUtils {
      *
      * @throws XMLException If an errors occurs during the parse of the XML Elements.
      */
-    public static Condition getCondition(Object currentNode, String location, IXMLReader<Node> reader) throws XMLException {
+    public static Condition getCondition(Object currentNode, String location, XMLReader<Node> reader) throws XMLException {
         Object conditionNode = reader.getNode(location, currentNode);
 
         if (conditionNode != null) {

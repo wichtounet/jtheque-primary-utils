@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 
 import org.w3c.dom.Node;
 
@@ -26,12 +26,12 @@ import org.w3c.dom.Node;
  */
 public final class DeleterFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "deleter".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node element, IXMLReader<Node> reader) {
+    public Transformer factor(Node element, XMLReader<Node> reader) {
         return new DeleterTransformer(element.getTextContent());
     }
 

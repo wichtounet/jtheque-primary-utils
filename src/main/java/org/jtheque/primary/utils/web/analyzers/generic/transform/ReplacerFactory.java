@@ -17,7 +17,7 @@ package org.jtheque.primary.utils.web.analyzers.generic.transform;
  */
 
 import org.jtheque.primary.utils.web.analyzers.generic.Factory;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -29,12 +29,12 @@ import org.w3c.dom.Node;
  */
 final class ReplacerFactory implements Factory<Transformer> {
     @Override
-    public boolean canFactor(Node element, IXMLReader<Node> reader) {
+    public boolean canFactor(Node element, XMLReader<Node> reader) {
         return "replacer".equals(element.getNodeName());
     }
 
     @Override
-    public Transformer factor(Node n, IXMLReader<Node> reader) throws XMLException {
+    public Transformer factor(Node n, XMLReader<Node> reader) throws XMLException {
         return new Replacer(reader.readString("from", n), reader.readString("to", n));
     }
 

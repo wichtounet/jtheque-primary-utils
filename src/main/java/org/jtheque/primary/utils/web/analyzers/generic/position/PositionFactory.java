@@ -1,7 +1,7 @@
 package org.jtheque.primary.utils.web.analyzers.generic.position;
 
 import org.jtheque.primary.utils.web.analyzers.generic.FactoryContainer;
-import org.jtheque.xml.utils.IXMLReader;
+import org.jtheque.xml.utils.XMLReader;
 import org.jtheque.xml.utils.XMLException;
 
 import org.w3c.dom.Node;
@@ -53,7 +53,7 @@ public final class PositionFactory {
      *
      * @throws XMLException If an error occurs during the XML processing.
      */
-    public static Position getPosition(Node element, IXMLReader<Node> reader) throws XMLException {
+    public static Position getPosition(Node element, XMLReader<Node> reader) throws XMLException {
         return FACTORY.getFactoredObject(element, reader);
     }
 
