@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.components;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.errors.able.IError;
+import org.jtheque.errors.able.Error;
 import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.PrincipalDataView;
@@ -24,9 +24,9 @@ import org.jtheque.primary.able.views.ToolbarView;
 import org.jtheque.primary.utils.sort.SortManager;
 import org.jtheque.primary.utils.views.listeners.DisplayListListener;
 import org.jtheque.primary.utils.views.tree.JThequeTreeModel;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 import org.jtheque.utils.ui.SwingUtils;
-import org.jtheque.views.able.IViews;
+import org.jtheque.views.able.Views;
 
 import org.jdesktop.swingx.JXTree;
 
@@ -41,7 +41,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implements PrincipalDataView, DisplayListListener {
+public abstract class PrincipalDataPanel<M extends Model> extends JPanel implements PrincipalDataView, DisplayListListener {
     private static final SortManager SORTER = new SortManager();
 
     private JThequeTreeModel treeModel;
@@ -49,7 +49,7 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
     private M model;
 
     @Resource
-    private IViews views;
+    private Views views;
 
     @Resource
     private LanguageService languageService;
@@ -183,7 +183,7 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
 
     @Override
     public final boolean validateContent() {
-        Collection<IError> errors = new ArrayList<IError>(6);
+        Collection<Error> errors = new ArrayList<org.jtheque.errors.able.Error>(6);
 
         validate(errors);
 
@@ -205,5 +205,5 @@ public abstract class PrincipalDataPanel<M extends IModel> extends JPanel implem
      *
      * @param errors The error's list.
      */
-    protected abstract void validate(Collection<IError> errors);
+    protected abstract void validate(Collection<Error> errors);
 }

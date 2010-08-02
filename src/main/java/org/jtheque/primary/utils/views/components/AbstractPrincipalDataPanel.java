@@ -5,7 +5,7 @@ import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.views.ToolbarView;
 import org.jtheque.primary.impl.views.renderers.JThequeTreeCellRenderer;
 import org.jtheque.primary.utils.sort.SortManager;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 
 import org.jdesktop.swingx.JXTree;
 
@@ -33,7 +33,7 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  * @param <M> The type of model.
  */
-public abstract class AbstractPrincipalDataPanel<M extends IModel> extends PrincipalDataPanel<M> {
+public abstract class AbstractPrincipalDataPanel<M extends Model> extends PrincipalDataPanel<M> {
     private static final SortManager SORTER = new SortManager();
 
     private final String dataType;

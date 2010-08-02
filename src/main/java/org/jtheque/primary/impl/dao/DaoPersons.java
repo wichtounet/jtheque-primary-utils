@@ -16,11 +16,10 @@ package org.jtheque.primary.impl.dao;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.jtheque.persistence.able.DaoNotes;
+import org.jtheque.persistence.able.DaoPersistenceContext;
 import org.jtheque.persistence.able.Entity;
-import org.jtheque.persistence.able.IDaoNotes;
-import org.jtheque.persistence.able.IDaoPersistenceContext;
 import org.jtheque.persistence.able.QueryMapper;
-import org.jtheque.persistence.impl.DaoNotes;
 import org.jtheque.persistence.utils.CachedJDBCDao;
 import org.jtheque.persistence.utils.Query;
 import org.jtheque.primary.able.dao.IDaoPersons;
@@ -48,13 +47,13 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
     private final QueryMapper queryMapper = new PersonQueryMapper();
 
     @Resource
-    private IDaoPersistenceContext daoPersistenceContext;
+    private DaoPersistenceContext daoPersistenceContext;
 
     @Resource
     private IDaoSimpleDatas daoCountries;
 
     @Resource
-    private IDaoNotes daoNotes;
+    private DaoNotes daoNotes;
 
     /**
      * Construct a new DaoBorrowers.
@@ -203,7 +202,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
             person.setTheCountry(daoCountries.getSimpleData(rs.getInt("THE_COUNTRY_FK")));
 
             if (StringUtils.isNotEmpty(rs.getString("NOTE"))) {
-                person.setNote(daoNotes.getNote(DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
+                person.setNote(daoNotes.getNote(org.jtheque.persistence.impl.DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
             }
 
             return person;

@@ -20,9 +20,9 @@ import org.jtheque.primary.able.controller.ControllerState;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.controller.IPrincipalController;
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.IView;
+import org.jtheque.ui.able.View;
 import org.jtheque.ui.utils.AbstractController;
-import org.jtheque.views.able.IViews;
+import org.jtheque.views.able.Views;
 
 import javax.annotation.Resource;
 import javax.swing.JTree;
@@ -34,7 +34,7 @@ import javax.swing.tree.TreePath;
  *
  * @author Baptiste Wicht
  */
-public abstract class PrincipalController<T extends Data, V extends IView> extends AbstractController<V> implements IPrincipalController<T, V> {
+public abstract class PrincipalController<T extends Data, V extends View> extends AbstractController<V> implements IPrincipalController<T, V> {
     private ControllerState viewState;
     private ControllerState modifyState;
     private ControllerState newObjectState;
@@ -43,7 +43,7 @@ public abstract class PrincipalController<T extends Data, V extends IView> exten
     private ControllerState state;
 
     @Resource
-    private IViews views;
+    private Views views;
 
     protected PrincipalController(Class<? extends V> type) {
         super(type);

@@ -20,7 +20,7 @@ import org.jtheque.persistence.able.DataListener;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.utils.views.listeners.CurrentObjectListener;
 import org.jtheque.primary.utils.views.listeners.DisplayListListener;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ import java.util.Collection;
  *
  * @author Baptiste Wicht
  */
-public interface IPrincipalDataModel<T extends Data> extends IModel, DataListener {
+public interface IPrincipalDataModel<T extends Data> extends Model, DataListener {
     /**
      * Add a current object listener.
      *

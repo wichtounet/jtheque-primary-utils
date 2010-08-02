@@ -22,7 +22,7 @@ import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 import org.jtheque.ui.able.constraints.Constraints;
 import org.jtheque.ui.utils.builders.FilthyPanelBuilder;
 import org.jtheque.ui.utils.builders.PanelBuilder;
@@ -39,7 +39,7 @@ import java.awt.Container;
  *
  * @author Baptiste Wicht
  */
-public final class ChoiceView extends SwingDialogView<IModel> implements IChoiceView {
+public final class ChoiceView extends SwingDialogView<Model> implements IChoiceView {
     private DataContainerCachedComboBoxModel<?> model;
 
     private String content;

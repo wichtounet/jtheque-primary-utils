@@ -17,14 +17,14 @@ package org.jtheque.primary.able.views.model;
  */
 
 import org.jtheque.primary.able.od.SimpleData;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 
 /**
  * A model for simple data.
  *
  * @author Baptiste Wicht
  */
-public interface ISimpleDataModel extends IModel {
+public interface ISimpleDataModel extends Model {
     /**
      * Return the current simple data.
      *

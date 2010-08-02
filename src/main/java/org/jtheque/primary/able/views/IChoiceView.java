@@ -17,14 +17,14 @@ package org.jtheque.primary.able.views;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.IView;
+import org.jtheque.ui.able.View;
 
 /**
  * Represents a generic view in which we can do a choice.
  *
  * @author Baptiste Wicht
  */
-public interface IChoiceView extends IView {
+public interface IChoiceView extends View {
     /**
      * Display the choice view for a specific content.
      *

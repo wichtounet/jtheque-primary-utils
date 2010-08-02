@@ -16,14 +16,14 @@ package org.jtheque.primary.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.features.able.IFeature;
-import org.jtheque.features.able.IFeatureService;
+import org.jtheque.features.able.Feature;
+import org.jtheque.features.able.FeatureService;
 import org.jtheque.file.able.FileService;
 import org.jtheque.file.able.ModuleBackuper;
 import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.primary.utils.DataTypeManager;
-import org.jtheque.schemas.able.ISchemaService;
+import org.jtheque.schemas.able.SchemaService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -43,13 +43,13 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
     private String primaryImpl;
 
     @Resource
-    private ISchemaService schemaService;
+    private SchemaService schemaService;
 
     @Resource
     private FileService fileService;
 
     @Resource
-    private IFeatureService featureService;
+    private FeatureService featureService;
 
     private ApplicationContext applicationContext;
 
@@ -93,7 +93,7 @@ public final class PrimaryUtils implements IPrimaryUtils, ApplicationContextAwar
     }
 
     @Override
-    public void enableMenu(List<IFeature> addFeatures, List<IFeature> removeFeatures, List<IFeature> editFeatures) {
+    public void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures) {
         featureService.addMenu("jtheque-primary-module", new PrimaryMenu(addFeatures, removeFeatures, editFeatures, applicationContext));
     }
 }

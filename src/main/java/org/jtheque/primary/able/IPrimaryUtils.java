@@ -1,6 +1,6 @@
 package org.jtheque.primary.able;
 
-import org.jtheque.features.able.IFeature;
+import org.jtheque.features.able.Feature;
 
 import java.util.List;
 
@@ -26,5 +26,5 @@ public interface IPrimaryUtils {
      * @param removeFeatures The sub features of the remove menu.
      * @param editFeatures   The sub features of the edit menu.
      */
-    void enableMenu(List<IFeature> addFeatures, List<IFeature> removeFeatures, List<IFeature> editFeatures);
+    void enableMenu(List<Feature> addFeatures, List<Feature> removeFeatures, List<Feature> editFeatures);
 }

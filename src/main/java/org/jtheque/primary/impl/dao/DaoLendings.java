@@ -17,7 +17,7 @@ package org.jtheque.primary.impl.dao;
  */
 
 import org.jtheque.persistence.able.Entity;
-import org.jtheque.persistence.able.IDaoPersistenceContext;
+import org.jtheque.persistence.able.DaoPersistenceContext;
 import org.jtheque.persistence.able.QueryMapper;
 import org.jtheque.persistence.utils.CachedJDBCDao;
 import org.jtheque.persistence.utils.Query;
@@ -48,7 +48,7 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
     private final QueryMapper queryMapper = new LendingQueryMapper();
 
     @Resource
-    private IDaoPersistenceContext daoPersistenceContext;
+    private DaoPersistenceContext daoPersistenceContext;
 
     @Resource
     private IDaoPersons daoPersons;

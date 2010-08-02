@@ -16,12 +16,12 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.utils.WeakEventListenerList;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.model.IPrincipalDataModel;
 import org.jtheque.primary.utils.views.listeners.CurrentObjectListener;
 import org.jtheque.primary.utils.views.listeners.DisplayListListener;
 import org.jtheque.primary.utils.views.listeners.ObjectChangedEvent;
+import org.jtheque.utils.collections.WeakEventListenerList;
 
 import java.util.Collection;
 
@@ -31,7 +31,8 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDataModel<T> {
-    private final WeakEventListenerList listenerList;
+    private final WeakEventListenerList<CurrentObjectListener> currentObjectListeners = WeakEventListenerList.create();
+    private final WeakEventListenerList<DisplayListListener> displayListListeners = WeakEventListenerList.create();
 
     private Collection<T> displayList;
 
@@ -40,8 +41,6 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
      */
     protected PrincipalDataModel() {
         super();
-
-        listenerList = new WeakEventListenerList();
     }
 
     /**
@@ -57,17 +56,17 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
      * @return The event listener list.
      */
     protected final WeakEventListenerList getEventListenerList() {
-        return listenerList;
+        return displayListListeners;
     }
 
     @Override
     public final void addCurrentObjectListener(CurrentObjectListener listener) {
-        listenerList.add(CurrentObjectListener.class, listener);
+        currentObjectListeners.add(listener);
     }
 
     @Override
     public final void addDisplayListListener(DisplayListListener listener) {
-        listenerList.add(DisplayListListener.class, listener);
+        displayListListeners.add(listener);
     }
 
     /**
@@ -76,9 +75,7 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
      * @param event The event to fire
      */
     protected final void fireCurrentObjectChanged(ObjectChangedEvent event) {
-        CurrentObjectListener[] listeners = listenerList.getListeners(CurrentObjectListener.class);
-
-        for (CurrentObjectListener listener : listeners) {
+        for (CurrentObjectListener listener : currentObjectListeners) {
             listener.objectChanged(event);
         }
     }
@@ -87,9 +84,7 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
      * Avert the listeners that the display list have changed.
      */
     protected final void fireDisplayListChanged() {
-        DisplayListListener[] listeners = listenerList.getListeners(DisplayListListener.class);
-
-        for (DisplayListListener listener : listeners) {
+        for (DisplayListListener listener : displayListListeners) {
             listener.displayListChanged();
         }
     }

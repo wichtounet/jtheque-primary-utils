@@ -5,7 +5,7 @@ import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.impl.PrimaryConstants;
-import org.jtheque.ui.able.IController;
+import org.jtheque.ui.able.Controller;
 import org.jtheque.utils.StringUtils;
 
 import org.springframework.context.ApplicationContext;
@@ -50,12 +50,12 @@ public abstract class AbstractModifyChoiceAction extends AbstractChoiceAction im
         if (StringUtils.equalsOneOf(content, KIND.getDataType(), TYPE.getDataType(), LANGUAGE.getDataType(),
                 COUNTRY.getDataType(), SAGA.getDataType())) {
             applicationContext.getBean("simpleDataView", ISimpleDataView.class).getModel().setSimpleData((SimpleData) item);
-            applicationContext.getBean("simpleController", IController.class).handleAction("edit");
+            applicationContext.getBean("simpleController", Controller.class).handleAction("edit");
 
             return true;
         } else if (PrimaryConstants.BORROWERS.equals(content)) {
             applicationContext.getBean("borrowerView", IBorrowerView.class).getModel().setBorrower((Person) item);
-            applicationContext.getBean("borrowerController", IController.class).handleAction("edit");
+            applicationContext.getBean("borrowerController", Controller.class).handleAction("edit");
 
             return true;
         }

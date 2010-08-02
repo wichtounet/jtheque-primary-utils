@@ -16,8 +16,8 @@ package org.jtheque.primary.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.features.able.IFeature;
-import org.jtheque.ui.able.IController;
+import org.jtheque.features.able.Feature;
+import org.jtheque.ui.able.Controller;
 import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.views.utils.AbstractMenu;
 
@@ -32,9 +32,9 @@ import java.util.List;
  * @author Baptiste Wicht
  */
 final class PrimaryMenu extends AbstractMenu {
-    private final Collection<IFeature> addFeatures;
-    private final Collection<IFeature> removeFeatures;
-    private final Collection<IFeature> editFeatures;
+    private final Collection<Feature> addFeatures;
+    private final Collection<Feature> removeFeatures;
+    private final Collection<Feature> editFeatures;
 
     private final ApplicationContext applicationContext;
 
@@ -46,7 +46,7 @@ final class PrimaryMenu extends AbstractMenu {
      * @param editFeatures       The sub features of the edit menu.
      * @param applicationContext The application context.
      */
-    PrimaryMenu(Collection<IFeature> addFeatures, Collection<IFeature> removeFeatures, Collection<IFeature> editFeatures,
+    PrimaryMenu(Collection<Feature> addFeatures, Collection<Feature> removeFeatures, Collection<Feature> editFeatures,
                 ApplicationContext applicationContext) {
         super();
 
@@ -58,7 +58,7 @@ final class PrimaryMenu extends AbstractMenu {
     }
 
     @Override
-    protected List<IFeature> getMenuMainFeatures() {
+    protected List<Feature> getMenuMainFeatures() {
         return features(
                 createMainFeature(500, "menu.others",
                         createNewFeature(),
@@ -72,11 +72,11 @@ final class PrimaryMenu extends AbstractMenu {
      *
      * @return The Feature for the new menu.
      */
-    private IFeature createNewFeature() {
-        IController simpleController = applicationContext.getBean("simpleController", IController.class);
-        IController borrowerController = applicationContext.getBean("borrowerController", IController.class);
+    private Feature createNewFeature() {
+        Controller simpleController = applicationContext.getBean("simpleController", Controller.class);
+        Controller borrowerController = applicationContext.getBean("borrowerController", Controller.class);
 
-        IFeature newFeature = createSubFeature(1, "menu.others.new",
+        Feature newFeature = createSubFeature(1, "menu.others.new",
                 createSubFeature(1, createControllerAction("menu.new.kind", simpleController)),
                 createSubFeature(2, createControllerAction("menu.new.type", simpleController)),
                 createSubFeature(3, createControllerAction("menu.new.language", simpleController)),
@@ -94,10 +94,10 @@ final class PrimaryMenu extends AbstractMenu {
      *
      * @return The Feature for the delete menu.
      */
-    private IFeature createDeleteFeature() {
-        IController choiceController = applicationContext.getBean("choiceController", IController.class);
+    private Feature createDeleteFeature() {
+        Controller choiceController = applicationContext.getBean("choiceController", Controller.class);
 
-        IFeature deleteFeature = createSubFeature(2, "menu.others.delete",
+        Feature deleteFeature = createSubFeature(2, "menu.others.delete",
                 createSubFeature(1, createControllerAction("menu.delete.kind", choiceController)),
                 createSubFeature(2, createControllerAction("menu.delete.type", choiceController)),
                 createSubFeature(3, createControllerAction("menu.delete.language", choiceController)),
@@ -115,10 +115,10 @@ final class PrimaryMenu extends AbstractMenu {
      *
      * @return The Feature for the edit menu.
      */
-    private IFeature createEditFeature() {
-        IController choiceController = applicationContext.getBean("choiceController", IController.class);
+    private Feature createEditFeature() {
+        Controller choiceController = applicationContext.getBean("choiceController", Controller.class);
 
-        IFeature editFeature = createSubFeature(3, "menu.others.edit",
+        Feature editFeature = createSubFeature(3, "menu.others.edit",
                 createSubFeature(1, createControllerAction("menu.edit.kind", choiceController)),
                 createSubFeature(2, createControllerAction("menu.edit.type", choiceController)),
                 createSubFeature(3, createControllerAction("menu.edit.language", choiceController)),
@@ -137,8 +137,8 @@ final class PrimaryMenu extends AbstractMenu {
      * @param feature  The feature to fill.
      * @param features The sub features to add.
      */
-    private static void fillFeature(IFeature feature, Iterable<IFeature> features) {
-        for (IFeature f : features) {
+    private static void fillFeature(Feature feature, Iterable<Feature> features) {
+        for (Feature f : features) {
             feature.addSubFeature(f);
         }
     }

@@ -1,12 +1,12 @@
 package org.jtheque.primary.able.views.model;
 
 import org.jtheque.primary.able.od.Person;
-import org.jtheque.ui.able.IModel;
+import org.jtheque.ui.able.Model;
 
 /**
  * @author Baptiste Wicht
  */
-public interface IBorrowerModel extends IModel {
+public interface IBorrowerModel extends Model {
     /**
      * Set the borrower.
      *

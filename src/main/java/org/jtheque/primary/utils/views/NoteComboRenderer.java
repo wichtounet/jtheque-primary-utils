@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.IDaoNotes;
+import org.jtheque.persistence.able.DaoNotes;
 import org.jtheque.persistence.able.Note;
 import org.jtheque.ui.able.components.Borders;
 
@@ -36,14 +36,14 @@ import static org.jtheque.ui.able.components.filthy.FilthyConstants.*;
  * @author Baptiste Wicht
  */
 public final class NoteComboRenderer extends JXImagePanel implements ListCellRenderer {
-    private final IDaoNotes daoNotes;
+    private final DaoNotes daoNotes;
 
     /**
      * Construct a new <code>NoteComboRenderer</code>.
      *
      * @param daoNotes The dao notes.
      */
-    public NoteComboRenderer(IDaoNotes daoNotes) {
+    public NoteComboRenderer(DaoNotes daoNotes) {
         super();
 
         this.daoNotes = daoNotes;

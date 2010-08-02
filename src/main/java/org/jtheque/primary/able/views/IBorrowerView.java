@@ -17,7 +17,6 @@ package org.jtheque.primary.able.views;
  */
 
 import org.jtheque.primary.able.views.model.IBorrowerModel;
-import org.jtheque.ui.able.IView;
 
 import javax.swing.JTextField;
 
@@ -26,7 +25,7 @@ import javax.swing.JTextField;
  *
  * @author Baptiste Wicht
  */
-public interface IBorrowerView extends DataView, IView {
+public interface IBorrowerView extends DataView, org.jtheque.ui.able.View {
     /**
      * Return the text field containing the name of the borrower.
      *

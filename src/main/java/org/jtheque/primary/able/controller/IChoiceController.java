@@ -1,7 +1,7 @@
 package org.jtheque.primary.able.controller;
 
 import org.jtheque.primary.able.views.IChoiceView;
-import org.jtheque.ui.able.IController;
+import org.jtheque.ui.able.Controller;
 
 /*
  * This file is part of JTheque.
@@ -24,6 +24,6 @@ import org.jtheque.ui.able.IController;
  *
  * @author Baptiste Wicht
  */
-public interface IChoiceController extends IController<IChoiceView> {
+public interface IChoiceController extends Controller<IChoiceView> {
     void registerAction(String name, String action, String datatype);
 }

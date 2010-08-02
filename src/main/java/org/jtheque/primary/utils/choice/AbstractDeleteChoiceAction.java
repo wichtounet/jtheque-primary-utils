@@ -2,7 +2,7 @@ package org.jtheque.primary.utils.choice;
 
 import org.jtheque.i18n.able.LanguageService;
 import org.jtheque.persistence.able.Entity;
-import org.jtheque.ui.able.IUIUtils;
+import org.jtheque.ui.able.UIUtils;
 import org.jtheque.undo.able.IUndoRedoService;
 
 import javax.annotation.Resource;
@@ -43,7 +43,7 @@ public abstract class AbstractDeleteChoiceAction extends AbstractChoiceAction {
     private IUndoRedoService undoRedoService;
 
     @Resource
-    private IUIUtils uiUtils;
+    private UIUtils uiUtils;
 
     /**
      * Set the deleters to use to execute the action.

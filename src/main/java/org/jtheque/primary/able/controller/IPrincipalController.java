@@ -17,15 +17,15 @@ package org.jtheque.primary.able.controller;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.IController;
-import org.jtheque.ui.able.IView;
+import org.jtheque.ui.able.Controller;
+import org.jtheque.ui.able.View;
 
 import javax.swing.event.TreeSelectionListener;
 
 /**
  * @author Baptiste Wicht
  */
-public interface IPrincipalController<T extends Data, V extends IView> extends IController<V>, TreeSelectionListener {
+public interface IPrincipalController<T extends Data, V extends View> extends Controller<V>, TreeSelectionListener {
     /**
      * Return the state state. This state is active when we show a data on the view.
      *

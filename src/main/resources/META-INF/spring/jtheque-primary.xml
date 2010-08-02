@@ -20,14 +20,14 @@
     <bean class="org.jtheque.persistence.utils.DataContainerPostProcessor"/>
 
     <osgi:reference id="languageService" interface="org.jtheque.i18n.able.LanguageService"/>
-    <osgi:reference id="schemaService" interface="org.jtheque.schemas.able.ISchemaService"/>
-    <osgi:reference id="featureService" interface="org.jtheque.features.able.IFeatureService"/>
+    <osgi:reference id="schemaService" interface="org.jtheque.schemas.able.SchemaService"/>
+    <osgi:reference id="featureService" interface="org.jtheque.features.able.FeatureService"/>
     <osgi:reference id="fileService" interface="org.jtheque.file.able.FileService"/>
-    <osgi:reference id="daoNotes" interface="org.jtheque.persistence.able.IDaoNotes"/>
+    <osgi:reference id="daoNotes" interface="org.jtheque.persistence.able.DaoNotes"/>
     <osgi:reference id="undoRedoService" interface="org.jtheque.undo.able.IUndoRedoService"/>
-    <osgi:reference id="uiUtils" interface="org.jtheque.ui.able.IUIUtils"/>
-    <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.IDaoPersistenceContext"/>
-    <osgi:reference id="views" interface="org.jtheque.views.able.IViews"/>
+    <osgi:reference id="uiUtils" interface="org.jtheque.ui.able.UIUtils"/>
+    <osgi:reference id="daoPersistenceContext" interface="org.jtheque.persistence.able.DaoPersistenceContext"/>
+    <osgi:reference id="views" interface="org.jtheque.views.able.Views"/>
 
     <bean id="primaryUtils" class="org.jtheque.primary.impl.PrimaryUtils"/>
 

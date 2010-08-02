@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.tree;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.utils.WeakEventListenerList;
+import org.jtheque.utils.collections.WeakEventListenerList;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -30,7 +30,8 @@ import javax.swing.tree.TreePath;
  */
 public final class JThequeTreeModel implements TreeModel {
     private TreeElement root;
-    private final WeakEventListenerList listeners;
+
+    private final WeakEventListenerList<TreeModelListener> listeners = WeakEventListenerList.create();
 
     /**
      * Construct a new JTheque Tree Model with a root element.
@@ -41,7 +42,6 @@ public final class JThequeTreeModel implements TreeModel {
         super();
 
         this.root = root;
-        listeners = new WeakEventListenerList();
     }
 
     /**
@@ -102,19 +102,19 @@ public final class JThequeTreeModel implements TreeModel {
     void fireTreeStructureChanged(TreeElement root) {
         TreeModelEvent event = new TreeModelEvent(this, new TreeElement[]{root});
 
-        for (TreeModelListener tml : listeners.getListeners(TreeModelListener.class)) {
+        for (TreeModelListener tml : listeners) {
             tml.treeStructureChanged(event);
         }
     }
 
     @Override
     public void addTreeModelListener(TreeModelListener listener) {
-        listeners.add(TreeModelListener.class, listener);
+        listeners.add(listener);
     }
 
     @Override
     public void removeTreeModelListener(TreeModelListener listener) {
-        listeners.remove(TreeModelListener.class, listener);
+        listeners.remove(listener);
     }
 
     @Override

@@ -16,14 +16,12 @@ package org.jtheque.primary.able.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.ui.able.IView;
-
 /**
  * Represents a view.
  *
  * @author Baptiste Wicht
  */
-public interface View extends IView {
+public interface View extends org.jtheque.ui.able.View {
     /**
      * Return the toolbar view of this view. Warning, on certain view this method can throw an
      * UnsupportedOperationException.
