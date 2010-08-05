@@ -67,7 +67,7 @@ public class PersonService implements IPersonService {
     public final void create(Person person) {
         person.setType(personType);
 
-        daoPersons.create(person);
+        daoPersons.save(person);
     }
 
     @Override

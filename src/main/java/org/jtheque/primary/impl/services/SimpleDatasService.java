@@ -70,7 +70,7 @@ public final class SimpleDatasService implements ISimpleDataService {
     private void createDefaultSimpleData() {
         defaultSimpleData = daoSimpleDatas.create();
         defaultSimpleData.setName("Unknown");
-        daoSimpleDatas.create(defaultSimpleData);
+        daoSimpleDatas.save(defaultSimpleData);
     }
 
     @Override
@@ -82,7 +82,7 @@ public final class SimpleDatasService implements ISimpleDataService {
     @Override
     @Transactional
     public void create(SimpleData simpleData) {
-        daoSimpleDatas.create(simpleData);
+        daoSimpleDatas.save(simpleData);
     }
 
     @Override
@@ -100,7 +100,7 @@ public final class SimpleDatasService implements ISimpleDataService {
     @Transactional
     public void createAll(Iterable<SimpleData> simpleDatas) {
         for (SimpleData simpleData : simpleDatas) {
-            daoSimpleDatas.create(simpleData);
+            daoSimpleDatas.save(simpleData);
         }
     }
 

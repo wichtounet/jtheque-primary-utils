@@ -88,7 +88,7 @@ public final class LendingsService implements ILendingsService {
     @Override
     @Transactional
     public void create(Lending lending) {
-        daoLendings.create(lending);
+        daoLendings.save(lending);
     }
 
     @Override

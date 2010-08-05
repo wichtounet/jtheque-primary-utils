@@ -5,13 +5,11 @@ import org.jtheque.primary.able.services.ISimpleDataService;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.able.views.ViewMode;
 import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
+import org.jtheque.ui.able.Action;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.undo.able.IUndoRedoService;
 
 import javax.annotation.Resource;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /*
  * Copyright JTheque (Baptiste Wicht)
@@ -40,44 +38,33 @@ public class SimpleController extends AbstractController<ISimpleDataView> {
         super(ISimpleDataView.class);
     }
 
-    @Override
-    protected Map<String, String> getTranslations() {
-        Map<String, String> translations = new HashMap<String, String>(7);
-
-        translations.put("menu.new.kind", "newKind");
-        translations.put("menu.new.type", "newType");
-        translations.put("menu.new.language", "newLanguage");
-        translations.put("menu.new.country", "newCountry");
-        translations.put("menu.new.borrower", "newBorrower");
-        translations.put("menu.new.saga", "newSaga");
-        translations.put("data.view.actions.ok", "validate");
-        translations.put("edit", "edit");
-        translations.put("data.view.actions.cancel", "cancel");
-
-        return translations;
-    }
-
-    private void newKind() {
+    @Action("menu.new.kind")
+    public void newKind() {
         newSimple("kindsService");
     }
 
-    private void newType() {
+    @Action("menu.new.type")
+    public void newType() {
         newSimple("typesService");
     }
 
-    private void newLanguage() {
+    @Action("menu.new.language")
+    public void newLanguage() {
         newSimple("languagesService");
     }
 
-    private void newCountry() {
+    @Action("menu.new.country")
+    public void newCountry() {
         newSimple("countriesService");
     }
 
-    private void newBorrower() {
+    @Action("menu.new.borrower")
+    public void newBorrower() {
         newSimple("borrowersService");
     }
 
-    private void newSaga() {
+    @Action("menu.new.saga")
+    public void newSaga() {
         newSimple("sagasService");
     }
 
@@ -92,7 +79,8 @@ public class SimpleController extends AbstractController<ISimpleDataView> {
         getView().display();
     }
 
-    private void validate() {
+    @Action("data.view.actions.ok")
+    public void validate() {
         if (getView().validateContent()) {
             getView().getModel().getSimpleData().setName(getView().getDataName());
 
@@ -109,7 +97,8 @@ public class SimpleController extends AbstractController<ISimpleDataView> {
         }
     }
 
-    private void edit() {
+    @Action("edit")
+    public void edit() {
         state = ViewMode.EDIT;
 
         getView().reload();
@@ -117,7 +106,8 @@ public class SimpleController extends AbstractController<ISimpleDataView> {
         getView().display();
     }
 
-    private void cancel() {
+    @Action("data.view.actions.cancel")
+    public void cancel() {
         getView().closeDown();
     }
 }

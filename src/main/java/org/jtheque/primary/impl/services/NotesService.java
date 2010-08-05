@@ -28,17 +28,11 @@ import javax.annotation.Resource;
  * @author Baptiste Wicht
  */
 public final class NotesService implements INotesService {
-    private Note defaultNote;
-
     @Resource
     private DaoNotes daoNotes;
 
     @Override
     public Note getDefaultNote() {
-        if (defaultNote == null) {
-            defaultNote = daoNotes.getNote(Note.UNDEFINED);
-        }
-
-        return defaultNote;
+        return daoNotes.getDefaultNote();
     }
 }

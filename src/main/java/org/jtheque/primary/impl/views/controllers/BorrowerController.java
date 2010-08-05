@@ -5,13 +5,11 @@ import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ViewMode;
 import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
+import org.jtheque.ui.able.Action;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.undo.able.IUndoRedoService;
 
 import javax.annotation.Resource;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /*
  * Copyright JTheque (Baptiste Wicht)
@@ -42,33 +40,24 @@ public class BorrowerController extends AbstractController<IBorrowerView> {
         super(IBorrowerView.class);
     }
 
-    @Override
-    protected Map<String, String> getTranslations() {
-        Map<String, String> translations = new HashMap<String, String>(2);
-
-        translations.put("menu.others.borrower", "newBorrower");
-        translations.put("borrower.actions.ok", "save");
-        translations.put("borrower.actions.cancel", "cancel");
-        translations.put("edit", "edit");
-
-        return translations;
-    }
-
-    private void newBorrower() {
+    @Action("menu.others.borrower")
+    public void newBorrower() {
         state = ViewMode.NEW;
 
         getView().getModel().setBorrower(borrowersService.getEmptyPerson());
         getView().reload();
     }
 
-    private void edit() {
+    @Action("edit")
+    public void edit() {
         state = ViewMode.EDIT;
 
         getView().reload();
         getView().display();
     }
 
-    private void save() {
+    @Action("menu.others.ok")
+    public void save() {
         if (getView().validateContent()) {
             Person borrower = getView().getModel().getBorrower();
 
@@ -88,7 +77,8 @@ public class BorrowerController extends AbstractController<IBorrowerView> {
         }
     }
 
-    private void cancel() {
+    @Action("borrower.actions.cancel")
+    public void cancel() {
         getView().closeDown();
     }
 }

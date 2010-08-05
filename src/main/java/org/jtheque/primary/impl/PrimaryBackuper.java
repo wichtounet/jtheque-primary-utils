@@ -14,6 +14,7 @@ import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.utils.bean.IntDate;
 import org.jtheque.utils.bean.Version;
+import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.xml.utils.Node;
 
 import javax.annotation.Resource;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -82,11 +82,6 @@ public class PrimaryBackuper implements ModuleBackuper {
 
     @Override
     public ModuleBackup backup() {
-        ModuleBackup backup = new ModuleBackup();
-
-        backup.setId(getId());
-        backup.setVersion(BACKUP_VERSION);
-
         Collection<Node> nodes = new ArrayList<Node>(100);
 
         addPersons(nodes);
@@ -97,9 +92,7 @@ public class PrimaryBackuper implements ModuleBackuper {
         addSimpleData(daoSagas, nodes);
         addSimpleData(daoTypes, nodes);
 
-        backup.setNodes(nodes);
-
-        return backup;
+        return new ModuleBackup(BACKUP_VERSION, getId(), nodes);
     }
 
     private void addPersons(Collection<Node> nodes) {
@@ -113,7 +106,7 @@ public class PrimaryBackuper implements ModuleBackuper {
             node.addSimpleChildValue("email", person.getEmail());
             node.addSimpleChildValue("country", person.getTheCountry().getId());
             node.addSimpleChildValue("impl", person.getPrimaryImpl());
-            node.addSimpleChildValue("note", person.getNote().getValue().ordinal());
+            node.addSimpleChildValue("note", person.getNote().intValue());
 
             nodes.add(node);
         }
@@ -154,7 +147,7 @@ public class PrimaryBackuper implements ModuleBackuper {
     public void restore(ModuleBackup backup) {
         assert getId().equals(backup.getId()) : "This backuper can only restore its own backups";
 
-        List<Node> nodes = backup.getNodes();
+        Collection<Node> nodes = CollectionUtils.copyOf(backup.getNodes());
 
         restoreSimpleDatas(nodes.iterator());
         restorePersons(nodes.iterator());
@@ -185,7 +178,7 @@ public class PrimaryBackuper implements ModuleBackuper {
                     ((PrimaryData) data).setPrimaryImpl(node.getChildValue("impl"));
                 }
 
-                daoCache.get(type).create(data);
+                daoCache.get(type).save(data);
 
                 nodeIterator.remove();
             }
@@ -204,12 +197,12 @@ public class PrimaryBackuper implements ModuleBackuper {
                 person.setName(node.getChildValue("name"));
                 person.setFirstName(node.getChildValue("firstname"));
                 person.setType(node.getChildValue("type"));
-                person.setNote(daoNotes.getNote(Note.fromIntValue(node.getChildIntValue("note"))));
+                person.setNote(Note.fromIntValue(node.getChildIntValue("note")));
                 person.setPrimaryImpl(node.getChildValue("impl"));
 
                 person.setTheCountry(daoCountries.getSimpleDataByTemporaryId(node.getChildIntValue("country")));
 
-                daoPersons.create(person);
+                daoPersons.save(person);
 
                 nodeIterator.remove();
             }

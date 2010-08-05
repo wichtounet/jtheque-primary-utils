@@ -4,6 +4,7 @@ import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.choice.ChoiceAction;
 import org.jtheque.primary.utils.choice.ChoiceActionFactory;
+import org.jtheque.ui.able.Action;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.utils.bean.Pair;
 import org.jtheque.utils.collections.CollectionUtils;
@@ -12,7 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.jtheque.primary.able.od.SimpleData.DataType.*;
-import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.*;
+import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.DELETE;
+import static org.jtheque.primary.impl.PrimaryConstants.ChoiceActions.EDIT;
 
 /*
  * Copyright JTheque (Baptiste Wicht)
@@ -41,28 +43,6 @@ public class ChoiceController extends AbstractController<IChoiceView> implements
     }
 
     @Override
-    protected Map<String, String> getTranslations() {
-        Map<String, String> translations = new HashMap<String, String>(8);
-
-        translations.put("choice.actions.validate", "validate");
-        translations.put("choice.actions.cancel", "cancel");
-        translations.put("menu.delete.kind", "deleteKind");
-        translations.put("menu.delete.type", "deleteType");
-        translations.put("menu.delete.language", "deleteLanguage");
-        translations.put("menu.delete.country", "deleteCountry");
-        translations.put("menu.delete.borrower", "deleteBorrower");
-        translations.put("menu.delete.saga", "deleteSaga");
-        translations.put("menu.edit.kind", "editKind");
-        translations.put("menu.edit.type", "editType");
-        translations.put("menu.edit.language", "editLanguage");
-        translations.put("menu.edit.country", "editCountry");
-        translations.put("menu.edit.borrower", "editBorrower");
-        translations.put("menu.edit.saga", "editSaga");
-
-        return translations;
-    }
-
-    @Override
     public void registerAction(String name, String action, String datatype) {
         actions.put(name, new Pair<String, String>(action, datatype));
     }
@@ -78,59 +58,73 @@ public class ChoiceController extends AbstractController<IChoiceView> implements
         }
     }
 
-    private void editKind() {
+    @Action("menu.edit.kind")
+    public void editKind() {
         display(EDIT, KIND.getDataType());
     }
 
-    private void editType() {
+    @Action("menu.edit.type")
+    public void editType() {
         display(EDIT, TYPE.getDataType());
     }
 
-    private void editLanguage() {
+    @Action("menu.edit.language")
+    public void editLanguage() {
         display(EDIT, LANGUAGE.getDataType());
     }
 
-    private void editCountry() {
+    @Action("menu.edit.country")
+    public void editCountry() {
         display(EDIT, COUNTRY.getDataType());
     }
 
-    private void editBorrower() {
+    @Action("menu.edit.borrower")
+    public void editBorrower() {
         display(EDIT, "Borrowers");
     }
 
-    private void editSaga() {
+    @Action("menu.edit.saga")
+    public void editSaga() {
         display(EDIT, SAGA.getDataType());
     }
 
-    private void deleteKind() {
+    @Action("menu.delete.kind")
+    public void deleteKind() {
         display(DELETE, KIND.getDataType());
     }
 
-    private void deleteType() {
+    @Action("menu.delete.type")
+    public void deleteType() {
         display(DELETE, TYPE.getDataType());
     }
 
-    private void deleteLanguage() {
+    @Action("menu.delete.language")
+    public void deleteLanguage() {
         display(DELETE, LANGUAGE.getDataType());
     }
 
-    private void deleteCountry() {
+    @Action("menu.delete.country")
+    public void deleteCountry() {
         display(DELETE, COUNTRY.getDataType());
     }
 
-    private void deleteBorrower() {
+    @Action("menu.delete.borrower")
+    public void deleteBorrower() {
         display(DELETE, "Borrowers");
     }
 
-    private void deleteSaga(){
+    @Action("menu.delete.saga")
+    public void deleteSaga(){
         display(DELETE, SAGA.getDataType());
     }
 
-    private void cancel() {
+    @Action("choice.actions.cancel")
+    public void cancel() {
         getView().closeDown();
     }
 
-    private void validate(){
+    @Action("choice.actions.validate")
+    public void validate(){
         if (getView().validateContent()) {
             ChoiceAction choiceAction = ChoiceActionFactory.getChoiceAction(action);
             choiceAction.setSelectedItem(getView().getSelectedItem());
