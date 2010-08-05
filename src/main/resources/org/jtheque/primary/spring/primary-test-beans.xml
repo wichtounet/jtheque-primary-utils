@@ -9,6 +9,6 @@
             http://www.jtheque.com/schema/jtheque/jtheque.xsd"
        default-lazy-init="true">
 
-    <bean id="daoCollections" class="org.jtheque.collections.impl.DaoCollections"/>
+    <bean id="daoCollections" class="org.jtheque.collections.impl.DaoCollectionsImpl"/>
 
 </beans>

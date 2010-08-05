@@ -16,14 +16,14 @@ package org.jtheque.primary.impl.od.temp;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.utils.TemporaryContext;
+import org.jtheque.persistence.utils.DefaultTemporaryContext;
 
 /**
  * Temporary context of person.
  *
  * @author Baptiste Wicht
  */
-public final class PersonTemporaryContext extends TemporaryContext {
+public final class PersonTemporaryContext extends DefaultTemporaryContext {
     private int country;
     private int intNote;
 

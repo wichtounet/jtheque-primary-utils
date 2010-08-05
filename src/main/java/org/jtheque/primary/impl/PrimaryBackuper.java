@@ -3,6 +3,7 @@ package org.jtheque.primary.impl;
 import org.jtheque.file.able.ModuleBackup;
 import org.jtheque.file.able.ModuleBackuper;
 import org.jtheque.persistence.able.DaoNotes;
+import org.jtheque.persistence.able.Note;
 import org.jtheque.primary.able.dao.IDaoLendings;
 import org.jtheque.primary.able.dao.IDaoPersons;
 import org.jtheque.primary.able.dao.IDaoSimpleDatas;
@@ -203,7 +204,7 @@ public class PrimaryBackuper implements ModuleBackuper {
                 person.setName(node.getChildValue("name"));
                 person.setFirstName(node.getChildValue("firstname"));
                 person.setType(node.getChildValue("type"));
-                person.setNote(daoNotes.getNote(org.jtheque.persistence.impl.DaoNotes.NoteType.getEnum(node.getChildIntValue("note"))));
+                person.setNote(daoNotes.getNote(Note.fromIntValue(node.getChildIntValue("note"))));
                 person.setPrimaryImpl(node.getChildValue("impl"));
 
                 person.setTheCountry(daoCountries.getSimpleDataByTemporaryId(node.getChildIntValue("country")));

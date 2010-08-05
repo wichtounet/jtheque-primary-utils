@@ -36,7 +36,7 @@ public final class NotesService implements INotesService {
     @Override
     public Note getDefaultNote() {
         if (defaultNote == null) {
-            defaultNote = daoNotes.getNote(DaoNotes.NoteType.UNDEFINED);
+            defaultNote = daoNotes.getNote(Note.UNDEFINED);
         }
 
         return defaultNote;

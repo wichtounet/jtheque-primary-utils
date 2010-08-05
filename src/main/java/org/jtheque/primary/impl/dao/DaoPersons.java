@@ -19,8 +19,10 @@ package org.jtheque.primary.impl.dao;
 import org.jtheque.persistence.able.DaoNotes;
 import org.jtheque.persistence.able.DaoPersistenceContext;
 import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.able.Note;
 import org.jtheque.persistence.able.QueryMapper;
 import org.jtheque.persistence.utils.CachedJDBCDao;
+import org.jtheque.persistence.utils.EntityUtils;
 import org.jtheque.persistence.utils.Query;
 import org.jtheque.primary.able.dao.IDaoPersons;
 import org.jtheque.primary.able.dao.IDaoSimpleDatas;
@@ -74,13 +76,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
 
     @Override
     public Person getPersonByTemporaryId(int id) {
-        for (Person person : getAll()) {
-            if (person.getTemporaryContext().getId() == id) {
-                return person;
-            }
-        }
-
-        return null;
+        return EntityUtils.getByTemporaryId(getAll(), id);
     }
 
     /**
@@ -163,15 +159,6 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
         for (Person borrower : persons) {
             getCache().put(borrower.getId(), borrower);
         }
-
-        setCacheEntirelyLoaded();
-    }
-
-    @Override
-    protected void load(int i) {
-        Person person = daoPersistenceContext.getDataByID(TABLE, i, rowMapper);
-
-        getCache().put(i, person);
     }
 
     @Override
@@ -202,7 +189,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
             person.setTheCountry(daoCountries.getSimpleData(rs.getInt("THE_COUNTRY_FK")));
 
             if (StringUtils.isNotEmpty(rs.getString("NOTE"))) {
-                person.setNote(daoNotes.getNote(org.jtheque.persistence.impl.DaoNotes.NoteType.getEnum(rs.getInt("NOTE"))));
+                person.setNote(Note.fromIntValue(rs.getInt("NOTE")));
             }
 
             return person;
@@ -243,7 +230,7 @@ public final class DaoPersons extends CachedJDBCDao<Person> implements IDaoPerso
             values[0] = person.getName();
             values[1] = person.getFirstName();
             values[2] = person.getEmail();
-            values[3] = person.getNote() == null ? 0 : person.getNote().getValue().intValue();
+            values[3] = person.getNote() == null ? 0 : person.getNote().intValue();
             values[4] = person.getTheCountry() == null ? null : person.getTheCountry().getId();
             values[5] = person.getType();
 

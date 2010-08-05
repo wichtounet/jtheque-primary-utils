@@ -65,13 +65,6 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
     }
 
     @Override
-    public void create(Lending entity) {
-        entity.setPrimaryImpl(primaryUtils.getPrimaryImpl());
-
-        super.create(entity);
-    }
-
-    @Override
     public Lending getLending(int id) {
         return get(id);
     }
@@ -93,8 +86,6 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
         for (Lending lending : lendings) {
             getCache().put(lending.getId(), lending);
         }
-
-        setCacheEntirelyLoaded();
     }
 
     @Override
@@ -130,13 +121,6 @@ public final class DaoLendings extends CachedJDBCDao<Lending> implements IDaoLen
         }
 
         return lendings;
-    }
-
-    @Override
-    protected void load(int i) {
-        Lending lending = daoPersistenceContext.getDataByID(TABLE, i, rowMapper);
-
-        getCache().put(i, lending);
     }
 
     @Override

@@ -16,14 +16,14 @@ package org.jtheque.primary.impl.od.temp;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.utils.TemporaryContext;
+import org.jtheque.persistence.utils.DefaultTemporaryContext;
 
 /**
  * Temporary context of lending.
  *
  * @author Baptiste Wicht
  */
-public final class LendingTemporaryContext extends TemporaryContext {
+public final class LendingTemporaryContext extends DefaultTemporaryContext {
     private int film;
     private int borrower;
 

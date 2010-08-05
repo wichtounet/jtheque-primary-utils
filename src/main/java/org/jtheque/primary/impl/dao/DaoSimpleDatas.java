@@ -20,6 +20,7 @@ import org.jtheque.persistence.able.Entity;
 import org.jtheque.persistence.able.DaoPersistenceContext;
 import org.jtheque.persistence.able.QueryMapper;
 import org.jtheque.persistence.utils.CachedJDBCDao;
+import org.jtheque.persistence.utils.EntityUtils;
 import org.jtheque.persistence.utils.Query;
 import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.dao.IDaoSimpleDatas;
@@ -84,13 +85,7 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
 
     @Override
     public SimpleData getSimpleDataByTemporaryId(int id) {
-        for (SimpleData simpleData : getAll()) {
-            if (simpleData.getTemporaryContext().getId() == id) {
-                return simpleData;
-            }
-        }
-
-        return null;
+        return EntityUtils.getByTemporaryId(getAll(), id);
     }
 
     /**
@@ -190,15 +185,6 @@ public final class DaoSimpleDatas extends CachedJDBCDao<SimpleData> implements I
         for (SimpleData simpleData : simpleDatas) {
             getCache().put(simpleData.getId(), simpleData);
         }
-
-        setCacheEntirelyLoaded();
-    }
-
-    @Override
-    protected void load(int i) {
-        SimpleData country = daoPersistenceContext.getDataByID(dataType.getTable(), i, rowMapper);
-
-        getCache().put(i, country);
     }
 
     @Override
