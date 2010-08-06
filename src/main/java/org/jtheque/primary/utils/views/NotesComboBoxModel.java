@@ -16,7 +16,6 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.DaoNotes;
 import org.jtheque.persistence.able.Note;
 
 import javax.swing.DefaultComboBoxModel;
@@ -27,27 +26,18 @@ import javax.swing.DefaultComboBoxModel;
  * @author Baptiste Wicht
  */
 public final class NotesComboBoxModel extends DefaultComboBoxModel {
-    private final DaoNotes daoNotes;
+    private static final long serialVersionUID = 9046434086466243082L;
 
-    /**
-     * Construct a new NotesComboBoxModel.
-     *
-     * @param daoNotes The dao notes.
-     */
-    public NotesComboBoxModel(DaoNotes daoNotes) {
-        super();
-
-        this.daoNotes = daoNotes;
-    }
+    private static final Note[] NOTES = Note.values();
 
     @Override
     public Object getElementAt(int index) {
-        return daoNotes.getNotes()[index];
+        return NOTES[index];
     }
 
     @Override
     public int getSize() {
-        return daoNotes.getNotes().length;
+        return NOTES.length;
     }
 
     /**

@@ -26,6 +26,8 @@ import java.util.EventObject;
  * @author Baptiste Wicht
  */
 public final class ObjectChangedEvent extends EventObject {
+    private static final long serialVersionUID = -6717915776583232663L;
+
     private final Data object;
 
     /**

@@ -27,6 +27,8 @@ import javax.swing.undo.AbstractUndoableEdit;
  * @author Baptiste Wicht
  */
 public final class GenericDataDeletedEdit<T extends Entity> extends AbstractUndoableEdit {
+    private static final long serialVersionUID = -4498844640057123415L;
+    
     private final T entity;
     private final DataService<T> dataService;
 

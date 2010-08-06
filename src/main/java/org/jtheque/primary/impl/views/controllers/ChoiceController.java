@@ -9,7 +9,6 @@ import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.utils.bean.Pair;
 import org.jtheque.utils.collections.CollectionUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.jtheque.primary.able.od.SimpleData.DataType.*;

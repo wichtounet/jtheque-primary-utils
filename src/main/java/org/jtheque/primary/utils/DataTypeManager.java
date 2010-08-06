@@ -16,7 +16,8 @@ package org.jtheque.primary.utils;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.HashMap;
+import org.jtheque.utils.collections.CollectionUtils;
+
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ import java.util.Map;
  * @author Baptiste Wicht
  */
 public final class DataTypeManager {
-    private static final Map<String, String> DATA_TYPES = new HashMap<String, String>(12);
+    private static final Map<String, String> DATA_TYPES = CollectionUtils.newHashMap(12);
 
     /**
      * Construct a new DataTypeManager.

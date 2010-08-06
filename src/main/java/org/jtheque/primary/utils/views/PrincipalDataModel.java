@@ -50,15 +50,6 @@ public abstract class PrincipalDataModel<T extends Data> implements IPrincipalDa
      */
     public abstract Collection<T> getDatas();
 
-    /**
-     * Return the event listener list.
-     *
-     * @return The event listener list.
-     */
-    protected final WeakEventListenerList getEventListenerList() {
-        return displayListListeners;
-    }
-
     @Override
     public final void addCurrentObjectListener(CurrentObjectListener listener) {
         currentObjectListeners.add(listener);

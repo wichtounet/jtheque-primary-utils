@@ -17,6 +17,9 @@ package org.jtheque.primary.impl;
  */
 
 import org.jtheque.features.able.Feature;
+import org.jtheque.primary.able.views.IBorrowerView;
+import org.jtheque.primary.able.views.IChoiceView;
+import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.ui.able.Controller;
 import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.views.utils.AbstractMenu;
@@ -73,8 +76,11 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the new menu.
      */
     private Feature createNewFeature() {
-        Controller simpleController = applicationContext.getBean("simpleController", Controller.class);
-        Controller borrowerController = applicationContext.getBean("borrowerController", Controller.class);
+        @SuppressWarnings("unchecked")
+        Controller<ISimpleDataView> simpleController = applicationContext.getBean("simpleController", Controller.class);
+
+        @SuppressWarnings("unchecked")
+        Controller<IBorrowerView> borrowerController = applicationContext.getBean("borrowerController", Controller.class);
 
         Feature newFeature = createSubFeature(1, "menu.others.new",
                 createSubFeature(1, createControllerAction("menu.new.kind", simpleController)),
@@ -95,7 +101,8 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the delete menu.
      */
     private Feature createDeleteFeature() {
-        Controller choiceController = applicationContext.getBean("choiceController", Controller.class);
+        @SuppressWarnings("unchecked")
+        Controller<IChoiceView> choiceController = applicationContext.getBean("choiceController", Controller.class);
 
         Feature deleteFeature = createSubFeature(2, "menu.others.delete",
                 createSubFeature(1, createControllerAction("menu.delete.kind", choiceController)),
@@ -116,7 +123,8 @@ final class PrimaryMenu extends AbstractMenu {
      * @return The Feature for the edit menu.
      */
     private Feature createEditFeature() {
-        Controller choiceController = applicationContext.getBean("choiceController", Controller.class);
+        @SuppressWarnings("unchecked")
+        Controller<IChoiceView> choiceController = applicationContext.getBean("choiceController", Controller.class);
 
         Feature editFeature = createSubFeature(3, "menu.others.edit",
                 createSubFeature(1, createControllerAction("menu.edit.kind", choiceController)),
