@@ -14,7 +14,6 @@ import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.utils.bean.IntDate;
 import org.jtheque.utils.bean.Version;
-import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.xml.utils.Node;
 
 import javax.annotation.Resource;
@@ -22,7 +21,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /*
@@ -145,14 +143,14 @@ public class PrimaryBackuper implements ModuleBackuper {
     public void restore(ModuleBackup backup) {
         assert getId().equals(backup.getId()) : "This backuper can only restore its own backups";
 
-        Collection<Node> nodes = CollectionUtils.copyOf(backup.getNodes());
+        Collection<Node> nodes = backup.getNodes();
 
-        restoreSimpleDatas(nodes.iterator());
-        restorePersons(nodes.iterator());
-        restoreLendings(nodes.iterator());
+        restoreSimpleDatas(nodes);
+        restorePersons(nodes);
+        restoreLendings(nodes);
     }
 
-    private void restoreSimpleDatas(Iterator<Node> nodeIterator) {
+    private void restoreSimpleDatas(Iterable<Node> nodes) {
         Map<DataType, IDaoSimpleDatas> daoCache = new EnumMap<DataType, IDaoSimpleDatas>(DataType.class);
 
         daoCache.put(DataType.COUNTRY, daoCountries);
@@ -161,9 +159,7 @@ public class PrimaryBackuper implements ModuleBackuper {
         daoCache.put(DataType.SAGA, daoSagas);
         daoCache.put(DataType.LANGUAGE, daoLanguages);
 
-        while (nodeIterator.hasNext()) {
-            Node node = nodeIterator.next();
-
+        for (Node node : nodes) {
             if ("data".equals(node.getName())) {
                 DataType type = DataType.valueOf(node.getChildValue("type"));
 
@@ -177,16 +173,12 @@ public class PrimaryBackuper implements ModuleBackuper {
                 }
 
                 daoCache.get(type).save(data);
-
-                nodeIterator.remove();
             }
         }
     }
 
-    private void restorePersons(Iterator<Node> nodeIterator) {
-        while (nodeIterator.hasNext()) {
-            Node node = nodeIterator.next();
-
+    private void restorePersons(Iterable<Node> nodes) {
+        for (Node node : nodes) {
             if ("person".equals(node.getName())) {
                 Person person = daoPersons.create();
 
@@ -201,16 +193,12 @@ public class PrimaryBackuper implements ModuleBackuper {
                 person.setTheCountry(daoCountries.getSimpleDataByTemporaryId(node.getChildIntValue("country")));
 
                 daoPersons.save(person);
-
-                nodeIterator.remove();
             }
         }
     }
 
-    private void restoreLendings(Iterator<Node> nodeIterator) {
-        while (nodeIterator.hasNext()) {
-            Node node = nodeIterator.next();
-
+    private void restoreLendings(Iterable<Node> nodes) {
+        for (Node node : nodes) {
             if ("lending".equals(node.getName())) {
                 Lending lending = daoLendings.create();
 
@@ -219,8 +207,6 @@ public class PrimaryBackuper implements ModuleBackuper {
                 lending.setPrimaryImpl(node.getChildValue("impl"));
                 lending.setTheOther(node.getChildIntValue("other"));
                 lending.setThePerson(daoPersons.getPersonByTemporaryId(node.getChildIntValue("person")));
-
-                nodeIterator.remove();
             }
         }
     }
