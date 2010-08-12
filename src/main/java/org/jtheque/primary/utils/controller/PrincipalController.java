@@ -20,9 +20,9 @@ import org.jtheque.primary.able.controller.ControllerState;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.controller.IPrincipalController;
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.View;
+import org.jtheque.ui.View;
 import org.jtheque.ui.utils.AbstractController;
-import org.jtheque.views.able.Views;
+import org.jtheque.views.Views;
 
 import javax.annotation.Resource;
 import javax.swing.JTree;

@@ -1,7 +1,7 @@
 package org.jtheque.primary.able.controller;
 
 import org.jtheque.primary.able.views.IChoiceView;
-import org.jtheque.ui.able.Controller;
+import org.jtheque.ui.Controller;
 
 /*
  * This file is part of JTheque.

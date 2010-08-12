@@ -1,9 +1,9 @@
 package org.jtheque.primary.utils.choice;
 
-import org.jtheque.i18n.able.LanguageService;
-import org.jtheque.persistence.able.Entity;
-import org.jtheque.ui.able.UIUtils;
-import org.jtheque.undo.able.IUndoRedoService;
+import org.jtheque.i18n.LanguageService;
+import org.jtheque.persistence.Entity;
+import org.jtheque.ui.UIUtils;
+import org.jtheque.undo.IUndoRedoService;
 
 import javax.annotation.Resource;
 import javax.swing.undo.UndoableEdit;

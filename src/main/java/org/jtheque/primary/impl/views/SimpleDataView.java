@@ -16,13 +16,13 @@ package org.jtheque.primary.impl.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.i18n.able.LanguageService;
+import org.jtheque.i18n.LanguageService;
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.able.views.model.ISimpleDataModel;
 import org.jtheque.primary.impl.views.model.SimpleDataModel;
 import org.jtheque.ui.utils.builders.I18nPanelBuilder;
-import org.jtheque.ui.able.constraints.Constraints;
+import org.jtheque.ui.constraints.Constraints;
 import org.jtheque.ui.utils.windows.dialogs.SwingFilthyBuildedDialogView;
 import org.jtheque.utils.ui.GridBagUtils;
 import org.jtheque.utils.ui.SwingUtils;

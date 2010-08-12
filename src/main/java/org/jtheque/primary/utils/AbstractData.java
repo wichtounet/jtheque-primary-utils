@@ -16,7 +16,7 @@ package org.jtheque.primary.utils;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.images.able.ImageService;
+import org.jtheque.images.ImageService;
 import org.jtheque.persistence.utils.AbstractEntity;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.utils.views.tree.TreeElement;

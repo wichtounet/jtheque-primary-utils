@@ -17,7 +17,7 @@ package org.jtheque.primary.able.views;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.View;
+import org.jtheque.ui.View;
 
 /**
  * Represents a generic view in which we can do a choice.

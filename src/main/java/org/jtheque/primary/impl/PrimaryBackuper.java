@@ -1,9 +1,9 @@
 package org.jtheque.primary.impl;
 
-import org.jtheque.file.able.ModuleBackup;
-import org.jtheque.file.able.ModuleBackuper;
-import org.jtheque.persistence.able.DaoNotes;
-import org.jtheque.persistence.able.Note;
+import org.jtheque.file.ModuleBackup;
+import org.jtheque.file.ModuleBackuper;
+import org.jtheque.persistence.Note;
+import org.jtheque.persistence.DaoNotes;
 import org.jtheque.primary.able.dao.IDaoLendings;
 import org.jtheque.primary.able.dao.IDaoPersons;
 import org.jtheque.primary.able.dao.IDaoSimpleDatas;

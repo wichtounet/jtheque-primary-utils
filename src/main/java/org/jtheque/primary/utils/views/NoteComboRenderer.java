@@ -16,9 +16,9 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.DaoNotes;
-import org.jtheque.persistence.able.Note;
-import org.jtheque.ui.able.components.Borders;
+import org.jtheque.persistence.DaoNotes;
+import org.jtheque.persistence.Note;
+import org.jtheque.ui.components.Borders;
 
 import org.jdesktop.swingx.JXImagePanel;
 
@@ -28,7 +28,7 @@ import javax.swing.ListCellRenderer;
 
 import java.awt.Component;
 
-import static org.jtheque.ui.able.components.filthy.FilthyConstants.*;
+import static org.jtheque.ui.components.filthy.FilthyConstants.*;
 
 /**
  * A combo box renderer to display star(s) depending on the note.

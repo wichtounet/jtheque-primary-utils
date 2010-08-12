@@ -5,7 +5,7 @@ import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ISimpleDataView;
 import org.jtheque.primary.impl.PrimaryConstants;
-import org.jtheque.ui.able.Controller;
+import org.jtheque.ui.Controller;
 import org.jtheque.utils.StringUtils;
 
 import org.springframework.context.ApplicationContext;

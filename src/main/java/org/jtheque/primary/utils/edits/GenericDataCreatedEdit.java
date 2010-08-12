@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.edits;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.Entity;
 import org.jtheque.primary.able.services.DataService;
 
 import javax.swing.undo.AbstractUndoableEdit;

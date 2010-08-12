@@ -17,7 +17,7 @@ package org.jtheque.primary.able.views;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.views.able.components.MainComponent;
+import org.jtheque.views.components.MainComponent;
 
 /**
  * A view for the principal data. It seems a view that display film, realizer or actor. These views have the same

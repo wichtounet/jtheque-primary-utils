@@ -16,7 +16,7 @@ package org.jtheque.primary.able.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.Note;
 import org.jtheque.primary.able.controller.FormBean;
 import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.od.SimpleData;

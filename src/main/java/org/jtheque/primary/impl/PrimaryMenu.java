@@ -16,11 +16,11 @@ package org.jtheque.primary.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.features.able.Feature;
+import org.jtheque.features.Feature;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.able.views.ISimpleDataView;
-import org.jtheque.ui.able.Controller;
+import org.jtheque.ui.Controller;
 import org.jtheque.utils.collections.CollectionUtils;
 import org.jtheque.views.utils.AbstractMenu;
 

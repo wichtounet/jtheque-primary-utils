@@ -16,7 +16,7 @@ package org.jtheque.primary.impl.views.fb;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.Note;
 import org.jtheque.primary.able.od.Person;
 import org.jtheque.primary.able.od.SimpleData;
 import org.jtheque.primary.able.views.IPersonFormBean;

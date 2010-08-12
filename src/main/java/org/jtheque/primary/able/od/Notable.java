@@ -16,7 +16,7 @@ package org.jtheque.primary.able.od;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.Note;
 
 /**
  * Represents a data who's notable. It seems a data who has a note.

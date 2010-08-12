@@ -17,8 +17,8 @@ package org.jtheque.primary.able.controller;
  */
 
 import org.jtheque.primary.able.od.Data;
-import org.jtheque.ui.able.Controller;
-import org.jtheque.ui.able.View;
+import org.jtheque.ui.Controller;
+import org.jtheque.ui.View;
 
 import javax.swing.event.TreeSelectionListener;
 

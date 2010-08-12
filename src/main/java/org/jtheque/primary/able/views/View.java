@@ -21,7 +21,7 @@ package org.jtheque.primary.able.views;
  *
  * @author Baptiste Wicht
  */
-public interface View extends org.jtheque.ui.able.View {
+public interface View extends org.jtheque.ui.View {
     /**
      * Return the toolbar view of this view. Warning, on certain view this method can throw an
      * UnsupportedOperationException.

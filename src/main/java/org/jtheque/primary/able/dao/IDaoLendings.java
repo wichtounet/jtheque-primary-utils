@@ -16,7 +16,7 @@ package org.jtheque.primary.able.dao;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Dao;
+import org.jtheque.persistence.Dao;
 import org.jtheque.primary.able.od.Lending;
 
 import java.util.Collection;

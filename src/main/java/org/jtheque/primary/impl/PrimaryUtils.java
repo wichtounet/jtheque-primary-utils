@@ -16,14 +16,14 @@ package org.jtheque.primary.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.features.able.Feature;
-import org.jtheque.features.able.FeatureService;
-import org.jtheque.file.able.FileService;
-import org.jtheque.file.able.ModuleBackuper;
+import org.jtheque.features.Feature;
+import org.jtheque.features.FeatureService;
+import org.jtheque.file.FileService;
+import org.jtheque.file.ModuleBackuper;
 import org.jtheque.primary.able.IPrimaryUtils;
 import org.jtheque.primary.able.od.SimpleData.DataType;
 import org.jtheque.primary.utils.DataTypeManager;
-import org.jtheque.schemas.able.SchemaService;
+import org.jtheque.schemas.SchemaService;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

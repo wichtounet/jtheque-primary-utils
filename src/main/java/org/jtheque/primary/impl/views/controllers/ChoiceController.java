@@ -4,7 +4,7 @@ import org.jtheque.primary.able.controller.IChoiceController;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.choice.ChoiceAction;
 import org.jtheque.primary.utils.choice.ChoiceActionFactory;
-import org.jtheque.ui.able.Action;
+import org.jtheque.ui.Action;
 import org.jtheque.ui.utils.AbstractController;
 import org.jtheque.utils.bean.Pair;
 import org.jtheque.utils.collections.CollectionUtils;

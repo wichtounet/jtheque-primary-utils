@@ -1,6 +1,6 @@
 package org.jtheque.primary.able.services;
 
-import org.jtheque.persistence.able.DataContainer;
+import org.jtheque.persistence.DataContainer;
 import org.jtheque.primary.able.od.Lending;
 
 import java.util.Collection;

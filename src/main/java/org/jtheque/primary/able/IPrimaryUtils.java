@@ -1,6 +1,6 @@
 package org.jtheque.primary.able;
 
-import org.jtheque.features.able.Feature;
+import org.jtheque.features.Feature;
 
 import java.util.List;
 

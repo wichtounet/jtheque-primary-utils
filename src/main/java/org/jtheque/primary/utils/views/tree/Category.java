@@ -16,7 +16,7 @@ package org.jtheque.primary.utils.views.tree;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.images.able.ImageService;
+import org.jtheque.images.ImageService;
 
 import javax.swing.Icon;
 

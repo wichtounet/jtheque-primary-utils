@@ -16,8 +16,8 @@ package org.jtheque.primary.impl.services;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.DaoNotes;
-import org.jtheque.persistence.able.Note;
+import org.jtheque.persistence.DaoNotes;
+import org.jtheque.persistence.Note;
 import org.jtheque.primary.able.services.INotesService;
 
 import javax.annotation.Resource;

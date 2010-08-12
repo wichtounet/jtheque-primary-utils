@@ -16,14 +16,14 @@ package org.jtheque.primary.impl.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.i18n.able.LanguageService;
+import org.jtheque.i18n.LanguageService;
 import org.jtheque.persistence.utils.DataContainerProvider;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.able.views.IChoiceView;
 import org.jtheque.primary.utils.DataTypeManager;
 import org.jtheque.primary.utils.views.DataContainerCachedComboBoxModel;
-import org.jtheque.ui.able.Model;
-import org.jtheque.ui.able.constraints.Constraints;
+import org.jtheque.ui.Model;
+import org.jtheque.ui.constraints.Constraints;
 import org.jtheque.ui.utils.builders.FilthyPanelBuilder;
 import org.jtheque.ui.utils.builders.PanelBuilder;
 import org.jtheque.ui.utils.windows.dialogs.SwingDialogView;

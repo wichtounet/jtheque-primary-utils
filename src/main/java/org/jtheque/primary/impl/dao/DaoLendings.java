@@ -16,9 +16,9 @@ package org.jtheque.primary.impl.dao;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.Entity;
-import org.jtheque.persistence.able.DaoPersistenceContext;
-import org.jtheque.persistence.able.QueryMapper;
+import org.jtheque.persistence.Entity;
+import org.jtheque.persistence.DaoPersistenceContext;
+import org.jtheque.persistence.QueryMapper;
 import org.jtheque.persistence.utils.CachedJDBCDao;
 import org.jtheque.persistence.utils.Query;
 import org.jtheque.primary.able.IPrimaryUtils;

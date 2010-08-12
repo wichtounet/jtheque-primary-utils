@@ -17,7 +17,7 @@ package org.jtheque.primary.able.views.model;
  */
 
 import org.jtheque.primary.able.od.SimpleData;
-import org.jtheque.ui.able.Model;
+import org.jtheque.ui.Model;
 
 /**
  * A model for simple data.

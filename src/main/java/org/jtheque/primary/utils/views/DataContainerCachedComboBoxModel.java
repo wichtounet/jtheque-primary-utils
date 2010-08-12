@@ -16,9 +16,9 @@ package org.jtheque.primary.utils.views;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.DataContainer;
-import org.jtheque.persistence.able.DataListener;
-import org.jtheque.persistence.able.Entity;
+import org.jtheque.persistence.Entity;
+import org.jtheque.persistence.DataContainer;
+import org.jtheque.persistence.DataListener;
 import org.jtheque.primary.able.od.Data;
 
 import javax.swing.DefaultComboBoxModel;

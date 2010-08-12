@@ -5,9 +5,9 @@ import org.jtheque.primary.able.services.IPersonService;
 import org.jtheque.primary.able.views.IBorrowerView;
 import org.jtheque.primary.able.views.ViewMode;
 import org.jtheque.primary.utils.edits.GenericDataCreatedEdit;
-import org.jtheque.ui.able.Action;
+import org.jtheque.ui.Action;
 import org.jtheque.ui.utils.AbstractController;
-import org.jtheque.undo.able.IUndoRedoService;
+import org.jtheque.undo.IUndoRedoService;
 
 import javax.annotation.Resource;
 

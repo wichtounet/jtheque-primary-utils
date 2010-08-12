@@ -17,14 +17,13 @@ package org.jtheque.primary.able.views;
  */
 
 import org.jtheque.primary.able.views.model.ISimpleDataModel;
-import org.jtheque.ui.able.View;
 
 /**
  * A country view specification.
  *
  * @author Baptiste Wicht
  */
-public interface ISimpleDataView extends DataView, View {
+public interface ISimpleDataView extends DataView, org.jtheque.ui.View {
     @Override
     ISimpleDataModel getModel();
 

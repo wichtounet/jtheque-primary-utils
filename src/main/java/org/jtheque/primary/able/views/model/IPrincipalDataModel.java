@@ -16,11 +16,11 @@ package org.jtheque.primary.able.views.model;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.persistence.able.DataListener;
+import org.jtheque.persistence.DataListener;
 import org.jtheque.primary.able.od.Data;
 import org.jtheque.primary.utils.views.listeners.CurrentObjectListener;
 import org.jtheque.primary.utils.views.listeners.DisplayListListener;
-import org.jtheque.ui.able.Model;
+import org.jtheque.ui.Model;
 
 import java.util.Collection;
 
